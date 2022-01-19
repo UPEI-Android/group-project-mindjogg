@@ -1,0 +1,43 @@
+name: Main CI
+
+# Runs when code is pushed to dev, or when code is merged into dev or main
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev, main ]
+    
+  # This line allows manual running
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          
+      - name: Install and Build Client
+        run: 
+          cd app/client
+          npm install
+          npm run build
+          
+      - name: Install and Build Server
+        run: 
+          cd app/server
+          npm install
+          npm run build
+        
+      # Linting and testing are incomplete.
+      # We need to set up ESLint in the client/server
+      # We need to set up testing in the client/server and provide an npm script in package.json
+      #- name: Lint
+      #  run: npm run lint
+        
+      #- name: Test
+      #  run: npm run test
+      
+      
