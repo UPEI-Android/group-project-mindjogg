@@ -33,6 +33,10 @@ The percentage instance will hold a number value to show the level at which the 
 | Hopeful   | JS Object |
 | Depressed | JS Object |
 
+# How to Use
+
+The userSchema object has been exported as a module and it can be used anywhere. Just import it into your file and make use of it as you need to.
+
 # Documentation
 
 We would be making use of an npm framework called Mongoose to easily connect and access our database on MongoDB.  
