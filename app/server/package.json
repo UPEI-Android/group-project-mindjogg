@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,7 @@
     "express": "^4.17.2"
   },
   "devDependencies": {
+    "jest": "^27.4.7",
     "nodemon": "^2.0.15"
   }
 }
