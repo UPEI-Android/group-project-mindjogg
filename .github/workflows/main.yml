@@ -21,34 +21,34 @@ jobs:
           
       - name: Install and Build Client
         run: 
-          cd app/client/mindjogg
-          npm install
-          npm run build
+          cd app/client/mindjogg;
+          npm install;
+          npm run build;
           
       - name: Install and Build Server
         run: 
-          cd app/server
-          npm install
-          npm run build
+          cd app/server;
+          npm install;
+          npm run build;
 
       - name: Lint Client
         run: 
-          cd app/client/mindjogg
-          npm run lint
+          cd app/client/mindjogg;
+          npm run lint;
         
       - name: Lint Server
         run: 
-          cd app/server
-          npm run lint
+          cd app/server;
+          npm run lint;
 
       - name: Test Client
         run:
-          cd app/client/mindjogg
-          npm run test
+          cd app/client/mindjogg;
+          npm run test;
 
       - name: Test Server
         run:
-          cd app/server
-          npm run test
+          cd app/server;
+          npm run test;
       
       
