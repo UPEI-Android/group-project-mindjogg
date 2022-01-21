@@ -19,17 +19,15 @@ jobs:
         with:
           persist-credentials: false
           
-      - name: Install and Build Client
+      - name: Install dependencies for Client
         run: 
           cd app/client/mindjogg;
           npm install;
-          npm run build;
           
-      - name: Install and Build Server
+      - name: Install dependencies for Server
         run: 
           cd app/server;
           npm install;
-          npm run build;
 
       - name: Lint Client
         run: 
