@@ -1,7 +1,7 @@
 //Import dependencies
 const express = require("express");
 const mongoose = require("mongoose");
-const { userSchema } = require("./database/schema/user_schema");
+const { userSchema } = require("./database/schema/user_schema"); // eslint-disable-line
 
 //ES6
 //import userSchema from "../database/schema/user_schema.js";
