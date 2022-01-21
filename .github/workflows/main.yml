@@ -21,7 +21,7 @@ jobs:
           
       - name: Install and Build Client
         run: 
-          cd app/client
+          cd app/client/mindjogg
           npm install
           npm run build
           
@@ -30,14 +30,25 @@ jobs:
           cd app/server
           npm install
           npm run build
+
+      - name: Lint Client
+        run: 
+          cd app/client/mindjogg
+          npm run lint
         
-      # Linting and testing are incomplete.
-      # We need to set up ESLint in the client/server
-      # We need to set up testing in the client/server and provide an npm script in package.json
-      #- name: Lint
-      #  run: npm run lint
-        
-      #- name: Test
-      #  run: npm run test
+      - name: Lint Server
+        run: 
+          cd app/server
+          npm run lint
+
+      - name: Test Client
+        run:
+          cd app/client/mindjogg
+          npm run test
+
+      - name: Test Server
+        run:
+          cd app/server
+          npm run test
       
       
