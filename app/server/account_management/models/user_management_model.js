@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+//const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 //const { userSchema } = require("./database/schema/user_schema");
 
@@ -61,7 +61,7 @@ const loginUser = async (user) => {
             message: null
         };
       //checks array if user is registered and retrieving the user details, will later be replaced by function searching database
-       const result = usersList.find(user => user.userName === req.body.userName);
+       const result = usersList.find(user => user.userName === result.userName);
        if (result == null) {
             returnMessage.status = 404;
             returnMessage.message = "User does not exist";
