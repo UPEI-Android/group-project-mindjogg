@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js -L",
-    "test": "jest"
+    "devStart": "nodemon server.js",
+    "test": "jest",
+    "lint": "npx eslint . --ext .js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,8 @@
     "mongoose": "^6.1.7"
   },
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.28.0",
     "jest": "^27.4.7",
     "nodemon": "^2.0.15"
   }
