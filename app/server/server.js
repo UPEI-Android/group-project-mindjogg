@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 const { userSchema } = require("./database/schema/user_schema")
 
+
 //ES6
 //import userSchema from "../database/schema/user_schema.js";
 
