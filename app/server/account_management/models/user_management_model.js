@@ -35,7 +35,7 @@ const createUser = async (user) => {
             status: null,
             message: null
         };
-        if(usersList.contains(newUser)){
+        if(usersList.includes(newUser)){
             returnMessage.status = 201;
             returnMessage.message = "User successfully created";
         } else {
