@@ -71,29 +71,32 @@ const createUser = async (user) => {
 const loginUser = async (user) => {
     try {
         // returnMessage will be used to return the status of the user login
-        let returnMessage = {
+        let  returnMessage = {
             status: null,
             message: null
         };
       //function searching database for existing user
-       let userName=user.userName;
-       let result= User.find({userName}).then(result => {
-            if(result){
-                 bcrypt.compare(user.password, result.password).then(result=>{
-                    if(result){
+       
+        User.find({userName:user.userName})
+        .then(resultData => {
+                   //comparing password to authenticate user
+                  bcrypt.compare(user.password, resultData[0].userPassword).then(found=>{
+                    if(found){
                         returnMessage.status = 200;
                         returnMessage.message = "User successfully logged in";
+                        console.log("User successfully logged in")    
+                        
                     }
                     else{
                         returnMessage.status = 401;
                         returnMessage.message = "Wrong password";
+                          //for debuging purposes
+                        console.log("Wrong password" )
                     }
                 })
-          }
-        
-       });
-      
-        return returnMessage;
+          }); 
+             
+        return returnMessage;//returns null for  some reason it is not having values assigned in the promise above from line 85,86,91,92
     } catch (err) {
         console.log(err);
     }
@@ -104,10 +107,10 @@ const loginUser = async (user) => {
 */
 const getUserList = async () => {
     try {
-        // TODO: retrive the user list from the database
         // TODO: check if the user is an admin
-        // TODO: return usersList;
-        return  usersList;
+        //returns list of users
+        let result = User.find({});
+       return result;
     } catch (err) {
         console.log(err);
     }

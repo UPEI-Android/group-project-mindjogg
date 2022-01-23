@@ -8,11 +8,11 @@ POST http://localhost:3000/users/register
 Content-Type: application/json
 
 {
-"UserName": "sontush",
-"Password": "password1234",
-"FirstName":"sontush",
-"LastName":"paul",
-"Email":"sontushpaul@hotmail.com"
+"UserName": "andrew",
+"Password": "password12345",
+"FirstName":"andrew",
+"LastName":"chisholm",
+"Email":"andrewchisholm@hotmail.com"
 }
 
 

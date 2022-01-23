@@ -46,7 +46,6 @@ const userLogin = async (req, res) => {
         }
 
         let result = await model.loginUser(user);
-
         if (result.status == 200) {
             res.status(200);
             res.json(result.message);
