@@ -8,11 +8,11 @@ POST http://localhost:3000/users/register
 Content-Type: application/json
 
 {
-"userName": "Roshan",
-"password": "password123",
-"firstName":"jyanesh",
-"lastName":"seeam",
-"email":"jyaneshseeam@hotmail.com"
+"UserName": "sontush",
+"Password": "password1234",
+"FirstName":"sontush",
+"LastName":"paul",
+"Email":"sontushpaul@hotmail.com"
 }
 
 
@@ -24,8 +24,8 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-"userName": "Roshan",
-"password": "password123"
+"UserName": "sontush",
+"Password": "password1234"
 }
 
 ###
@@ -35,6 +35,6 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-"userName": "Roshan",
-"password": "password666"
+"UserName": "Roshan",
+"Password": "password666"
 }

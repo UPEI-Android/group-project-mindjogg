@@ -1,9 +1,8 @@
-//const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-//const { userSchema } = require("./database/schema/user_schema");
 
-// Temporary user database
-let usersList = [];
+const bcrypt = require("bcrypt");
+
+//user database
+const User = require("./schema/user_schema")
 
 /**
  * Creates a new user and adds it to the database if it doesn't already exist.
@@ -15,26 +14,42 @@ const createUser = async (user) => {
 
         //hashing password that was retrieved from user with Salt 10
         const hashedPassword = await bcrypt.hash(user.password, 10);
-        //adding hashed password to user obj
-        const newUser = {
+        //adding attributes to new user 
+        const newUser = new User({
             userName: user.userName,
-            password: hashedPassword,
+            userPassword: hashedPassword,
             userFirstName: user.userFirstName,
+            userMiddleName:null,
             userLastName: user.userLastName,
-            userEmail: user.userEmail
-        };
+            userEmail: user.userEmail,
+            userGoals: null,
+            userTasks: null,
+            userJournal: null,
+            userMood:null
+       
+        });
 
-        //pushing user object to array, later will push to database
-        usersList.push(newUser);
+        console.log("passed to database");
+        console.log(newUser);
 
-        //return true if user was created successfully 
-        //TODO: Check if the user is created successfully in the database by checking the status code of the database response
-        
+
         // returnMessage will be used to return the status of the creation of the user
         let returnMessage = {
             status: null,
             message: null
         };
+
+        //pushing user object to database
+        newUser.save();
+        returnMessage.status = 201;
+        returnMessage.message = "User successfully created";
+        return returnMessage;
+
+      
+        /* //return true if user was created successfully 
+        //TODO: Check if the user is created successfully in the database by checking the status code of the database response
+        
+       
         if(usersList.includes(newUser)){
             returnMessage.status = 201;
             returnMessage.message = "User successfully created";
@@ -42,7 +57,7 @@ const createUser = async (user) => {
             returnMessage.status = 400;
             returnMessage.message = "User already exists";
         }
-        return returnMessage;
+        return returnMessage; */
     } catch (err) {
         console.log(err);
     }
@@ -60,20 +75,24 @@ const loginUser = async (user) => {
             status: null,
             message: null
         };
-      //checks array if user is registered and retrieving the user details, will later be replaced by function searching database
-       const result = usersList.find(user => user.userName === result.userName);
-       if (result == null) {
-            returnMessage.status = 404;
-            returnMessage.message = "User does not exist";
-        } else {
-            if(await bcrypt.compare(user.password, result.password)) {
-                returnMessage.status = 200;
-                returnMessage.message = "User successfully logged in";
-            } else {
-                returnMessage.status = 401;
-                returnMessage.message = "Wrong password";
-            }
-        }
+      //function searching database for existing user
+       let userName=user.userName;
+       let result= User.find({userName}).then(result => {
+            if(result){
+                 bcrypt.compare(user.password, result.password).then(result=>{
+                    if(result){
+                        returnMessage.status = 200;
+                        returnMessage.message = "User successfully logged in";
+                    }
+                    else{
+                        returnMessage.status = 401;
+                        returnMessage.message = "Wrong password";
+                    }
+                })
+          }
+        
+       });
+      
         return returnMessage;
     } catch (err) {
         console.log(err);

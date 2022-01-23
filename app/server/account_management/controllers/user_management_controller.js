@@ -7,7 +7,7 @@ const model = require("../models/user_management_model");
  */
 const userRegistration = async (req, res) => {
     try {
-        //adding hashed password to user obj
+        //adding attributes to user obj
         const user = {
         userName: req.body.UserName,
         password: req.body.Password,
@@ -15,7 +15,8 @@ const userRegistration = async (req, res) => {
         userLastName: req.body.LastName,
         userEmail: req.body.Email
         }
-        
+        console.log("passed to model");
+        console.log(user);
         let result = await model.createUser(user);
 
         if (result.status == 201) {
@@ -28,7 +29,7 @@ const userRegistration = async (req, res) => {
 
     } catch (err) {
         res.status(500);
-        res.json(err.meassage);
+        res.json(err.message);
     }
 };
 
