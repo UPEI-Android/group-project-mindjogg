@@ -1,9 +1,8 @@
-//const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-//const { userSchema } = require("./database/schema/user_schema");
 
-// Temporary user database
-let usersList = [];
+const bcrypt = require("bcrypt");
+
+//user database
+const User = require("./schema/user_schema")
 
 /**
  * Creates a new user and adds it to the database if it doesn't already exist.
@@ -15,34 +14,42 @@ const createUser = async (user) => {
 
         //hashing password that was retrieved from user with Salt 10
         const hashedPassword = await bcrypt.hash(user.password, 10);
-        //adding hashed password to user obj
-        const newUser = {
+        //adding attributes to new user 
+        const newUser = new User({
             userName: user.userName,
-            password: hashedPassword,
+            userPassword: hashedPassword,
             userFirstName: user.userFirstName,
+            userMiddleName:null,
             userLastName: user.userLastName,
-            userEmail: user.userEmail
-        };
+            userEmail: user.userEmail,
+            userGoals: null,
+            userTasks: null,
+            userJournal: null,
+            userMood:null
+       
+        });
 
-        //pushing user object to array, later will push to database
-        usersList.push(newUser);
-
-        //return true if user was created successfully 
-        //TODO: Check if the user is created successfully in the database by checking the status code of the database response
-        
         // returnMessage will be used to return the status of the creation of the user
         let returnMessage = {
             status: null,
             message: null
         };
-        if(usersList.includes(newUser)){
-            returnMessage.status = 201;
-            returnMessage.message = "User successfully created";
-        } else {
+
+        //check if username exist in database
+        let result= await User.findOne({userName:user.userName},{"userName":1})
+        //if username exists
+        if(result){
             returnMessage.status = 400;
             returnMessage.message = "User already exists";
+            
         }
-        return returnMessage;
+        else {
+           //saving user object to database
+            newUser.save();
+            returnMessage.status = 201;
+            returnMessage.message = "User successfully created";
+        }
+        return returnMessage; 
     } catch (err) {
         console.log(err);
     }
@@ -56,25 +63,36 @@ const createUser = async (user) => {
 const loginUser = async (user) => {
     try {
         // returnMessage will be used to return the status of the user login
-        let returnMessage = {
+        var  returnMessage = {
             status: null,
             message: null
         };
-      //checks array if user is registered and retrieving the user details, will later be replaced by function searching database
-       const result = usersList.find(user => user.userName === result.userName);
-       if (result == null) {
-            returnMessage.status = 404;
-            returnMessage.message = "User does not exist";
-        } else {
-            if(await bcrypt.compare(user.password, result.password)) {
-                returnMessage.status = 200;
-                returnMessage.message = "User successfully logged in";
-            } else {
-                returnMessage.status = 401;
-                returnMessage.message = "Wrong password";
-            }
+      //function searching database for existing user
+
+          //projection is what fields the query should return below
+          const projection = {
+            "userName": 1,
+            "userPassword": 1,
+           }
+          //finding user that matches username entered by passing query for username + projection defined above
+         let result= await User.findOne({userName:user.userName},projection)
+         if(result){
+         //finding if password matches entered one
+         if( await bcrypt.compare(user.password, result.userPassword)){
+            returnMessage.status = 200;
+            returnMessage.message = "User successfully logged in";
+         }
+         else{
+            returnMessage.message = "Wrong password";
+            returnMessage.status = 400;
+         }
         }
-        return returnMessage;
+        else{
+            returnMessage.message = "Username not found";
+            returnMessage.status = 400;
+        }
+         return returnMessage; 
+
     } catch (err) {
         console.log(err);
     }
@@ -85,10 +103,10 @@ const loginUser = async (user) => {
 */
 const getUserList = async () => {
     try {
-        // TODO: retrive the user list from the database
         // TODO: check if the user is an admin
-        // TODO: return usersList;
-        return  usersList;
+        //returns list of users
+        let result = await User.find({});
+       return result;
     } catch (err) {
         console.log(err);
     }
