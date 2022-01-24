@@ -15,8 +15,7 @@ const userRegistration = async (req, res) => {
         userLastName: req.body.LastName,
         userEmail: req.body.Email
         }
-        console.log("passed to model");
-        console.log(user);
+      
         let result = await model.createUser(user);
 
         if (result.status == 201) {
@@ -46,6 +45,7 @@ const userLogin = async (req, res) => {
         }
 
         let result = await model.loginUser(user);
+       
         if (result.status == 200) {
             res.status(200);
             res.json(result.message);

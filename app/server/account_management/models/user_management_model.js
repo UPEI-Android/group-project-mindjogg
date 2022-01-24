@@ -29,35 +29,27 @@ const createUser = async (user) => {
        
         });
 
-        console.log("passed to database");
-        console.log(newUser);
-
-
         // returnMessage will be used to return the status of the creation of the user
         let returnMessage = {
             status: null,
             message: null
         };
 
-        //pushing user object to database
-        newUser.save();
-        returnMessage.status = 201;
-        returnMessage.message = "User successfully created";
-        return returnMessage;
-
-      
-        /* //return true if user was created successfully 
-        //TODO: Check if the user is created successfully in the database by checking the status code of the database response
-        
-       
-        if(usersList.includes(newUser)){
-            returnMessage.status = 201;
-            returnMessage.message = "User successfully created";
-        } else {
+        //check if username exist in database
+        let result= await User.findOne({userName:user.userName},{"userName":1})
+        //if username exists
+        if(result){
             returnMessage.status = 400;
             returnMessage.message = "User already exists";
+            
         }
-        return returnMessage; */
+        else {
+           //saving user object to database
+            newUser.save();
+            returnMessage.status = 201;
+            returnMessage.message = "User successfully created";
+        }
+        return returnMessage; 
     } catch (err) {
         console.log(err);
     }
@@ -71,32 +63,36 @@ const createUser = async (user) => {
 const loginUser = async (user) => {
     try {
         // returnMessage will be used to return the status of the user login
-        let  returnMessage = {
+        var  returnMessage = {
             status: null,
             message: null
         };
       //function searching database for existing user
-       
-        User.find({userName:user.userName})
-        .then(resultData => {
-                   //comparing password to authenticate user
-                  bcrypt.compare(user.password, resultData[0].userPassword).then(found=>{
-                    if(found){
-                        returnMessage.status = 200;
-                        returnMessage.message = "User successfully logged in";
-                        console.log("User successfully logged in")    
-                        
-                    }
-                    else{
-                        returnMessage.status = 401;
-                        returnMessage.message = "Wrong password";
-                          //for debuging purposes
-                        console.log("Wrong password" )
-                    }
-                })
-          }); 
-             
-        return returnMessage;//returns null for  some reason it is not having values assigned in the promise above from line 85,86,91,92
+
+          //projection is what fields the query should return below
+          const projection = {
+            "userName": 1,
+            "userPassword": 1,
+           }
+          //finding user that matches username entered by passing query for username + projection defined above
+         let result= await User.findOne({userName:user.userName},projection)
+         if(result){
+         //finding if password matches entered one
+         if( await bcrypt.compare(user.password, result.userPassword)){
+            returnMessage.status = 200;
+            returnMessage.message = "User successfully logged in";
+         }
+         else{
+            returnMessage.message = "Wrong password";
+            returnMessage.status = 400;
+         }
+        }
+        else{
+            returnMessage.message = "Username not found";
+            returnMessage.status = 400;
+        }
+         return returnMessage; 
+
     } catch (err) {
         console.log(err);
     }
@@ -109,7 +105,7 @@ const getUserList = async () => {
     try {
         // TODO: check if the user is an admin
         //returns list of users
-        let result = User.find({});
+        let result = await User.find({});
        return result;
     } catch (err) {
         console.log(err);
