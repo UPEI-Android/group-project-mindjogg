@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "devStart": "nodemon server.js",
     "test": "jest",
     "lint": "npx eslint . --ext .js"
@@ -14,8 +15,10 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "dotenv": "^14.3.0",
     "express": "^4.17.2",
-    "mongoose": "^6.1.7"
+    "mongoose": "^6.1.7",
+    "nodemailer": "^6.7.2"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
