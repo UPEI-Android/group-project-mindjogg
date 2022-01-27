@@ -1,0 +1,40 @@
+//get request to access users
+GET http://localhost:3000/users
+
+###
+
+//post request to register new user with username and password in json
+POST http://localhost:3000/users/register
+Content-Type: application/json
+
+{
+"UserName": "tec",
+"Password": "password12345",
+"FirstName":"tec",
+"LastName":"cofa",
+"Email":"tecofa8007@nahetech.com"
+}
+
+
+
+###
+
+//post request to login with username and password in json
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+"UserName": "sontush",
+"Password": "password1234"
+}
+
+###
+
+//post request to login with username and password in json
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+"UserName": "Roshan",
+"Password": "password666"
+}

@@ -1,0 +1,52 @@
+name: Main CI
+
+# Runs when code is pushed to dev, or when code is merged into dev or main
+on:
+  push:
+    branches: [ dev, stage, main ]
+  pull_request:
+    branches: [ dev, stage, main ]
+    
+  # This line allows manual running
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          
+      - name: Install dependencies for Client
+        run: 
+          cd app/client/mindjogg;
+          npm install;
+          
+      - name: Install dependencies for Server
+        run: 
+          cd app/server;
+          npm install;
+
+      - name: Lint Client
+        run: 
+          cd app/client/mindjogg;
+          npm run lint;
+        
+      - name: Lint Server
+        run: 
+          cd app/server;
+          npm run lint;
+
+      - name: Test Client
+        run:
+          cd app/client/mindjogg;
+          npm run test;
+
+      - name: Test Server
+        run:
+          cd app/server;
+          npm run test;
+      
+      

@@ -1,37 +1,18 @@
-//Import dependencies
 const express = require("express");
-const mongoose = require("mongoose");
-const { userSchema } = require("./database/schema/user_schema");
+const server = express();
 
-//ES6
-//import userSchema from "../database/schema/user_schema.js";
+const serverConfig = require("./config/server_config");
+const accountManagementApp = require("./account_management/account_management_app");
 
-const app = express();
+server.use(accountManagementApp);
 
-//Route
-app.get("/", (req, res) => {
-  console.log("Welcome to Mindjogg!");
-  res.send("Welcome to Mindjogg!");
+//Server will listen on the port specified in the serverConfig
+server.listen(serverConfig.port, () => {
+  console.log("Server is listening on port: " + serverConfig.port);
+  console.log(` Server link: ${serverConfig.hostUrl}:${serverConfig.port}`);
 });
 
-//Attempt to connect to MongoDB Atlas
-mongoose.connect(
-  "mongodb+srv://mindjogg_the_app:Mindj0Gg123@mindjoggcluster.e2dzp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  (err) => {
-    if (!err) console.log("Connected to Database");
-    else console.log(err);
-  }
-);
 
-/*
-Inform MongoDB about our Schema and create a New Collection for It
-Leaving this commented for testing when backend testing is set
 
-const dataModel = new mongoose.model("User Data", userSchema);
-*/
 
-//Server listening for Port 3000
-app.listen(3000, () => {
-  console.log("Connection Made");
-});
+
