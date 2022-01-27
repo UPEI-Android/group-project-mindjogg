@@ -7,6 +7,9 @@ const userManagementController = require('../controllers/user_management_control
 
 router.post('/users/register', userManagementController.userRegistration);
 router.post('/users/login', userManagementController.userLogin);
+router.post('/users/forgetPassword',userManagementController.userForgetPassword);
+router.post('/users/resetPassword/:id/:token',userManagementController.userResetPassword);
+
 
 // testing purposes or admin purposes
 router.get('/users', userManagementController.getUserList);
