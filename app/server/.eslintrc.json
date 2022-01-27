@@ -20,5 +20,10 @@
         "react"
     ],
     "rules": {
+        "prefer-const": "warn",
+        "quotes": "warn",
+        "no-inline-comments": "warn",
+        "semi-style": "warn",
+        "require-await": "warn"
     }
 }
