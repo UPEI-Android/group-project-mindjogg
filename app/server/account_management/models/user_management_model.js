@@ -46,13 +46,13 @@ const createUser = async (user) => {
         });
 
         // returnMessage will be used to return the status of the creation of the user
-        let returnMessage = {
+        const returnMessage = {
             status: null,
             message: null
         };
 
         //check if username exist in database
-        let result= await User.findOne({userName:user.userName},{"userName":1})
+        const result= await User.findOne({userName:user.userName},{"userName":1})
 
         //if username exists
         if(result){
@@ -111,7 +111,7 @@ const loginUser = async (user) => {
             "userPassword": 1,
            }
           //finding user that matches username entered by passing query for username + projection defined above
-         let result= await User.findOne({userName:user.userName},projection)
+         const result= await User.findOne({userName:user.userName},projection)
          if(result){
             //finding if password matches entered one
             if( await bcrypt.compare(user.password, result.userPassword)){
@@ -141,7 +141,7 @@ const getUserList = async () => {
     try {
         // TODO: check if the user is an admin
         //returns list of users
-        let result = await User.find({});
+        const result = await User.find({});
        return result;
     } catch (err) {
         console.log(err);
