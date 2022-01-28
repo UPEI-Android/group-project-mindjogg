@@ -1,8 +1,24 @@
 
 const bcrypt = require("bcrypt");
+const nodemailer = require("nodemailer");
+const { gmail_password, gmail_user} = require("../../config/server_config");
 
 //user database
 const User = require("./schema/user_schema")
+
+
+/**
+ * Creates a transport with sender credentials for email
+ */
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: gmail_user,
+      pass: gmail_password
+    }
+  });
+
+
 
 /**
  * Creates a new user and adds it to the database if it doesn't already exist.
@@ -30,25 +46,45 @@ const createUser = async (user) => {
         });
 
         // returnMessage will be used to return the status of the creation of the user
-        let returnMessage = {
+        const returnMessage = {
             status: null,
             message: null
         };
 
         //check if username exist in database
-        let result= await User.findOne({userName:user.userName},{"userName":1})
+        const result= await User.findOne({userName:user.userName},{"userName":1})
+
         //if username exists
         if(result){
             returnMessage.status = 400;
             returnMessage.message = "User already exists";
             
         }
+        //if no existing user exists
         else {
-           //saving user object to database
+           //save user object to database
             newUser.save();
             returnMessage.status = 201;
             returnMessage.message = "User successfully created";
+             
+            //Creates an Option that stores receiver email +content of verification email
+            const mailOptions = { 
+                from: gmail_user,
+                to: user.userEmail,
+                subject: "Your MindJOGG account has been created",
+                text: "Click here (verification link to be added) to verify your account!"
+            };
+
+            //sends verification email to user
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                console.log(error);
+                } else {
+                console.log("Email sent: " + info.response);
+                }
+            });
         }
+
         return returnMessage; 
     } catch (err) {
         console.log(err);
@@ -75,23 +111,23 @@ const loginUser = async (user) => {
             "userPassword": 1,
            }
           //finding user that matches username entered by passing query for username + projection defined above
-         let result= await User.findOne({userName:user.userName},projection)
+         const result= await User.findOne({userName:user.userName},projection)
          if(result){
-         //finding if password matches entered one
-         if( await bcrypt.compare(user.password, result.userPassword)){
-            returnMessage.status = 200;
-            returnMessage.message = "User successfully logged in";
-         }
-         else{
-            returnMessage.message = "Wrong password";
-            returnMessage.status = 400;
-         }
+            //finding if password matches entered one
+            if( await bcrypt.compare(user.password, result.userPassword)){
+                returnMessage.status = 200;
+                returnMessage.message = "User successfully logged in";
+            }
+            else{
+                returnMessage.message = "Wrong password";
+                returnMessage.status = 400;
+            }
         }
         else{
             returnMessage.message = "Username not found";
             returnMessage.status = 400;
         }
-         return returnMessage; 
+        return returnMessage; 
 
     } catch (err) {
         console.log(err);
@@ -105,12 +141,15 @@ const getUserList = async () => {
     try {
         // TODO: check if the user is an admin
         //returns list of users
-        let result = await User.find({});
+        const result = await User.find({});
        return result;
     } catch (err) {
         console.log(err);
     }
 };
+
+
+
 
 module.exports = {
     createUser,
