@@ -21,5 +21,10 @@
         "react"
     ],
     "rules": {
+        "prefer-const": "error",
+        "quotes": "error",
+        "no-inline-comments": "error",
+        "semi-style": "error",
+        "require-await": "error"
     }
 }
