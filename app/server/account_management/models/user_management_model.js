@@ -168,7 +168,7 @@ const forgotPassword = async (user) => {
     try {
 
         // returnMessage will be used to return the status of the creation of the user
-        let returnMessage = {
+        const returnMessage = {
             status: null,
             message: null
         };
@@ -183,7 +183,7 @@ const forgotPassword = async (user) => {
            }
 
         //checks if user have  username or email that exists
-        let result= await User.findOne({ $or: [ { userName:user.userName}, { userEmail:user.userEmail } ] },projection)
+        const result= await User.findOne({ $or: [ { userName:user.userName}, { userEmail:user.userEmail } ] },projection)
        
         
          if(result){
@@ -234,14 +234,14 @@ const forgotPassword = async (user) => {
 */
 const resetPassword = async (user) => {
     // returnMessage will be used to return the status of the creation of the user
-    let returnMessage = {
+    const returnMessage = {
         status: null,
         message: null
     };
 
     try { 
          //finding user that matches username entered by passing query for id
-        let result= await User.findById(user.id)
+        const result= await User.findById(user.id)
         if(result){
             const secret = jwtSecret+result.userPassword;
             try{

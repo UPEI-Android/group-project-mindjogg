@@ -45,7 +45,7 @@ const userLogin = async (req, res) => {
             userName: req.body.UserName,
             password: req.body.Password
         }
-        let result = await model.loginUser(user);
+        const result = await model.loginUser(user);
 
        
         if (result.status == 200) {
@@ -89,7 +89,7 @@ const getUserList = async (req, res) => {
             userName: req.body.UserNameorEmail,
             userEmail: req.body.UserNameorEmail
         }
-        let result = await model.forgotPassword(user);
+        const result = await model.forgotPassword(user);
         
        
         if (result.status == 200) {
@@ -124,7 +124,7 @@ const getUserList = async (req, res) => {
             password: req.body.Password
         }   
         console.log(req.body.Password)
-        let result = await model.resetPassword(user);     
+        const result = await model.resetPassword(user);     
 
         if (result.status == 200) {
             res.status(200);
