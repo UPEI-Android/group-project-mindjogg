@@ -21,10 +21,10 @@
         "react"
     ],
     "rules": {
-        "prefer-const": "warn",
-        "quotes": "warn",
-        "no-inline-comments": "warn",
-        "semi-style": "warn",
-        "require-await": "warn"
+        "prefer-const": "error",
+        "quotes": "error",
+        "no-inline-comments": "error",
+        "semi-style": "error",
+        "require-await": "error"
     }
 }
