@@ -16,7 +16,7 @@ const userRegistration = async (req, res) => {
         userEmail: req.body.Email
         }
       
-        let result = await model.createUser(user);
+        const result = await model.createUser(user);
 
         if (result.status == 201) {
             res.status(201);
@@ -44,7 +44,7 @@ const userLogin = async (req, res) => {
             password: req.body.Password
         }
 
-        let result = await model.loginUser(user);
+        const result = await model.loginUser(user);
        
         if (result.status == 200) {
             res.status(200);
@@ -67,7 +67,7 @@ const userLogin = async (req, res) => {
  */
 const getUserList = async (req, res) => {
     try {
-        let result = await model.getUserList();
+        const result = await model.getUserList();
         res.status(200);
         res.json(result);
     } catch (err) {
