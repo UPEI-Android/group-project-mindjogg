@@ -24,8 +24,8 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-"UserName": "sontush",
-"Password": "password1234"
+"UserName": "tec",
+"Password": "password12345"
 }
 
 ###
@@ -37,4 +37,25 @@ Content-Type: application/json
 {
 "UserName": "Roshan",
 "Password": "password666"
+}
+
+
+###
+
+//post request to forgetpassword with username or email in json
+POST http://localhost:3000/users/forgetPassword
+Content-Type: application/json
+
+{
+"UserNameorEmail": "tec"
+}
+
+
+###
+//post request to reset password , paste the link that you get via email
+POST (paste link here)
+Content-Type: application/json
+
+{
+"Password": "password6266"
 }
