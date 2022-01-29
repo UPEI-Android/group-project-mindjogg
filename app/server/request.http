@@ -49,3 +49,13 @@ Content-Type: application/json
 {
 "UserNameorEmail": "tec"
 }
+
+
+###
+//post request to reset password , paste the link that you get via email
+POST (paste link here)
+Content-Type: application/json
+
+{
+"Password": "password6266"
+}
