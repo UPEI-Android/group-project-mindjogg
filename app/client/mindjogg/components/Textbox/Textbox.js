@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Image, StyleSheet } from "react-native";
+import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
     sectionStyle: {
@@ -23,35 +24,18 @@ const styles = StyleSheet.create({
     },
   });
 
-Textbox.propTypes = {
-    name: React.propTypes.string.isRequired,
-    maxLength: React.propTypes.number,
-    minLength: React.propTypes.number,
-    placeholder: React.propTypes.string,
-    size: React.propTypes.number.isRequired,
-    required: React.propTypes.bool,
-}
-
-Textbox.defaultProps = {
-    mame: "myTextbox",
-    maxLength: 1000,
-    minLength: 1,
-    placeholder: "Input Text Here",
-    size: 20,
-    required: false,
-}
-
 function Textbox(props) {
+    let icon;
+
+    props.uri ? 
+        icon = <Image source={ props.uri } style={styles.imageStyle}></Image> : 
+        icon = null;
+
     return(
         <View style={styles.sectionStyle}>
-            <Image
-            // uri is just for testing
-                source={{uri:"https://raw.githubusercontent.com/AboutReact/sampleresource/master/input_phone.png"}}
-                style={styles.imageStyle}
-            >
-            </Image>
+            { icon }
             <input
-                style = {{flex: 1, height: 35, margin: 10, border: 0}}
+                style={{border:0}}
                 type = "text"
                 onChange = { handleChange }
                 name = { props.name }
@@ -64,6 +48,26 @@ function Textbox(props) {
             </input>
         </View>
     );
+}
+
+Textbox.propTypes = {
+    name: PropTypes.string.isRequired,
+    maxLength: PropTypes.number,
+    minLength: PropTypes.number,
+    placeholder: PropTypes.string,
+    size: PropTypes.number.isRequired,
+    required: PropTypes.bool,
+    uri: PropTypes.string,
+}
+
+Textbox.defaultProps = {
+    name: "myTextbox",
+    maxLength: 1000,
+    minLength: 1,
+    placeholder: "Input Text Here",
+    size: 20,
+    required: false,
+    uri: '',
 }
 
 function handleChange() {
