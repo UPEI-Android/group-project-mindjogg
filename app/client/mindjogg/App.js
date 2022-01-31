@@ -1,6 +1,7 @@
 import { React } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import { Textbox } from "./components/Textbox";
 // import { Home } from "@material-ui/icons";
 
 export default function App() {
@@ -9,6 +10,7 @@ export default function App() {
       <Text>Welcome to MindJogg!</Text>
       {/* <Home></Home> this home icon is breaking the app in both android and ios */}
       <StatusBar style="auto" />
+      <Textbox />
     </View>
   );
 }
