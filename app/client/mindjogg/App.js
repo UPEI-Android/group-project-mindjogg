@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer"
+// import { Home } from "@material-ui/icons";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,9 +31,10 @@ function App() {
 }
 
 function HomeScreen() {
-  return (
+   return (
     <View style={styles.container}>
       <Text>Welcome to MindJogg!</Text>
+      {/* <Home></Home> this home icon is breaking the app in both android and ios */}
       <StatusBar style="auto" />
     </View>
   );
