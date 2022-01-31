@@ -8,8 +8,8 @@ import { createDrawerNavigator } from "@react-navigation/drawer"
 // import { Home } from "@material-ui/icons";
 
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
+// const Tab = createBottomTabNavigator();
+// const Drawer = createDrawerNavigator();
 
 const styles = StyleSheet.create({
   container: {
