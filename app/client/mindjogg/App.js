@@ -1,7 +1,6 @@
 import { React } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import { Home } from "@material-ui/icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -17,7 +16,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
+  }, 
 });
 
 function App() {
@@ -34,7 +33,6 @@ function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text>Welcome to MindJogg!</Text>
-      <Home></Home>
       <StatusBar style="auto" />
     </View>
   );
