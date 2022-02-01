@@ -35,14 +35,14 @@ function Textbox(props) {
         <View style={styles.sectionStyle}>
             { icon }
             <input
-                style={{border:0}}
+                style={{borderStyle: "none", outline: "none", size: props.size}}
                 type = "text"
                 onChange = { handleChange }
+                onFocus = { handleFocus }
                 name = { props.name }
                 maxLength = { props.maxLength }
                 minLength = { props.minLength }
                 placeholder = { props.placeholder }
-                size = { props.size }
                 required = { props.required }
             >
             </input>
@@ -65,13 +65,17 @@ Textbox.defaultProps = {
     maxLength: 1000,
     minLength: 1,
     placeholder: "Input Text Here",
-    size: 20,
+    size: 25,
     required: false,
     uri: '',
 }
 
 function handleChange() {
     
+}
+
+function handleFocus() {
+
 }
 
 export default Textbox;
