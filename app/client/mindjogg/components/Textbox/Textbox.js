@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Image, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 
@@ -25,20 +25,26 @@ const styles = StyleSheet.create({
   });
 
 function Textbox(props) {
-    let icon;
+    // track the current value of the input to the textbox
+    const [value, setValue] = useState("");
+    function handleChange(e) {
+        setValue(e.target.value);
+    }
 
+    // decide whether to show an icon or not
+    let icon;
     props.uri ? 
-        icon = <Image source={ props.uri } style={styles.imageStyle}></Image> : 
+        icon = <Image source={props.uri} style={styles.imageStyle}></Image> : 
         icon = null;
 
+    // render the textbox
     return(
         <View style={styles.sectionStyle}>
             { icon }
             <input
-                style={{borderStyle: "none", outline: "none", size: props.size}}
+                style={ {borderStyle: "none", outline: "none", size: props.size} }
                 type = "text"
                 onChange = { handleChange }
-                onFocus = { handleFocus }
                 name = { props.name }
                 maxLength = { props.maxLength }
                 minLength = { props.minLength }
@@ -68,14 +74,6 @@ Textbox.defaultProps = {
     size: 25,
     required: false,
     uri: '',
-}
-
-function handleChange() {
-    
-}
-
-function handleFocus() {
-
 }
 
 export default Textbox;
