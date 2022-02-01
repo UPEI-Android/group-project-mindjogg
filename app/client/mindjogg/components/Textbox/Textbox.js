@@ -26,6 +26,9 @@ const styles = StyleSheet.create({
 
 function Textbox(props) {
     // track the current value of the input to the textbox
+    // Have to disable this line, because value is updated by the form controller
+    // but never in this function
+    /* eslint-disable no-unused-vars */
     const [value, setValue] = useState("");
     function handleChange(e) {
         setValue(e.target.value);
@@ -33,8 +36,8 @@ function Textbox(props) {
 
     // decide whether to show an icon or not
     let icon;
-    props.uri ? 
-        icon = <Image source={props.uri} style={styles.imageStyle}></Image> : 
+    props.iconURI ? 
+        icon = <Image source={props.iconURI} style={styles.imageStyle}></Image> : 
         icon = null;
 
     // render the textbox
@@ -42,7 +45,7 @@ function Textbox(props) {
         <View style={styles.sectionStyle}>
             { icon }
             <input
-                style={ {borderStyle: "none", outline: "none", size: props.size} }
+                style={ {borderStyle: "none", outline: "none"} }
                 type = "text"
                 onChange = { handleChange }
                 name = { props.name }
@@ -61,9 +64,8 @@ Textbox.propTypes = {
     maxLength: PropTypes.number,
     minLength: PropTypes.number,
     placeholder: PropTypes.string,
-    size: PropTypes.number.isRequired,
     required: PropTypes.bool,
-    uri: PropTypes.string,
+    iconURI: PropTypes.string,
 }
 
 Textbox.defaultProps = {
@@ -71,9 +73,8 @@ Textbox.defaultProps = {
     maxLength: 1000,
     minLength: 1,
     placeholder: "Input Text Here",
-    size: 25,
     required: false,
-    uri: '',
+    iconURI: null,
 }
 
 export default Textbox;
