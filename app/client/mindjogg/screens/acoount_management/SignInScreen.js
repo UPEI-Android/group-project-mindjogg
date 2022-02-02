@@ -9,7 +9,7 @@ const SignInScreen = ({navigation}) => {
       </Text>
       <Button
         title="Not a member? Sign up!"
-        onPress={() => navigation.push("SignUp")} // We added an onPress event which would navigate to the SignUpScreen
+        onPress={() => navigation.push("SignUp")}
       />
     </View>
   );

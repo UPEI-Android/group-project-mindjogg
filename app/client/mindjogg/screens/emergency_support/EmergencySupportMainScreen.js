@@ -9,7 +9,7 @@ const EmergencySupportMainScreen = ({navigation}) => {
       </Text>
       <Button
         title="Go to EmergencySupportListScreen"
-        onPress={() => navigation.push("EmergencySupportListScreen")} // We added an onPress event which would navigate to the SignUpScreen
+        onPress={() => navigation.push("EmergencySupportListScreen")} 
       />
     </View>
   );
