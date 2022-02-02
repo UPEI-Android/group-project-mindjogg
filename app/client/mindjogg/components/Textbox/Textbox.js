@@ -47,6 +47,7 @@ function Textbox(props) {
             <input
                 style={ {borderStyle: "none", outline: "none"} }
                 type = "text"
+                value = { value }
                 onChange = { handleChange }
                 name = { props.name }
                 maxLength = { props.maxLength }
