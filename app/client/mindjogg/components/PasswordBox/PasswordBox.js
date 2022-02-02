@@ -72,6 +72,7 @@ function PasswordBox(props) {
             <button
                 onClick={() => (toggleMask())}
             >
+                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.24lr71xjF30sgwLUnPmj7gHaHa%26pid%3DApi&f=1" style={{height: 25, width:25}}></img>
             </button>
         </View>
     );
