@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 // const Tab = createBottomTabNavigator();
 // const Drawer = createDrawerNavigator();
 
-import PositiveJournalStackNavigator from "./screens/navigation/PositiveJournalStackNavigator";
+import SmartGoalStackNavigator from "./screens/navigation/SmartGoalStackNavigator";
 
 const styles = StyleSheet.create({
   container: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 function App() {
   return (
     <NavigationContainer>
-      <PositiveJournalStackNavigator />
+      <SmartGoalStackNavigator />
     </NavigationContainer>
   );
 }
