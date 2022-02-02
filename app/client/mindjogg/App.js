@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 // const Tab = createBottomTabNavigator();
 // const Drawer = createDrawerNavigator();
 
-import AccountManagementStackNavigator from "./screens/navigation/AccountManagementStackNavigator";
+import EmergencySupportStackNavigator from "./screens/navigation/EmergencySupportStackNavigator";
 
 const styles = StyleSheet.create({
   container: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 function App() {
   return (
     <NavigationContainer>
-      <AccountManagementStackNavigator />
+      <EmergencySupportStackNavigator />
     </NavigationContainer>
   );
 }
