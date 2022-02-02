@@ -30,6 +30,12 @@ function PasswordBox(props) {
         setValue(e.target.value);
     }
 
+    const [showPassword, setShowPassword] = useState("");
+    function toggleMask() {
+        setShowPassword(!showPassword);
+        console.log(showPassword);
+    }
+
     return(
         <View style={styles.sectionStyle}>
             <Image 
@@ -44,8 +50,29 @@ function PasswordBox(props) {
                 maxLength = { props.maxLength }
                 minLength = { props.minLength }
                 required = { true }
+                value = { value }
+                style={{
+                    display: !showPassword ? 'block' : 'none'
+                  }}
             >
             </input>
+            <input
+                type="text"
+                style={{borderStyle:"none", outline:"none"}}
+                onChange = { handleChange }
+                name = { props.name }
+                maxLength = { props.maxLength }
+                minLength = { props.minLength }
+                required = { true }
+                value = { value }
+                style={{
+                    display: !showPassword ? 'none' : 'block'
+                  }}
+            ></input>
+            <button
+                onClick={() => (toggleMask())}
+            >
+            </button>
         </View>
     );
 };
