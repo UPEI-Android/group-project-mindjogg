@@ -11,6 +11,8 @@ const Stack = createNativeStackNavigator();
 // const Tab = createBottomTabNavigator();
 // const Drawer = createDrawerNavigator();
 
+import AccountManagementStackNavigator from "./screens/navigation/AccountManagementStackNavigator";
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -23,21 +25,19 @@ const styles = StyleSheet.create({
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
+      <AccountManagementStackNavigator />
     </NavigationContainer>
   );
 }
 
-function HomeScreen() {
-   return (
-    <View style={styles.container}>
-      <Text>Welcome to MindJogg!</Text>
-      {/* <Home></Home> this home icon is breaking the app in both android and ios */}
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+// function HomeScreen() {
+//    return (
+//     <View style={styles.container}>
+//       <Text>Welcome to MindJogg!</Text>
+//       {/* <Home></Home> this home icon is breaking the app in both android and ios */}
+//       <StatusBar style="auto" />
+//     </View>
+//   );
+// }
 
 export default App;
