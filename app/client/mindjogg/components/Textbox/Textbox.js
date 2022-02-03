@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const styles = StyleSheet.create({
     sectionStyle: {
