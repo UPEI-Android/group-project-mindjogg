@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import PropTypes from "prop-types";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const styles = StyleSheet.create({
     sectionStyle: {
@@ -38,10 +39,7 @@ function PasswordBox(props) {
 
     return(
         <View style={styles.sectionStyle}>
-            <Image 
-                source={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fp7.hiclipart.com%2Fpreview%2F523%2F974%2F500%2Fpadlock-computer-icons-symbol-locks.jpg&f=1&nofb=1"} 
-                style={styles.imageStyle}>
-            </Image>
+            <MaterialCommunityIcons name="lock" size = {24} color = "black" />
             <input
                 type="password"
                 style={{borderStyle:"none", outline:"none"}}
@@ -69,11 +67,7 @@ function PasswordBox(props) {
                     display: !showPassword ? 'none' : 'block'
                   }}
             ></input>
-            <button
-                onClick={() => (toggleMask())}
-            >
-                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.24lr71xjF30sgwLUnPmj7gHaHa%26pid%3DApi&f=1" style={{height: 25, width:25}}></img>
-            </button>
+            <MaterialCommunityIcons name = "eye" size = {24} color = "black" onPress = {() => toggleMask()}/>
         </View>
     );
 };
