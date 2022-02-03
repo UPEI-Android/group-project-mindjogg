@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Image, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const styles = StyleSheet.create({
     sectionStyle: {
@@ -36,8 +37,8 @@ function Textbox(props) {
 
     // decide whether to show an icon or not
     let icon;
-    props.iconURI ? 
-        icon = <Image source={props.iconURI} style={styles.imageStyle}></Image> : 
+    props.icon ? 
+        icon = props.icon : 
         icon = null;
 
     // render the textbox
@@ -66,7 +67,7 @@ Textbox.propTypes = {
     minLength: PropTypes.number,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
-    iconURI: PropTypes.string,
+    icon: PropTypes.object,
 }
 
 Textbox.defaultProps = {
@@ -75,7 +76,7 @@ Textbox.defaultProps = {
     minLength: 1,
     placeholder: "Input Text Here",
     required: false,
-    iconURI: null,
+    icon: null,
 }
 
 export default Textbox;
