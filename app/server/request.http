@@ -8,11 +8,11 @@ POST http://localhost:3000/users/register
 Content-Type: application/json
 
 {
-"UserName": "DammyTheSLayer",
+"UserName": "befi",
 "Password": "password123",
-"FirstName":"Demilade",
-"LastName":"Adisababa",
-"Email":"tocewo2685@peykesabz.com"
+"FirstName":"bef",
+"LastName":"iwar",
+"Email":"befiwar458@mannawo.com"
 }
 
 
@@ -47,7 +47,7 @@ POST http://localhost:3000/users/forgetPassword
 Content-Type: application/json
 
 {
-"UserNameorEmail": "DammyTheSLayer"
+"UserNameorEmail": "befiwar458@mannawo.com"
 }
 
 
