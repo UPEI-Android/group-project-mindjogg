@@ -57,8 +57,7 @@ const createUser = async (user) => {
         //if username exists
         if(result){
             returnMessage.status = 400;
-            returnMessage.message = "User already exists";
-            
+            returnMessage.message = "User already exists";    
         }
         //if no existing user exists
         else {
