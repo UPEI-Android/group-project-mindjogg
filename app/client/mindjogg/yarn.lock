@@ -1677,11 +1677,11 @@
   "version" "1.0.0"
 
 "@react-navigation/bottom-tabs@^6.1.0":
-  "integrity" "sha512-3zsNXiWfxN1z4ElrLehy5jq2ucyHhWwfX9R+tJk0Ja+IqfeapjdSAlM9Rxpg9De87olOd9qIQXaBX2wZxCZKxg=="
-  "resolved" "https://registry.npmjs.org/@react-navigation/bottom-tabs/-/bottom-tabs-6.1.0.tgz"
-  "version" "6.1.0"
+  "integrity" "sha512-MNwXbybjapRFZJtO+fNu5YuTYQGzzYAUIF4IsY2+ZBXoCRpzuDq8gXV7ChKDJaaTeX39IoDUng3qGXbvtVcivA=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/bottom-tabs/-/bottom-tabs-6.2.0.tgz"
+  "version" "6.2.0"
   dependencies:
-    "@react-navigation/elements" "^1.3.0"
+    "@react-navigation/elements" "^1.3.1"
     "color" "^3.1.3"
     "warn-once" "^0.1.0"
 
@@ -1697,31 +1697,31 @@
     "react-is" "^16.13.0"
 
 "@react-navigation/drawer@^6.2.0":
-  "integrity" "sha512-x5XhebiGdDkdRzVfp7I0crNqRrSkF46uS4I7bPm/PI4JmsdloTRpVh4wQgWcMl3L5MCpmdrHuG1IxmOre4miYw=="
-  "resolved" "https://registry.npmjs.org/@react-navigation/drawer/-/drawer-6.2.0.tgz"
-  "version" "6.2.0"
+  "integrity" "sha512-rbIpJCMeRVler6JI8eiHdvFEXbF8j8ii4cD42HeN9DqjpEJRfuz134ObM3O6Qd7h0k9U69exshbAUQ+7QaWesA=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/drawer/-/drawer-6.3.0.tgz"
+  "version" "6.3.0"
   dependencies:
-    "@react-navigation/elements" "^1.3.0"
+    "@react-navigation/elements" "^1.3.1"
     "color" "^3.1.3"
     "warn-once" "^0.1.0"
 
-"@react-navigation/elements@^1.3.0":
-  "integrity" "sha512-C0roIxajvleskEpeYYJ1+2XTg8UqZO6o/SyzqTRuEUVsVD8CbFzKSOfj9kpfzA7jbYNzZPbzUJcm9kIigY9kHg=="
-  "resolved" "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.0.tgz"
-  "version" "1.3.0"
+"@react-navigation/elements@^1.3.1":
+  "integrity" "sha512-jIDRJaG8YPIinl4hZXJu/W3TnhDe8hLYmGSEdL1mxZ1aoNMiApCBYkgTy11oq0EfK/koZd3DPSkJNbzBAQmPJw=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.1.tgz"
+  "version" "1.3.1"
 
 "@react-navigation/native-stack@^6.3.0":
-  "integrity" "sha512-qH+zBkEzIFQSqeww1RUOVlMVNGtv1zZ+tSsePn82SBEjQ8nIM1zpI70nG+q+upaWI5C8YKmKouTt4Krdcrludg=="
-  "resolved" "https://registry.npmjs.org/@react-navigation/native-stack/-/native-stack-6.3.0.tgz"
-  "version" "6.3.0"
+  "integrity" "sha512-HBx2Ar9gvTvR+8BEgPJKn+NKT6qTfljEkhsRhNPaSBWzMxNBXACP29t9PoaIlOelkV4V9TvTnXe0NCHjDsObwg=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/native-stack/-/native-stack-6.4.1.tgz"
+  "version" "6.4.1"
   dependencies:
-    "@react-navigation/elements" "^1.3.0"
+    "@react-navigation/elements" "^1.3.1"
     "warn-once" "^0.1.0"
 
 "@react-navigation/native@^6.0.0", "@react-navigation/native@^6.0.7":
-  "integrity" "sha512-TOLSVLU3BbqkSgaXDtxSIBEOLnKP54KMlu+D3KKfn2mmCGyBDChPIwqMKFMnkmR+N/URugicG8h7p0Hu21hA5A=="
-  "resolved" "https://registry.npmjs.org/@react-navigation/native/-/native-6.0.7.tgz"
-  "version" "6.0.7"
+  "integrity" "sha512-6022M3+Btok3xJC/49B88er3SRrlDAZ4FdmGndhEVvBcGSHWmscU2qKCwFd0RY6A0AGCVmdIlXudrfdcdRAkpQ=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/native/-/native-6.0.8.tgz"
+  "version" "6.0.8"
   dependencies:
     "@react-navigation/core" "^6.1.1"
     "escape-string-regexp" "^4.0.0"
@@ -2747,11 +2747,7 @@
     "color-name" "^1.0.0"
     "simple-swizzle" "^0.2.2"
 
-<<<<<<< HEAD
-"color@^3.1.2":
-=======
-"color@^3.1.3":
->>>>>>> fa5c28b524a430eff384baf03b09364e97319e64
+"color@^3.1.2", "color@^3.1.3":
   "integrity" "sha512-aBl7dZI9ENN6fUGC7mWpMTPNHmWUSNan9tuWN6ahh5ZLNk9baLJOnSMlrQkHcrfFgz2/RigjUVAjdx36VcemKA=="
   "resolved" "https://registry.npmjs.org/color/-/color-3.2.1.tgz"
   "version" "3.2.1"
@@ -6622,7 +6618,17 @@
     "jscodeshift" "^0.11.0"
     "nullthrows" "^1.1.1"
 
-<<<<<<< HEAD
+"react-native-gesture-handler@*", "react-native-gesture-handler@>= 1.0.0":
+  "integrity" "sha512-WF25CNgn164bF9juW8N/jICIFXiEOgsxCuY7DRlnFdiH5ZfvMYtZHRC+zr1fFMap2ty1f2HWDQNVVSo0FDXP4A=="
+  "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.2.0.tgz"
+  "version" "2.2.0"
+  dependencies:
+    "@egjs/hammerjs" "^2.0.17"
+    "hoist-non-react-statics" "^3.3.0"
+    "invariant" "^2.2.4"
+    "lodash" "^4.17.21"
+    "prop-types" "^15.7.2"
+
 "react-native-iphone-x-helper@^1.3.1":
   "integrity" "sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg=="
   "resolved" "https://registry.npmjs.org/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz"
@@ -6636,31 +6642,6 @@
     "@callstack/react-theme-provider" "^3.0.7"
     "color" "^3.1.2"
     "react-native-iphone-x-helper" "^1.3.1"
-
-"react-native-vector-icons@*":
-  "integrity" "sha512-qKX5d5/TafHmI4B7UOSZCL3BAGh7ZfF30iLwRgxBkKfZl2lKSuHp8Ottj9OyWh9b5fFtlg+LtyvZrns3g2kh+w=="
-  "resolved" "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-9.0.0.tgz"
-  "version" "9.0.0"
-  dependencies:
-    "lodash.frompairs" "^4.0.1"
-    "lodash.isequal" "^4.5.0"
-    "lodash.isstring" "^4.0.1"
-    "lodash.omit" "^4.5.0"
-    "lodash.pick" "^4.4.0"
-    "lodash.template" "^4.5.0"
-    "prop-types" "^15.7.2"
-    "yargs" "^16.1.1"
-=======
-"react-native-gesture-handler@*", "react-native-gesture-handler@>= 1.0.0":
-  "integrity" "sha512-WF25CNgn164bF9juW8N/jICIFXiEOgsxCuY7DRlnFdiH5ZfvMYtZHRC+zr1fFMap2ty1f2HWDQNVVSo0FDXP4A=="
-  "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.2.0.tgz"
-  "version" "2.2.0"
-  dependencies:
-    "@egjs/hammerjs" "^2.0.17"
-    "hoist-non-react-statics" "^3.3.0"
-    "invariant" "^2.2.4"
-    "lodash" "^4.17.21"
-    "prop-types" "^15.7.2"
 
 "react-native-reanimated@>= 1.0.0":
   "integrity" "sha512-nzjVqwkB8eeyPKT2KoiA9EEz17ZMFSGMoOTC17Z9b5nE2Z4ZHjHM5EKhY0TlwzXFUuJAE9PhOfxF0wIO/maZSA=="
@@ -6687,7 +6668,20 @@
   dependencies:
     "react-freeze" "^1.0.0"
     "warn-once" "^0.1.0"
->>>>>>> fa5c28b524a430eff384baf03b09364e97319e64
+
+"react-native-vector-icons@*":
+  "integrity" "sha512-qKX5d5/TafHmI4B7UOSZCL3BAGh7ZfF30iLwRgxBkKfZl2lKSuHp8Ottj9OyWh9b5fFtlg+LtyvZrns3g2kh+w=="
+  "resolved" "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-9.0.0.tgz"
+  "version" "9.0.0"
+  dependencies:
+    "lodash.frompairs" "^4.0.1"
+    "lodash.isequal" "^4.5.0"
+    "lodash.isstring" "^4.0.1"
+    "lodash.omit" "^4.5.0"
+    "lodash.pick" "^4.4.0"
+    "lodash.template" "^4.5.0"
+    "prop-types" "^15.7.2"
+    "yargs" "^16.1.1"
 
 "react-native-web@0.17.1":
   "integrity" "sha512-lUnn+2O8ynQ6/gJKylSxm7DLi2vHw6AujdDV1+LSa8Epe1bYFJNUcJTEhJf0jNYUFGOujzMtuG8Mkz3HdWTkag=="
@@ -6702,11 +6696,7 @@
     "normalize-css-color" "^1.0.2"
     "prop-types" "^15.6.0"
 
-<<<<<<< HEAD
 "react-native@*", "react-native@>=0.42.0", "react-native@>=0.59", "react-native@>=0.64.0-rc.0 || 0.0.0-*", "react-native@0.64.3":
-=======
-"react-native@*", "react-native@>=0.59", "react-native@>=0.64.0-rc.0 || 0.0.0-*", "react-native@0.64.3":
->>>>>>> fa5c28b524a430eff384baf03b09364e97319e64
   "integrity" "sha512-2OEU74U0Ek1/WeBzPbg6XDsCfjF/9fhrNX/5TFgEiBKd5mNc9LOZ/OlMmkb7iues/ZZ/oc51SbEfLRQdcW0fVw=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.64.3.tgz"
   "version" "0.64.3"
@@ -6777,11 +6767,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-<<<<<<< HEAD
-"react@*", "react@^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@>=16.0.0", "react@>=16.3.0", "react@>=16.6.0", "react@>=17.0.1", "react@17.0.1", "react@17.0.2":
-=======
-"react@*", "react@^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^17.0.0", "react@>=16.0.0", "react@>=16.6.0", "react@>=17.0.1", "react@17.0.1", "react@17.0.2":
->>>>>>> fa5c28b524a430eff384baf03b09364e97319e64
+"react@*", "react@^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^17.0.0", "react@>=16.0.0", "react@>=16.3.0", "react@>=16.6.0", "react@>=17.0.1", "react@17.0.1", "react@17.0.2":
   "integrity" "sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.1.tgz"
   "version" "17.0.1"
