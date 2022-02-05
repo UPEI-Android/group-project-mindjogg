@@ -15,6 +15,7 @@ const SmartGoalStackNavigator = () => {
     <View style={{ flex: 1 }} collapsable={false}>
     <Stack.Navigator initialRouteName="EmergencySupportMainScreen"
     screenOptions={{
+        headerTitleAlign: "center",
         headerStyle: {
           backgroundColor: "#9AC4F8",
         },

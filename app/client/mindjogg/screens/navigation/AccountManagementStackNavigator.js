@@ -14,6 +14,7 @@ const AccountManagementStackNavigator = () => {
     <View style={{ flex: 1 }} collapsable={false}>
     <Stack.Navigator initialRouteName="SignIn"
     screenOptions={{
+        headerTitleAlign: "center",
         headerStyle: {
           backgroundColor: "#9AC4F8",
         },
