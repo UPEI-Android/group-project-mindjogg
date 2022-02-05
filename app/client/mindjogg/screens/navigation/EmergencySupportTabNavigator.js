@@ -9,10 +9,10 @@ import SmartGoalStackNavigator from "./SmartGoalStackNavigator";
 
 const Tab = createMaterialBottomTabNavigator();
 
-const AccountManagementTabNavigator = () => {
+const EmergencySupportTabNavigator = () => {
     return (
       <Tab.Navigator
-        initialRouteName="Profile"
+        initialRouteName="Support"
         activeColor="#734f96"
         barStyle={{ backgroundColor: "white" }}
       >
@@ -60,4 +60,4 @@ const AccountManagementTabNavigator = () => {
     );
 }
 
-export default AccountManagementTabNavigator;
+export default EmergencySupportTabNavigator;

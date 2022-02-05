@@ -9,10 +9,10 @@ import SmartGoalStackNavigator from "./SmartGoalStackNavigator";
 
 const Tab = createMaterialBottomTabNavigator();
 
-const AccountManagementTabNavigator = () => {
+const PositiveJournalTabNavigator = () => {
     return (
       <Tab.Navigator
-        initialRouteName="Profile"
+        initialRouteName="Journal"
         activeColor="#734f96"
         barStyle={{ backgroundColor: "white" }}
       >
@@ -60,4 +60,4 @@ const AccountManagementTabNavigator = () => {
     );
 }
 
-export default AccountManagementTabNavigator;
+export default PositiveJournalTabNavigator;
