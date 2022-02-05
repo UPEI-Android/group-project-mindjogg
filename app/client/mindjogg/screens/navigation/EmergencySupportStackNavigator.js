@@ -1,4 +1,5 @@
 import React from "react";
+import {View} from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // import EmergencySupportMainScreen, EmergencySupportListScreen, EmergencySupportDescriptionScreen from the emergency_support folder
@@ -12,6 +13,7 @@ const Stack = createNativeStackNavigator();
 const EmergencySupportStackNavigator = () => {
   return (
 
+    <View style={{ flex: 1 }} collapsable={false}>
     <Stack.Navigator initialRouteName="EmergencySupportMainScreen"
     screenOptions={{
         headerStyle: {
@@ -25,6 +27,7 @@ const EmergencySupportStackNavigator = () => {
         <Stack.Screen name="EmergencySupportListScreen" component={EmergencySupportListScreen} />
         <Stack.Screen name="EmergencySupportDescriptionScreen" component={EmergencySupportDescriptionScreen} />
     </Stack.Navigator>
+    </View>
   );
 }
 
