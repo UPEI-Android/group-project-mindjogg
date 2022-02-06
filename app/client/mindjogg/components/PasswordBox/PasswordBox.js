@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, View } from "react-native";
 import PropTypes from "prop-types";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -42,7 +42,6 @@ function PasswordBox(props) {
             <MaterialCommunityIcons name="lock" size = {24} color = "black" />
             <input
                 type="password"
-                style={{borderStyle:"none", outline:"none"}}
                 onChange = { handleChange }
                 name = { props.name }
                 maxLength = { props.maxLength }
@@ -50,13 +49,12 @@ function PasswordBox(props) {
                 required = { true }
                 value = { value }
                 style={{
-                    display: !showPassword ? 'block' : 'none'
-                  }}
+                    borderStyle:"none", outline:"none", display: !showPassword ? "block" : "none"
+                }}
             >
             </input>
             <input
                 type="text"
-                style={{borderStyle:"none", outline:"none"}}
                 onChange = { handleChange }
                 name = { props.name }
                 maxLength = { props.maxLength }
@@ -64,13 +62,13 @@ function PasswordBox(props) {
                 required = { true }
                 value = { value }
                 style={{
-                    display: !showPassword ? 'none' : 'block'
-                  }}
+                    borderStyle:"none", outline:"none", display: !showPassword ? "none" : "block"
+                }}
             ></input>
             <MaterialCommunityIcons name = "eye" size = {24} color = "black" onPress = {() => toggleMask()}/>
         </View>
     );
-};
+}
 
 PasswordBox.propTypes = {
     name: PropTypes.string.isRequired,
