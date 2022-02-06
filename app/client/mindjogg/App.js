@@ -16,7 +16,6 @@ function App() {
       {/* <Home></Home> this home icon is breaking the app in both android and ios */}
       <StatusBar style="auto" />
     </View>
-=======
     <NavigationContainer>
       <AccountManagementTabNavigator />
     </NavigationContainer>
