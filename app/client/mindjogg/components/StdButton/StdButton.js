@@ -7,6 +7,7 @@ const StdButton = (props) => {
     <Button
       icon={props.buttonIcon}
       mode="contained"
+      uppercase={props.uppercaseOn}
       color={props.buttonColour}
       onPress={props.buttonPress}
     >
@@ -16,6 +17,7 @@ const StdButton = (props) => {
 };
 
 StdButton.propTypes = {
+  uppercaseOn: PropTypes.bool.isRequired,
   buttonIcon: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   buttonColour: PropTypes.string.isRequired,
@@ -23,6 +25,7 @@ StdButton.propTypes = {
 };
 
 StdButton.defaultProps = {
+  uppercaseOn: true,
   buttonIcon: "",
   text: "Unassigned Text",
   buttonColour: "#9B7FBA",
