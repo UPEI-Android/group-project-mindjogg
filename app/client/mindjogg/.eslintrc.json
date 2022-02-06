@@ -25,6 +25,7 @@
         "quotes": "error",
         "no-inline-comments": "error",
         "semi-style": "error",
-        "require-await": "error"
+        "require-await": "error",
+        "react/prop-types": ["error", { "ignore": ["navigation"] }]
     }
 }
