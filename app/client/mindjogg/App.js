@@ -4,12 +4,12 @@ import { NavigationContainer } from "@react-navigation/native";
 
 
 
-import SmartGoalStackNavigator from "./screens/navigation/SmartGoalStackNavigator";
+import AccountManagementTabNavigator from "./screens/navigation/AccountManagementTabNavigator";
 
 function App() {
   return (
     <NavigationContainer>
-      <SmartGoalStackNavigator />
+      <AccountManagementTabNavigator />
     </NavigationContainer>
   );
 }

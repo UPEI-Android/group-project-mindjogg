@@ -1,4 +1,5 @@
 import React from "react";
+import {View} from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // import SignInScreen and SingUpScreen from the account_management folder
@@ -10,6 +11,7 @@ const Stack = createNativeStackNavigator();
 const AccountManagementStackNavigator = () => {
   return (
 
+    <View style={{ flex: 1 }} collapsable={false}>
     <Stack.Navigator initialRouteName="SignIn"
     screenOptions={{
         headerStyle: {
@@ -22,6 +24,7 @@ const AccountManagementStackNavigator = () => {
         <Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
     </Stack.Navigator>
+    </View>
   );
 }
 
