@@ -1,24 +1,36 @@
-const model = require("../models/user_management_model");
-const database= require("../../database/database_connection")
+const request =require("supertest");
+const app = require("../../app");
 
-//connecting to database
-database.connect();
 
-//generating dummy user data
-const userSignupData = {
-    userName: Math.random().toString(36).substring(2,7),
-    password: Math.random().toString(36).substring(2,7),
-    userFirstName: Math.random().toString(36).substring(2,7),
-    userLastName: Math.random().toString(36).substring(2,7),
-    userEmail: Math.random().toString(36).substring(2,7)+"@fae.com"
-    }
 
-//testing if user was created properly  
-test("User Registered Properly", async() =>{
-    const result = await model.createUser(userSignupData);
-    expect(result.status).toBe(201);
+describe("POST /users/register", () => {
+  
+    test("should respond with a 201 status code", async () => {
+        const response = await request(app).post("/users/register").send({
+            //generating dummy user data
+                "UserName": Math.random().toString(36).substring(2,7),
+                "Password": Math.random().toString(36).substring(2,7),
+                "FirstName":Math.random().toString(36).substring(2,7),
+                "LastName":Math.random().toString(36).substring(2,7),
+                "Email":Math.random().toString(36).substring(2,7)+"@fae.com"
+        })
+        expect(response.statusCode).toBe(201);
+    })
+
+
+    test("should respond with a 400 status code", async () => {
+        const response = await request(app).post("/users/register").send({
+            //  existing user test data
+                "UserName": "befi",
+                "Password": "password123",
+                "FirstName":"bef",
+                "LastName":"iwar",
+                "Email":"befiwar458@mannawo.com"  
+        })
+        expect(response.statusCode).toBe(400);
+    })
+
+    
+        
 });
-
-
-
-
+    

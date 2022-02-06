@@ -57,7 +57,8 @@ const createUser = async (user) => {
         //if username exists
         if(result){
             returnMessage.status = 400;
-            returnMessage.message = "User already exists";    
+            returnMessage.message = "User already exists";
+    
         }
         //if no existing user exists
         else {
@@ -211,13 +212,13 @@ const forgotPassword = async (user) => {
                 console.log("Email sent: " + info.response);
                 }
             });
-            returnMessage.message = "Reset link send to email";
+            returnMessage.message = "Reset link sent to email";
             returnMessage.status = 200;
          }
          else{
 
             returnMessage.message = "Username not found";
-            returnMessage.status = 400;
+            returnMessage.status = 401;
         
          }
        return returnMessage;
