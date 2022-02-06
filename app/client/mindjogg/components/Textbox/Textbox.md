@@ -10,7 +10,7 @@ text input area through props.
 | minLength      | Minimum length (in characters) of accepted input  | 1       |  Number    | No|
 | Placeholder      | Text to be shown before any input provided  | "Enter text here"       |  String    | No|
 | required      | Is input required in this field before the form can be submitted  | False       |  Boolean    | No|
-| iconURI      | A URI where an image to be used as an icon is located  | null       |  String    | No|
+| icon      | An icon element to be shown to the left of the text input | null       |  Object (MaterialCommunityIcon)    | No|
 
 
 ## Examples
@@ -19,8 +19,9 @@ The textbox can be brought in through a simple import statement. It is the defau
 `import Textbox from "./components/Textbox/Textbox";`
 
 Then, it only required a name to be provided:
-`<Textbox name="box1"/>`
+`<Textbox name="my_input"/>`
 
 ### Example 2: Using an icon
-If no icon URI is provided, none will be used. However, if one is provided, the text area will shift to make room for it.
-`<Textbox name="dog_input" iconURI="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwebstockreview.net%2Fimages%2Fclipart-face-golden-retriever-11.png&f=1&nofb=1" />`
+If no icon is provided, none will be used. However, if one is provided, the text area will shift to make room for it.
+Here, we bring in a simple 24px by 24px 'lock' icon to be shown next to our input. 
+<Textbox name="locked_input" icon={<MaterialCommunityIcons name="lock" size={24}/>}/>
