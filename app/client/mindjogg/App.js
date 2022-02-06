@@ -13,7 +13,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import PositveJournal from "./screens/navigation/PositiveJournalStackNavigator";
 import SmartGoalStackNavigator from "./screens/navigation/SmartGoalStackNavigator";
 import AccountManagementTabNavigator from "./screens/navigation/AccountManagementTabNavigator";
-import StdButton from "./components/Button/Button";
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, Button } from "react-native";
-import StdButton from "../../components/Button/Button";
+import StdButton from "../../components/StdButton/StdButton";
 
 const PositiveJournalMainScreen = ({ navigation }) => {
   return (
