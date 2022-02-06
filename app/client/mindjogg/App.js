@@ -1,7 +1,7 @@
 import { React } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import { Textbox } from "./components/Textbox";
+//import { Textbox } from "./components/Textbox";
 // import { Home } from "@material-ui/icons";
 import { Provider as PaperProvider } from "react-native-paper";
 import { Button } from "react-native-paper";
@@ -13,13 +13,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import PositveJournal from "./screens/navigation/PositiveJournalStackNavigator";
 import SmartGoalStackNavigator from "./screens/navigation/SmartGoalStackNavigator";
 import AccountManagementTabNavigator from "./screens/navigation/AccountManagementTabNavigator";
+import StdButton from "./components/Button/Button";
 
 function App() {
   return (
     <NavigationContainer>
       <PositveJournal />
-
-      <AccountManagementTabNavigator />
     </NavigationContainer>
   );
 }
