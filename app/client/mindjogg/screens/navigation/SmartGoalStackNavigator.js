@@ -1,5 +1,5 @@
 import React from "react";
-
+import {View} from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // import SmartGoalMainScreen, SmartGoalEditScreen from the smart_goals folder
@@ -12,6 +12,7 @@ const Stack = createNativeStackNavigator();
 const SmartGoalStackNavigator = () => {
   return (
 
+    <View style={{ flex: 1 }} collapsable={false}>
     <Stack.Navigator initialRouteName="EmergencySupportMainScreen"
     screenOptions={{
         headerStyle: {
@@ -24,6 +25,7 @@ const SmartGoalStackNavigator = () => {
         <Stack.Screen name="SmartGoalMainScreen" component={SmartGoalMainScreen} />
         <Stack.Screen name="SmartGoalEditScreen" component={SmartGoalEditScreen} />
     </Stack.Navigator>
+    </View>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-
+import {View} from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // import PositiveJournalMainScreen, PositiveJournalEditScreen from the positive_journal folder
@@ -12,6 +12,7 @@ const Stack = createNativeStackNavigator();
 const PositiveJournalStackNavigator = () => {
   return (
 
+    <View style={{ flex: 1 }} collapsable={false}>
     <Stack.Navigator initialRouteName="EmergencySupportMainScreen"
     screenOptions={{
         headerStyle: {
@@ -24,6 +25,7 @@ const PositiveJournalStackNavigator = () => {
         <Stack.Screen name="PositiveJournalMainScreen" component={PositiveJournalMainScreen} />
         <Stack.Screen name="PositiveJournalEditScreen" component={PositiveJournalEditScreen} />
     </Stack.Navigator>
+    </View>
   );
 }
 
