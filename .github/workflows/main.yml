@@ -60,7 +60,10 @@ jobs:
         run: 
           cd app/server;
           touch .env;
-          echo ATLAS_URI= $ATLAS_URI >> .env;
+          echo ATLAS_URI=$ATLAS_URI >> .env;
+          echo GMAIL_USER=$GMAIL_USER >> .env;
+          echo GMAIL_PASSWORD=$GMAIL_PASSWORD >> .env;
+
           cat .env;
           
       - name: Test Server
