@@ -83,8 +83,8 @@ jobs:
             HOST: ${{secrets.HOST}}
             HOST_URL: ${{secrets.HOST_URL}}
         run:
-              cd app/server;
-             npm run test;
+             cd app/server;
+             npm test;
               
               
 
