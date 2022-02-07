@@ -1,5 +1,7 @@
 name: Main CI
 
+
+
 # Runs when code is pushed to dev, or when code is merged into dev or main
 on:
   push:
@@ -44,18 +46,22 @@ jobs:
           cd app/client/mindjogg;
           npm run test;
           
-      - name: Create env file
-        run:
-          cd app/server;
-          touch .env;
-          echo ${{secrets.ENV_}} >> .env;
-          cat .env;
-          ls -a;
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1.2
+
+
+
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+              ATLAS_URI: ${{ secrets.ATLAS_URI }}
+              directory: app/server
+              file_name: .env   
 
       - name: Test Server
         run:
-          cd app/server;
-          npm run test;
-         
-      
-      
+              cd app/server;
+              npm run test;
+
+
+
