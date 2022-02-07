@@ -50,10 +50,11 @@ jobs:
           touch .env;
           echo ATLAS_URI= ${{secrets.ATLAS_URI}} >> .env;
           cat .env;
-          ls;
+          ls -a;
 
       - name: Test Server
         run:
+          cd app/server;
           npm run test;
          
       
