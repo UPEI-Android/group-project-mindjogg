@@ -5,10 +5,10 @@ const SignInScreen = ({navigation}) => {
   return (
     <View style={styles.center}>
       <Text>
-        This is the SignInScreen!
+        Please Sign In to Continue
       </Text>
       <Button
-        title="Not a member? Sign up!"
+        title="Not a member? Sign up"
         onPress={() => navigation.push("SignUp")}
       />
     </View>
