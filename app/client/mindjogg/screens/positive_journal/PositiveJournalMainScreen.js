@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Button } from "react-native";
+import { Text, View } from "react-native";
 import StdButton from "../../components/StdButton/StdButton";
 
 const PositiveJournalMainScreen = ({ navigation }) => {
@@ -8,9 +8,9 @@ const PositiveJournalMainScreen = ({ navigation }) => {
       <Text>This is the PositiveJournalMainScreen.</Text>
 
       <StdButton
-      // text={"Go to Positive Journal Edit"}
-      // buttonColour={"#9B7FBA"}
-      // buttonPress={() => navigation.push("PositiveJournalEditScreen")}
+        // text={"Go to Positive Journal Edit"}
+        // buttonColour={"#9B7FBA"}
+        buttonPress={() => navigation.push("PositiveJournalEditScreen")}
       />
     </View>
   );

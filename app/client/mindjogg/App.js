@@ -1,10 +1,10 @@
 import "react-native-gesture-handler";
 import { React } from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+//import { StatusBar } from "expo-status-bar";
+//import { StyleSheet, Text, View } from "react-native";
 //import { Textbox } from "./components/Textbox";
 // import { Home } from "@material-ui/icons";
-import { Provider as PaperProvider } from "react-native-paper";
+//import { Provider as PaperProvider } from "react-native-paper";
 //import { Text } from "react-native-paper/lib/typescript/components/Avatar/Avatar";
 
 //import { StatusBar } from "expo-status-bar";
