@@ -27,7 +27,7 @@ describe("Testing react navigation", () => {
       
         fireEvent.press(signUpNavButton, "Not a member? Sign up");
 
-        const newHeader = await findByText("Let's Get Started");
+        const newHeader = await findByText("Create an account to continue");
         expect(newHeader).toBeTruthy();
     });
 });
