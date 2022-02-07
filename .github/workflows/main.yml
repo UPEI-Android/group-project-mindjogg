@@ -61,15 +61,26 @@ jobs:
           cd app/server;
           touch .env;
           echo ATLAS_URI=$ATLAS_URI >> .env;
-          echo GMAIL_USER=$GMAIL_USER >> .env;
-          echo GMAIL_PASSWORD=$GMAIL_PASSWORD >> .env;
-          cat .env;
+          echo GMAIL_USER= $GMAIL_USER >> .env;
+          echo GMAIL_PASSWORD= $GMAIL_PASSWORD >> .env;
+          echo JWT_SECRET= $JWT_SECRET >> .env;
+          echo ACCESS_TOKEN_SECRET= $ACCESS_TOKEN_SECRET >> .env;
+          echo PORT= $PORT >> .env;
+          echo HOST= $HOST >> .env;
+          echo REFRESH_TOKEN_SECRET= $REFRESH_TOKEN_SECRET >> .env;
+          echo HOST_URL= $HOST_URL >> .env;
           
       - name: Test Server
         env:
             ATLAS_URI: ${{secrets.ATLAS_URI}}
             GMAIL_USER: ${{secrets.GMAIL_USER}}
             GMAIL_PASSWORD: ${{secrets.GMAIL_PASSWORD}}
+            JWT_SECRET: ${{secrets.JWT_SECRET}}
+            ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}
+            REFRESH_TOKEN_SECRET: ${{secrets.REFRESH_TOKEN_SECRET}}
+            PORT: ${{secrets.PORT}}
+            HOST: ${{secrets.HOST}}
+            HOST_URL: ${{secrets.HOST_URL}}
         run:
              cd app/server;
              npm test;
