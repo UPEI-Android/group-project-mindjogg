@@ -48,7 +48,7 @@ jobs:
         run:
           cd app/server;
           touch .env;
-          echo ${{ENV_}} >> .env;
+          echo ${{secrets.ENV_}} >> .env;
           cat .env;
           ls -a;
 
