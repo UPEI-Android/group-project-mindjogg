@@ -18,7 +18,7 @@ const StdButton = (props) => {
 
 StdButton.propTypes = {
   uppercaseOn: PropTypes.bool.isRequired,
-  buttonIcon: PropTypes.string.isRequired,
+  buttonIcon: PropTypes.string,
   text: PropTypes.string.isRequired,
   buttonColour: PropTypes.string.isRequired,
   buttonPress: PropTypes.any.isRequired,
