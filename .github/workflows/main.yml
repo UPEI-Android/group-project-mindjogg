@@ -61,14 +61,6 @@ jobs:
           cd app/server;
           touch .env;
           echo ATLAS_URI= $ATLAS_URI >> .env;
-          echo GMAIL_USER= $GMAIL_USER >> .env;
-          echo GMAIL_PASSWORD= $GMAIL_PASSWORD >> .env;
-          echo JWT_SECRET= $JWT_SECRET >> .env;
-          echo ACCESS_TOKEN_SECRET= $ACCESS_TOKEN_SECRET >> .env;
-          echo PORT= $PORT >> .env;
-          echo HOST= $HOST >> .env;
-          echo REFRESH_TOKEN_SECRET= $REFRESH_TOKEN_SECRET >> .env;
-          echo HOST_URL= $HOST_URL >> .env;
           cat .env;
           
       - name: Test Server
