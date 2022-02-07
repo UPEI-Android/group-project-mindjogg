@@ -80,7 +80,7 @@ const createUser = async (user) => {
                 if (error) {
                 console.log(error);
                 } else {
-                console.log("Email sent: " + info.response);
+                returnMessage.message="Email sent: " + info.response;
                 }
             });
         }
@@ -205,11 +205,12 @@ const forgotPassword = async (user) => {
                 };
 
             //sends verification email to user
-            await transporter.sendMail(mailOptions, function(error, info){
+             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
                 console.log(error);
                 } else {
-                console.log("Email sent: " + info.response);
+                    returnMessage.message ="Email sent: " + info.response;
+                    returnMessage.status = 200;
                 }
             });
             returnMessage.message = "Reset link sent to email";
