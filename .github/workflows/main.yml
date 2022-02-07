@@ -44,19 +44,7 @@ jobs:
       - name: Test Client
         run:
           cd app/client/mindjogg;
-          npm run test;
-          
-      - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1.2
-
-
-
-      - name: Make envfile
-        uses: SpicyPizza/create-envfile@v1
-        with:
-              ATLAS_URI: ${{ secrets.ATLAS_URI }}
-              directory: app/server
-              file_name: .env   
+          npm run test; 
 
       - name: Test Server
         run:
