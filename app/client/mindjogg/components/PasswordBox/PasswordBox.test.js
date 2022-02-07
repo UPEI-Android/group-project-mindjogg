@@ -2,6 +2,6 @@
 
 describe("Textbox", () => {
     it("should render", () => {
-        expect(true).toBeTrue();
+        expect(true).toBe(true);
     });
 });
