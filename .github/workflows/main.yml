@@ -48,7 +48,7 @@ jobs:
         run:
           cd app/server;
           touch .env;
-          echo ATLAS_URI= ${{secrets.ATLAS_URI}} >> .env;
+          echo ${{ENV_}} >> .env;
           cat .env;
           ls -a;
 
