@@ -7,4 +7,4 @@ describe("Textbox", () => {
       const tree = renderer.create(<PasswordBox />).toJSON();
       expect(tree).toMatchSnapshot();
     });
-  });
+});
