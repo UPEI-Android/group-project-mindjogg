@@ -1,15 +1,16 @@
 import React from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
+import StdButton from "../../components/StdButton/StdButton";
 
-const SignInScreen = ({navigation}) => {
+const SignInScreen = ({ navigation }) => {
   return (
     <View style={styles.center}>
-      <Text>
-        This is the SignInScreen!
-      </Text>
-      <Button
-        title="Not a member? Sign up!"
-        onPress={() => navigation.push("SignUp")}
+      <Text>This is the SignInScreen!</Text>
+
+      <StdButton
+      // text={"Not a member? Sign up!"}
+      // buttonColour={"#9B7FBA"}
+      // buttonPress={() => navigation.push("SignUp")}
       />
     </View>
   );
