@@ -45,8 +45,10 @@ jobs:
           npm run test;
 
       - name: Test Server
+        env: 
+            ATLAS_URI: ${{secrets.ATLAS_URI}}
         run:
           cd app/server;
-          ATLAS_URI= ${{secrets.ATLAS_URI}} npm run test;
+          npm run test;
       
       
