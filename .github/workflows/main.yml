@@ -45,13 +45,24 @@ jobs:
         run:
           cd app/client/mindjogg;
           npm run test; 
+      
+      - name: Create env file
+        env:
+            ATLAS_URI: ${{secrets.ATLAS_URI}}
+        run: 
+          cd app/server;
+          touch .env;
+          echo ATLAS_URI= $ATLAS_URI >> .env;
+          cat .env;
 
       - name: Test Server
         env:
           ATLAS_URI: ${{secrets.ATLAS_URI}}
         run:
               cd app/server;
-              ATLAS_URI=$ATLAS_URI npm run test;
+             npm run test;
+              
+              
 
 
 
