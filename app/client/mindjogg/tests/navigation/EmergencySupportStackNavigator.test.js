@@ -10,7 +10,7 @@ import EmergencySupportStackNavigator from "../../screens/navigation/EmergencySu
 jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
 
 describe("Testing react navigation", () => {
-    test("Navigate Sing In Page to Sing Up Test", async () => {
+    test("Emergency Support Stack Navigation Test", async () => {
         const component = (
             <NavigationContainer>
               <EmergencySupportStackNavigator />
