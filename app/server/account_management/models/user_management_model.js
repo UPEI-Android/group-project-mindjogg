@@ -205,7 +205,7 @@ const forgotPassword = async (user) => {
                 };
 
             //sends verification email to user
-            transporter.sendMail(mailOptions, function(error, info){
+            await transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
                 console.log(error);
                 } else {

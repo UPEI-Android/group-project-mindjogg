@@ -14,7 +14,9 @@ describe("POST /users/register", () => {
                 "LastName":Math.random().toString(36).substring(2,7),
                 "Email":Math.random().toString(36).substring(2,7)+"@fae.com"
         })
+        jest.setTimeout(1000);
         expect(response.statusCode).toBe(201);
+        
     })
 
 
@@ -27,6 +29,7 @@ describe("POST /users/register", () => {
                 "LastName":"iwar",
                 "Email":"befiwar458@mannawo.com"  
         })
+        jest.setTimeout(1000);
         expect(response.statusCode).toBe(400);
     })
 
