@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
   userMiddleName: String,
   userLastName: String,
   userEmail: String,
-  userVerified: Boolean,
   userGoals: [String],
   userTasks: [String],
   userJournal: String,
