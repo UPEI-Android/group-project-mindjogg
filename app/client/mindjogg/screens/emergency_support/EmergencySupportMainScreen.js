@@ -5,10 +5,10 @@ const EmergencySupportMainScreen = ({navigation}) => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>
-        This is the EmergencySupportMainScreen.
+        Emergency Support Needed?
       </Text>
       <Button
-        title="Go to EmergencySupportListScreen"
+        title="Find More Support"
         onPress={() => navigation.push("EmergencySupportListScreen")} 
       />
     </View>

@@ -5,7 +5,7 @@ const SignUpScreen = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>
-        This is SignUpScreen.
+        Create an account to continue
       </Text>
     </View>
   );

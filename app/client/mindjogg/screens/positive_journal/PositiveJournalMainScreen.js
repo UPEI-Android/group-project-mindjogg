@@ -5,10 +5,10 @@ const PositiveJournalMainScreen = ({navigation}) => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>
-        This is the PositiveJournalMainScreen.
+        Your Positive Journals
       </Text>
       <Button
-        title="Go to Psoitive Journal Edit"
+        title="Edit"
         onPress={() => navigation.push("PositiveJournalEditScreen")} 
       />
     </View>
