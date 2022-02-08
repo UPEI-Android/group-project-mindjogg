@@ -83,7 +83,7 @@ jobs:
             HOST_URL: ${{secrets.HOST_URL}}
         run:
              cd app/server;
-             npm test;
+             npm test --runInBand --detectOpenHandles --forceExit;
               
               
 
