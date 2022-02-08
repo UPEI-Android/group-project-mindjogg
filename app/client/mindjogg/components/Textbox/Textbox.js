@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TextInput } from "react-native";
 import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
@@ -44,7 +44,7 @@ function Textbox(props) {
     return(
         <View style={styles.sectionStyle}>
             { icon }
-            <input
+            <TextInput
                 style={ {borderStyle: "none", outline: "none"} }
                 type = "text"
                 value = { value }
@@ -55,7 +55,7 @@ function Textbox(props) {
                 placeholder = { props.placeholder }
                 required = { props.required }
             >
-            </input>
+            </TextInput>
         </View>
     );
 }
