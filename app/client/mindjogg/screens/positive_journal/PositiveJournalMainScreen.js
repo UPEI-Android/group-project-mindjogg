@@ -10,6 +10,8 @@ const PositiveJournalMainScreen = ({ navigation }) => {
       <StdButton
         // text={"Go to Positive Journal Edit"}
         // buttonColour={"#9B7FBA"}
+        //buttonWidth={100}
+        //buttonHeight={100}
         buttonPress={() => navigation.push("PositiveJournalEditScreen")}
       />
     </View>

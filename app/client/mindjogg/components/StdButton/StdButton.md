@@ -32,5 +32,31 @@ This will be a string (has to be a color hexcode e.g. #00008B) and when supplied
 By default, the prop is set to "#9B7FBA"
 
 ## buttonPress
+
 This takes the function to be executed when the button is pressed.
 By default, the function is just a console.log("I do nothing").
+
+## buttonWidth
+
+This sets the width of the button (i.e. how wide is the button).  
+By default, it is set to 213.
+
+## buttonHeight
+
+This sets the height of the button (i.e. how tall is the button).  
+By default, it is set to 54.
+
+## Example
+
+```
+import StdButton from "...../filepath"
+
+<StdButton
+    text={"Go to Positive Journal Edit"}
+    buttonColour={"#9B7FBA"}
+    buttonWidth={100}
+    buttonHeight={100}
+    buttonPress={() => navigation.push("PositiveJournalEditScreen")}
+/>
+
+```

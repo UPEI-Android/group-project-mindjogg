@@ -11,6 +11,9 @@ const SignInScreen = ({ navigation }) => {
         // text={"Not a member? Sign up!"}
         // buttonColour={"#9B7FBA"}
         buttonPress={() => navigation.push("SignUp")}
+        //buttonHeight={120}
+        //buttonWidth={150}
+        //buttonLongPress={() => {}}
       />
     </View>
   );
