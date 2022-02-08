@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TextInput } from "react-native";
 import PropTypes from "prop-types";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -34,13 +34,12 @@ function PasswordBox(props) {
     const [showPassword, setShowPassword] = useState("");
     function toggleMask() {
         setShowPassword(!showPassword);
-        console.log(showPassword);
     }
 
     return(
         <View style={styles.sectionStyle}>
             <MaterialCommunityIcons name="lock" size = {24} color = "black" />
-            <input
+            <TextInput
                 type="password"
                 onChange = { handleChange }
                 name = { props.name }
@@ -48,12 +47,13 @@ function PasswordBox(props) {
                 minLength = { props.minLength }
                 required = { true }
                 value = { value }
+                secureTextEntry = { !showPassword }
                 style={{
                     borderStyle:"none", outline:"none", display: !showPassword ? "block" : "none"
                 }}
             >
-            </input>
-            <input
+            </TextInput>
+            <TextInput
                 type="text"
                 onChange = { handleChange }
                 name = { props.name }
@@ -61,11 +61,12 @@ function PasswordBox(props) {
                 minLength = { props.minLength }
                 required = { true }
                 value = { value }
+                secureTextEntry = {! showPassword }
                 style={{
                     borderStyle:"none", outline:"none", display: !showPassword ? "none" : "block"
                 }}
-            ></input>
-            <MaterialCommunityIcons name = "eye" size = {24} color = "black" onPress = {() => toggleMask()}/>
+            ></TextInput>
+            <MaterialCommunityIcons name = {!showPassword? "eye" : "eye-outline"} size = {24} color = "black" onPress = {() => toggleMask()}/>
         </View>
     );
 }
