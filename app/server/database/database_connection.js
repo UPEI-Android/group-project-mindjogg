@@ -11,8 +11,12 @@ function connect() {
        else console.log(err);
      }
    );}
+   function close(){mongoose.connection.close();}
    
 
    module.exports = {
-    connect
+    connect,
+    close
  };
+
+
