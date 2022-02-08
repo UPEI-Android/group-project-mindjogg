@@ -1,7 +1,8 @@
 
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
-const { gmail_password, gmail_user} = require("../../config/server_config");
+const { gmail_password, gmail_user, jwtSecret} = require("../../config/server_config");
+const jwt = require("jsonwebtoken");
 
 //user database
 const User = require("./schema/user_schema")
@@ -42,17 +43,16 @@ const createUser = async (user) => {
             userTasks: null,
             userJournal: null,
             userMood:null
-       
         });
 
         // returnMessage will be used to return the status of the creation of the user
-        let returnMessage = {
+        const returnMessage = {
             status: null,
             message: null
         };
 
         //check if username exist in database
-        let result= await User.findOne({userName:user.userName},{"userName":1})
+        const result= await User.findOne({userName:user.userName},{"userName":1})
 
         //if username exists
         if(result){
@@ -108,24 +108,35 @@ const loginUser = async (user) => {
           //projection is what fields the query should return below
           const projection = {
             "userName": 1,
-            "userPassword": 1,
+            "userPassword": 1
+           // "userVerified": 1
            }
           //finding user that matches username entered by passing query for username + projection defined above
-         let result= await User.findOne({userName:user.userName},projection)
+
+         const result= await User.findOne({userName:user.userName},projection)
          if(result){
-            //finding if password matches entered one
-            if( await bcrypt.compare(user.password, result.userPassword)){
-                returnMessage.status = 200;
-                returnMessage.message = "User successfully logged in";
-            }
-            else{
-                returnMessage.message = "Wrong password";
-                returnMessage.status = 400;
-            }
+             //if user is verified 
+           // if(result.userVerified){
+                //finding if password matches entered one
+                if( await bcrypt.compare(user.password, result.userPassword)){
+                    returnMessage.status = 200;
+                    returnMessage.message = "User successfully logged in";
+                }
+                else{
+                    console.log("Wrong password");
+                    returnMessage.message = "Wrong password";
+                    returnMessage.status = 401;
+                }
+            /*  } 
+              else {
+                 returnMessage.message = "Please verify your account";
+                 returnMessage.status = 400;
+             } */
+
         }
         else{
             returnMessage.message = "Username not found";
-            returnMessage.status = 400;
+            returnMessage.status = 401;
         }
         return returnMessage; 
 
@@ -141,7 +152,7 @@ const getUserList = async () => {
     try {
         // TODO: check if the user is an admin
         //returns list of users
-        let result = await User.find({});
+        const result = await User.find({});
        return result;
     } catch (err) {
         console.log(err);
@@ -150,9 +161,119 @@ const getUserList = async () => {
 
 
 
+/**
+ *  checks if User has existing email or username then sends user reset email
+*/
+const forgotPassword = async (user) => {
+    try {
+
+        // returnMessage will be used to return the status of the creation of the user
+        const returnMessage = {
+            status: null,
+            message: null
+        };
+    
+
+        //projection is what fields the query should return below
+        const projection = {
+            "_id":1,
+            "userName": 1,
+            "userPassword": 1,
+            "userEmail":1
+           }
+
+        //checks if user have  username or email that exists
+        const result= await User.findOne({ $or: [ { userName:user.userName}, { userEmail:user.userEmail } ] },projection)
+       
+        
+         if(result){
+            
+            //generating link for reset password which is valid for 15min only
+            const secret= jwtSecret+result.userPassword;
+            const token = jwt.sign(user,secret,{expiresIn: "15m"});
+            const user_id=result._id.valueOf() ;
+            const link = `http://localhost:3000/users/resetPassword/${user_id}/${token}`
+
+
+
+            //Creates an Option that stores receiver email + content of verification email
+            const mailOptions = { 
+                from: gmail_user,
+                to: result.userEmail,
+                subject: "Reset password for your MindJOGG account",
+                text:link
+                };
+
+            //sends verification email to user
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                console.log(error);
+                } else {
+                console.log("Email sent: " + info.response);
+                }
+            });
+            returnMessage.message = "Reset link send to email";
+            returnMessage.status = 200;
+         }
+         else{
+
+            returnMessage.message = "Username not found";
+            returnMessage.status = 400;
+        
+         }
+       return returnMessage;
+
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+
+/**
+ *  Verifies token, then allows user to reset password
+*/
+const resetPassword = async (user) => {
+    // returnMessage will be used to return the status of the creation of the user
+    const returnMessage = {
+        status: null,
+        message: null
+    };
+
+    try { 
+         //finding user that matches username entered by passing query for id
+        const result= await User.findById(user.id)
+        if(result){
+            const secret = jwtSecret+result.userPassword;
+            try{
+                //checking if token is valid or not
+                jwt.verify(user.token,secret);
+                console.log("user verified")
+                const hashedPassword = await bcrypt.hash(user.password, 10);
+                //updating password in database
+                await User.findByIdAndUpdate(user.id, { userPassword: hashedPassword });
+                console.log("user password updated")
+                returnMessage.message = "Password updated for "+result.userEmail;
+                returnMessage.status = 200;
+            }
+            catch(error){
+                console.log(error)
+                returnMessage.message = "Password Reset Link expired";
+                returnMessage.status = 400;
+            }
+        }
+        else{
+            returnMessage.message = "User not found";
+            returnMessage.status = 400;        }
+       return returnMessage;
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 module.exports = {
     createUser,
     loginUser,
-    getUserList
+    getUserList,
+    forgotPassword,
+    resetPassword
  };

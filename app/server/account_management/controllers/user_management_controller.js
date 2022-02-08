@@ -1,7 +1,9 @@
+
 const model = require("../models/user_management_model");
 
+
 /**
- * This is the conteroller function for the user creation.
+ * This is the controller function for the user creation.
  * @param {HTTP object} req this is the request object
  * @param {HTTP object} res this is the response object
  */
@@ -16,7 +18,7 @@ const userRegistration = async (req, res) => {
         userEmail: req.body.Email
         }
       
-        let result = await model.createUser(user);
+        const result = await model.createUser(user);
 
         if (result.status == 201) {
             res.status(201);
@@ -43,8 +45,8 @@ const userLogin = async (req, res) => {
             userName: req.body.UserName,
             password: req.body.Password
         }
+        const result = await model.loginUser(user);
 
-        let result = await model.loginUser(user);
        
         if (result.status == 200) {
             res.status(200);
@@ -67,7 +69,7 @@ const userLogin = async (req, res) => {
  */
 const getUserList = async (req, res) => {
     try {
-        let result = await model.getUserList();
+        const result = await model.getUserList();
         res.status(200);
         res.json(result);
     } catch (err) {
@@ -76,8 +78,72 @@ const getUserList = async (req, res) => {
     }
 };
 
+/**
+ * This is the controller function for the user forget password.
+ * @param {HTTP object} req this is the request object
+ * @param {*} res this is the response object
+ */
+ const userForgetPassword = async (req, res) => {
+    try {
+        const user = {
+            userName: req.body.UserNameorEmail,
+            userEmail: req.body.UserNameorEmail
+        }
+        const result = await model.forgotPassword(user);
+        
+       
+        if (result.status == 200) {
+            res.status(200);
+            res.json(result.message);
+        } else if (result.status == 401) {
+            res.status(401);
+            res.json(result.message);
+        }
+        
+    } catch (err) {
+        res.status(500);
+        res.json(err.meassage);
+    }
+};
+
+
+/**
+ * This is the controller function for the user reset password.
+ * @param {HTTP object} req this is the request object
+ * @param {*} res this is the response object
+ */
+ const userResetPassword = async (req, res) => {
+
+    const User_id= req.params.id;
+    const User_token= req.params.token;
+
+    try {
+        const user = {
+            id: User_id,
+            token: User_token,
+            password: req.body.Password
+        }   
+        console.log(req.body.Password)
+        const result = await model.resetPassword(user);     
+
+        if (result.status == 200) {
+            res.status(200);
+            res.json(result.message);
+        } else if (result.status == 401) {
+            res.status(401);
+            res.json(result.message);
+        }
+        
+    } catch (err) {
+        res.status(500);
+        res.json(err.meassage);
+    }
+};
+
 module.exports = {
     userRegistration,
     userLogin,
-    getUserList
+    getUserList,
+    userForgetPassword,
+    userResetPassword
 };

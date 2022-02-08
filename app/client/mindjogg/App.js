@@ -1,23 +1,18 @@
 import { React } from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import { Home } from "@material-ui/icons";
+//import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
 
-export default function App() {
+
+
+import AccountManagementTabNavigator from "./screens/navigation/AccountManagementTabNavigator";
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Welcome to MindJogg!</Text>
-      <Home></Home>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <AccountManagementTabNavigator />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+
+export default App;
