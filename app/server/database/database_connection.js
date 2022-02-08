@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { database_link } = require("../config/server_config");
 
 //Attempt to connect to MongoDB Atlas
-function connect() {
+function connect () {
   mongoose.connect(
     database_link,
      { useNewUrlParser: true, useUnifiedTopology: true },
@@ -11,7 +11,8 @@ function connect() {
        else console.log(err);
      }
    );}
-   function close(){mongoose.connection.close();}
+
+    async function close(){await mongoose.disconnect();}
    
 
    module.exports = {

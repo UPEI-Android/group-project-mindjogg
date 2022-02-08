@@ -1,5 +1,8 @@
 const request =require("supertest");
 const app = require("../../app");
+const database= require("../../database/database_connection")
+
+
 
 
 describe("POST /users/forgetPassword", () => {
@@ -9,7 +12,6 @@ describe("POST /users/forgetPassword", () => {
             //Using existing user test data
             "UserNameorEmail": "befiwar458@mannawo.com"
         })
-        jest.setTimeout(1000);
         expect(response.statusCode).toBe(200);
     })
 
@@ -18,9 +20,17 @@ describe("POST /users/forgetPassword", () => {
             //Using existing user test data
             "UserNameorEmail": "befiwar4584@mannawo.com"
         })
-        jest.setTimeout(1000);
         expect(response.statusCode).toBe(401);
     })
 
-});
     
+
+
+    afterAll( () => {
+         database.close();
+      });
+    
+        
+
+});
+

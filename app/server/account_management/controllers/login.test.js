@@ -1,6 +1,6 @@
 const request =require("supertest");
 const app = require("../../app");
-
+const database= require("../../database/database_connection");
 
 
 describe("POST /users/login", () => {
@@ -11,7 +11,6 @@ describe("POST /users/login", () => {
                 "UserName": "befi",
                 "Password": "password123"
         })
-        jest.setTimeout(1000);
         expect(response.statusCode).toBe(200);
     })
 
@@ -21,8 +20,8 @@ describe("POST /users/login", () => {
                 "UserName": "befi",
                 "Password": "password1234"
         })
-        jest.setTimeout(1000);
         expect(response.statusCode).toBe(401);
+
     })
 
     test("should respond with a 401 status code non existen user", async () => {
@@ -31,8 +30,15 @@ describe("POST /users/login", () => {
                 "UserName": "bef12fi",
                 "Password": "password123"
         })
-        jest.setTimeout(1000);
         expect(response.statusCode).toBe(401);
     })
+
+
+
+    afterAll( () => {
+        database.close();
+     });
+      
+        
 });
 
