@@ -1,7 +1,5 @@
 name: Main CI
 
-
-
 # Runs when code is pushed to dev, or when code is merged into dev or main
 on:
   push:
@@ -44,8 +42,8 @@ jobs:
       - name: Test Client
         run:
           cd app/client/mindjogg;
-          npm run test; 
-      
+          npm run test;
+
       - name: Create env file with encrypted values
         env:
             ATLAS_URI: ${{secrets.ATLAS_URI}}
