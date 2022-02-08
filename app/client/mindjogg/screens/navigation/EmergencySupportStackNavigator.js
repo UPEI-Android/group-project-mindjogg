@@ -1,5 +1,8 @@
 import React from "react";
+import {View} from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import Icon from "react-native-vector-icons/Ionicons";
 
 // import EmergencySupportMainScreen, EmergencySupportListScreen, EmergencySupportDescriptionScreen from the emergency_support folder
 import EmergencySupportMainScreen from "../emergency_support/EmergencySupportMainScreen";
@@ -9,22 +12,40 @@ import EmergencySupportDescriptionScreen from "../emergency_support/EmergencySup
 
 const Stack = createNativeStackNavigator();
 
-const EmergencySupportStackNavigator = () => {
+const EmergencySupportStackNavigator = ({navigation}) => {
   return (
 
+    <View style={{ flex: 1 }} collapsable={false}>
     <Stack.Navigator initialRouteName="EmergencySupportMainScreen"
     screenOptions={{
+        headerTitleAlign: "center",
         headerStyle: {
-          backgroundColor: "#9AC4F8",
+          backgroundColor: "#7d7bb6",
         },
         headerTintColor: "white",
         headerBackTitle: "Back",
       }}
     >
-        <Stack.Screen name="EmergencySupportMainScreen" component={EmergencySupportMainScreen} />
-        <Stack.Screen name="EmergencySupportListScreen" component={EmergencySupportListScreen} />
-        <Stack.Screen name="EmergencySupportDescriptionScreen" component={EmergencySupportDescriptionScreen} />
+        <Stack.Screen name="EmergencySupportMainScreen" component={EmergencySupportMainScreen} options = {
+          {
+            title: "Emergency Support",
+            headerLeft: () => (
+              <Icon.Button name="menu" size={25} backgroundColor="#7d7bb6" onPress={() => {navigation.openDrawer()}}></Icon.Button>
+            )
+          }
+        }/>
+        <Stack.Screen name="EmergencySupportListScreen" component={EmergencySupportListScreen} options = {
+          {
+            title: "Emergency Support List",
+          }
+        }/>
+        <Stack.Screen name="EmergencySupportDescriptionScreen" component={EmergencySupportDescriptionScreen} options = {
+          {
+            title: "Emergency Support Description",
+          }
+        } />
     </Stack.Navigator>
+    </View>
   );
 }
 
