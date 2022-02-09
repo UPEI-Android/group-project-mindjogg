@@ -32,7 +32,11 @@ const AccountManagementStackNavigator = ({navigation}) => {
             )
           }
         }/>
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} options = {
+          {
+            title: "Sign Up",
+          }
+        }/>
     </Stack.Navigator>
     </View>
   );

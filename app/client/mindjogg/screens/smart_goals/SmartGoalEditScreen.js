@@ -5,7 +5,7 @@ const SmartGoalEditScreen = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>
-        This is the SmartGoalEditScreen.
+        Edit Your Smart Goal
       </Text>
     </View>
   );

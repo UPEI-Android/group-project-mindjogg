@@ -161,9 +161,6 @@ dist
 .history
 .ionide
 
-# REST File
-request.http
-
 # Support for Project snippet scope
 
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode
