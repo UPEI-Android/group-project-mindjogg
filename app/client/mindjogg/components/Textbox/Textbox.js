@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import PropTypes from "prop-types";
+import { parseSync } from "@babel/core";
 
 const styles = StyleSheet.create({
     sectionStyle: {
@@ -22,6 +23,14 @@ const styles = StyleSheet.create({
       resizeMode: "stretch",
       alignItems: "center",
     },
+    textStyle: {
+        elevation: 0,
+        backgroundColor: "#B0B0B000",
+        borderTopColor: "#B0B0B000",
+        borderBottomColor: "#B0B0B000",
+        borderTopWidth: 0,
+        borderBottomWidth: 0,
+    }
   });
 
 function Textbox(props) {
@@ -34,18 +43,12 @@ function Textbox(props) {
         setValue(e.target.value);
     }
 
-    // decide whether to show an icon or not
-    let icon;
-    props.icon ? 
-        icon = props.icon : 
-        icon = null;
-
     // render the textbox
     return(
         <View style={styles.sectionStyle}>
-            { icon }
+            { props.icon != [] ? props.icon : []}
             <TextInput
-                style={ {borderStyle: "none", outline: "none"} }
+                style={styles.textStyle}
                 type = "text"
                 value = { value }
                 onChange = { handleChange }
@@ -66,7 +69,7 @@ Textbox.propTypes = {
     minLength: PropTypes.number,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
-    icon: PropTypes.object,
+    icon: PropTypes.any,
 }
 
 Textbox.defaultProps = {
@@ -75,7 +78,7 @@ Textbox.defaultProps = {
     minLength: 1,
     placeholder: "Input Text Here",
     required: false,
-    icon: null,
+    icon: [],
 }
 
 export default Textbox;
