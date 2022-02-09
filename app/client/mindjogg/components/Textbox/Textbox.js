@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import PropTypes from "prop-types";
-import { parseSync } from "@babel/core";
 
 const styles = StyleSheet.create({
     sectionStyle: {
