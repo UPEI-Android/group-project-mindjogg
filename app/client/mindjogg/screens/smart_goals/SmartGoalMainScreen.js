@@ -5,10 +5,10 @@ const SmartGoalMainScreen = ({navigation}) => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>
-        This is the SmartGoalMainScreen.
+        Your Smart Goals 
       </Text>
       <Button
-        title="Go to SMart Goal Edit"
+        title="Edit"
         onPress={() => navigation.push("SmartGoalEditScreen")}
       />
     </View>
