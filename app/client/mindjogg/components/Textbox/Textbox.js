@@ -14,6 +14,7 @@ function Textbox(props) {
 
     // the view should be slightly larger than the input box
     const inputFieldHeight = props.height - 20;
+    const inputFieldWidth = props.width - 10;
 
     // render the textbox
     return(
@@ -25,12 +26,13 @@ function Textbox(props) {
             borderWidth: 0.5,
             borderColor: "#000",
             height: props.height,
+            width: props.width,
             borderRadius: 5,
             margin: 10,
         }}>
             {props.icon != [] ? props.icon : []}
             <TextInput
-                style={{margin: 5, flex: 1, height: inputFieldHeight }}
+                style={{margin: 5, flex: 1, height: inputFieldHeight, width: inputFieldWidth }}
                 type = "text"
                 value = { value }
                 onChange = { handleChange }
@@ -50,6 +52,7 @@ Textbox.propTypes = {
     maxLength: PropTypes.number,
     minLength: PropTypes.number,
     height: PropTypes.number,
+    width: PropTypes.number,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
     icon: PropTypes.any,
@@ -60,6 +63,7 @@ Textbox.defaultProps = {
     maxLength: 1000,
     minLength: 1,
     height: 45,
+    width: 200,
     placeholder: "Input Text Here",
     required: false,
     icon: [],
