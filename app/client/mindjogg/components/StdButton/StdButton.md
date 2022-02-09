@@ -8,7 +8,7 @@ This button is a standard text button which has a Text content and an icon and a
 
 # Component Props
 
-This component has 3 props:
+This component has the following props:
 
 ## buttonIcon
 
