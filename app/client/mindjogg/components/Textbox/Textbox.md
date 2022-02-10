@@ -8,9 +8,9 @@ text input area through props.
 | Name | The name this field will be accessed by in a form     | "myTextbox"        |  String              | Yes|
 | maxLength      | Maximum length (in characters) of accepted input  | 1000       |  Number    | No|
 | minLength      | Minimum length (in characters) of accepted input  | 1       |  Number    | No|
-| Height         | The height of the textbox. Refers to the outer border, not the text input field itself                       | 45      | Number     | No |
-| Width         | The Width of the textbox. Refers to the outer border, not the text input field itself                       | 200     | Number     | No |
-| Placeholder      | Text to be shown before any input provided  | "Enter text here"       |  String    | No|
+| height         | The height of the textbox. Refers to the outer border, not the text input field itself                       | 45      | Number     | No |
+| width         | The Width of the textbox. Refers to the outer border, not the text input field itself                       | 200     | Number     | No |
+| placeholder      | Text to be shown before any input provided  | "Enter text here"       |  String    | No|
 | required      | Is input required in this field before the form can be submitted  | False       |  Boolean    | No|
 | icon      | An icon element to be shown to the left of the text input | null       |  Object (MaterialCommunityIcon)    | No|
 
@@ -27,3 +27,7 @@ Then, it only required a name to be provided:
 If no icon is provided, none will be used. However, if one is provided, the text area will shift to make room for it.
 Here, we bring in a simple 24px by 24px 'lock' icon to be shown next to our input. 
 <Textbox name="locked_input" icon={<MaterialCommunityIcons name="lock" size={24}/>}/>
+
+### Example 3: A massive textbox
+By setting the size to something huge, we can create a textbox that is hard to miss. Either height, width, or both can be passed in to resize the textbox as needed,
+<Textbox height={100} width={100}/>
