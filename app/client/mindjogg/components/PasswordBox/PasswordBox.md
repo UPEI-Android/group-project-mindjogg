@@ -10,6 +10,8 @@ Please note that icons and the URI system by which they are implemented will be 
 | Name | The name this field will be accessed by in a form     | "myTextbox"        |  String              | Yes|
 | maxLength      | Maximum length (in characters) of accepted input  | 1000       |  Number    | No|
 | minLength      | Minimum length (in characters) of accepted input  | 1       |  Number    | No|
+| height | the height of the password box | 20 | Number | No
+| width | the width of the password box | 150 | Number | No
 
 ## Examples
 ### Example 1: Basic textbox

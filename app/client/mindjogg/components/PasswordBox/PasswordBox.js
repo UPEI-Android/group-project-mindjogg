@@ -1,29 +1,7 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TextInput } from "react-native";
+import { View, TextInput } from "react-native";
 import PropTypes from "prop-types";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
-const styles = StyleSheet.create({
-    sectionStyle: {
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#fff",
-      borderWidth: 0.5,
-      borderColor: "#000",
-      height: 40,
-      borderRadius: 5,
-      margin: 10,
-    },
-    imageStyle: {
-      padding: 10,
-      margin: 5,
-      height: 25,
-      width: 25,
-      resizeMode: "stretch",
-      alignItems: "center",
-    },
-  });
 
 function PasswordBox(props) {
     const [value, setValue] = useState("");
@@ -36,8 +14,21 @@ function PasswordBox(props) {
         setShowPassword(!showPassword);
     }
 
+    const inputHeight = props.height - 20;
+    const inputWidth = props.width - 60;
+
     return(
-        <View style={styles.sectionStyle}>
+        <View style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#fff",
+            borderWidth: 0.5,
+            height: props.height,
+            width: props.width,
+            borderRadius: 5,
+            margin: 10,
+        }}>
             <MaterialCommunityIcons name="lock" size = {24} color = "black" />
             <TextInput
                 type="password"
@@ -49,7 +40,7 @@ function PasswordBox(props) {
                 value = { value }
                 secureTextEntry = { !showPassword }
                 style={{
-                    borderStyle:"none", outline:"none", display: !showPassword ? "block" : "none"
+                    display: !showPassword ? "flex" : "none", height: inputHeight, width: inputWidth, margin: 5
                 }}
             >
             </TextInput>
@@ -63,7 +54,7 @@ function PasswordBox(props) {
                 value = { value }
                 secureTextEntry = {! showPassword }
                 style={{
-                    borderStyle:"none", outline:"none", display: !showPassword ? "none" : "block"
+                    display: !showPassword ? "none" : "flex", height: inputHeight, margin: 5, flex: 1
                 }}
             ></TextInput>
             <MaterialCommunityIcons name = {!showPassword? "eye" : "eye-outline"} size = {24} color = "black" onPress = {() => toggleMask()}/>
@@ -75,12 +66,16 @@ PasswordBox.propTypes = {
     name: PropTypes.string.isRequired,
     maxLength: PropTypes.number,
     minLength: PropTypes.number,
+    height: PropTypes.number,
+    width: PropTypes.number,
 }
 
 PasswordBox.defaultProps = {
     name: "myPasswordBox",
     maxLength: 1000,
     minLength: 1,
+    height: 40,
+    width: 225,
 }
 
 
