@@ -46,7 +46,9 @@ By default, it is set to 213.
 This sets the height of the button (i.e. how tall is the button).  
 By default, it is set to 54.
 
-## Example
+## Usage Example
+
+A standard button component implementation will look similar to this.
 
 ```
 import StdButton from "...../filepath"
@@ -60,3 +62,7 @@ import StdButton from "...../filepath"
 />
 
 ```
+
+# Notes
+
+For button placement, you can always wrap the StdButton component in a View component and then style that to be placed where you want.
