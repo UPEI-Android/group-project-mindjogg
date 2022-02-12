@@ -12,3 +12,7 @@ web-build/
 
 # macOS
 .DS_Store
+
+# Test Snapshots (jest)
+components/StdButton/__snapshots__/
+components/Textbox/__snapshots__/
