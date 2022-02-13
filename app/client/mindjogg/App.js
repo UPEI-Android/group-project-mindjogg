@@ -4,11 +4,13 @@ import { React } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
 import DrawerNavigator from "./screens/navigation/DrawerNavigator";
+import AuthenticationStackNavigator from "./screens/navigation/AuthenticationStackNavigator";
 
 function App() {
   return (
     <NavigationContainer>
-      <DrawerNavigator />
+      <AuthenticationStackNavigator />
+      {/* <DrawerNavigator /> */}
     </NavigationContainer>
   );
 }

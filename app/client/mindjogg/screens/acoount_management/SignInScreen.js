@@ -12,12 +12,7 @@ const SignInScreen = ({ navigation }) => {
       <StdButton
         text="Sign Up"
         uppercaseOn={false}
-        buttonPress={() => navigation.push("SignUp")}
-      />
-
-      <Button
-        title="Not a member? Sign up"
-        onPress={() => navigation.push("SignUp")}
+        buttonPress={() => navigation.push("SignUpScreen")}
       />
     </View>
   );
