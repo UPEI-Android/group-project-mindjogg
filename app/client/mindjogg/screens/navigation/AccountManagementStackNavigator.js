@@ -5,8 +5,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Icon from "react-native-vector-icons/Ionicons";
 
 // import SignInScreen and SingUpScreen from the account_management folder
-import SignInScreen from "../acoount_management/SignInScreen";
-import SignUpScreen from "../acoount_management/SignUpScreen";
+import ProfileScreen from "../acoount_management/ProfileScreen";
+import EditProfileScreen from "../acoount_management/EditProfileScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,17 +24,17 @@ const AccountManagementStackNavigator = ({navigation}) => {
         headerBackTitle: "Back",
       }}
     >
-        <Stack.Screen name="SignIn" component={SignInScreen}  options = {
+        <Stack.Screen name="YourProfile" component={ProfileScreen}  options = {
           {
-            title: "Sign In",
+            title: "Your Profile",
             headerLeft: () => (
               <Icon.Button name="menu" size={25} backgroundColor="#7d7bb6" onPress={() => {navigation.openDrawer()}}></Icon.Button>
             )
           }
         }/>
-        <Stack.Screen name="SignUp" component={SignUpScreen} options = {
+        <Stack.Screen name="EditProfile" component={EditProfileScreen} options = {
           {
-            title: "Sign Up",
+            title: "Edit Profile",
           }
         }/>
     </Stack.Navigator>
