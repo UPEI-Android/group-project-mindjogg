@@ -48,13 +48,7 @@ export const globalStyles = StyleSheet.create({
         color: "#FFFFFF"
     }
    ,
-    /* This is the grey color
-    */
-    textboxBackground:{
-        color:"rgba(0, 0, 0, 0.2)"
-    }
     
-    ,
         /* This is the white rectangle background for account management
     */
     signUpbox: {
