@@ -5,15 +5,10 @@ import { StyleSheet } from "react-native";
 export const globalStyles = StyleSheet.create({
   
   
-    /* This is the styling for button
+    /* This is the color for purple background
     */
-    button : {
+    purpleBackground : {
         backgroundColor:"#9B7FBA",
-        width: 213,
-        height: 54,
-        justifyContent: "center",
-        borderRadius: 20,
-        color:"white",
     }
     ,
       /* This is the pink background for the whole app
@@ -33,7 +28,41 @@ export const globalStyles = StyleSheet.create({
     textboxBackground:{
         backgroundColor:"rgba(0, 0, 0, 0.2)"
     }
+    ,
+
+      /* This is the color for purple 
+    */
+      purple : {
+        color:"#9B7FBA",
+    }
+    ,
+      /* This is the pink color
+    */
+    pink : {
+        color:"#FFE3FF"
+    }
+    ,
+    /* This is the white color
+    */
+    white:{
+        color: "#FFFFFF"
+    }
+   ,
+    /* This is the grey color
+    */
+    textboxBackground:{
+        color:"rgba(0, 0, 0, 0.2)"
+    }
     
-    
+    ,
+        /* This is the white rectangle background for account management
+    */
+    signUpbox: {
+        width: 375,
+        height: 504,
+        left: 0,
+        top: 308,
+        backgroundColor:"white"
+        }
 
 });

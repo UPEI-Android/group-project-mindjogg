@@ -1,6 +1,7 @@
 import { React } from "react";
-import { Button } from "react-native-paper";
+import { Button ,Text} from "react-native-paper";
 import PropTypes from "prop-types";
+import { globalStyles } from "../../styles/global";
 
 const StdButton = (props) => {
   return (
@@ -11,13 +12,14 @@ const StdButton = (props) => {
       color={props.buttonColour}
       onPress={props.buttonPress}
       onLongPress={props.buttonLongPress}
-      style={{
+      style={[{
         width: props.buttonWidth,
         height: props.buttonHeight,
         justifyContent: "center",
-      }}
+        borderRadius:15,
+      },globalStyles.purpleBackground]}
     >
-      {props.text}
+      <Text style={globalStyles.white}>{props.text}</Text> 
     </Button>
   );
 };
