@@ -4,9 +4,7 @@ import { StyleSheet } from "react-native";
   
 export const globalStyles = StyleSheet.create({
   
-    Text: {
-        fontFamily: "Baloo"
-    },
+  
     /* This is the styling for button
     */
     button : {
@@ -27,13 +25,13 @@ export const globalStyles = StyleSheet.create({
     /* This is the white background for the whole app
     */
     whiteBackground:{
-        color: "#FFFFFF"
+        backgroundColor: "#FFFFFF"
     }
    ,
     /* This is the grey background for textboxes
     */
     textboxBackground:{
-        color:"rgba(0, 0, 0, 0.2)"
+        backgroundColor:"rgba(0, 0, 0, 0.2)"
     }
     
     
