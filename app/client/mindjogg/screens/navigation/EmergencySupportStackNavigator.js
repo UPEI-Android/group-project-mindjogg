@@ -8,7 +8,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import EmergencySupportMainScreen from "../emergency_support/EmergencySupportMainScreen";
 import EmergencySupportListScreen from "../emergency_support/EmergencySupportListScreen";
 import EmergencySupportDescriptionScreen from "../emergency_support/EmergencySupportDescriptionScreen";
-
+import { globalStyles } from "../../styles/global";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,9 +19,7 @@ const EmergencySupportStackNavigator = ({navigation}) => {
     <Stack.Navigator initialRouteName="EmergencySupportMainScreen"
     screenOptions={{
         headerTitleAlign: "center",
-        headerStyle: {
-          backgroundColor: "#7d7bb6",
-        },
+        headerStyle:[ globalStyles.purpleBackground],
         headerTintColor: "white",
         headerBackTitle: "Back",
       }}
@@ -30,7 +28,7 @@ const EmergencySupportStackNavigator = ({navigation}) => {
           {
             title: "Emergency Support",
             headerLeft: () => (
-              <Icon.Button name="menu" size={25} backgroundColor="#7d7bb6" onPress={() => {navigation.openDrawer()}}></Icon.Button>
+              <Icon.Button name="menu" size={25} style={globalStyles.purpleBackground} onPress={() => {navigation.openDrawer()}}></Icon.Button>
             )
           }
         }/>
