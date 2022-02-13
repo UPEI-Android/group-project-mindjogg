@@ -6,7 +6,6 @@ import {
     Avatar,
     Title,
     Caption,
-    Paragraph,
     Drawer,
     Text,
     TouchableRipple,
@@ -25,7 +24,6 @@ const DrawerContent = (props) => {
     const toggleTheme = () => {
         setIsDarkTheme(!isDarkTheme);
     };
-
 
     return (
         <View style={{flex:1}}>
@@ -162,10 +160,6 @@ const styles = StyleSheet.create({
       flexDirection: "row",
       alignItems: "center",
       marginRight: 15,
-    },
-    paragraph: {
-      fontWeight: "bold",
-      marginRight: 3,
     },
     drawerSection: {
       marginTop: 15,
