@@ -6,7 +6,7 @@ import StdButton from "../../components/StdButton/StdButton";
 const ProfileScreen = ({ navigation }) => {
   return (
     <View style={styles.center}>
-      <Text> Edit Profile Screen</Text>
+      <Text> Edit Profile</Text>
       <StdButton
         text="Cancel"
         buttonPress={() => navigation.goBack()}

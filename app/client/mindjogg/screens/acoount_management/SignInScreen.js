@@ -8,10 +8,9 @@ const SignInScreen = ({ navigation }) => {
     <View style={[styles.center,globalStyles.pinkBackground]}>
       <Text>Please Sign In to Continue</Text>
 
-      <Text>Not a Member? Sign Up</Text>
 
       <StdButton
-        text="Sign in"
+        text="Not a Member? Sign Up"
         uppercaseOn={false}
         buttonPress={() => navigation.push("SignUpScreen")}
       />

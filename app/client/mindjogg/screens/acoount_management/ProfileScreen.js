@@ -5,7 +5,7 @@ import StdButton from "../../components/StdButton/StdButton";
 const ProfileScreen = ({ navigation }) => {
   return (
     <View style={styles.center}>
-      <Text>Profile Screen</Text>
+      <Text>Profile</Text>
 
       <StdButton
         text="Edit Profile"
