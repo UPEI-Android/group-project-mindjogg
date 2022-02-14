@@ -2,7 +2,6 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import StdButton from "../../components/StdButton/StdButton";
 
-import StdButton from "../../components/StdButton/StdButton";
 
 const ProfileScreen = ({ navigation }) => {
   return (
