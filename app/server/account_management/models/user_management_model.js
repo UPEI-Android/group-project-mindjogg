@@ -70,7 +70,9 @@ const createUser = async (user) => {
         //if username exists
         if(result){
             returnMessage.status = 400;
-            returnMessage.message = "User already exists";   
+            returnMessage.message = "User already exists";
+    
+
         }
         //if no existing user exists
         else {
@@ -96,7 +98,7 @@ const createUser = async (user) => {
                 if (error) {
                 console.log(error);
                 } else {
-                console.log("Email sent: " + info.response);
+                returnMessage.message="Email sent: " + info.response;
                 }
             });
         }
@@ -227,20 +229,21 @@ const forgotPassword = async (user) => {
             };
 
             //sends verification email to user
-            transporter.sendMail(mailOptions, function(error, info){
+             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
                 console.log(error);
                 } else {
-                console.log("Email sent: " + info.response);
+                    returnMessage.message ="Email sent: " + info.response;
+                    returnMessage.status = 200;
                 }
             });
-            returnMessage.message = "Reset link send to email";
+            returnMessage.message = "Reset link sent to email";
             returnMessage.status = 200;
          }
          else{
 
             returnMessage.message = "Username not found";
-            returnMessage.status = 400;
+            returnMessage.status = 401;
         
          }
        return returnMessage;
