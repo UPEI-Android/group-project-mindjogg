@@ -7,6 +7,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 // import SignInScreen and SingUpScreen from the account_management folder
 import ProfileScreen from "../acoount_management/ProfileScreen";
 import EditProfileScreen from "../acoount_management/EditProfileScreen";
+import { globalStyles } from "../../styles/global";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,9 +18,7 @@ const AccountManagementStackNavigator = ({navigation}) => {
     <Stack.Navigator initialRouteName="SignIn"
     screenOptions={{
         headerTitleAlign: "center",
-        headerStyle: {
-          backgroundColor: "#7d7bb6",
-        },
+        headerStyle:[ globalStyles.purpleBackground],
         headerTintColor: "white",
         headerBackTitle: "Back",
       }}
@@ -28,7 +27,7 @@ const AccountManagementStackNavigator = ({navigation}) => {
           {
             title: "Your Profile",
             headerLeft: () => (
-              <Icon.Button name="menu" size={25} backgroundColor="#7d7bb6" onPress={() => {navigation.openDrawer()}}></Icon.Button>
+              <Icon.Button name="menu" size={25} style={globalStyles.purpleBackground} onPress={() => {navigation.openDrawer()}}></Icon.Button>
             )
           }
         }/>

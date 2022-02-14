@@ -7,7 +7,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 // import SmartGoalMainScreen, SmartGoalEditScreen from the smart_goals folder
 import SmartGoalMainScreen from "../smart_goals/SmartGoalMainScreen";
 import SmartGoalEditScreen from "../smart_goals/SmartGoalEditScreen";
-
+import { globalStyles } from "../../styles/global";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,9 +18,7 @@ const SmartGoalStackNavigator = ({navigation}) => {
     <Stack.Navigator initialRouteName="EmergencySupportMainScreen"
     screenOptions={{
         headerTitleAlign: "center",
-        headerStyle: {
-          backgroundColor: "#7d7bb6",
-        },
+        headerStyle:[ globalStyles.purpleBackground],
         headerTintColor: "white",
         headerBackTitle: "Back",
       }}
@@ -29,7 +27,7 @@ const SmartGoalStackNavigator = ({navigation}) => {
           {
             title: "Smart Goals",
             headerLeft: () => (
-              <Icon.Button name="menu" size={25} backgroundColor="#7d7bb6" onPress={() => {navigation.openDrawer()}}></Icon.Button>
+              <Icon.Button name="menu" size={25} style={globalStyles.purpleBackground} onPress={() => {navigation.openDrawer()}}></Icon.Button>
             )
           }
         }/>

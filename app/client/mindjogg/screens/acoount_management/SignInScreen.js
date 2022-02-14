@@ -1,16 +1,17 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import StdButton from "../../components/StdButton/StdButton";
+import { globalStyles } from "../../styles/global";
 
 const SignInScreen = ({ navigation }) => {
   return (
-    <View style={styles.center}>
+    <View style={[styles.center,globalStyles.pinkBackground]}>
       <Text>Please Sign In to Continue</Text>
 
       <Text>Not a Member? Sign Up</Text>
 
       <StdButton
-        text="Sign Up"
+        text="Sign in"
         uppercaseOn={false}
         buttonPress={() => navigation.push("SignUpScreen")}
       />
