@@ -13,8 +13,32 @@ Instructions for the set up is on the documentation page [here](https://www.npmj
 SendSMS.send(myOptionsObject, callback);
 ```
 
-myOptionsObject has a couple properties, details on the documentation
+myOptionsObject has a couple properties, details on the documentation  
+Heres and example of its usage:
+
+```
+import SendSMS from 'react-native-sms'
+
+//some stuff
+
+someFunction() {
+    SendSMS.send({
+        body: 'The default body of the SMS!',
+        recipients: ['0123456789', '9876543210'],
+        successTypes: ['sent', 'queued'],
+        allowAndroidSendWithoutReadPermission: true
+    }, (completed, cancelled, error) => {
+
+        console.log('SMS Callback: completed: ' + completed + ' cancelled: ' + cancelled + 'error: ' + error);
+
+    });
+}
+```
 
 # Usage Idea
 
 We could track the users mood and if we notice that they are feeling a little down, we could ask them if they would like to inform their emergency contacts, if they say yes, this will activate/execute the sendsms fucntion included in the react-native-sms package using the emergency contacts and a pre-defined default text message.
+
+# Notes
+
+There were additional steps to install this dependency for android in the documentation, please take an extra look at that.
