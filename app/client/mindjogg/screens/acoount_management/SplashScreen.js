@@ -4,7 +4,7 @@ import {
     StyleSheet, 
     Dimensions, 
 } from "react-native";
-import * as Animatable from 'react-native-animatable';
+import * as Animatable from "react-native-animatable";
 import StdButton from "../../components/StdButton/StdButton";
 
 const SplashScreen = ({ navigation }) => {
@@ -38,17 +38,17 @@ const height_logo = height * 0.28;
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: '#FFE3FF'
+    backgroundColor: "#FFE3FF"
   },
   logo_container: {
       flex: 2,
-      justifyContent: 'center',
-      alignItems: 'center'
+      justifyContent: "center",
+      alignItems: "center"
   },
   button_container: {
       flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center'
+      justifyContent: "center",
+      alignItems: "center"
   },
   logo: {
       width: height_logo,

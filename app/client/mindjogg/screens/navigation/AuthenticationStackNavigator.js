@@ -10,7 +10,7 @@ import SignUpScreen from "../acoount_management/SignUpScreen";
 
 const Stack = createNativeStackNavigator();
 
-const AccountManagementStackNavigator = ({navigation}) => {
+const AccountManagementStackNavigator = () => {
   return (
 
     <View style={{ flex: 1 }} collapsable={false}>
