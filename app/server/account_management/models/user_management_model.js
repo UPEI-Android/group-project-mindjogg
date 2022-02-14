@@ -107,6 +107,7 @@ const loginUser = async (user) => {
 
           //projection is what fields the query should return below
           const projection = {
+            "_id":1,
             "userName": 1,
             "userPassword": 1
            // "userVerified": 1
@@ -121,6 +122,12 @@ const loginUser = async (user) => {
                 if( await bcrypt.compare(user.password, result.userPassword)){
                     returnMessage.status = 200;
                     returnMessage.message = "User successfully logged in";
+
+                    //create authorization token
+                    const secret= jwtSecret+result.userPassword;
+                    const token = jwt.sign(result._id,secret);
+                    //send token to app's async storage
+
                 }
                 else{
                     console.log("Wrong password");

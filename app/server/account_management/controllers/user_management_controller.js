@@ -140,10 +140,39 @@ const getUserList = async (req, res) => {
     }
 };
 
+
+/**
+ * This is the controller function for the user logout.
+ * @param {HTTP object} req this is the request object
+ * @param {*} res this is the response object
+ */
+ const userLogout = async (req, res) => {
+    try {
+        const user = {
+            user_token: req.body.token,
+        }
+        const result = await model.userLogout(user);
+        
+        if (result.status == 200) {
+            res.status(200);
+            res.json(result.message);
+        } else if (result.status == 401) {
+            res.status(401);
+            res.json(result.message);
+        }
+        
+    } catch (err) {
+        res.status(500);
+        res.json(err.meassage);
+    }
+};
+
+
 module.exports = {
     userRegistration,
     userLogin,
     getUserList,
     userForgetPassword,
-    userResetPassword
+    userResetPassword,
+    userLogout
 };
