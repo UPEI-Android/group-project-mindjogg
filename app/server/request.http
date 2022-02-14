@@ -43,7 +43,7 @@ Content-Type: application/json
 ###
 
 //post request to forgetpassword with username or email in json
-POST http://localhost:3000/users/forgetPassword
+POST http://localhost:8080/users/forgetPassword
 Content-Type: application/json
 
 {

@@ -1,7 +1,7 @@
 import React from "react";
 import {View} from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import { globalStyles } from "../../styles/global";
 import Icon from "react-native-vector-icons/Ionicons";
 
 // import PositiveJournalMainScreen, PositiveJournalEditScreen from the positive_journal folder
@@ -18,9 +18,7 @@ const PositiveJournalStackNavigator = ({navigation}) => {
     <Stack.Navigator initialRouteName="EmergencySupportMainScreen"
     screenOptions={{
         headerTitleAlign: "center",
-        headerStyle: {
-          backgroundColor: "#7d7bb6",
-        },
+        headerStyle:[ globalStyles.purpleBackground],
         headerTintColor: "white",
         headerBackTitle: "Back",
       }}
@@ -29,7 +27,7 @@ const PositiveJournalStackNavigator = ({navigation}) => {
           {
             title: "Positive Journal",
             headerLeft: () => (
-              <Icon.Button name="menu" size={25} backgroundColor="#7d7bb6" onPress={() => {navigation.openDrawer()}}></Icon.Button>
+              <Icon.Button name="menu" size={25} style={globalStyles.purpleBackground} onPress={() => {navigation.openDrawer()}}></Icon.Button>
             )
           }
         }/>
