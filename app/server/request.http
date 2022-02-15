@@ -59,3 +59,13 @@ Content-Type: application/json
 {
 "Password": "password6266"
 }
+
+
+###
+//accessing data with private routes added
+GET http://localhost:8080/users 
+Content-Type: application/json
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjBiMDcxMzA0ZjllNTRjY2VhZDA5ZGEiLCJpYXQiOjE2NDQ4OTg0NzZ9.I3HFyhgl0huiOGWJEg0Kgc0F7VfMGFibH-tAOCsGrU0
+
+{
+}
