@@ -5,14 +5,13 @@ const router = express();
 // Import user management controller
 const userManagementController = require("../controllers/user_management_controller");
 
+//credential system routes
 router.post("/users/register", userManagementController.userRegistration);
 router.post("/users/login", userManagementController.userLogin);
 router.post("/users/forgetPassword",userManagementController.userForgetPassword);
 router.post("/users/resetPassword/:id/:token",userManagementController.userResetPassword);
 
-router.post("/users/register", userManagementController.userRegistration);
-router.post("/users/login", userManagementController.userLogin);
-
+//update profile routes
 router.patch("/users/edit/personalinfo", userManagementController.updatePersonalInfo);
 router.patch("/users/edit/contactinfo", userManagementController.updateContactInfo);
 
