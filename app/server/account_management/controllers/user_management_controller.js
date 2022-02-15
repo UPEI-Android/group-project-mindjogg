@@ -46,10 +46,11 @@ const userLogin = async (req, res) => {
             password: req.body.Password
         }
         const result = await model.loginUser(user);
-
+        const token = result.data;
        
         if (result.status == 200) {
             res.status(200);
+            res.header("auth-token",token).send(token);
             res.json(result.message);
         } else if (result.status == 401) {
             res.status(401);

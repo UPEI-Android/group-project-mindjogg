@@ -101,7 +101,8 @@ const loginUser = async (user) => {
         // returnMessage will be used to return the status of the user login
         var  returnMessage = {
             status: null,
-            message: null
+            message: null,
+            data: null
         };
       //function searching database for existing user
 
@@ -124,10 +125,9 @@ const loginUser = async (user) => {
                     returnMessage.message = "User successfully logged in";
 
                     //create authorization token
-                    const secret= jwtSecret+result.userPassword;
-                    const token = jwt.sign(result._id,secret);
-                    //send token to app's async storage
-
+                    const token = jwt.sign({_id:result._id},jwtSecret);
+                    //send token to app
+                    returnMessage.data=token;
                 }
                 else{
                     console.log("Wrong password");
