@@ -6,7 +6,6 @@ Functionality for clicking "learn more" and clicking the card can be passed in a
 | Prop         | Desc     | Default Value | Type | Required |
 |--------------|-----------|------------|--------|----------|
 | title | The title to be shown at the top of the card|   "Title"    |       string     | Yes|
-| subtitle | Smaller text to be shown under the title |    "Subtitle"   |     string       | Yes|
 | description | Text to be shown in the body of the card|    ""   |     string       | No|
 | elevation | Affects how much shadow will be around the card|  1     |     number       | No|
 | buttonPress | Functionality for clicking "learn more" |   () => {console.error("[-] Please provide button press functionality! [-]")}    |     any       | Yes|
@@ -22,7 +21,6 @@ This example makes a simple card with a heavy shadow around it.
 `
 <StdCard
     title={"My Title"}
-    subtitle={"My Subtitle"}
     description={"Hello there"}
     elevation=10
     buttonPress={() => console.log("clicked button")} 
