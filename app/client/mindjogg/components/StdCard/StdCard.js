@@ -22,8 +22,9 @@ const StdCard = (props) => {
                 <Card.Title title={props.title} subtitle={props.subtitle} style={{flex: 1}}/>
                 <Card.Content style={{flex: 3}}>
                     <Paragraph>{props.description}</Paragraph>
-                    <Card.Actions>
+                    <Card.Actions style={{flex:1}}>
                         <Button
+                            style={{flex:1, alignItems:"flex-end"}}
                             icon="arrow-right"
                             onPress={props.buttonPress} 
                             onLongPress={props.cardLongPress}
