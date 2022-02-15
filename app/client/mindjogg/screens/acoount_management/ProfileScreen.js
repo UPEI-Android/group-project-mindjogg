@@ -1,19 +1,18 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import StdButton from "../../components/StdButton/StdButton";
-import { globalStyles } from "../../styles/global";
 
-const SignInScreen = ({ navigation }) => {
+const ProfileScreen = ({ navigation }) => {
   return (
-    <View style={[styles.center,globalStyles.pinkBackground]}>
-      <Text>Please Sign In to Continue</Text>
-
+    <View style={styles.center}>
+      <Text>Profile</Text>
 
       <StdButton
-        text="Not a Member? Sign Up"
+        text="Edit Profile"
         uppercaseOn={false}
-        buttonPress={() => navigation.push("SignUpScreen")}
+        buttonPress={() => navigation.push("EditProfile")}
       />
+
     </View>
   );
 };
@@ -27,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignInScreen;
+export default ProfileScreen;
