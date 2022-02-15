@@ -19,7 +19,7 @@ const StdCard = (props) => {
                 onPress={props.cardPress}
                 onLongPress={props.cardLongPress}
             >
-                <Card.Title title={props.title} subtitle={props.subtitle} style={{flex: 1}}/>
+                <Card.Title title={props.title} style={{flex: 1}}/>
                 <Card.Content style={{flex: 3}}>
                     <Paragraph>{props.description}</Paragraph>
                     <Card.Actions style={{flex:1}}>
@@ -40,7 +40,7 @@ StdCard.propTypes = {
     title: propTypes.string.isRequired,
     description: propTypes.string,
     elevation: propTypes.number,
-    buttonPress: propTypes.any.isRequired,
+    buttonPress: propTypes.any,
     buttonLongPress: propTypes.any,
     cardPress: propTypes.any,
     cardLongPress: propTypes.any,
@@ -52,7 +52,7 @@ StdCard.defaultProps = {
     title: "Title",
     description: "",
     elevation: 1,
-    buttonPress: () => {console.error("[-] Please provide button press functionality! [-]")},
+    buttonPress: () => {},
     buttonLongPress: () => {},
     cardPress: () => {},
     cardLongPress: () => {},

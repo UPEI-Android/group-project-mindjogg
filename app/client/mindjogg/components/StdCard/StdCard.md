@@ -8,7 +8,7 @@ Functionality for clicking "learn more" and clicking the card can be passed in a
 | title | The title to be shown at the top of the card|   "Title"    |       string     | Yes|
 | description | Text to be shown in the body of the card|    ""   |     string       | No|
 | elevation | Affects how much shadow will be around the card|  1     |     number       | No|
-| buttonPress | Functionality for clicking "learn more" |   () => {console.error("[-] Please provide button press functionality! [-]")}    |     any       | Yes|
+| buttonPress | Functionality for clicking "learn more" |   () => {}    |     any       | Np|
 | buttonLongPress | Functionality for long clicking "learn more" |    () => {}   |   any         | No |
 | cardPress | Functionality for clicking the card itself |    () => {}   |      any      | No|
 | cardLongPress | Functionality for long clicking the card itself |    () => {}   |    any        | No|
@@ -23,7 +23,6 @@ This example makes a simple card with a heavy shadow around it.
     title={"My Title"}
     description={"Hello there"}
     elevation=10
-    buttonPress={() => console.log("clicked button")} 
 >
 </StdCard>
 `
