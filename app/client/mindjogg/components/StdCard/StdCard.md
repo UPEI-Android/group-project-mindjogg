@@ -1,6 +1,8 @@
 ## Standard Card
 StdCard is a card component with a white background. It shows a title and subtitle, and optionally a description, along with a "learn more" button.
-Functionality for clicking "learn more" and clicking the card can be passed in as props
+Functionality for clicking "learn more" and clicking the card can be passed in as props.
+
+The card will be at least height x width, but will stretch to fit all description text
 
 ## Props
 | Prop         | Desc     | Default Value | Type | Required |
@@ -12,8 +14,8 @@ Functionality for clicking "learn more" and clicking the card can be passed in a
 | buttonLongPress | Functionality for long clicking "learn more" |    () => {}   |   any         | No |
 | cardPress | Functionality for clicking the card itself |    () => {}   |      any      | No|
 | cardLongPress | Functionality for long clicking the card itself |    () => {}   |    any        | No|
-| height | Card's height |    150  |    number        | No|
-| width | Card's width |    250  |    number        | No|
+| height | Card's minimum height |    150  |    number        | No|
+| width | Card's minimum width |    250  |    number        | No|
 
 ## Examples
 ### Basic Usage
