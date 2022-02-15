@@ -1,13 +1,25 @@
 
 const bcrypt = require("bcrypt");
+const path = require("path");
 const nodemailer = require("nodemailer");
+var hbs = require("nodemailer-express-handlebars");
+
 const { gmail_password, gmail_user, jwtSecret} = require("../../config/server_config");
 const jwt = require("jsonwebtoken");
 
 //user database
 const User = require("./schema/user_schema")
 
-
+//defining the template path
+const handlebarOptions = {
+    viewEngine: {
+      extName: ".handlebars",
+      partialsDir: path.resolve("./views"),
+      defaultLayout: false,
+    },
+    viewPath: path.resolve("./views"),
+    extName: ".handlebars",
+  }
 /**
  * Creates a transport with sender credentials for email
  */
@@ -19,7 +31,8 @@ const transporter = nodemailer.createTransport({
     }
   });
 
-
+//assigning the temmplate path to the transporter
+  transporter.use("compile", hbs(handlebarOptions));
 
 /**
  * Creates a new user and adds it to the database if it doesn't already exist.
@@ -58,7 +71,8 @@ const createUser = async (user) => {
         if(result){
             returnMessage.status = 400;
             returnMessage.message = "User already exists";
-            
+    
+
         }
         //if no existing user exists
         else {
@@ -71,8 +85,12 @@ const createUser = async (user) => {
             const mailOptions = { 
                 from: gmail_user,
                 to: user.userEmail,
-                subject: "Your MindJOGG account has been created",
-                text: "Click here (verification link to be added) to verify your account!"
+                subject: "Your MindJOGG account has been created.",
+                template: "verificationEmail",
+                context: {
+                    title: user.userFirstName,
+                    verification_link: "google.com"
+                  }
             };
 
             //sends verification email to user
@@ -80,7 +98,7 @@ const createUser = async (user) => {
                 if (error) {
                 console.log(error);
                 } else {
-                console.log("Email sent: " + info.response);
+                returnMessage.message="Email sent: " + info.response;
                 }
             });
         }
@@ -185,6 +203,7 @@ const forgotPassword = async (user) => {
         const projection = {
             "_id":1,
             "userName": 1,
+            "userFirstName":1,
             "userPassword": 1,
             "userEmail":1
            }
@@ -203,29 +222,35 @@ const forgotPassword = async (user) => {
 
 
 
-            //Creates an Option that stores receiver email + content of verification email
+
+           //Creates an Option that stores receiver email +content of verification email
             const mailOptions = { 
                 from: gmail_user,
-                to: result.userEmail,
-                subject: "Reset password for your MindJOGG account",
-                text:link
-                };
+                to: user.userEmail,
+                subject: "Reset your MindJOGG password!",
+                template: "resetPassword",
+                context: {
+                    title: result.userFirstName,
+                    verification_link: link
+                  }
+            };
 
             //sends verification email to user
-            transporter.sendMail(mailOptions, function(error, info){
+             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
                 console.log(error);
                 } else {
-                console.log("Email sent: " + info.response);
+                    returnMessage.message ="Email sent: " + info.response;
+                    returnMessage.status = 200;
                 }
             });
-            returnMessage.message = "Reset link send to email";
+            returnMessage.message = "Reset link sent to email";
             returnMessage.status = 200;
          }
          else{
 
             returnMessage.message = "Username not found";
-            returnMessage.status = 400;
+            returnMessage.status = 401;
         
          }
        return returnMessage;
@@ -254,11 +279,11 @@ const resetPassword = async (user) => {
             try{
                 //checking if token is valid or not
                 jwt.verify(user.token,secret);
-                console.log("user verified")
+                console.log("user verified");
                 const hashedPassword = await bcrypt.hash(user.password, 10);
                 //updating password in database
                 await User.findByIdAndUpdate(user.id, { userPassword: hashedPassword });
-                console.log("user password updated")
+                console.log("user password updated");
                 returnMessage.message = "Password updated for "+result.userEmail;
                 returnMessage.status = 200;
             }

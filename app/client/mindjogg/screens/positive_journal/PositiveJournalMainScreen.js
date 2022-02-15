@@ -1,14 +1,15 @@
 import React from "react";
 import { Text, View, Button } from "react-native";
+import { globalStyles } from "../../styles/global";
 
 const PositiveJournalMainScreen = ({navigation}) => {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" },globalStyles.pinkBackground]}>
       <Text>
-        This is the PositiveJournalMainScreen.
+        Your Positive Journals
       </Text>
       <Button
-        title="Go to Psoitive Journal Edit"
+        title="Edit"
         onPress={() => navigation.push("PositiveJournalEditScreen")} 
       />
     </View>
