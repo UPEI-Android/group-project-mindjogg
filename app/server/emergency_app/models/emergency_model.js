@@ -1,2 +1,2 @@
 //user database
-const Emergency = require("./schema/emergency_schema")
+//const Emergency = require("./schema/emergency_schema")
