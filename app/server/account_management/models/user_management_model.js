@@ -295,10 +295,38 @@ const resetPassword = async (user) => {
     }
 };
 
+
+const updateUser = async (user) => {
+    // returnMessage will be used to return the status of the creation of the user
+    const returnMessage = {
+        status: null,
+        message: null
+    };
+
+    try { 
+         //finding user that matches username entered by passing query for id
+        const result= await User.findById(user.id)
+        if(result){
+               //updating user info in database
+               await User.findByIdAndUpdate(user.id, { userPassword: hashedPassword });
+               console.log("user data updated");
+               returnMessage.message = "Password updated";
+               returnMessage.status = 200;
+        }
+        else{
+        returnMessage.message = "User not found";
+        returnMessage.status = 400;        }
+   return returnMessage;
+} catch (err) {
+    console.log(err);
+}
+};
+
 module.exports = {
     createUser,
     loginUser,
     getUserList,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    updateUser
  };
