@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   userMiddleName: String,
   userLastName: String,
   userEmail: String,
+  userDOB: Date,
   userGoals: [String],
   userTasks: [String],
   userJournal: String,

@@ -13,7 +13,11 @@ router.post("/users/resetPassword/:id/:token",userManagementController.userReset
 router.post("/users/register", userManagementController.userRegistration);
 router.post("/users/login", userManagementController.userLogin);
 
+router.patch("/users/edit/personalinfo", userManagementController.updatePersonalInfo);
+router.patch("/users/edit/contactinfo", userManagementController.updateContactInfo);
+
 // testing purposes or admin purposes
 router.get("/users", userManagementController.getUserList);
+
 
 module.exports = router;
