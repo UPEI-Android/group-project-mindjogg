@@ -11,8 +11,8 @@ const model = require("../models/emergency_model");
  const getEmergencyList = async (req, res) => {
     try {
         const result = await model.getEmergencyList();
-        res.status(200);
-        res.json(result);
+        res.status(result.status);
+        res.json(result.data);
     } catch (err) {
         res.status(500);
         res.send(err.meassage);

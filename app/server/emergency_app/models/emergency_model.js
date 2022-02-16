@@ -7,9 +7,21 @@ const Emergency = require("./schema/support_schema")
 */
 const getEmergencyList = async () => {
     try {
+        const returnMessage = {
+            status: null,
+            message: null,
+            data: null
+        };
+
+        try{
         //returns Emergency support list
-        const result = await Emergency.find({});
-       return result;
+         returnMessage.data = await Emergency.find({});
+         returnMessage.status = 201;
+        }
+        catch(err){
+            returnMessage.status = 400;
+        }
+       return returnMessage;
     } catch (err) {
         console.log(err);
     }
