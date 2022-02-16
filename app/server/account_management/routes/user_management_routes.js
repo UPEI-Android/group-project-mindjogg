@@ -13,8 +13,8 @@ router.post("/users/forgetPassword",userManagementController.userForgetPassword)
 router.post("/users/resetPassword/:id/:token",userManagementController.userResetPassword);
 
 //update profile routes
-router.patch("/users/edit/personalinfo", userManagementController.updatePersonalInfo);
-router.patch("/users/edit/contactinfo", userManagementController.updateContactInfo);
+router.patch("/users/edit/personalinfo", verify,userManagementController.updatePersonalInfo);
+router.patch("/users/edit/contactinfo",verify, userManagementController.updateContactInfo);
 
 
 /* To make a route private to that user, only need to add "verify" function as middle ware*/

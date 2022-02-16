@@ -148,11 +148,10 @@ const getUserList = async (req, res) => {
  * @param {*} res this is the response object
  */
  const updatePersonalInfo = async (req, res) => {
-        const User_id= req.params.id;
     
         try {
             const user = {
-                id: User_id,
+                id: req.user,
                 userFirstName:req.body.userFirstName,
                 userMiddleName: req.body.userMiddleName,
                 userLastName: req.body.userLastName,
