@@ -121,12 +121,14 @@ const loginUser = async (user) => {
         // returnMessage will be used to return the status of the user login
         var  returnMessage = {
             status: null,
-            message: null
+            message: null,
+            data: null
         };
       //function searching database for existing user
 
           //projection is what fields the query should return below
           const projection = {
+            "_id":1,
             "userName": 1,
             "userPassword": 1
            // "userVerified": 1
@@ -141,6 +143,11 @@ const loginUser = async (user) => {
                 if( await bcrypt.compare(user.password, result.userPassword)){
                     returnMessage.status = 200;
                     returnMessage.message = "User successfully logged in";
+
+                    //create authorization token
+                    const token = jwt.sign({_id:result._id},jwtSecret);
+                    //send token to app
+                    returnMessage.data=token;
                 }
                 else{
                     console.log("Wrong password");

@@ -46,10 +46,11 @@ const userLogin = async (req, res) => {
             password: req.body.Password
         }
         const result = await model.loginUser(user);
-
+        const token = result.data;
        
         if (result.status == 200) {
             res.status(200);
+            res.header("auth-token",token).send(token);
             res.json(result.message);
         } else if (result.status == 401) {
             res.status(401);
@@ -140,6 +141,7 @@ const getUserList = async (req, res) => {
     }
 };
 
+
 /**
  * This is the controller function for the edit profile personal information view
  * @param {HTTP object} req this is the request object
@@ -193,11 +195,14 @@ const getUserList = async (req, res) => {
             res.status(401);
             res.json(result.message);
         }
-} catch (err) {
-    res.status(500);
-    res.json(err.meassage);
-}
+        
+    } catch (err) {
+        res.status(500);
+        res.json(err.meassage);
+    }
 };
+
+
 
 module.exports = {
     userRegistration,
