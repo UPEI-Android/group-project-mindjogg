@@ -41,7 +41,7 @@ const getEmergencyList = async () => {
         };
 
         //check if emergency support exist in database
-        const result= await  Emergency.findOne({emergencyName: emergency.name},{"emergencyName":1})
+        const result= await  Emergency.findOne({name: emergency.name},{"emergencyName":1})
 
         //if username exists
         if(result){
