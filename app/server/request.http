@@ -59,3 +59,22 @@ Content-Type: application/json
 {
 "Password": "password6266"
 }
+
+
+###
+
+//post request to save a new emergency support option to database 
+POST http://localhost:8080/emergency/create
+Content-Type: application/json
+
+{
+"name": "AccessAbility Supports ",
+"type": "Financial Assistance",
+"phone":"1-877-569-0546",
+"email": "no email",
+ "address":"no address",
+ "description": "The Social Assistance Program helps you meet your basic needs when you cannot. The program provides help on a case-by-case basis to people who meet the requirements.Social Assistance will assist you in paying for food"
+}
+
+//get request to access list of emergencies
+GET http://localhost:8080/localhost:8080/emergency/list

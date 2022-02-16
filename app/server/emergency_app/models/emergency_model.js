@@ -1,6 +1,6 @@
 
 //Emergency database
-const Emergency = require("./schema/emergency_schema")
+const Emergency = require("./schema/support_schema")
 
 /**
  *  Retrieves a emergency list  from the database.
@@ -22,11 +22,16 @@ const getEmergencyList = async () => {
  */
  const createEmergencySupport = async (emergency) => { 
     try {
-
-     
+ 
         //adding attributes to new user 
         const newEmergency = new Emergency({
            //emergency support fields
+           name: emergency.name,
+           type: emergency.type,
+           phone:emergency.phone,
+           email: emergency.email,
+           address:emergency.address,
+           description: emergency.description
         });
 
         // returnMessage will be used to return the status of the creation of the emergency support

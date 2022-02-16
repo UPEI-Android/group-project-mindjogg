@@ -10,3 +10,6 @@ router.get("/emergency/list", emergency_controller.getEmergencyList);
 
 //creating an emergency support
 router.post("/emergency/create", emergency_controller.emergencySupportCreate);
+
+
+module.exports = router;

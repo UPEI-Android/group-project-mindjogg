@@ -29,7 +29,12 @@ const model = require("../models/emergency_model");
     try {
         //adding attributes to emergency obj
         const emergency = {
-      //to add fields
+            name: req.body.name,
+            type: req.body.type,
+            phone:req.body.phone,
+            email: req.body.email,
+            address:req.body.address,
+            description: req.body.description
         }
       
         const result = await model.createEmergencySupport(emergency);
