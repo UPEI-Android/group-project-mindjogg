@@ -57,7 +57,7 @@ function PasswordBox(props) {
                     display: !showPassword ? "none" : "flex", height: inputHeight, margin: 5, flex: 1
                 }}
             ></TextInput>
-            <MaterialCommunityIcons name = {!showPassword? "eye" : "eye-outline"} size = {24} color = "black" onPress = {() => toggleMask()}/>
+            <MaterialCommunityIcons name = {!showPassword? "eye" : "eye-off"} size = {24} color = "black" onPress = {() => toggleMask()}/>
         </View>
     );
 }
