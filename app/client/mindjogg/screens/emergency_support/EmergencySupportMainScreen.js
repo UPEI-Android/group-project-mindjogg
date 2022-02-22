@@ -6,8 +6,16 @@ import {
   TouchableOpacity, 
   Dimensions,
   ScrollView,
+  Alert,
  } from "react-native";
 import { globalStyles } from "../../styles/global";
+
+
+const askHelp = async () => {
+  Alert.alert("Calling 911 ...");
+  
+};
+
 
 const EmergencySupportMainScreen = ({navigation}) => {
   return (
@@ -19,7 +27,7 @@ const EmergencySupportMainScreen = ({navigation}) => {
           </Text>
             <TouchableOpacity
               style={styles.circle}
-              onPress={() => {}}
+              onPress={() => {askHelp()}}
             >
               <Text style={styles.sosButtonText}> Call 911 </Text>
             </TouchableOpacity>
