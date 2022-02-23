@@ -1,7 +1,7 @@
 /* REACT IMPORTS */
 import React from "react";
-import { View } from "react-native";
-import { Card, Paragraph, Button } from "react-native-paper";
+import { View, Text, SafeAreaView } from "react-native";
+import { Card, Button } from "react-native-paper";
 
 /* THIRD PARTY IMPORTS */
 import propTypes from "prop-types";
@@ -12,17 +12,18 @@ import { globalStyles } from "../../styles/global";
 const StdCard = (props) => {
     // render the card
     return(
-        <View>
+        <SafeAreaView>
+        <View style={{flex:1, height: props.height, width: props.width}}>
             <Card 
-                style={[{height: props.height, width: props.width, flex: 1}, globalStyles.whiteBackground]} 
+                style={[{display: "flex", alignItems: "flex-start"}, globalStyles.whiteBackground]} 
                 elevation={props.elevation}
                 onPress={props.cardPress}
                 onLongPress={props.cardLongPress}
             >
-                <Card.Title title={props.title} style={{flex: 1}}/>
-                <Card.Content style={{flex: 3}}>
-                    <Paragraph>{props.description}</Paragraph>
-                    <Card.Actions style={{flex:1}}>
+                <Card.Title style={{flexShrink: 1, flex:0.10, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height, overflow: "hidden"}} title={props.title}/>
+                <Card.Content style={{flexShrink: 1, flex:0.90, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height, overflow:"hidden"}}>
+                    <Text>{props.description}</Text>
+                    <Card.Actions>
                         <Button
                             style={{flex:1, alignItems:"flex-end"}}
                             icon="arrow-right"
@@ -33,6 +34,7 @@ const StdCard = (props) => {
                 </Card.Content>
             </Card>
         </View>
+        </SafeAreaView>
     );
 }
 
