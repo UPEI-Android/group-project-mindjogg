@@ -20,9 +20,9 @@ const StdCard = (props) => {
                 onPress={props.cardPress}
                 onLongPress={props.cardLongPress}
             >
-                <Card.Title style={{flexShrink: 1, flex:0.10, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height, overflow: "hidden"}} title={props.title}/>
-                <Card.Content style={{flexShrink: 1, flex:0.90, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height, overflow:"hidden"}}>
-                    <Text>{props.description}</Text>
+                <Card.Title style={{flexShrink: 1, flex:0.10, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height}} title={props.title}/>
+                <Card.Content style={{flexShrink: 1, flex:0.90, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height}}>
+                    <Text style={{overflow:"hidden"}}>{props.description}</Text>
                     <Card.Actions>
                         <Button
                             style={{flex:1, alignItems:"flex-end"}}
