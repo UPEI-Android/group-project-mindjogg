@@ -14,7 +14,7 @@ const StdCard = (props) => {
     // render the card
     return(
         <SafeAreaView>
-        <View style={{margin: props.margin, height: props.height, width: props.width}}>
+        <View style={[{height: props.height, width: props.width}],props.style}>
             <Card
                 style={[{display: "flex", alignItems: "flex-start"}, globalStyles.purpleBackground]} 
                 elevation={props.elevation}
@@ -49,7 +49,7 @@ StdCard.propTypes = {
     cardLongPress: propTypes.any,
     height: propTypes.number,
     width: propTypes.number,
-    margin: propTypes.number,
+    style: propTypes.any,
 }
 
 StdCard.defaultProps = {
@@ -62,7 +62,6 @@ StdCard.defaultProps = {
     cardLongPress: () => {},
     height: 150,
     width: 250,
-    margin: 5,
 }
 
 export default StdCard;
