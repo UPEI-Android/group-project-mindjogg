@@ -14,8 +14,9 @@ The card will be at least height x width, but will stretch to fit all descriptio
 | buttonLongPress | Functionality for long clicking "learn more" |    () => {}   |   any         | No |
 | cardPress | Functionality for clicking the card itself |    () => {}   |      any      | No|
 | cardLongPress | Functionality for long clicking the card itself |    () => {}   |    any        | No|
-| height | Card's minimum height |    150  |    number        | No|
-| width | Card's minimum width |    250  |    number        | No|
+| height | Card's height |    150  |    number        | No|
+| width | Card's width |    250  |    number        | No|
+| margin | Margin around the card |    5  |    number        | No|
 
 ## Examples
 ### Basic Usage
