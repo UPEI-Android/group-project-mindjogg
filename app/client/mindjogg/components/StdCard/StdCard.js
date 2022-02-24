@@ -10,19 +10,20 @@ import propTypes from "prop-types";
 import { globalStyles } from "../../styles/global";
 
 const StdCard = (props) => {
+
     // render the card
     return(
         <SafeAreaView>
         <View style={{flex:1, height: props.height, width: props.width}}>
             <Card 
-                style={[{display: "flex", alignItems: "flex-start"}, globalStyles.whiteBackground]} 
+                style={[{display: "flex", alignItems: "flex-start", color: "white"}, globalStyles.purpleBackground]} 
                 elevation={props.elevation}
                 onPress={props.cardPress}
                 onLongPress={props.cardLongPress}
             >
-                <Card.Title style={{flexShrink: 1, flex:0.10, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height}} title={props.title}/>
+                <Card.Title style={{flexShrink: 1, flex:0.10, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height}} titleStyle={{color:"white"}} title={props.title}/>
                 <Card.Content style={{flexShrink: 1, flex:0.90, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height}}>
-                    <Text style={{overflow:"hidden"}}>{props.description}</Text>
+                    <Text style={{overflow:"hidden", color: "white"}}>{props.description}</Text>
                     <Card.Actions>
                         <Button
                             style={{flex:1, alignItems:"flex-end"}}
