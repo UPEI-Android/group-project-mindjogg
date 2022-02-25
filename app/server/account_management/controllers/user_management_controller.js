@@ -46,10 +46,11 @@ const userLogin = async (req, res) => {
             password: req.body.Password
         }
         const result = await model.loginUser(user);
-
+        const token = result.data;
        
         if (result.status == 200) {
             res.status(200);
+            res.header("auth-token",token).send(token);
             res.json(result.message);
         } else if (result.status == 401) {
             res.status(401);
@@ -140,10 +141,75 @@ const getUserList = async (req, res) => {
     }
 };
 
+
+/**
+ * This is the controller function for the edit profile personal information view
+ * @param {HTTP object} req this is the request object
+ * @param {*} res this is the response object
+ */
+ const updatePersonalInfo = async (req, res) => {
+        const User_id= req.params.id;
+    
+        try {
+            const user = {
+                id: User_id,
+                userFirstName:req.body.userFirstName,
+                userMiddleName: req.body.userMiddleName,
+                userLastName: req.body.userLastName,
+                userDOB: req.body.userDOB
+            }   
+            const result = await model.updatePersonalInfo(user);     
+    
+            if (result.status == 200) {
+                res.status(200);
+                res.json(result.message);
+            } else if (result.status == 401) {
+                res.status(401);
+                res.json(result.message);
+            }
+    } catch (err) {
+        res.status(500);
+        res.json(err.meassage);
+    }
+};
+
+/**
+ * This is the controller function for the edit profile personal information view
+ * @param {HTTP object} req this is the request object
+ * @param {*} res this is the response object
+ */
+ const updateContactInfo = async (req, res) => {
+
+    try {
+        const user = {
+            id: req.user,
+            userEmail: req.body.userEmail,
+            userPhone: req.body.userPhone
+        }   
+        const result = await model.updateContactInfo(user);     
+
+        if (result.status == 200) {
+            res.status(200);
+            res.json(result.message);
+        } else if (result.status == 401) {
+            res.status(401);
+            res.json(result.message);
+        }
+        
+    } catch (err) {
+        res.status(500);
+        res.json(err.meassage);
+    }
+};
+
+
+
 module.exports = {
     userRegistration,
     userLogin,
     getUserList,
     userForgetPassword,
-    userResetPassword
+    userResetPassword,
+    updatePersonalInfo,
+    updateContactInfo
 };

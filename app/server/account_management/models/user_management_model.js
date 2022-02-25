@@ -52,6 +52,8 @@ const createUser = async (user) => {
             userMiddleName:null,
             userLastName: user.userLastName,
             userEmail: user.userEmail,
+            userDOB: null,
+            userPhone: null,
             userGoals: null,
             userTasks: null,
             userJournal: null,
@@ -119,12 +121,14 @@ const loginUser = async (user) => {
         // returnMessage will be used to return the status of the user login
         var  returnMessage = {
             status: null,
-            message: null
+            message: null,
+            data: null
         };
       //function searching database for existing user
 
           //projection is what fields the query should return below
           const projection = {
+            "_id":1,
             "userName": 1,
             "userPassword": 1
            // "userVerified": 1
@@ -139,6 +143,11 @@ const loginUser = async (user) => {
                 if( await bcrypt.compare(user.password, result.userPassword)){
                     returnMessage.status = 200;
                     returnMessage.message = "User successfully logged in";
+
+                    //create authorization token
+                    const token = jwt.sign({_id:result._id},jwtSecret);
+                    //send token to app
+                    returnMessage.data=token;
                 }
                 else{
                     console.log("Wrong password");
@@ -295,10 +304,80 @@ const resetPassword = async (user) => {
     }
 };
 
+/**
+ *  updates personal information of user
+*/
+const updatePersonalInfo = async (user) => {
+    // returnMessage will be used to return the status of the creation of the user
+    const returnMessage = {
+        status: null,
+        message: null
+    };
+
+    try { 
+         //finding user that matches username entered by passing query for id
+        const result= await User.findById(user.id)
+        if(result){
+               //updating user info in database
+               await User.findByIdAndUpdate(user.id, { 
+                   //fields to be updated
+                    userFirstName: user.userFirstName,
+                    userMiddleName: user.userMiddleName,
+                    userLastName: user.userLastName,
+                    userDOB: user.userDOB
+                });
+               console.log("user data updated");
+               returnMessage.message = "user data updated";
+               returnMessage.status = 200;
+        }
+        else{
+        returnMessage.message = "User not found";
+        returnMessage.status = 400;        }
+   return returnMessage;
+} catch (err) {
+    console.log(err);
+}
+};
+
+/**
+ *  updates contact information of user
+*/
+const updateContactInfo = async (user) => {
+    // returnMessage will be used to return the status of the creation of the user
+    const returnMessage = {
+        status: null,
+        message: null
+    };
+
+    try { 
+         //finding user that matches username entered by passing query for id
+        const result= await User.findById(user.id)
+        if(result){
+               //updating user info in database
+               await User.findByIdAndUpdate(user.id, { 
+                   //fields to be updated
+                    userEmail: user.userEmail,
+                    userPhone: user.userPhone
+                });
+               console.log("user contact updated");
+               returnMessage.message = "user contact updated";
+               returnMessage.status = 200;
+        }
+        else{
+        returnMessage.message = "User not found";
+        returnMessage.status = 400;        }
+   return returnMessage;
+} catch (err) {
+    console.log(err);
+}
+};
+
 module.exports = {
     createUser,
     loginUser,
     getUserList,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    updatePersonalInfo,
+    updateContactInfo
  };
