@@ -1,14 +1,13 @@
 //get request to access users
-GET http://localhost:8080/users
+GET http://localhost:3000/users
 
 ###
 
 //post request to register new user with username and password in json
-POST http://localhost:8080/users/register
+POST http://localhost:3000/users/register
 Content-Type: application/json
 
 {
-
 "UserName": "befi",
 "Password": "password123",
 "FirstName":"bef",
@@ -32,7 +31,7 @@ Content-Type: application/json
 ###
 
 //post request to login with username and password in json
-POST http://localhost:8080/users/login
+POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
@@ -64,39 +63,24 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/users 
-Content-Type: application/json
-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjBiMDcxMzA0ZjllNTRjY2VhZDA5ZGEiLCJpYXQiOjE2NDQ4OTg0NzZ9.I3HFyhgl0huiOGWJEg0Kgc0F7VfMGFibH-tAOCsGrU0
-
 //post request to save a new emergency support option to database 
 POST http://localhost:8080/emergency/create
 Content-Type: application/json
 
 {
-"name": "AccessAbility Supports",
-"type": "Financial Assistance",
-"phone":"1-866-594-3777",
-"email": "deptsdh@gov.pe.ca ",
-"address":"no address",
-"description": "Our government wants to ensure Islanders living with disabilities can access the tools they need to reach their full potential and contribute to society as fully as possible. These improvements mean supports will be more personalized and focus on empowering individuals and their families.Supports include:"
+"name": "The Island Helpline ",
+"type": "Crisis Lines/Mental Health Awareness",
+"phone":"1-800-218-2885",
+"email": "no email",
+ "address":"no address",
+ "description": "The Island Helpline provides free, confidential emotional support and crisis intervention to Islanders of all ages. Our trained and caring staff and volunteers are here to answer your call any time of the day or night – 7 days a week, 365 days a year.  
+The Island Helpline plays an important role in our communities. We help callers by providing a listening ear, emotional support, crisis intervention and links to community resources available on PEI.  
+We do not judge. You can express your thoughts and feelings in confidence regardless of whether you are grieving, feeling sad, anxious, overwhelmed, or in crisis. Your well-being is important to us and we are here for you through life’s challenges.  
+All of our volunteers and staff are trained in Applied Suicide Intervention Skills Training (ASIST). This training allows them to discuss suicide with callers in an open, direct and non-judgmental manner. It also provides us with the skills to identify risk and to work with callers to develop safe plans to guard against that risk.
+"
 }
-
-
 
 
 ###
 //get request to access list of emergencies
 GET http://localhost:8080/emergency/list
-
-
-### 
-//update personal information edit profile
-PATCH http://localhost:8080/users/edit/personalinfo
-Content-Type: application/json
-
-{
-"userFirstName": "Roshan",
-"userMiddleName": "Jyanesh",
-"userLastName": "seeam",
-"userDOB": "1999-09-23"
-}
