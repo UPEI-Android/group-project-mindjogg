@@ -1,18 +1,24 @@
-//get request to access users
-GET http://localhost:3000/users
+//get request to access users, must be logged in as admin
+GET http://localhost:8080/users
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDU5ODE3Njh9.SVkathHw-8qyit6SR739JqwTZst1HqpabYRM9SB2cqA
+###
 
+//get request to access user info, must be logged in as user
+GET http://localhost:8080/userInfo
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDU5ODE3Njh9.SVkathHw-8qyit6SR739JqwTZst1HqpabYRM9SB2cqA
 ###
 
 //post request to register new user with username and password in json
-POST http://localhost:3000/users/register
+POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-"UserName": "befi",
+"UserName": "admin",
 "Password": "password123",
 "FirstName":"bef",
 "LastName":"iwar",
-"Email":"befiwar458@mannawo.com"
+"admin":true,
+"Email":"befiwar458@admin.com"
 }
 
 
@@ -20,7 +26,7 @@ Content-Type: application/json
 ###
 
 //post request to login with username and password in json
-POST http://localhost:3000/users/login
+POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
@@ -31,12 +37,12 @@ Content-Type: application/json
 ###
 
 //post request to login with username and password in json
-POST http://localhost:3000/users/login
+POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-"UserName": "Roshan",
-"Password": "password666"
+"UserName": "admin",
+"Password": "password123"
 }
 
 

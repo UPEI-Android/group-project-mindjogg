@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
   userLastName: String,
   userEmail: String,
   userDOB: Date,
+  admin: Boolean,
   userPhone: String,
   userGoals: [String],
   userTasks: [String],

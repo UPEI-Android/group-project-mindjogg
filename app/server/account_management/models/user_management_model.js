@@ -4,7 +4,7 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 var hbs = require("nodemailer-express-handlebars");
 
-const { gmail_password, gmail_user, jwtSecret} = require("../../config/server_config");
+const { gmail_password, gmail_user, jwtSecret,jwtSecretAdmin} = require("../../config/server_config");
 const jwt = require("jsonwebtoken");
 
 //user database
@@ -53,6 +53,7 @@ const createUser = async (user) => {
             userLastName: user.userLastName,
             userEmail: user.userEmail,
             userDOB: null,
+            admin: user.admin,
             userPhone: null,
             userGoals: null,
             userTasks: null,
@@ -130,7 +131,8 @@ const loginUser = async (user) => {
           const projection = {
             "_id":1,
             "userName": 1,
-            "userPassword": 1
+            "userPassword": 1,
+            "admin": 1
            // "userVerified": 1
            }
           //finding user that matches username entered by passing query for username + projection defined above
@@ -143,9 +145,14 @@ const loginUser = async (user) => {
                 if( await bcrypt.compare(user.password, result.userPassword)){
                     returnMessage.status = 200;
                     returnMessage.message = "User successfully logged in";
-
+                    let token ="";
+                    if(result.admin==false){
                     //create authorization token
-                    const token = jwt.sign({_id:result._id},jwtSecret);
+                     token = jwt.sign({_id:result._id},jwtSecret);
+                    }
+                    else{
+                        token = jwt.sign({_id:result._id},jwtSecretAdmin);
+                    }
                     //send token to app
                     returnMessage.data=token;
                 }
@@ -181,6 +188,34 @@ const getUserList = async () => {
         //returns list of users
         const result = await User.find({});
        return result;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+
+/**
+ *  Retrieves a user from the database only by the admin.
+*/
+const getUserInfo = async (user) => {
+    try {   
+        const projection = {
+            "_id":1,
+            "userName": 1,
+           "userFirstName":1,
+           "userMiddleName": 1,
+           "userLastName": 1,
+           "userEmail": 1,
+           "userDOB": 1,
+           "admin": 1,
+           "userPhone": 1,
+           "userGoals": 1,
+           "userTasks": 1,
+           "userJournal": 1
+           }
+        //returns list of users
+        const result= await User.findOne({_id:user._id},projection);
+        return result;
     } catch (err) {
         console.log(err);
     }
@@ -376,6 +411,7 @@ module.exports = {
     createUser,
     loginUser,
     getUserList,
+    getUserInfo,
     forgotPassword,
     resetPassword,
     updatePersonalInfo,

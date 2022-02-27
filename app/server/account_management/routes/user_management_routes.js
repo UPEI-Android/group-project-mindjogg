@@ -2,6 +2,8 @@
 const express = require("express");
 const router = express();
 const verify= require("./verifyToken");
+const verifyAdmin= require("./verifyTokenAdmin");
+
 
 // Import user management controller
 const userManagementController = require("../controllers/user_management_controller");
@@ -19,7 +21,12 @@ router.patch("/users/edit/contactinfo", userManagementController.updateContactIn
 
 /* To make a route private to that user, only need to add "verify" function as middle ware*/
 // testing purposes or admin purposes
-router.get("/users",verify, userManagementController.getUserList);
+router.get("/users",verifyAdmin, userManagementController.getUserList);
+
+//gets info for single user
+router.get("/userInfo",verify, userManagementController.getUserInfo);
+
+
 
 
 module.exports = router;
