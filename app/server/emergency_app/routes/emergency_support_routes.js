@@ -1,6 +1,8 @@
 // Import required dependencies and modules
 const express = require("express");
 const router = express();
+const verifyAdmin= require("./verifyTokenAdmin");
+
 //importing controler
 const emergency_controller = require("../controllers/emergency_controller")
 
@@ -9,7 +11,7 @@ const emergency_controller = require("../controllers/emergency_controller")
 router.get("/emergency/list", emergency_controller.getEmergencyList);
 
 //creating an emergency support
-router.post("/emergency/create", emergency_controller.emergencySupportCreate);
+router.post("/emergency/create", verifyAdmin, emergency_controller.emergencySupportCreate);
 
 
 module.exports = router;
