@@ -1,99 +1,88 @@
 import React from "react";
-import { 
-  Text, 
-  View, 
-  StyleSheet, 
-  TouchableOpacity, 
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
   Dimensions,
   ScrollView,
   Alert,
- } from "react-native";
+} from "react-native";
+import axios from "axios";
 import { globalStyles } from "../../styles/global";
-
 
 const askHelp = async () => {
   Alert.alert("Calling 911 ...");
-  
 };
 
+const retrieveServices = async () => {
+  var serviceList = await axios.get("http://localhost:8080/emergency/list");
+  console.log(serviceList);
+};
 
-const EmergencySupportMainScreen = ({navigation}) => {
+const EmergencySupportMainScreen = ({ navigation }) => {
+  retrieveServices();
   return (
     <View style={styles.container}>
-      
       <View style={styles.sosButton}>
-          <Text style={styles.headerTitleText}>
-            Immediate Help Needed?
-          </Text>
-            <TouchableOpacity
-              style={styles.circle}
-              onPress={() => {askHelp()}}
-            >
-              <Text style={styles.sosButtonText}> Call 911 </Text>
-            </TouchableOpacity>
+        <Text style={styles.headerTitleText}>Immediate Help Needed?</Text>
+        <TouchableOpacity
+          style={styles.circle}
+          onPress={() => {
+            askHelp();
+          }}
+        >
+          <Text style={styles.sosButtonText}> Call 911 </Text>
+        </TouchableOpacity>
       </View>
 
       <View>
         <View style={styles.footerTitle}>
-          <Text style={styles.footerTitleText}>Available Supports Near You</Text>
+          <Text style={styles.footerTitleText}>
+            Available Supports Near You
+          </Text>
         </View>
-        <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        >
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <View style={styles.supportContainer}>
-            <View style={{alignItems:"center", justifyContent: "center"}}>
-            <Text>
-              Hello
-            </Text> 
-            </View> 
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Text>Hello</Text>
+            </View>
           </View>
           <View style={styles.supportContainer}>
-            <View style={{alignItems:"center", justifyContent: "center"}}>
-            <Text>
-              Hello
-            </Text> 
-            </View> 
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Text>Hello</Text>
+            </View>
           </View>
           <View style={styles.supportContainer}>
-            <View style={{alignItems:"center", justifyContent: "center"}}>
-            <Text>
-              Hello
-            </Text> 
-            </View> 
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Text>Hello</Text>
+            </View>
           </View>
           <View style={styles.supportContainer}>
-            <View style={{alignItems:"center", justifyContent: "center"}}>
-            <Text>
-              Hello
-            </Text> 
-            </View> 
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Text>Hello</Text>
+            </View>
           </View>
           <View style={styles.supportContainer}>
-            <View style={{alignItems:"center", justifyContent: "center"}}>
-            <Text>
-              Hello
-            </Text> 
-            </View> 
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Text>Hello</Text>
+            </View>
           </View>
           <View style={styles.supportContainer}>
-            <View style={{alignItems:"center", justifyContent: "center"}}>
-            <Text>
-              Hello
-            </Text> 
-            </View> 
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Text>Hello</Text>
+            </View>
           </View>
         </ScrollView>
       </View>
-
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: globalStyles.pinkBackground.backgroundColor, 
+    backgroundColor: globalStyles.pinkBackground.backgroundColor,
   },
   circle: {
     width: 200,
@@ -136,8 +125,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height * 0.2,
     width: Dimensions.get("window").width * 0.4,
     margin: 5,
-  }
-  
+  },
 });
 
 export default EmergencySupportMainScreen;
