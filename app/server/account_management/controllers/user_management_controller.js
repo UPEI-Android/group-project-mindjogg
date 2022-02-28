@@ -60,7 +60,6 @@ const userLogin = async (req, res) => {
         
     } catch (err) {
         res.status(500);
-        res.json(err.message);
     }
 };
 
