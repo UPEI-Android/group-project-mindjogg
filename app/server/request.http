@@ -80,16 +80,19 @@ Content-Type: application/json
 
 //post request to save a new emergency support option to database 
 POST http://localhost:8080/emergency/create
-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjFiYmM5ODAyYzMyNGJkYTJhOGU3Y2MiLCJpYXQiOjE2NDU5ODU3NTh9.mGSt-kajgzaBMrcEaw6iccKLH0JwAOCUKwuoE4H-hw0
 Content-Type: application/json
 
 {
-"name": "dummyEmergency",
-"type": "dummyEmergency",
-"phone":"1-800-218-2f885",
+"name": "The Island Helpline ",
+"type": "Crisis Lines/Mental Health Awareness",
+"phone":"1-800-218-2885",
 "email": "no email",
  "address":"no address",
- "description": "The Island Helpline provides free, confidential emotional support and crisis intervention to Islanders of all ages. Our trained and caring staff and volunteers are here to answer your call any time of the day or night – 7 days a week, 365 days a year.  The Island Helpline plays an important role in our communities. We help callers by providing a listening ear, emotional support, crisis intervention and links to community resources available on PEI.  We do not judge. You cjban express your thoughts and feelings in confidence regardless of whether you are grieving, feeling sad, anxious, overwhelmed, or in crisis. Your well-being is important to us and we are here for you through life’s challenges.  All of our volunteers and staff are trained in Applied Suicide Intervention Skills Training (ASIST). This training allows them to discuss suicide with callers in an open, direct and non-judgmental manner. It also provides us with the skills to identify risk and to work with callers to develop safe plans to guard against that risk."
+ "description": "The Island Helpline provides free, confidential emotional support and crisis intervention to Islanders of all ages. Our trained and caring staff and volunteers are here to answer your call any time of the day or night – 7 days a week, 365 days a year.  
+The Island Helpline plays an important role in our communities. We help callers by providing a listening ear, emotional support, crisis intervention and links to community resources available on PEI.  
+We do not judge. You can express your thoughts and feelings in confidence regardless of whether you are grieving, feeling sad, anxious, overwhelmed, or in crisis. Your well-being is important to us and we are here for you through life’s challenges.  
+All of our volunteers and staff are trained in Applied Suicide Intervention Skills Training (ASIST). This training allows them to discuss suicide with callers in an open, direct and non-judgmental manner. It also provides us with the skills to identify risk and to work with callers to develop safe plans to guard against that risk.
+"
 }
 
 
@@ -122,3 +125,4 @@ auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjBiMDcxMzA0ZjllNTR
 "userEmail": "Roshan334351@gmail.com",
 "userPhone": "902-452-5255"
 }
+
