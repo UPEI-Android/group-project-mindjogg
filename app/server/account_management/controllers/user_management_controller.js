@@ -59,7 +59,7 @@ const userLogin = async (req, res) => {
         
     } catch (err) {
         res.status(500);
-        res.json(err.meassage);
+        res.json(err.message);
     }
 };
 
@@ -75,7 +75,7 @@ const getUserList = async (req, res) => {
         res.json(result);
     } catch (err) {
         res.status(500);
-        res.send(err.meassage);
+        res.send(err.message);
     }
 };
 
@@ -103,7 +103,7 @@ const getUserList = async (req, res) => {
         
     } catch (err) {
         res.status(500);
-        res.json(err.meassage);
+        res.json(err.message);
     }
 };
 
@@ -137,7 +137,7 @@ const getUserList = async (req, res) => {
         
     } catch (err) {
         res.status(500);
-        res.json(err.meassage);
+        res.json(err.message);
     }
 };
 
@@ -168,7 +168,7 @@ const getUserList = async (req, res) => {
             }
     } catch (err) {
         res.status(500);
-        res.json(err.meassage);
+        res.json(err.message);
     }
 };
 
@@ -197,7 +197,7 @@ const getUserList = async (req, res) => {
         
     } catch (err) {
         res.status(500);
-        res.json(err.meassage);
+        res.json(err.message);
     }
 };
 
