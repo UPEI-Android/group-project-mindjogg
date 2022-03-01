@@ -13,29 +13,25 @@ const StdCard = (props) => {
 
     // render the card
     return(
-        <SafeAreaView>
-        <View style={[{height: props.height, width: props.width}],props.style}>
-            <Card
-                style={[{maxWidth: props.width, maxHeight: props.height, display: "flex", alignItems: "flex-start"}, globalStyles.purpleBackground]} 
-                elevation={props.elevation}
-                onPress={props.cardPress}
-                onLongPress={props.cardLongPress}
-            >
-                <Card.Title style={{flexShrink: 1, flex:0.10, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height}} titleStyle={{color:"white"}} title={props.title}/>
-                <Card.Content style={{flexShrink: 1, flex:0.90, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height}}>
-                    <Text style={{overflow:"hidden", color: "white"}}>{props.description}</Text>
-                    <Card.Actions>
-                        <Button
-                            style={{flex:1, alignItems:"flex-end"}}
-                            icon="arrow-right"
-                            onPress={props.buttonPress} 
-                            onLongPress={props.cardLongPress}
-                        ></Button>
-                    </Card.Actions>
-                </Card.Content>
-            </Card>
-        </View>
-        </SafeAreaView>
+        <Card
+            style={[{width: props.width, height: props.height, display: "flex", alignItems: "flex-start"}, globalStyles.purpleBackground]} 
+            elevation={props.elevation}
+            onPress={props.cardPress}
+            onLongPress={props.cardLongPress}
+        >
+            <Card.Title style={{flexShrink: 1, flex:0.10, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height}} titleStyle={{color:"white"}} title={props.title}/>
+            <Card.Content style={{flexShrink: 1, flex:0.90, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height}}>
+                <Text style={{overflow:"hidden", color: "white"}}>{props.description}</Text>
+                <Card.Actions>
+                    <Button
+                        style={{flex:1, alignItems:"flex-end"}}
+                        icon="arrow-right"
+                        onPress={props.buttonPress} 
+                        onLongPress={props.cardLongPress}
+                    ></Button>
+                </Card.Actions>
+            </Card.Content>
+        </Card>
     );
 }
 
