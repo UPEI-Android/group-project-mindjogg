@@ -16,7 +16,7 @@ const StdCard = (props) => {
         <SafeAreaView>
         <View style={[{height: props.height, width: props.width}],props.style}>
             <Card
-                style={[{display: "flex", alignItems: "flex-start"}, globalStyles.purpleBackground]} 
+                style={[{maxWidth: props.width, maxHeight: props.height, display: "flex", alignItems: "flex-start"}, globalStyles.purpleBackground]} 
                 elevation={props.elevation}
                 onPress={props.cardPress}
                 onLongPress={props.cardLongPress}
