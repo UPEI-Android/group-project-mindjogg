@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { jwtSecret } = require("../../config/server_config");
+const { jwtSecret, jwtSecretAdmin } = require("../../config/server_config");
 
 /* Middle ware to verify tokens */
 module.exports= function (req,res,next){
@@ -8,11 +8,16 @@ module.exports= function (req,res,next){
     if(!token) return res.status(401).send("Access Denied");
 
     try{
-        const verified= jwt.verify(token,jwtSecret);
+        const verified= (jwt.verify(token,jwtSecret));
         req.user=verified;
         next();
     }
     catch(err){
-        res.status(400).send("Invalid token");
+        //checking if admin
+        try{const verified= (jwt.verify(token,jwtSecretAdmin));
+            req.user=verified;
+            next();
+        }
+        catch(err){      res.status(400).send("Invalid token");    }
     }
 }

@@ -15,6 +15,7 @@ const userRegistration = async (req, res) => {
         password: req.body.Password,
         userFirstName: req.body.FirstName,
         userLastName: req.body.LastName,
+        admin: req.body.admin,
         userEmail: req.body.Email
         }
       
@@ -70,6 +71,22 @@ const userLogin = async (req, res) => {
 const getUserList = async (req, res) => {
     try {
         const result = await model.getUserList();
+        res.status(200);
+        res.json(result);
+    } catch (err) {
+        res.status(500);
+        res.send(err.message);
+
+    }
+};
+
+
+/**
+ * This is for testing purposes or admin purposes.
+ */
+ const getUserInfo = async (req, res) => {
+    try {
+        const result = await model.getUserInfo(req.user);
         res.status(200);
         res.json(result);
     } catch (err) {
@@ -206,6 +223,7 @@ module.exports = {
     userRegistration,
     userLogin,
     getUserList,
+    getUserInfo,
     userForgetPassword,
     userResetPassword,
     updatePersonalInfo,
