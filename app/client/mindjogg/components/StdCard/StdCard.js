@@ -1,6 +1,6 @@
 /* REACT IMPORTS */
 import React from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import { Text } from "react-native";
 import { Card, Button } from "react-native-paper";
 
 /* THIRD PARTY IMPORTS */
