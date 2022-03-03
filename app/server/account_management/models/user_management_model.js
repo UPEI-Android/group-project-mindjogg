@@ -4,7 +4,7 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 var hbs = require("nodemailer-express-handlebars");
 
-const { gmail_password, gmail_user, jwtSecret,jwtSecretAdmin} = require("../../config/server_config");
+const { gmail_password, gmail_user, jwtSecret} = require("../../config/server_config");
 const jwt = require("jsonwebtoken");
 
 //user database
@@ -52,9 +52,6 @@ const createUser = async (user) => {
             userMiddleName:null,
             userLastName: user.userLastName,
             userEmail: user.userEmail,
-            userDOB: null,
-            admin: user.admin,
-            userPhone: null,
             userGoals: null,
             userTasks: null,
             userJournal: null,
@@ -122,17 +119,14 @@ const loginUser = async (user) => {
         // returnMessage will be used to return the status of the user login
         var  returnMessage = {
             status: null,
-            message: null,
-            data: null
+            message: null
         };
       //function searching database for existing user
 
           //projection is what fields the query should return below
           const projection = {
-            "_id":1,
             "userName": 1,
-            "userPassword": 1,
-            "admin": 1
+            "userPassword": 1
            // "userVerified": 1
            }
           //finding user that matches username entered by passing query for username + projection defined above
@@ -145,16 +139,6 @@ const loginUser = async (user) => {
                 if( await bcrypt.compare(user.password, result.userPassword)){
                     returnMessage.status = 200;
                     returnMessage.message = "User successfully logged in";
-                    let token ="";
-                    if(result.admin==false){
-                    //create authorization token
-                     token = jwt.sign({_id:result._id},jwtSecret);
-                    }
-                    else{
-                        token = jwt.sign({_id:result._id},jwtSecretAdmin);
-                    }
-                    //send token to app
-                    returnMessage.data=token;
                 }
                 else{
                     console.log("Wrong password");
@@ -188,34 +172,6 @@ const getUserList = async () => {
         //returns list of users
         const result = await User.find({});
        return result;
-    } catch (err) {
-        console.log(err);
-    }
-};
-
-
-/**
- *  Retrieves a user from the database only by the admin.
-*/
-const getUserInfo = async (user) => {
-    try {   
-        const projection = {
-            "_id":1,
-            "userName": 1,
-           "userFirstName":1,
-           "userMiddleName": 1,
-           "userLastName": 1,
-           "userEmail": 1,
-           "userDOB": 1,
-           "admin": 1,
-           "userPhone": 1,
-           "userGoals": 1,
-           "userTasks": 1,
-           "userJournal": 1
-           }
-        //returns list of users
-        const result= await User.findOne({_id:user._id},projection);
-        return result;
     } catch (err) {
         console.log(err);
     }
@@ -339,81 +295,10 @@ const resetPassword = async (user) => {
     }
 };
 
-/**
- *  updates personal information of user
-*/
-const updatePersonalInfo = async (user) => {
-    // returnMessage will be used to return the status of the creation of the user
-    const returnMessage = {
-        status: null,
-        message: null
-    };
-
-    try { 
-         //finding user that matches username entered by passing query for id
-        const result= await User.findById(user.id)
-        if(result){
-               //updating user info in database
-               await User.findByIdAndUpdate(user.id, { 
-                   //fields to be updated
-                    userFirstName: user.userFirstName,
-                    userMiddleName: user.userMiddleName,
-                    userLastName: user.userLastName,
-                    userDOB: user.userDOB
-                });
-               console.log("user data updated");
-               returnMessage.message = "user data updated";
-               returnMessage.status = 200;
-        }
-        else{
-        returnMessage.message = "User not found";
-        returnMessage.status = 400;        }
-   return returnMessage;
-} catch (err) {
-    console.log(err);
-}
-};
-
-/**
- *  updates contact information of user
-*/
-const updateContactInfo = async (user) => {
-    // returnMessage will be used to return the status of the creation of the user
-    const returnMessage = {
-        status: null,
-        message: null
-    };
-
-    try { 
-         //finding user that matches username entered by passing query for id
-        const result= await User.findById(user.id)
-        if(result){
-               //updating user info in database
-               await User.findByIdAndUpdate(user.id, { 
-                   //fields to be updated
-                    userEmail: user.userEmail,
-                    userPhone: user.userPhone
-                });
-               console.log("user contact updated");
-               returnMessage.message = "user contact updated";
-               returnMessage.status = 200;
-        }
-        else{
-        returnMessage.message = "User not found";
-        returnMessage.status = 400;        }
-   return returnMessage;
-} catch (err) {
-    console.log(err);
-}
-};
-
 module.exports = {
     createUser,
     loginUser,
     getUserList,
-    getUserInfo,
     forgotPassword,
-    resetPassword,
-    updatePersonalInfo,
-    updateContactInfo
+    resetPassword
  };
