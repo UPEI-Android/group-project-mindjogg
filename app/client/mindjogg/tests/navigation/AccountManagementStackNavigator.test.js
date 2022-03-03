@@ -1,6 +1,6 @@
 import React from "react";
 //import { NavigationContainer } from "@react-navigation/native";
-import { render, fireEvent } from "@testing-library/react-native";
+import { render } from "@testing-library/react-native";
 
 // import the component that we want to test
 //import AuthenticationStackNavigator from "../../screens/navigation/AuthenticationStackNavigator";
@@ -21,6 +21,7 @@ describe("Testing react navigation", () => {
     const { findByText } = render(component);
 
     const getStarted = await findByText("Get Started");
+    expect(getStarted).toBeTruthy();
     // fireEvent.press(getStarted);
 
     // const signInHeader = await findByText("Please Sign In to Continue");
