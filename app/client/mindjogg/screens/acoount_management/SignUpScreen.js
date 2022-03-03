@@ -25,7 +25,7 @@ import * as Yup from "yup";
 
 import { AuthContext } from "../../components/conext/authenticationContext";
 
-validationSchema = Yup.object({
+const validationSchema = Yup.object({
   firstName: Yup.string().required("First name is required!"),
   lastName: Yup.string().required("Last name is required!"),
   userName: Yup.string().required("Username is required!"),

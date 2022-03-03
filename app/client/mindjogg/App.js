@@ -87,7 +87,7 @@ function App() {
       let userToken;
       userToken = null;
       try {
-        let userInfo = {
+        const userInfo = {
           firstName: firstName,
           lastName: lastName,
           userName: userName,
