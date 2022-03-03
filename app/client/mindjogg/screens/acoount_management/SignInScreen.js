@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useContext, useState } from "react";
 import {
   Text,
   View,
@@ -40,11 +40,11 @@ const SignInScreen = ({ navigation }) => {
     password: "",
   };
 
-  const [secureText, setSecureText] = React.useState({
+  const [secureText, setSecureText] = useState({
     secureTextEntry: true,
   });
 
-  const { signIn } = React.useContext(AuthContext);
+  const signIn = useContext(AuthContext);
 
   const updateSecureTextEntry = () => {
     setSecureText({

@@ -53,7 +53,7 @@ const SignUpScreen = ({ navigation }) => {
     secureTextEntry: true,
   });
 
-  const { signUp } = React.useContext(AuthContext);
+  const signUp = React.useContext(AuthContext);
 
   const updateSecureTextEntry = () => {
     setSecureText({
