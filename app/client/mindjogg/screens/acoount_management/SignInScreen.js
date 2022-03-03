@@ -20,42 +20,36 @@ import StdButton from "../../components/StdButton/StdButton";
 
 import Ionicon from "react-native-vector-icons/Ionicons";
 
+import { Formik } from "formik";
+import * as Yup from "yup";
+
 import { AuthContext } from "../../components/conext/authenticationContext";
 
+const validationSchema = Yup.object({
+  email: Yup.string().required("Email or username is required!"),
+  password: Yup.string()
+    .trim()
+    .min(8, "Password must be atleast 8 character!")
+    .max(16, "Password must be atmost 16 character!")
+    .required("Password is required!"),
+});
+
 const SignInScreen = ({ navigation }) => {
-  const [data, setData] = React.useState({
+  const data = {
     email: "",
     password: "",
+  };
+
+  const [secureText, setSecureText] = React.useState({
     secureTextEntry: true,
   });
 
   const { signIn } = React.useContext(AuthContext);
 
-  const textInputChange = (val) => {
-    if (val.length !== 0) {
-      setData({
-        ...data,
-        email: val,
-      });
-    } else {
-      setData({
-        ...data,
-        email: val,
-      });
-    }
-  };
-
-  const handlePasswordChange = (val) => {
-    setData({
-      ...data,
-      password: val,
-    });
-  };
-
   const updateSecureTextEntry = () => {
-    setData({
-      ...data,
-      secureTextEntry: !data.secureTextEntry,
+    setSecureText({
+      ...secureText,
+      secureTextEntry: !secureText.secureTextEntry,
     });
   };
 
@@ -64,93 +58,144 @@ const SignInScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={[styles.container, globalStyles.pinkBackground]}>
-      <StatusBar backgroundColor="#FFE3FF" barStyle="dark-content" />
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={styles.header}>
-          <View style={styles.logo_container}>
-            <Animatable.Image
-              animation="bounceIn"
-              duration={1500}
-              source={require("../../assets/Getting_started_logo.png")}
-              style={styles.logo}
-              resizeMode="stretch"
-            />
-            <Text style={styles.text_header}>Welcome Back</Text>
-            <Text style={styles.text_header_Title}>
-              Please Sign In to Continue
-            </Text>
-          </View>
-        </View>
-      </TouchableWithoutFeedback>
-
-      <Animatable.View animation="fadeInUpBig" style={styles.footer}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-        >
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View>
-              <View style={styles.action}>
-                <Ionicon name="person-outline" color="#000000" size={20} />
-                <TextInput
-                  placeholder="Email Or Username"
-                  style={styles.textInput}
-                  autoCapitalize="none"
-                  onChangeText={(val) => textInputChange(val)}
-                />
-              </View>
-              <View style={{ marginTop: 30 }}>
-                <View style={styles.action}>
-                  <Ionicon
-                    name="lock-closed-outline"
-                    color="#000000"
-                    size={20}
-                  />
-                  <TextInput
-                    placeholder="Password"
-                    secureTextEntry={data.secureTextEntry ? true : false}
-                    style={styles.textInput}
-                    autoCapitalize="none"
-                    onChangeText={(val) => handlePasswordChange(val)}
-                  />
-                  <TouchableOpacity onPress={updateSecureTextEntry}>
-                    {data.secureTextEntry ? (
-                      <Ionicon name="eye-off-outline" color="grey" size={20} />
-                    ) : (
-                      <Ionicon name="eye-outline" color="grey" size={20} />
-                    )}
-                  </TouchableOpacity>
+    <Formik
+      initialValues={data}
+      validationSchema={validationSchema}
+      onSubmit={(values, actions) => {
+        signInhandler(values.email, values.password);
+        actions.resetForm();
+      }}
+    >
+      {({
+        values,
+        errors,
+        touched,
+        setFieldTouched,
+        handleChange,
+        handleSubmit,
+      }) => {
+        const { email, password } = values;
+        return (
+          <>
+            <View style={[styles.container, globalStyles.pinkBackground]}>
+              <StatusBar backgroundColor="#FFE3FF" barStyle="dark-content" />
+              <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                <View style={styles.header}>
+                  <View style={styles.logo_container}>
+                    <Animatable.Image
+                      animation="bounceIn"
+                      duration={1500}
+                      source={require("../../assets/Getting_started_logo.png")}
+                      style={styles.logo}
+                      resizeMode="stretch"
+                    />
+                    <Text style={styles.text_header}>Welcome Back</Text>
+                    <Text style={styles.text_header_Title}>
+                      Please Sign In to Continue
+                    </Text>
+                  </View>
                 </View>
-              </View>
+              </TouchableWithoutFeedback>
 
-              <View style={styles.button}>
-                <StdButton
-                  text="Sign In"
-                  buttonPress={() => {
-                    signInhandler(data.email, data.password);
-                  }}
-                />
-              </View>
+              <Animatable.View animation="fadeInUpBig" style={styles.footer}>
+                <KeyboardAvoidingView
+                  behavior={Platform.OS === "ios" ? "padding" : "height"}
+                >
+                  <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <View>
+                      <View style={styles.action}>
+                        <Ionicon
+                          name="person-outline"
+                          color="#000000"
+                          size={20}
+                        />
+                        <TextInput
+                          placeholder="Email Or Username"
+                          value={email}
+                          style={styles.textInput}
+                          autoCapitalize="none"
+                          onChangeText={handleChange("email")}
+                          onFocus={() => setFieldTouched("email")}
+                        />
+                      </View>
+                      {touched.email && errors.email ? (
+                        <Text style={{ color: "red", marginTop: 5 }}>
+                          {errors.email}
+                        </Text>
+                      ) : null}
 
-              <View style={styles.signUpButton}>
-                <TouchableOpacity
-                  onPress={() => navigation.push("ForgotPasswordScreen")}
-                  style={{ marginBottom: 15 }}
-                >
-                  <Text style={styles.text_hightlight}>Forgot Password?</Text>
-                </TouchableOpacity>
-                <Text style={styles.text_footer}>Not a Member?</Text>
-                <TouchableOpacity
-                  onPress={() => navigation.push("SignUpScreen")}
-                >
-                  <Text style={styles.text_hightlight}>Sign up</Text>
-                </TouchableOpacity>
-              </View>
+                      <View style={{ marginTop: 30 }}>
+                        <View style={styles.action}>
+                          <Ionicon
+                            name="lock-closed-outline"
+                            color="#000000"
+                            size={20}
+                          />
+                          <TextInput
+                            placeholder="Password"
+                            value={password}
+                            secureTextEntry={
+                              secureText.secureTextEntry ? true : false
+                            }
+                            style={styles.textInput}
+                            autoCapitalize="none"
+                            onChangeText={handleChange("password")}
+                            onFocus={() => setFieldTouched("password")}
+                          />
+                          <TouchableOpacity onPress={updateSecureTextEntry}>
+                            {secureText.secureTextEntry ? (
+                              <Ionicon
+                                name="eye-off-outline"
+                                color="grey"
+                                size={20}
+                              />
+                            ) : (
+                              <Ionicon
+                                name="eye-outline"
+                                color="grey"
+                                size={20}
+                              />
+                            )}
+                          </TouchableOpacity>
+                        </View>
+                      </View>
+                      {touched.password && errors.password ? (
+                        <Text style={{ color: "red", marginTop: 5 }}>
+                          {errors.password}
+                        </Text>
+                      ) : null}
+
+                      <View style={styles.button}>
+                        <StdButton text="Sign In" buttonPress={handleSubmit} />
+                      </View>
+
+                      <View style={styles.signUpButton}>
+                        <TouchableOpacity
+                          onPress={() =>
+                            navigation.push("ForgotPasswordScreen")
+                          }
+                          style={{ marginBottom: 15 }}
+                        >
+                          <Text style={styles.text_hightlight}>
+                            Forgot Password?
+                          </Text>
+                        </TouchableOpacity>
+                        <Text style={styles.text_footer}>Not a Member?</Text>
+                        <TouchableOpacity
+                          onPress={() => navigation.push("SignUpScreen")}
+                        >
+                          <Text style={styles.text_hightlight}>Sign up</Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  </TouchableWithoutFeedback>
+                </KeyboardAvoidingView>
+              </Animatable.View>
             </View>
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
-      </Animatable.View>
-    </View>
+          </>
+        );
+      }}
+    </Formik>
   );
 };
 
