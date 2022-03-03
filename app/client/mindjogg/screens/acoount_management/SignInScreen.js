@@ -20,13 +20,30 @@ import StdButton from "../../components/StdButton/StdButton";
 
 import Ionicon from "react-native-vector-icons/Ionicons";
 
+import { AuthContext } from "../../components/conext/authenticationContext";
+
 const SignInScreen = ({ navigation }) => {
   const [data, setData] = React.useState({
     email: "",
     password: "",
-    check_textInputChange: false,
     secureTextEntry: true,
   });
+
+  const { signIn } = React.useContext(AuthContext);
+
+  const textInputChange = (val) => {
+    if (val.length !== 0) {
+      setData({
+        ...data,
+        email: val,
+      });
+    } else {
+      setData({
+        ...data,
+        email: val,
+      });
+    }
+  };
 
   const handlePasswordChange = (val) => {
     setData({
@@ -40,6 +57,10 @@ const SignInScreen = ({ navigation }) => {
       ...data,
       secureTextEntry: !data.secureTextEntry,
     });
+  };
+
+  const signInhandler = (userName, password) => {
+    signIn(userName, password);
   };
 
   return (
@@ -75,6 +96,7 @@ const SignInScreen = ({ navigation }) => {
                   placeholder="Email Or Username"
                   style={styles.textInput}
                   autoCapitalize="none"
+                  onChangeText={(val) => textInputChange(val)}
                 />
               </View>
               <View style={{ marginTop: 30 }}>
@@ -102,7 +124,12 @@ const SignInScreen = ({ navigation }) => {
               </View>
 
               <View style={styles.button}>
-                <StdButton text="Sign In" buttonPress={() => {}} />
+                <StdButton
+                  text="Sign In"
+                  buttonPress={() => {
+                    signInhandler(data.email, data.password);
+                  }}
+                />
               </View>
 
               <View style={styles.signUpButton}>
