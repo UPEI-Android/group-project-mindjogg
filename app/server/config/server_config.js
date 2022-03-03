@@ -13,8 +13,7 @@ const {
     REFRESH_TOKEN_SECRET,
     HOST_URL,
     ATLAS_URI,
-    JWT_SECRET,
-    JWT_ADMIN
+    JWT_SECRET
 } = process.env;
 
 module.exports = {
@@ -26,6 +25,5 @@ module.exports = {
     refresh_token:REFRESH_TOKEN_SECRET,
     hostUrl: HOST_URL,
     jwtSecret: JWT_SECRET,
-    jwtSecretAdmin:JWT_ADMIN,
     database_link: ATLAS_URI
 };

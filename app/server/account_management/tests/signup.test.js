@@ -12,7 +12,6 @@ describe("POST /users/register", () => {
                 "Password": Math.random().toString(36).substring(2,7),
                 "FirstName":Math.random().toString(36).substring(2,7),
                 "LastName":Math.random().toString(36).substring(2,7),
-                "admin": false,
                 "Email":Math.random().toString(36).substring(2,7)+"@fae.com"
         })
         expect(response.statusCode).toBe(201);
@@ -27,7 +26,6 @@ describe("POST /users/register", () => {
                 "Password": "password123",
                 "FirstName":"bef",
                 "LastName":"iwar",
-                "admin": false,
                 "Email":"befiwar458@mannawo.com"  
         })
         expect(response.statusCode).toBe(400);
