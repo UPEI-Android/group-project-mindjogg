@@ -12,12 +12,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "./components/conext/authenticationContext";
 
 function App() {
+  // The initial state
   const initialLoginState = {
     isLoading: true,
     userName: null,
     userToken: null,
   };
 
+  // The reducer function
   const loginReducer = (prevState, action) => {
     switch (action.type) {
       case "RETRIEVE_TOKEN":
@@ -56,6 +58,10 @@ function App() {
       // In a production app, we need to send some data (usually username, password) to server and get a token
       let userToken;
       userToken = null;
+
+      // Authentication will be performed by server and token will be returned
+      //TODO: set userToken to null if authentication fails
+      // TODO: set the userToken to the token returned by the server
       if (userName === "admin" && password === "password") {
         try {
           userToken = "abc";
@@ -75,14 +81,24 @@ function App() {
         console.log(e);
       }
     },
-    signUp: async () => {
+    signUp: async (firstName, lastName, userName, email, password) => {
       // In a production app, we need to send user data to server and get a token
       // after successful registration, also need to update our state
       let userToken;
       userToken = null;
       try {
+        let userInfo = {
+          firstName: firstName,
+          lastName: lastName,
+          userName: userName,
+          email: email,
+          password: password,
+        };
+        // setting the user token in async storage is not required for sign up
         userToken = "abc";
         await AsyncStorage.setItem("userToken", userToken);
+        // TODO: make an API call to create user account with the userInfo
+        console.log(userInfo);
       } catch (e) {
         console.log(e);
       }
@@ -99,7 +115,7 @@ function App() {
       } catch (e) {
         console.log(e);
       }
-      // After restoring token, we may need to validate it in production apps
+      // After restoring token, we may need to validate the token in production apps from server
 
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
