@@ -21,27 +21,6 @@ import StdButton from "../../components/StdButton/StdButton";
 import Ionicon from "react-native-vector-icons/Ionicons";
 
 const SignInScreen = ({ navigation }) => {
-  const [data, setData] = React.useState({
-    email: "",
-    password: "",
-    check_textInputChange: false,
-    secureTextEntry: true,
-  });
-
-  const handlePasswordChange = (val) => {
-    setData({
-      ...data,
-      password: val,
-    });
-  };
-
-  const updateSecureTextEntry = () => {
-    setData({
-      ...data,
-      secureTextEntry: !data.secureTextEntry,
-    });
-  };
-
   return (
     <View style={[styles.container, globalStyles.pinkBackground]}>
       <StatusBar backgroundColor="#FFE3FF" barStyle="dark-content" />
@@ -55,10 +34,8 @@ const SignInScreen = ({ navigation }) => {
               style={styles.logo}
               resizeMode="stretch"
             />
-            <Text style={styles.text_header}>Welcome Back</Text>
-            <Text style={styles.text_header_Title}>
-              Please Sign In to Continue
-            </Text>
+
+            <Text style={styles.text_header_Title}>Forgot your password?</Text>
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -69,6 +46,9 @@ const SignInScreen = ({ navigation }) => {
         >
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View>
+              <Text style={styles.text_footer}>
+                Enter your email or username
+              </Text>
               <View style={styles.action}>
                 <Ionicon name="person-outline" color="#000000" size={20} />
                 <TextInput
@@ -77,46 +57,21 @@ const SignInScreen = ({ navigation }) => {
                   autoCapitalize="none"
                 />
               </View>
-              <View style={{ marginTop: 30 }}>
-                <View style={styles.action}>
-                  <Ionicon
-                    name="lock-closed-outline"
-                    color="#000000"
-                    size={20}
-                  />
-                  <TextInput
-                    placeholder="Password"
-                    secureTextEntry={data.secureTextEntry ? true : false}
-                    style={styles.textInput}
-                    autoCapitalize="none"
-                    onChangeText={(val) => handlePasswordChange(val)}
-                  />
-                  <TouchableOpacity onPress={updateSecureTextEntry}>
-                    {data.secureTextEntry ? (
-                      <Ionicon name="eye-off-outline" color="grey" size={20} />
-                    ) : (
-                      <Ionicon name="eye-outline" color="grey" size={20} />
-                    )}
-                  </TouchableOpacity>
-                </View>
+              <View style={{ marginTop: 25 }}>
+                <Text style={styles.text_footer_message}>
+                  * We will send you the instructions to reset your password to
+                  your registered email
+                </Text>
               </View>
-
               <View style={styles.button}>
-                <StdButton text="Sign In" buttonPress={() => {}} />
+                <StdButton text="Submit" buttonPress={() => {}} />
               </View>
-
-              <View style={styles.signUpButton}>
+              <View style={styles.cancelButton}>
                 <TouchableOpacity
-                  onPress={() => navigation.push("ForgotPasswordScreen")}
-                  style={{ marginBottom: 15 }}
+                  onPress={() => navigation.goBack()}
+                  style={{ marginTop: 15 }}
                 >
-                  <Text style={styles.text_hightlight}>Forgot Password?</Text>
-                </TouchableOpacity>
-                <Text style={styles.text_footer}>Not a Member?</Text>
-                <TouchableOpacity
-                  onPress={() => navigation.push("SignUpScreen")}
-                >
-                  <Text style={styles.text_hightlight}>Sign up</Text>
+                  <Text style={styles.text_hightlight}>Cancel</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -156,11 +111,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
-  text_header: {
-    color: "#977AB7",
-    fontWeight: "bold",
-    fontSize: 15,
-  },
   text_header_Title: {
     color: "#683795",
     fontWeight: "bold",
@@ -177,9 +127,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: 5,
   },
+  text_footer_message: {
+    color: "#683795",
+    fontSize: 12,
+  },
   action: {
     flexDirection: "row",
-    marginTop: 10,
+    marginTop: 20,
     borderBottomWidth: 1,
     borderBottomColor: "#f2f2f2",
     paddingBottom: 5,
@@ -205,7 +159,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 50,
   },
-  signUpButton: {
+  cancelButton: {
     alignItems: "center",
     marginTop: 15,
   },
