@@ -44,7 +44,7 @@ const SignInScreen = ({ navigation }) => {
     secureTextEntry: true,
   });
 
-  const signIn = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
 
   const updateSecureTextEntry = () => {
     setSecureText({
