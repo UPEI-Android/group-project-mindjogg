@@ -14,11 +14,15 @@ import StdCard from "../../components/StdCard/StdCard";
 
 var count = 0;
 
-const askHelp = async () => {
+const askHelp = () => {
   Alert.alert("Calling 911 ...");
 };
 
-const EmergencySupportMainScreen = ({ navigation }) => {
+const EmergencySupportMainScreen = (
+  {
+    /*navigation*/
+  }
+) => {
   const [emergList, setEmergList] = useState([]);
 
   /**
