@@ -12,6 +12,8 @@ import axios from "axios";
 import { globalStyles } from "../../styles/global";
 import StdCard from "../../components/StdCard/StdCard";
 
+var count = 0;
+
 const askHelp = async () => {
   Alert.alert("Calling 911 ...");
 };
@@ -25,16 +27,13 @@ const EmergencySupportMainScreen = ({ navigation }) => {
   const retrieveServices = async () => {
     try {
       //Change the IP address to your Local Address
-      var service = await axios.get(
-        "http://192.168.1.108:8080/emergency/list",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token":
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
-          },
-        }
-      );
+      var service = await axios.get("http://192.168.2.35:8080/emergency/list", {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
+        },
+      });
 
       // axios.get("http://192.168.2.35:8080/emergency/list").then((res) => {
       //   console.log(res);
@@ -44,6 +43,7 @@ const EmergencySupportMainScreen = ({ navigation }) => {
     }
 
     let servicesList = service.data;
+    //console.log(servicesList);
     return servicesList;
   };
 
@@ -75,18 +75,21 @@ const EmergencySupportMainScreen = ({ navigation }) => {
         </View>
 
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
+          {/*Display the parsed information on cards*/}
           {emergList.map((emergencyItem) => {
+            count++;
             return (
-              <View key={emergencyItem.id} style={styles.supportContainer}>
+              <View key={count} style={styles.supportContainer}>
                 <View
+                  key={emergencyItem.id}
                   style={{ alignItems: "center", justifyContent: "center" }}
                 >
                   <StdCard
                     title={emergencyItem.name}
                     description={emergencyItem.description}
                     elevation={20}
-                    width={200}
-                    height={200}
+                    width={250}
+                    height={250}
                   ></StdCard>
                 </View>
               </View>
@@ -141,8 +144,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: Dimensions.get("window").height * 0.05,
     //backgroundColor: globalStyles.purple.color,
-    height: Dimensions.get("window").height * 0.25,
-    width: Dimensions.get("window").width * 0.6,
+    height: Dimensions.get("window").height * 0.3,
+    width: Dimensions.get("window").width * 0.8,
     margin: 5,
   },
 });
