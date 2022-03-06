@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Text,
   View,
@@ -16,40 +16,42 @@ const askHelp = async () => {
   Alert.alert("Calling 911 ...");
 };
 
-/**
- * Gets a List of Emergency Services
- */
-const retrieveServices = async () => {
-  try {
-    var service = await axios.get("http://192.168.2.35:8080/emergency/list", {
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
-      },
-    });
-
-    // axios.get("http://192.168.2.35:8080/emergency/list").then((res) => {
-    //   console.log(res);
-    // });
-  } catch (err) {
-    console.log(err.stack);
-  }
-
-  let servicesList = service.data;
-  return servicesList;
-  //console.log(servicesList);
-};
-
 const EmergencySupportMainScreen = ({ navigation }) => {
-  var emergList = [];
+  const [emergList, setEmergList] = useState([]);
 
-  retrieveServices().then((res) => {
-    emergList = res;
-    console.log(emergList[0]); //For Debugging, prints out desired obj
-  });
+  /**
+   * Gets a List of Emergency Services
+   */
+  const retrieveServices = async () => {
+    try {
+      //Change the IP address to your Local Address
+      var service = await axios.get(
+        "http://192.168.1.108:8080/emergency/list",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token":
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
+          },
+        }
+      );
 
-  console.log(emergList); //emergList becomes undefined once it leaves line 47-50
+      // axios.get("http://192.168.2.35:8080/emergency/list").then((res) => {
+      //   console.log(res);
+      // });
+    } catch (err) {
+      console.log(err);
+    }
+
+    let servicesList = service.data;
+    return servicesList;
+  };
+
+  useEffect(() => {
+    retrieveServices().then((res) => {
+      setEmergList(res);
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -73,43 +75,6 @@ const EmergencySupportMainScreen = ({ navigation }) => {
         </View>
 
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
-          {/* <View style={styles.supportContainer}>
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <StdCard
-                title={"emergencyItem.name"}
-                description={"emergencyItem.description"}
-                elevation={10}
-                width={200}
-                height={200}
-              ></StdCard>
-            </View>
-          </View>
-
-          <View style={styles.supportContainer}>
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <StdCard
-                title={"emergencyItem.name"}
-                description={"emergencyItem.description"}
-                elevation={20}
-                width={200}
-                height={200}
-              ></StdCard>
-            </View>
-          </View>
-
-          <View style={styles.supportContainer}>
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <StdCard
-                title={"emergencyItem.name"}
-                description={"emergencyItem.description"}
-                elevation={20}
-                width={200}
-                height={200}
-              ></StdCard>
-            </View>
-          </View> */}
-
-          {/* Error pops up here because emergList is not accepting the arrayValues and is undefined */}
           {emergList.map((emergencyItem) => {
             return (
               <View key={emergencyItem.id} style={styles.supportContainer}>
