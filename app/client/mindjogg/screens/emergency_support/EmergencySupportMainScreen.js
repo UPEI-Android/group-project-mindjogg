@@ -42,7 +42,7 @@ const EmergencySupportMainScreen = ({ navigation }) => {
       console.log(err);
     }
 
-    let servicesList = service.data;
+    const servicesList = service.data;
     //console.log(servicesList);
     return servicesList;
   };
