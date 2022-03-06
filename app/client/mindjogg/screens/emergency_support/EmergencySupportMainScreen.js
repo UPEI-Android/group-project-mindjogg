@@ -18,92 +18,95 @@ const askHelp = () => {
   Alert.alert("Calling 911 ...");
 };
 
-const EmergencySupportMainScreen = (
+const EmergencySupportMainScreen = () =>
+  // {
+  //   /*navigation*/
+  // }
   {
-    /*navigation*/
-  }
-) => {
-  const [emergList, setEmergList] = useState([]);
+    const [emergList, setEmergList] = useState([]);
 
-  /**
-   * Gets a List of Emergency Services
-   */
-  const retrieveServices = async () => {
-    try {
-      //Change the IP address to your Local Address
-      var service = await axios.get("http://192.168.2.35:8080/emergency/list", {
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
-        },
+    /**
+     * Gets a List of Emergency Services
+     */
+    const retrieveServices = async () => {
+      try {
+        //Change the IP address to your Local Address
+        var service = await axios.get(
+          "http://192.168.2.35:8080/emergency/list",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token":
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
+            },
+          }
+        );
+
+        // axios.get("http://192.168.2.35:8080/emergency/list").then((res) => {
+        //   console.log(res);
+        // });
+      } catch (err) {
+        console.log(err);
+      }
+
+      const servicesList = service.data;
+      //console.log(servicesList);
+      return servicesList;
+    };
+
+    useEffect(() => {
+      retrieveServices().then((res) => {
+        setEmergList(res);
       });
+    }, []);
 
-      // axios.get("http://192.168.2.35:8080/emergency/list").then((res) => {
-      //   console.log(res);
-      // });
-    } catch (err) {
-      console.log(err);
-    }
-
-    const servicesList = service.data;
-    //console.log(servicesList);
-    return servicesList;
-  };
-
-  useEffect(() => {
-    retrieveServices().then((res) => {
-      setEmergList(res);
-    });
-  }, []);
-
-  return (
-    <View style={styles.container}>
-      <View style={styles.sosButton}>
-        <Text style={styles.headerTitleText}>Immediate Help Needed?</Text>
-        <TouchableOpacity
-          style={styles.circle}
-          onPress={() => {
-            askHelp();
-          }}
-        >
-          <Text style={styles.sosButtonText}> Call 911 </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View>
-        <View style={styles.footerTitle}>
-          <Text style={styles.footerTitleText}>
-            Available Supports Near You
-          </Text>
+    return (
+      <View style={styles.container}>
+        <View style={styles.sosButton}>
+          <Text style={styles.headerTitleText}>Immediate Help Needed?</Text>
+          <TouchableOpacity
+            style={styles.circle}
+            onPress={() => {
+              askHelp();
+            }}
+          >
+            <Text style={styles.sosButtonText}> Call 911 </Text>
+          </TouchableOpacity>
         </View>
 
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
-          {/*Display the parsed information on cards*/}
-          {emergList.map((emergencyItem) => {
-            count++;
-            return (
-              <View key={count} style={styles.supportContainer}>
-                <View
-                  key={emergencyItem.id}
-                  style={{ alignItems: "center", justifyContent: "center" }}
-                >
-                  <StdCard
-                    title={emergencyItem.name}
-                    description={emergencyItem.description}
-                    elevation={20}
-                    width={250}
-                    height={250}
-                  ></StdCard>
+        <View>
+          <View style={styles.footerTitle}>
+            <Text style={styles.footerTitleText}>
+              Available Supports Near You
+            </Text>
+          </View>
+
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
+            {/*Display the parsed information on cards*/}
+            {emergList.map((emergencyItem) => {
+              count++;
+              return (
+                <View key={count} style={styles.supportContainer}>
+                  <View
+                    key={emergencyItem.id}
+                    style={{ alignItems: "center", justifyContent: "center" }}
+                  >
+                    <StdCard
+                      title={emergencyItem.name}
+                      description={emergencyItem.description}
+                      elevation={20}
+                      width={250}
+                      height={250}
+                    ></StdCard>
+                  </View>
                 </View>
-              </View>
-            );
-          })}
-        </ScrollView>
+              );
+            })}
+          </ScrollView>
+        </View>
       </View>
-    </View>
-  );
-};
+    );
+  };
 
 const styles = StyleSheet.create({
   container: {
