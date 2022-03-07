@@ -60,47 +60,70 @@ function App() {
       userToken = null;
 
       // Authentication will be performed by server and token will be returned
-      //TODO: set userToken to null if authentication fails
-      // TODO: set the userToken to the token returned by the server
-      if (userName === "admin" && password === "password") {
-        try {
-          userToken = "abc";
-          await AsyncStorage.setItem("userToken", userToken);
-        } catch (e) {
-          console.log(e);
+      try {
+        // set up the object to be sent
+        const data = JSON.stringify({
+          userName: userName,
+          password: password,
+        });
+        // send it and get a response
+        const response = await fetch('http://localhost:8080/users/login', {
+          method: 'POST',
+          body: data,
+        });
+
+        if (response.status == 201) {
+          // log in, give token
+        } else {
+          // no account was found for the given information
+          userToken = null;
         }
-        dispatch({ type: "LOGIN", id: userName, token: userToken });
-      }
+    } catch(e) {
+      console.error(e);
+    }
     },
+
     signOut: async () => {
       // remove the token from storage
       try {
         await AsyncStorage.removeItem("userToken");
         dispatch({ type: "LOGOUT" });
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     },
+    
     signUp: async (firstName, lastName, userName, email, password) => {
       // In a production app, we need to send user data to server and get a token
       // after successful registration, also need to update our state
       let userToken;
       userToken = null;
+
       try {
-        const userInfo = {
-          firstName: firstName,
-          lastName: lastName,
-          userName: userName,
-          email: email,
-          password: password,
-        };
-        // setting the user token in async storage is not required for sign up
-        userToken = "abc";
-        await AsyncStorage.setItem("userToken", userToken);
-        // TODO: make an API call to create user account with the userInfo
-        console.log(userInfo);
+        const data = JSON.stringify({
+            UserName: userName,
+            Password: password,
+            FirstName: firstName,
+            LastName: lastName,
+            admin: false,
+            Email: email,
+        });
+
+        // make an API call to create user account with the userInfo
+        const response = await fetch('http://localhost:8080/users/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: data,
+        });
+
+        if (response == 201) {
+          // account successfully created, redirect to login screen
+        } else {
+          // account couldn't be created
+        }
+
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
       dispatch({ type: "REGISTER", id: userName, token: userToken });
     },
