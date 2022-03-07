@@ -87,3 +87,47 @@ Content-Type: application/json
 ###
 //get request to access list of emergencies
 GET http://localhost:8080/emergency/list
+
+
+###
+
+//post request to register new user with username and password in json
+POST http://localhost:8080/users/register
+Content-Type: application/json
+
+{
+"UserName": "moodtrackerTest",
+"Password": "moodtrackerTest",
+"FirstName":"moodtrackerTest",
+"LastName":"moodtrackerTest",
+"admin":true,
+"Email":"moodtrackerTest@moodtrackerTest.com"
+}
+
+###
+//post request to login with username and password in json
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+"UserName": "moodtrackerTest",
+"Password": "moodtrackerTest"
+}
+
+
+###
+//get request to access user info, must be logged in as user
+GET http://localhost:8080/moodtracker/getMood
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI1OGExMWFkYWMwZTg0ZTJmOWMzNjkiLCJpYXQiOjE2NDY2MjczNDd9.QTmiOD47B0-0ZIMol4Yz5BYf7hTh0t0-cN0GunUdZEs
+
+###
+//post request to login with username and password in json
+POST http://localhost:8080/moodtracker/addmood
+Content-Type: application/json
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI1OGExMWFkYWMwZTg0ZTJmOWMzNjkiLCJpYXQiOjE2NDY2MjczNDd9.QTmiOD47B0-0ZIMol4Yz5BYf7hTh0t0-cN0GunUdZEs
+
+{
+    "timeofDay": "July 23, 2022 01:15:00",
+    "moodName": "happy",
+    "moodNote": "just graduated!"
+}
