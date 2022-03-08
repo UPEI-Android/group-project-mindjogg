@@ -1,14 +1,14 @@
-# Emergency suppport Technical Documentation
+# Login Technical Documentation
 
-Emergency suppport feature documentation:
+Login feature documentation:
 
-- [ ] User clicks Sign in Button
-- [ ] User inputs user Name -> could be email or username itself
-- [ ] User inputs Password
-- [ ] User clicks Sign in
-- [ ] App sends data entered to backend to validate
-- [ ] Backend sends back login token
-- [ ] App saves login token in async storage
+- User clicks Sign in Button
+- User inputs user Name -> could be email or username itself
+- User inputs Password
+- User clicks Sign in
+- App sends data entered to backend to validate
+- Backend sends back login token
+- App saves login token in async storage
 
 # How does this work behind the scenes?
 
