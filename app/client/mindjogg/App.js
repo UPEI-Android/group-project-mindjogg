@@ -10,6 +10,7 @@ import AuthenticationStackNavigator from "./screens/navigation/AuthenticationSta
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { AuthContext } from "./components/conext/authenticationContext";
+import axios from "axios";
 
 function App() {
   // The initial state
@@ -57,7 +58,6 @@ function App() {
     signIn: async (userName, password) => {
       // In a production app, we need to send some data (usually username, password) to server and get a token
       let userToken;
-      userToken = null;
 
       // Authentication will be performed by server and token will be returned
       try {
@@ -66,23 +66,17 @@ function App() {
           UserName: userName,
           Password: password,
         });
-        // send it and get a response
-        const response = await fetch('http://localhost:8080/users/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: data,
-        });
 
-        if (response.status == 200) {
-          // log in, give token
-          console.log(response);
-        } else {
-          // no account was found for the given information
-          userToken = null;
-        }
+       await axios.post('http://localhost:8080/users/login', data ,
+       {
+         headers: { "Content-Type": "application/json" },
+       }).then((res) => res.status == 200 ? userToken = res.data : userToken = null);
+       
+       await AsyncStorage.setItem("userToken", userToken);
     } catch(e) {
       console.error(e);
     }
+    dispatch({ type: "LOGIN", id: userName, token: userToken });
     },
 
     signOut: async () => {
@@ -118,9 +112,9 @@ function App() {
           body: data,
         });
 
-        if (response == 201) {
+        if (response.status == 201) {
           // account successfully created, redirect to login screen
-        } else if (response == 400) {
+        } else if (response.status == 400) {
           // account already exists
         } else {
           // something went wrong
