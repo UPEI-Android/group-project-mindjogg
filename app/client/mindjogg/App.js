@@ -63,17 +63,19 @@ function App() {
       try {
         // set up the object to be sent
         const data = JSON.stringify({
-          userName: userName,
-          password: password,
+          UserName: userName,
+          Password: password,
         });
         // send it and get a response
         const response = await fetch('http://localhost:8080/users/login', {
           method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: data,
         });
 
-        if (response.status == 201) {
+        if (response.status == 200) {
           // log in, give token
+          console.log(response);
         } else {
           // no account was found for the given information
           userToken = null;
@@ -118,8 +120,10 @@ function App() {
 
         if (response == 201) {
           // account successfully created, redirect to login screen
+        } else if (response == 400) {
+          // account already exists
         } else {
-          // account couldn't be created
+          // something went wrong
         }
 
       } catch (e) {
