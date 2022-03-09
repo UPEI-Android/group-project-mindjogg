@@ -67,7 +67,8 @@ function App() {
           Password: password,
         });
 
-       await axios.post('http://localhost:8080/users/login', data ,
+       await axios.post('http://localhost:8080/users/login',
+       data,
        {
          headers: { "Content-Type": "application/json" },
        }).then((res) => res.status == 200 ? userToken = res.data : userToken = null);
@@ -106,10 +107,10 @@ function App() {
         });
 
         // make an API call to create user account with the userInfo
-        const response = await fetch('http://localhost:8080/users/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: data,
+        const response = await axios.post('http://localhost:8080/users/register', 
+        data,
+        {
+          headers: { "Content-Type": "application/json" },
         });
 
         if (response.status == 201) {
