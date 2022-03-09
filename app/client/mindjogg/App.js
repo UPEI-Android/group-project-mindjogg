@@ -74,18 +74,26 @@ function App() {
             Password: password,
           });
 
-          await axios.post(backend + "/users/login",
+          const response = await axios.post(backend + "/users/login",
           data,
           {
             headers: { "Content-Type": "application/json" },
-          }).then((res) => res.status == 200 ? userToken = res.data : userToken = null);
+          });
+
+          if (response.status == 200) {
+            userToken = response.data;
+          } else {
+            userToken = null;
+          }
 
         await AsyncStorage.setItem("userToken", userToken);
+        dispatch({ type: "LOGIN", id: userName, token: userToken });
+        
+        return response.status;
       }
     } catch(e) {
       console.error(e);
     }
-    dispatch({ type: "LOGIN", id: userName, token: userToken });
     },
 
     signOut: async () => {
@@ -133,11 +141,11 @@ function App() {
           } else {
             console.error("could not create account");
           }
+          dispatch({ type: "REGISTER", id: userName, token: userToken });
         }
       } catch (e) {
         console.error(e);
       }
-      dispatch({ type: "REGISTER", id: userName, token: userToken });
     },
   }));
 
