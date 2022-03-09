@@ -41,10 +41,6 @@ const EmergencySupportMainScreen = () =>
             },
           }
         );
-
-        // axios.get("http://192.168.2.35:8080/emergency/list").then((res) => {
-        //   console.log(res);
-        // });
       } catch (err) {
         console.log(err);
       }
@@ -77,7 +73,10 @@ const EmergencySupportMainScreen = () =>
         <View>
           <View style={styles.footerTitle}>
             <Text style={styles.footerTitleText}>
-              Available Supports Near You
+              Emergency Support Needed?
+            </Text>
+            <Text style={styles.footerTitleText}>
+              Here are the available supports near you!
             </Text>
           </View>
 
@@ -96,7 +95,10 @@ const EmergencySupportMainScreen = () =>
                       description={emergencyItem.description}
                       elevation={20}
                       width={250}
-                      height={250}
+                      height={215}
+                      buttonPress={() => {
+                        console.log("I do nothing yet");
+                      }}
                     ></StdCard>
                   </View>
                 </View>
@@ -149,10 +151,10 @@ const styles = StyleSheet.create({
   supportContainer: {
     flex: 1,
     flexDirection: "row",
-    marginTop: Dimensions.get("window").height * 0.05,
+    marginTop: Dimensions.get("window").height * 0.01,
     //backgroundColor: globalStyles.purple.color,
     height: Dimensions.get("window").height * 0.3,
-    width: Dimensions.get("window").width * 0.8,
+    width: Dimensions.get("window").width * 0.7,
     margin: 5,
   },
 });
