@@ -53,6 +53,9 @@ function App() {
     }
   };
 
+  // URI for the backend
+  const backend = "http://localhost:8080";
+
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
   const authContext = useMemo(() => ({
     signIn: async (userName, password) => {
@@ -67,7 +70,7 @@ function App() {
           Password: password,
         });
 
-       await axios.post('http://localhost:8080/users/login',
+       await axios.post(backend + "/users/login",
        data,
        {
          headers: { "Content-Type": "application/json" },
@@ -94,7 +97,6 @@ function App() {
       // In a production app, we need to send user data to server and get a token
       // after successful registration, also need to update our state
       let userToken;
-      userToken = null;
 
       try {
         const data = JSON.stringify({
@@ -107,18 +109,20 @@ function App() {
         });
 
         // make an API call to create user account with the userInfo
-        const response = await axios.post('http://localhost:8080/users/register', 
+        const response = await axios.post(backend + "/users/register", 
         data,
         {
           headers: { "Content-Type": "application/json" },
         });
 
         if (response.status == 201) {
-          // account successfully created, redirect to login screen
+          // TODO: account successfully created, redirect to login screen
+          signIn(userName, password);
         } else if (response.status == 400) {
-          // account already exists
+          // TODO
+          console.error("account already exists");
         } else {
-          // something went wrong
+          console.error("could not create account");
         }
 
       } catch (e) {
