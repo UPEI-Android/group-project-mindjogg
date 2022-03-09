@@ -60,23 +60,28 @@ function App() {
   const authContext = useMemo(() => ({
     signIn: async (userName, password) => {
       // In a production app, we need to send some data (usually username, password) to server and get a token
-      let userToken;
-
       // Authentication will be performed by server and token will be returned
+      let userToken = null;
       try {
-        // set up the object to be sent
-        const data = JSON.stringify({
-          UserName: userName,
-          Password: password,
-        });
+        // check if there's already a token - if there is, no need to send a request to the backend
+        userToken = await AsyncStorage.getItem("userToken");
+        if (userToken !== null) {
+          dispatch({ type: "LOGIN", id: userName, token: userToken });
+        } else {
+          // set up the object to be sent
+          const data = JSON.stringify({
+            UserName: userName,
+            Password: password,
+          });
 
-       await axios.post(backend + "/users/login",
-       data,
-       {
-         headers: { "Content-Type": "application/json" },
-       }).then((res) => res.status == 200 ? userToken = res.data : userToken = null);
-       
-       await AsyncStorage.setItem("userToken", userToken);
+          await axios.post(backend + "/users/login",
+          data,
+          {
+            headers: { "Content-Type": "application/json" },
+          }).then((res) => res.status == 200 ? userToken = res.data : userToken = null);
+
+        await AsyncStorage.setItem("userToken", userToken);
+      }
     } catch(e) {
       console.error(e);
     }
@@ -96,7 +101,7 @@ function App() {
     signUp: async (firstName, lastName, userName, email, password) => {
       // In a production app, we need to send user data to server and get a token
       // after successful registration, also need to update our state
-      let userToken;
+      let userToken = null;
 
       try {
         const data = JSON.stringify({
@@ -117,7 +122,6 @@ function App() {
 
         if (response.status == 201) {
           // TODO: account successfully created, redirect to login screen
-          signIn(userName, password);
         } else if (response.status == 400) {
           // TODO
           console.error("account already exists");
