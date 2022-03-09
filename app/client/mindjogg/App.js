@@ -104,31 +104,36 @@ function App() {
       let userToken = null;
 
       try {
-        const data = JSON.stringify({
+        // check if there's already a token - if there is, no need to register as the user is already signed in
+        userToken = await AsyncStorage.getItem("userToken");
+        if (userToken !== null) {
+          dispatch({ type: "REGISTER", id: userName, token: userToken });
+        } else {
+          const data = JSON.stringify({
             UserName: userName,
             Password: password,
             FirstName: firstName,
             LastName: lastName,
             admin: false,
             Email: email,
-        });
+          });
 
-        // make an API call to create user account with the userInfo
-        const response = await axios.post(backend + "/users/register", 
-        data,
-        {
-          headers: { "Content-Type": "application/json" },
-        });
+          // make an API call to create user account with the userInfo
+          const response = await axios.post(backend + "/users/register", 
+          data,
+          {
+            headers: { "Content-Type": "application/json" },
+          });
 
-        if (response.status == 201) {
+          if (response.status == 201) {
           // TODO: account successfully created, redirect to login screen
-        } else if (response.status == 400) {
+          } else if (response.status == 400) {
           // TODO
-          console.error("account already exists");
-        } else {
-          console.error("could not create account");
+            console.error("account already exists");
+          } else {
+            console.error("could not create account");
+          }
         }
-
       } catch (e) {
         console.error(e);
       }
