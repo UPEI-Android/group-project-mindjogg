@@ -11,7 +11,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { AuthContext } from "./components/conext/authenticationContext";
 import axios from "axios";
-import { Navigation } from "@material-ui/icons";
 
 function App() {
   // The initial state
@@ -130,7 +129,7 @@ function App() {
 
           // make an API call to create user account with the userInfo
           // if something goes wrong, we still want to return the response's status so we can handle the error in another component
-          const response = await axios.post(backend + "/users/register", 
+          await axios.post(backend + "/users/register", 
           data,
           {
             headers: { "Content-Type": "application/json" },
