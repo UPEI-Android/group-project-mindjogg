@@ -11,6 +11,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { AuthContext } from "./components/conext/authenticationContext";
 import axios from "axios";
+import { Navigation } from "@material-ui/icons";
 
 function App() {
   // The initial state
@@ -110,6 +111,7 @@ function App() {
       // In a production app, we need to send user data to server and get a token
       // after successful registration, also need to update our state
       let userToken = null;
+      let status = 500;
 
       try {
         // check if there's already a token - if there is, no need to register as the user is already signed in
@@ -127,21 +129,15 @@ function App() {
           });
 
           // make an API call to create user account with the userInfo
+          // if something goes wrong, we still want to return the response's status so we can handle the error in another component
           const response = await axios.post(backend + "/users/register", 
           data,
           {
             headers: { "Content-Type": "application/json" },
-          });
+          }).then((res) => status = res.status).catch((error) => status = error.response.status);
 
-          if (response.status == 201) {
-          // TODO: account successfully created, redirect to login screen
-          } else if (response.status == 400) {
-          // TODO
-            console.error("account already exists");
-          } else {
-            console.error("could not create account");
-          }
           dispatch({ type: "REGISTER", id: userName, token: userToken });
+          return status;
         }
       } catch (e) {
         console.error(e);
