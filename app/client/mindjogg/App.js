@@ -5,6 +5,7 @@ import { View, ActivityIndicator } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
 import DrawerNavigator from "./screens/navigation/DrawerNavigator";
+
 import AuthenticationStackNavigator from "./screens/navigation/AuthenticationStackNavigator";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
