@@ -70,7 +70,7 @@ const SignUpScreen = ({ navigation }) => {
       console.log("STATUS" + status)
       if (status == 201) {
         setResponseStatus(201);
-        navigation.push(SignInScreen);
+        navigation.navigate(SignInScreen);
       } else {
         setResponseStatus(status);
       }
