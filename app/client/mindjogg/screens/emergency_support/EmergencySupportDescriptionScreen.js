@@ -45,6 +45,7 @@ const EmergencySupportDescriptionScreen = ({ route /**navigation */ }) => {
 const styles = StyleSheet.create({
   supportName: {
     color: globalStyles.white.color,
+    textDecorationLine: "underline",
     fontSize: 25,
   },
 
