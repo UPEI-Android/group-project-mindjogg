@@ -9,6 +9,10 @@ import {
 } from "react-native";
 import { globalStyles } from "../../styles/global";
 import { useState, useEffect } from "react";
+import axios from "axios";
+import StdCard from "../../components/StdCard/StdCard";
+
+let count = 0;
 
 const askHelp = () => {
   Alert.alert("Calling 911 ...");
@@ -23,6 +27,7 @@ const EmergencySupportMainScreen = ({ navigation }) => {
   const retrieveServices = async () => {
     try {
       //Change the IP address to your Local Address
+
       var service = await axios.get("http://192.168.2.35:8080/emergency/list", {
         headers: {
           "Content-Type": "application/json",
