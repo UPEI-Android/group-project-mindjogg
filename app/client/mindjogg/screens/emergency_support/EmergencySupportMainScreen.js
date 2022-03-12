@@ -1,5 +1,14 @@
 import React from "react";
-import { Text, View, Button } from "react-native";
+import { Text, View, axios, Alert } from "react-native";
+import { useState } from "react";
+import { useEffect } from "react";
+import {
+  ScrollView,
+  Dimensions,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
+import StdCard from "../../components/StdCard/StdCard";
 import { globalStyles } from "../../styles/global";
 
 var count = 0;
@@ -19,7 +28,7 @@ const EmergencySupportMainScreen = ({ navigation }) => {
     try {
       //Change the IP address to your Local Address
       var service = await axios.get(
-        `http://` + IP_ADDRESS + `/emergency/list`,
+        "http://" + IP_ADDRESS + "/emergency/list",
         {
           headers: {
             "Content-Type": "application/json",

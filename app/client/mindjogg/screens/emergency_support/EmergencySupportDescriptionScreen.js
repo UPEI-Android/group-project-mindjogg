@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, StyleSheet, Dimensions, Text, View } from "react-native";
 import { globalStyles } from "../../styles/global";
 
-const EmergencySupportDescriptionScreen = ({ route /**navigation */ }) => {
+const EmergencySupportDescriptionScreen = ({ route }) => {
   return (
     <View
       style={[
@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
   },
 
   detailContainer: {
-    marginTop: 20,
     marginTop: 20,
     justifyContent: "center",
     alignItems: "center",
