@@ -256,9 +256,13 @@ const SignUpScreen = ({ navigation }) => {
                       ) : null}
 
 
-                      <Text>{responseStatus == 400 ? "That username or email is already in use!" : ""}</Text>
+                      <Text
+                        style={styles.text_header}
+                      >{responseStatus == 400 ? "That username or email is already in use!" : ""}</Text>
 
-                      <Text>{responseStatus == 500 ? "Your account could not be created! Please make sure you've entered your information accurately" : ""}</Text>
+                      <Text
+                        style={styles.text_header}
+                      >{responseStatus == 500 ? "Your account could not be created! Please make sure you've entered your information accurately" : ""}</Text>
 
                       <View style={styles.button}>
                         <StdButton text="Sign Up" buttonPress={handleSubmit} />
