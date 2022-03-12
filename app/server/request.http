@@ -13,15 +13,24 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-"UserName": "admin",
+"UserName": "roshan",
 "Password": "admin",
 "FirstName":"admin",
 "LastName":"admin",
-"admin":true,
+"admin":false,
 "Email":"admin@admin.com"
 }
 
+###
 
+//post request to login with username and password in json
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+"UserName": "roshan",
+"Password": "admin"
+}
 
 ###
 
@@ -75,6 +84,7 @@ auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJi
 Content-Type: application/json
 
 {
+
 "name": "dummyEmergency",
 "type": "dummyEmergency",
 "phone":"1-800-218-2f885",
@@ -87,3 +97,30 @@ Content-Type: application/json
 ###
 //get request to access list of emergencies
 GET http://localhost:8080/emergency/list
+
+
+### 
+//update personal information edit profile
+PATCH http://localhost:8080/users/edit/personalinfo
+Content-Type: application/json
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjBiMDcxMzA0ZjllNTRjY2VhZDA5ZGEiLCJpYXQiOjE2NDUwMjgwMjR9.YXFVjaF_1WMCTNmZVtRMIskS8BiAq__pKA8G6ais6-g
+
+{
+"userFirstName": "Roshan",
+"userMiddleName": "Jyanesh",
+"userLastName": "seeam",
+"userDOB": "1999-09-23"
+}
+
+
+### 
+//update personal information edit profile
+PATCH http://localhost:8080/users/edit/contactinfo
+Content-Type: application/json
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjBiMDcxMzA0ZjllNTRjY2VhZDA5ZGEiLCJpYXQiOjE2NDUwMjgwMjR9.YXFVjaF_1WMCTNmZVtRMIskS8BiAq__pKA8G6ais6-g
+
+{
+"userEmail": "Roshan334351@gmail.com",
+"userPhone": "902-452-5255"
+}
+
