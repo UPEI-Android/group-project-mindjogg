@@ -76,7 +76,7 @@ const EmergencySupportMainScreen = () =>
               Emergency Support Needed?
             </Text>
             <Text style={styles.footerTitleText}>
-              Here are the available supports near you!
+              Available Supports Near You!
             </Text>
           </View>
 
