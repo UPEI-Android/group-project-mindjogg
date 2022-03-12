@@ -1,7 +1,6 @@
 import React from "react";
-import { Text, View, axios, Alert } from "react-native";
-import { useState } from "react";
-import { useEffect } from "react";
+import { Text, View, Alert } from "react-native";
+import { useState, useEffect } from "react";
 import {
   ScrollView,
   Dimensions,
@@ -10,6 +9,7 @@ import {
 } from "react-native";
 import StdCard from "../../components/StdCard/StdCard";
 import { globalStyles } from "../../styles/global";
+import axios from "axios";
 
 var count = 0;
 const IP_ADDRESS = "192.168.2.35:8080";
@@ -42,7 +42,7 @@ const EmergencySupportMainScreen = ({ navigation }) => {
     }
 
     const servicesList = service.data;
-    console.log(servicesList);
+    //console.log(servicesList);
     return servicesList;
   };
 
