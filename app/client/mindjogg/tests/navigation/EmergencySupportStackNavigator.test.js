@@ -1,6 +1,6 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { render, fireEvent } from "@testing-library/react-native";
+import { render } from "@testing-library/react-native";
 
 // import the component that we want to test
 import EmergencySupportStackNavigator from "../../screens/navigation/EmergencySupportStackNavigator";
