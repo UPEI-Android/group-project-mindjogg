@@ -59,12 +59,7 @@ const SignInScreen = ({ navigation }) => {
   const signInhandler = (userName, password) => {
     signIn(userName, password).then((status) => {
       if (status !== 200) {
-        // first, set accountFound to false to display error message
         setAccountFound(false);
-        // after x seconds, set it to true to hide the error message
-        setTimeout(() => {
-          setAccountFound(true);
-        }, 1000);
       }
     });
   };
@@ -126,7 +121,7 @@ const SignInScreen = ({ navigation }) => {
                           value={email}
                           style={styles.textInput}
                           autoCapitalize="none"
-                          onChangeText={handleChange("email")}
+                          onChangeText={() => {handleChange("email"); setAccountFound(true)}}
                           onFocus={() => setFieldTouched("email")}
                         />
                       </View>
@@ -151,7 +146,7 @@ const SignInScreen = ({ navigation }) => {
                             }
                             style={styles.textInput}
                             autoCapitalize="none"
-                            onChangeText={handleChange("password")}
+                            onChangeText={() => {handleChange("password"); setAccountFound(true)}}
                             onFocus={() => setFieldTouched("password")}
                           />
                           <TouchableOpacity onPress={updateSecureTextEntry}>
