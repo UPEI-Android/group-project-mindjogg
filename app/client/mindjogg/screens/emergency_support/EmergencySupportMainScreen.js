@@ -1,97 +1,125 @@
-import React from "react";
-import { 
-  Text, 
-  View, 
-  StyleSheet, 
-  TouchableOpacity, 
+import React, { useEffect, useState } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
   Dimensions,
   ScrollView,
   Alert,
- } from "react-native";
+} from "react-native";
+import axios from "axios";
 import { globalStyles } from "../../styles/global";
+import StdCard from "../../components/StdCard/StdCard";
 
-const askHelp = async () => {
-  await Alert.alert("Calling 911 ...");
+var count = 0;
+
+const askHelp = () => {
+  Alert.alert("Calling 911 ...");
 };
 
-// until navigation is set up in this component, we have to ignore the 'no-unused-vars' error that the navigation prop will cause
-// eslint-disable-next-line
-const EmergencySupportMainScreen = ({navigation}) => {
-  return (
-    <View style={styles.container}>
-      
-      <View style={styles.sosButton}>
-          <Text style={styles.headerTitleText}>
-            Immediate Help Needed?
-          </Text>
-            <TouchableOpacity
-              style={styles.circle}
-              onPress={() => {askHelp()}}
-            >
-              <Text style={styles.sosButtonText}> Call 911 </Text>
-            </TouchableOpacity>
-      </View>
+const EmergencySupportMainScreen = () =>
+  // {
+  //   /*navigation*/
+  // }
+  {
+    const [emergList, setEmergList] = useState([]);
 
-      <View>
-        <View style={styles.footerTitle}>
-          <Text style={styles.footerTitleText}>Available Supports Near You</Text>
+    /**
+     * Gets a List of Emergency Services
+     */
+    const retrieveServices = async () => {
+      try {
+        //Change the IP address to your Local Address
+        var service = await axios.get(
+          "http://192.168.2.35:8080/emergency/list",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token":
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
+            },
+          }
+        );
+      } catch (err) {
+        console.log(err);
+      }
+
+      const servicesList = service.data;
+      //console.log(servicesList);
+      return servicesList;
+    };
+
+    useEffect(() => {
+      retrieveServices().then((res) => {
+        setEmergList(res);
+      });
+    }, []);
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.sosButton}>
+          <Text style={styles.headerTitleText}>Immediate Help Needed?</Text>
+          <TouchableOpacity
+            style={styles.circle}
+            onPress={() => {
+              askHelp();
+            }}
+          >
+            <Text style={styles.sosButtonText}> Call 911 </Text>
+          </TouchableOpacity>
         </View>
-        <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        >
-          <View style={styles.supportContainer}>
-            <View style={{alignItems:"center", justifyContent: "center"}}>
-            <Text>
-              Hello
-            </Text> 
-            </View> 
+
+        <View>
+          <View style={styles.footerTitle}>
+            <Text style={styles.footerTitleText}>
+              Emergency Support Needed?
+            </Text>
+            <Text style={styles.footerTitleText}>
+              Available Supports Near You!
+            </Text>
+            <Text style={styles.footerTitleText}>
+              Find More Support
+            </Text>
+            <Text style={styles.footerTitleText}>
+              Learn More
+            </Text>
           </View>
-          <View style={styles.supportContainer}>
-            <View style={{alignItems:"center", justifyContent: "center"}}>
-            <Text>
-              Hello
-            </Text> 
-            </View> 
-          </View>
-          <View style={styles.supportContainer}>
-            <View style={{alignItems:"center", justifyContent: "center"}}>
-            <Text>
-              Hello
-            </Text> 
-            </View> 
-          </View>
-          <View style={styles.supportContainer}>
-            <View style={{alignItems:"center", justifyContent: "center"}}>
-            <Text>
-              Hello
-            </Text> 
-            </View> 
-          </View>
-          <View style={styles.supportContainer}>
-            <View style={{alignItems:"center", justifyContent: "center"}}>
-            <Text>
-              Hello
-            </Text> 
-            </View> 
-          </View>
-          <View style={styles.supportContainer}>
-            <View style={{alignItems:"center", justifyContent: "center"}}>
-            <Text>
-              Hello
-            </Text> 
-            </View> 
-          </View>
-        </ScrollView>
+
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
+            {/*Display the parsed information on cards*/}
+            {emergList.map((emergencyItem) => {
+              count++;
+              return (
+                <View key={count} style={styles.supportContainer}>
+                  <View
+                    key={emergencyItem.id}
+                    style={{ alignItems: "center", justifyContent: "center" }}
+                  >
+                    <StdCard
+                      title={emergencyItem.name}
+                      description={emergencyItem.description}
+                      elevation={20}
+                      width={250}
+                      height={215}
+                      buttonPress={() => {
+                        console.log("I do nothing yet");
+                      }}
+                    ></StdCard>
+                  </View>
+                </View>
+              );
+            })}
+          </ScrollView>
+        </View>
       </View>
-    </View>
-  );
-}
+    );
+  };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: globalStyles.pinkBackground.backgroundColor, 
+    backgroundColor: globalStyles.pinkBackground.backgroundColor,
   },
   circle: {
     width: 200,
@@ -129,13 +157,12 @@ const styles = StyleSheet.create({
   supportContainer: {
     flex: 1,
     flexDirection: "row",
-    marginTop: Dimensions.get("window").height * 0.05,
-    backgroundColor: globalStyles.purple.color,
-    height: Dimensions.get("window").height * 0.2,
-    width: Dimensions.get("window").width * 0.4,
+    marginTop: Dimensions.get("window").height * 0.01,
+    //backgroundColor: globalStyles.purple.color,
+    height: Dimensions.get("window").height * 0.3,
+    width: Dimensions.get("window").width * 0.7,
     margin: 5,
-  }
-  
+  },
 });
 
 export default EmergencySupportMainScreen;
