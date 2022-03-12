@@ -143,6 +143,7 @@ function App() {
         )}
       </NavigationContainer>
     </AuthContext.Provider>
+
   );
 }
 
