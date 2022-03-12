@@ -2,11 +2,11 @@
 
 Emergency suppport feature documentation:
 
-- [ ] User clicks Emergency support button
-- [ ] User clicks on emergency support option
-- [ ] App fetches emergency support lists and populates app with results
-- [ ] User selects emergency support card
-- [ ] App navigates to new page specific for emergency support
+- User clicks Emergency support button
+- User clicks on emergency support option
+- App fetches emergency support lists and populates app with results
+- User selects emergency support card
+- App navigates to new page specific for emergency support
 
 # How does this work behind the scenes?
 

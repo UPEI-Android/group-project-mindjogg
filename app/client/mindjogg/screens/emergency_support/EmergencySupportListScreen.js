@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View, Button } from "react-native";
 import { globalStyles } from "../../styles/global";
 
-const EmergencySupportListScreen = ({navigation}) => {
+const EmergencySupportListScreen = () => {
   return (
     <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" },globalStyles.pinkBackground]}>
       <Text>
@@ -12,7 +12,6 @@ const EmergencySupportListScreen = ({navigation}) => {
       {/* Learn more button for each support */}
       <Button
         title="Learn More"
-        onPress={() => navigation.push("EmergencySupportDescriptionScreen")} 
       />
     </View>
   );

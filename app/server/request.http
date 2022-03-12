@@ -13,15 +13,24 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-"UserName": "admin",
+"UserName": "roshan",
 "Password": "admin",
 "FirstName":"admin",
 "LastName":"admin",
-"admin":true,
+"admin":false,
 "Email":"admin@admin.com"
 }
 
+###
 
+//post request to login with username and password in json
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+"UserName": "roshan",
+"Password": "admin"
+}
 
 ###
 
@@ -75,6 +84,7 @@ auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJi
 Content-Type: application/json
 
 {
+
 "name": "dummyEmergency",
 "type": "dummyEmergency",
 "phone":"1-800-218-2f885",

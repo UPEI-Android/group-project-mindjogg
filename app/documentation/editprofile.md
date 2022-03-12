@@ -2,26 +2,26 @@
 
 Edit profile feature documentation:
 
-- [ ] User clicks on Hamburger menu
-- [ ] User clicks on edit profile button
-- [ ] App navigates to new page 3 buttons : personal info, contact info, password
-- [ ] User selects personal info
-    - [ ] App navigates to new page specific for personal info with a form for input
-    - [ ] App populates form with existing user data
-    - [ ] User changes First Name
-    - [ ] User changes Middle Name
-    - [ ] User changes Last Name
-    - [ ] User changes Date of Birth
-    - [ ] User clicks save
-    - [ ] save button triggers patch request to backend
+-  User clicks on Hamburger menu
+-  User clicks on edit profile button
+- App navigates to new page 3 buttons : personal info, contact info, password
+- User selects personal info
+    - App navigates to new page specific for personal info with a form for input
+    - App populates form with existing user data
+    - User changes First Name
+    - User changes Middle Name
+    - User changes Last Name
+    - User changes Date of Birth
+    - User clicks save
+    - save button triggers patch request to backend
 
-- [ ] User selects contact info
-    - [ ] App navigates to new page specific for personal info with a form for input
-    - [ ] App populates form with existing user data
-    - [ ] User changes Email
-    - [ ] User changes Phone
-    - [ ] User clicks save
-    - [ ] save button triggers patch request to backend
+- User selects contact info
+    - App navigates to new page specific for personal info with a form for input
+    - App populates form with existing user data
+    - User changes Email
+    - User changes Phone
+    - User clicks save
+    - save button triggers patch request to backend
 
 
 

@@ -367,7 +367,8 @@ const updatePersonalInfo = async (user) => {
         }
         else{
         returnMessage.message = "User not found";
-        returnMessage.status = 400;        }
+        returnMessage.status = 400; 
+     }
    return returnMessage;
 } catch (err) {
     console.log(err);
