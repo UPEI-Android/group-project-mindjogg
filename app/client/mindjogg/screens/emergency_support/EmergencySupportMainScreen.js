@@ -97,7 +97,10 @@ const EmergencySupportMainScreen = () =>
                       width={250}
                       height={215}
                       buttonPress={() => {
-                        console.log("I do nothing yet");
+                        navigation.navigate(
+                          "EmergencySupportDescriptionScreen",
+                          emergencyItem
+                        );
                       }}
                     ></StdCard>
                   </View>
