@@ -17,47 +17,8 @@ const userSchema = new mongoose.Schema({
   userTasks: [String],
   userJournal: String,
 
-  userMood: {
-    Happy: {
-      status: Boolean,
-      percentage: Number,
-    },
-
-    Sad: {
-      status: Boolean,
-      percentage: Number,
-    },
-
-    Stressed: {
-      status: Boolean,
-      percentage: Number,
-    },
-
-    Angry: {
-      status: Boolean,
-      percentage: Number,
-    },
-
-    Anxious: {
-      status: Boolean,
-      percentage: Number,
-    },
-
-    Bored: {
-      status: Boolean,
-      percentage: Number,
-    },
-
-    Hopeful: {
-      status: Boolean,
-      percentage: Number,
-    },
-
-    Depressed: {
-      status: Boolean,
-      percentage: Number,
-    },
-  },
+  userMood: []
+  ,
 });
 
 const User = mongoose.model("User",userSchema)
