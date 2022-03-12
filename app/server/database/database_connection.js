@@ -7,7 +7,7 @@ function connect () {
     database_link,
      { useNewUrlParser: true, useUnifiedTopology: true },
      (err) => {
-       if (!err) console.log("");
+       if (!err) console.log("Connected to Database");
        else console.log(err);
      }
    );}
