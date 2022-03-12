@@ -121,7 +121,7 @@ const SignInScreen = ({ navigation }) => {
                           value={email}
                           style={styles.textInput}
                           autoCapitalize="none"
-                          onChangeText={() => {handleChange("email"); setAccountFound(true)}}
+                          onChangeText={handleChange("email")}
                           onFocus={() => setFieldTouched("email")}
                         />
                       </View>
@@ -146,7 +146,7 @@ const SignInScreen = ({ navigation }) => {
                             }
                             style={styles.textInput}
                             autoCapitalize="none"
-                            onChangeText={() => {handleChange("password"); setAccountFound(true)}}
+                            onChangeText={handleChange("password")}
                             onFocus={() => setFieldTouched("password")}
                           />
                           <TouchableOpacity onPress={updateSecureTextEntry}>
@@ -172,7 +172,7 @@ const SignInScreen = ({ navigation }) => {
                         </Text>
                       ) : null}
 
-                        <Text style={styles.text_header}>{accountFound ? "" : "Username or password is incorrect"}</Text>
+                      <Text style={styles.text_header}>{accountFound || (touched.email || touched.password) ? "" : "Username or password is incorrect"}</Text>
 
                       <View style={styles.button}>
                         <StdButton text="Sign In" buttonPress={handleSubmit} />
@@ -191,7 +191,9 @@ const SignInScreen = ({ navigation }) => {
                         </TouchableOpacity>
                         <Text style={styles.text_footer}>Not a Member?</Text>
                         <TouchableOpacity
-                          onPress={() => navigation.push("SignUpScreen")}
+                          onPress={() => 
+                            navigation.push("SignUpScreen")
+                          }
                         >
                           <Text style={styles.text_hightlight}>Sign up</Text>
                         </TouchableOpacity>
