@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Text,
   View,
   StyleSheet,
-  TouchableOpacity,
   Dimensions,
+  TouchableOpacity,
   ScrollView,
-  Alert,
 } from "react-native";
-import axios from "axios";
 import { globalStyles } from "../../styles/global";
-import StdCard from "../../components/StdCard/StdCard";
-
-var count = 0;
+import { useState, useEffect } from "react";
 
 const askHelp = () => {
   Alert.alert("Calling 911 ...");

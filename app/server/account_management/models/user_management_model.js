@@ -58,7 +58,7 @@ const createUser = async (user) => {
             userGoals: null,
             userTasks: null,
             userJournal: null,
-            userMood:null
+            userMood:[]
         });
 
         // returnMessage will be used to return the status of the creation of the user
