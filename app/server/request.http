@@ -46,12 +46,12 @@ Content-Type: application/json
 ###
 
 //post request to login with username and password in json
-POST http://192.168.2.35:8080/users/login
+POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-"UserName": "DammyTheSLayer",
-"Password": "password6266"
+"UserName": "admin",
+"Password": "admin"
 }
 
 

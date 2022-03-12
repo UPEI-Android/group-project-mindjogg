@@ -1,16 +1,6 @@
-import React, { useEffect, useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  ScrollView,
-  Alert,
-} from "react-native";
-import axios from "axios";
+import React from "react";
+import { Text, View, Button } from "react-native";
 import { globalStyles } from "../../styles/global";
-import StdCard from "../../components/StdCard/StdCard";
 
 var count = 0;
 const IP_ADDRESS = "192.168.2.35:8080";
