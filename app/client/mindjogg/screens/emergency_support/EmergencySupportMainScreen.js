@@ -13,6 +13,7 @@ import { globalStyles } from "../../styles/global";
 import StdCard from "../../components/StdCard/StdCard";
 
 var count = 0;
+const IP_ADDRESS = "192.168.2.35:8080";
 
 const askHelp = () => {
   Alert.alert("Calling 911 ...");
@@ -27,13 +28,16 @@ const EmergencySupportMainScreen = ({ navigation }) => {
   const retrieveServices = async () => {
     try {
       //Change the IP address to your Local Address
-      var service = await axios.get("http://192.168.2.35:8080/emergency/list", {
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
-        },
-      });
+      var service = await axios.get(
+        `http://` + IP_ADDRESS + `/emergency/list`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token":
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
+          },
+        }
+      );
     } catch (err) {
       console.log(err);
     }
