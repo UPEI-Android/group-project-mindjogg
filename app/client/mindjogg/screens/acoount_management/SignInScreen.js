@@ -59,7 +59,12 @@ const SignInScreen = ({ navigation }) => {
   const signInhandler = (userName, password) => {
     signIn(userName, password).then((status) => {
       if (status !== 200) {
+        // first, set accountFound to false to display error message
         setAccountFound(false);
+        // after x seconds, set it to true to hide the error message
+        setTimeout(() => {
+          setAccountFound(true);
+        }, 1000);
       }
     });
   };
