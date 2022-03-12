@@ -10,7 +10,7 @@ const EmergencySupportMainScreen = ({navigation}) => {
       </Text>
       <Button
         title="Find More Support"
-        onPress={() => navigation.push("EmergencySupportListScreen")} 
+        onPress={() => { navigation.push("EmergencySupportListScreen") }} 
       />
     </View>
   );
