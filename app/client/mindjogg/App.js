@@ -1,8 +1,9 @@
 import "react-native-gesture-handler";
-import { React, useEffect, useMemo, useReducer } from "react";
-import { View, ActivityIndicator } from "react-native";
+import { React, useEffect, useState, useMemo, useReducer } from "react";
+import { View, ActivityIndicator,Text } from "react-native";
 //import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
+import * as Linking from "expo-linking";
 
 import DrawerNavigator from "./screens/navigation/DrawerNavigator";
 
@@ -13,7 +14,23 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "./components/conext/authenticationContext";
 import axios from "axios";
 
+
 function App() {
+
+  const [data,setData]= useState(null);
+
+  function handleDeepLink(event){
+    const data= Linking.parse(event.url);
+    setData(data);
+  }
+
+  useEffect(() =>{
+    Linking.addEventListener("url",handleDeepLink);
+    return(()=>{
+      Linking.removeEventListener("url");
+    })
+  },[]);
+
   // The initial state
   const initialLoginState = {
     isLoading: true,
@@ -167,7 +184,8 @@ function App() {
   if (loginState.isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color="#683795" />
+        <Text>{data? JSON.stringify(data):"App not opened from Deep link"}</Text>
+        <ActivityIndicator size="large" color="#683795" />  
       </View>
     );
   }

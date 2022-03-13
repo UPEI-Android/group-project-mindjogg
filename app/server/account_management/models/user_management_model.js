@@ -4,7 +4,7 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 var hbs = require("nodemailer-express-handlebars");
 
-const { gmail_password, gmail_user, jwtSecret,jwtSecretAdmin, port} = require("../../config/server_config");
+const { gmail_password, gmail_user, jwtSecret,jwtSecretAdmin,host, port} = require("../../config/server_config");
 const jwt = require("jsonwebtoken");
 
 //user database
@@ -87,7 +87,7 @@ const createUser = async (user) => {
             const secret= jwtSecret+user.userName;
             const token = jwt.sign(user.userName,secret);
             const user_id=user.userName ;
-            const link = `http://localhost:${port}/users/verify/${user_id}/${token}`
+            const link = `http://${host}:${port}/users/verify/${user_id}/${token}`
 
              
             //Creates an Option that stores receiver email +content of verification email
@@ -261,7 +261,7 @@ const forgotPassword = async (user) => {
             const secret= jwtSecret+result.userPassword;
             const token = jwt.sign(user,secret,{expiresIn: "15m"});
             const user_id=result._id.valueOf() ;
-            const link = `http://localhost:3000/${port}/resetPassword/${user_id}/${token}`
+            const link = `http://${host}:${port}/${port}/resetPassword/${user_id}/${token}`
 
 
 
