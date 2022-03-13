@@ -69,7 +69,7 @@ const SignUpScreen = ({ navigation }) => {
     signUp(firstName, lastName, userName, email, password).then((status) => {
       console.log("STATUS" + status)
       if (status == 201) {
-        setResponseStatus(201);
+        setResponseStatus(status);
         navigation.navigate(SignInScreen);
       } else {
         setResponseStatus(status);
@@ -255,6 +255,9 @@ const SignUpScreen = ({ navigation }) => {
                         </Text>
                       ) : null}
 
+                      <Text
+                        style={styles.text_header}
+                      >{responseStatus == 201 ? "A verification email has been sent" : ""}</Text>
 
                       <Text
                         style={styles.text_header}
