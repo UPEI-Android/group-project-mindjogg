@@ -1,26 +1,41 @@
-//get request to access users
-GET http://localhost:3000/users
+//get request to access users, must be logged in as admin
+GET http://localhost:8080/users
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDU5ODE3Njh9.SVkathHw-8qyit6SR739JqwTZst1HqpabYRM9SB2cqA
+###
 
+//get request to access user info, must be logged in as user
+GET http://localhost:8080/userInfo
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDU5ODE3Njh9.SVkathHw-8qyit6SR739JqwTZst1HqpabYRM9SB2cqA
 ###
 
 //post request to register new user with username and password in json
-POST http://localhost:3000/users/register
+POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-"UserName": "DammyTheSLayer",
-"Password": "password123",
-"FirstName":"Demilade",
-"LastName":"Adisababa",
-"Email":"tocewo2685@peykesabz.com"
+"UserName": "roshan",
+"Password": "admin",
+"FirstName":"admin",
+"LastName":"admin",
+"admin":false,
+"Email":"admin@admin.com"
 }
-
-
 
 ###
 
 //post request to login with username and password in json
-POST http://localhost:3000/users/login
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+"UserName": "roshan",
+"Password": "admin"
+}
+
+###
+
+//post request to login with username and password in json
+POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
@@ -31,23 +46,23 @@ Content-Type: application/json
 ###
 
 //post request to login with username and password in json
-POST http://localhost:3000/users/login
+POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-"UserName": "Roshan",
-"Password": "password666"
+"UserName": "admin",
+"Password": "admin"
 }
 
 
 ###
 
 //post request to forgetpassword with username or email in json
-POST http://localhost:3000/users/forgetPassword
+POST http://localhost:8080/users/forgetPassword
 Content-Type: application/json
 
 {
-"UserNameorEmail": "DammyTheSLayer"
+"UserNameorEmail": "befiwar458@mannawo.com"
 }
 
 
@@ -58,4 +73,71 @@ Content-Type: application/json
 
 {
 "Password": "password6266"
+}
+
+
+###
+
+//post request to save a new emergency support option to database 
+POST http://localhost:8080/emergency/create
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDU5ODE3Njh9.SVkathHw-8qyit6SR739JqwTZst1HqpabYRM9SB2cqA
+Content-Type: application/json
+
+{
+
+"name": "dummyEmergency",
+"type": "dummyEmergency",
+"phone":"1-800-218-2f885",
+"email": "no email",
+ "address":"no address",
+ "description": "The Island Helpline provides free, confidential emotional support and crisis intervention to Islanders of all ages. Our trained and caring staff and volunteers are here to answer your call any time of the day or night – 7 days a week, 365 days a year.  The Island Helpline plays an important role in our communities. We help callers by providing a listening ear, emotional support, crisis intervention and links to community resources available on PEI.  We do not judge. You cjban express your thoughts and feelings in confidence regardless of whether you are grieving, feeling sad, anxious, overwhelmed, or in crisis. Your well-being is important to us and we are here for you through life’s challenges.  All of our volunteers and staff are trained in Applied Suicide Intervention Skills Training (ASIST). This training allows them to discuss suicide with callers in an open, direct and non-judgmental manner. It also provides us with the skills to identify risk and to work with callers to develop safe plans to guard against that risk."
+}
+
+
+###
+//get request to access list of emergencies
+GET http://localhost:8080/emergency/list
+
+
+###
+
+//post request to register new user with username and password in json
+POST http://localhost:8080/users/register
+Content-Type: application/json
+
+{
+"UserName": "moodtrackerTest",
+"Password": "moodtrackerTest",
+"FirstName":"moodtrackerTest",
+"LastName":"moodtrackerTest",
+"admin":true,
+"Email":"moodtrackerTest@moodtrackerTest.com"
+}
+
+###
+//post request to login with username and password in json
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+"UserName": "moodtrackerTest",
+"Password": "moodtrackerTest"
+}
+
+
+###
+//get request to access user info, must be logged in as user
+GET http://localhost:8080/moodtracker/getMood
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI1OGExMWFkYWMwZTg0ZTJmOWMzNjkiLCJpYXQiOjE2NDY2MjczNDd9.QTmiOD47B0-0ZIMol4Yz5BYf7hTh0t0-cN0GunUdZEs
+
+###
+//post request to login with username and password in json
+POST http://localhost:8080/moodtracker/addmood
+Content-Type: application/json
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI1OGExMWFkYWMwZTg0ZTJmOWMzNjkiLCJpYXQiOjE2NDY2MjczNDd9.QTmiOD47B0-0ZIMol4Yz5BYf7hTh0t0-cN0GunUdZEs
+
+{
+    "timeofDay": "July 23, 2022 01:15:00",
+    "moodName": "happy",
+    "moodNote": "just graduated!"
 }

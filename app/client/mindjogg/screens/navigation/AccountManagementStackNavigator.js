@@ -2,27 +2,40 @@ import React from "react";
 import {View} from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import Icon from "react-native-vector-icons/Ionicons";
+
 // import SignInScreen and SingUpScreen from the account_management folder
-import SignInScreen from "../acoount_management/SignInScreen";
-import SignUpScreen from "../acoount_management/SignUpScreen";
+import ProfileScreen from "../acoount_management/ProfileScreen";
+import EditProfileScreen from "../acoount_management/EditProfileScreen";
+import { globalStyles } from "../../styles/global";
 
 const Stack = createNativeStackNavigator();
 
-const AccountManagementStackNavigator = () => {
+const AccountManagementStackNavigator = ({navigation}) => {
   return (
 
     <View style={{ flex: 1 }} collapsable={false}>
     <Stack.Navigator initialRouteName="SignIn"
     screenOptions={{
-        headerStyle: {
-          backgroundColor: "#9AC4F8",
-        },
+        headerTitleAlign: "center",
+        headerStyle:[ globalStyles.purpleBackground],
         headerTintColor: "white",
         headerBackTitle: "Back",
       }}
     >
-        <Stack.Screen name="SignIn" component={SignInScreen} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="YourProfile" component={ProfileScreen}  options = {
+          {
+            title: "Your Profile",
+            headerLeft: () => (
+              <Icon.Button name="menu" size={25} style={globalStyles.purpleBackground} onPress={() => {navigation.openDrawer()}}></Icon.Button>
+            )
+          }
+        }/>
+        <Stack.Screen name="EditProfile" component={EditProfileScreen} options = {
+          {
+            title: "Edit Profile",
+          }
+        }/>
     </Stack.Navigator>
     </View>
   );

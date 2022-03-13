@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "devStart": "nodemon server.js",
-    "test": "jest",
+    "test": "jest --detectOpenHandles --forceExit",
     "lint": "npx eslint . --ext .js"
   },
   "keywords": [],
@@ -19,12 +19,14 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.7",
-    "nodemailer": "^6.7.2"
+    "nodemailer": "^6.7.2",
+    "nodemailer-express-handlebars": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.28.0",
     "jest": "^27.4.7",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
   }
 }

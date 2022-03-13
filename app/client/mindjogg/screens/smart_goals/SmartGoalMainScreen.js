@@ -1,14 +1,15 @@
 import React from "react";
 import { Text, View, Button } from "react-native";
+import { globalStyles } from "../../styles/global";
 
 const SmartGoalMainScreen = ({navigation}) => {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" },globalStyles.pinkBackground]}>
       <Text>
-        This is the SmartGoalMainScreen.
+        Your Smart Goals 
       </Text>
       <Button
-        title="Go to SMart Goal Edit"
+        title="Edit"
         onPress={() => navigation.push("SmartGoalEditScreen")}
       />
     </View>
