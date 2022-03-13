@@ -1,6 +1,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, Dimensions, Text, View } from "react-native";
 import { globalStyles } from "../../styles/global";
+import propTypes from "prop-types";
 
 const EmergencySupportDescriptionScreen = ({ route }) => {
   return (
