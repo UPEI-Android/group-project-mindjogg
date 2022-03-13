@@ -158,6 +158,42 @@ const getUserList = async (req, res) => {
 };
 
 
+
+/**
+ * This is the controller function for the user reset password.
+ * @param {HTTP object} req this is the request object
+ * @param {*} res this is the response object
+ */
+ const verifyUser = async (req, res) => {
+
+    const userName= req.params.userName;
+    const User_token= req.params.token;
+   
+    console.log(req.params.userName);
+    try {
+        const user = {
+            userName: userName,
+            token: User_token
+        }   
+        const result = await model.verifyUser(user);     
+
+        if (result.status == 200) {
+            //once verified redirect user to app login page
+           // res.redirect("google.com");
+            res.status(200);
+            res.json(result.message);
+        } else if (result.status == 401) {
+            res.status(401);
+            res.json(result.message);
+        }
+        
+    } catch (err) {
+        res.status(500);
+        res.json(err.message);
+    }
+};
+
+
 /**
  * This is the controller function for the edit profile personal information view
  * @param {HTTP object} req this is the request object
@@ -225,6 +261,7 @@ module.exports = {
     getUserList,
     getUserInfo,
     userForgetPassword,
+    verifyUser,
     userResetPassword,
     updatePersonalInfo,
     updateContactInfo

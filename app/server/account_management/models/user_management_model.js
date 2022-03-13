@@ -4,7 +4,7 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 var hbs = require("nodemailer-express-handlebars");
 
-const { gmail_password, gmail_user, jwtSecret,jwtSecretAdmin} = require("../../config/server_config");
+const { gmail_password, gmail_user, jwtSecret,jwtSecretAdmin, port} = require("../../config/server_config");
 const jwt = require("jsonwebtoken");
 
 //user database
@@ -54,6 +54,7 @@ const createUser = async (user) => {
             userEmail: user.userEmail,
             userDOB: null,
             admin: user.admin,
+            userVerified:false,
             userPhone: null,
             userGoals: null,
             userTasks: null,
@@ -83,6 +84,11 @@ const createUser = async (user) => {
             newUser.save();
             returnMessage.status = 201;
             returnMessage.message = "User successfully created";
+            const secret= jwtSecret+user.userName;
+            const token = jwt.sign(user.userName,secret);
+            const user_id=user.userName ;
+            const link = `http://localhost:${port}/users/verify/${user_id}/${token}`
+
              
             //Creates an Option that stores receiver email +content of verification email
             const mailOptions = { 
@@ -92,7 +98,7 @@ const createUser = async (user) => {
                 template: "verificationEmail",
                 context: {
                     title: user.userFirstName,
-                    verification_link: "google.com"
+                    verification_link: link
                   }
             };
 
@@ -255,7 +261,7 @@ const forgotPassword = async (user) => {
             const secret= jwtSecret+result.userPassword;
             const token = jwt.sign(user,secret,{expiresIn: "15m"});
             const user_id=result._id.valueOf() ;
-            const link = `http://localhost:3000/users/resetPassword/${user_id}/${token}`
+            const link = `http://localhost:3000/${port}/resetPassword/${user_id}/${token}`
 
 
 
@@ -339,6 +345,57 @@ const resetPassword = async (user) => {
     }
 };
 
+
+
+/**
+ *  Verifies user
+*/
+const verifyUser = async (user) => {
+    // returnMessage will be used to return the status of the creation of the user
+    const returnMessage = {
+        status: null,
+        message: null
+    };
+
+        //projection is what fields the query should return below
+        const projection = {
+            "_id":1,
+            "userName": 1,
+            "userPassword": 1,
+            "admin": 1,
+            "userVerified": 1
+           }
+
+    try { 
+         //finding user that matches username entered by passing query for username
+         const result= await User.findOne({userName:user.userName},projection)
+        if(result){
+            const secret = jwtSecret+result.userName;
+            try{
+                //checking if token is valid or not
+                jwt.verify(user.token,secret);
+                console.log("user verified");
+                //updating password in database
+                await User.findByIdAndUpdate(result._id, { userVerified: true });
+                returnMessage.message = "You are verified, Please log in to app";
+                returnMessage.status = 200;
+            }
+            catch(error){
+                console.log(error)
+                returnMessage.message = "verification Link expired";
+                returnMessage.status = 400;
+            }
+        }
+        else{
+            returnMessage.message = "User not found";
+            returnMessage.status = 400;        }
+       return returnMessage;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+
 /**
  *  updates personal information of user
 */
@@ -416,5 +473,6 @@ module.exports = {
     forgotPassword,
     resetPassword,
     updatePersonalInfo,
-    updateContactInfo
+    updateContactInfo,
+    verifyUser
  };
