@@ -29,6 +29,9 @@ router.get("/users",verifyAdmin, userManagementController.getUserList);
 router.get("/userInfo",verify, userManagementController.getUserInfo);
 
 
-
+router.get('/hello', function(req, res){
+    res.redirect('http://google.com');
+});
+  
 
 module.exports = router;
