@@ -94,6 +94,6 @@ const styles = StyleSheet.create({
   },
 });
 
-EmergencyDescriptionScreen.propTypes = { routes: propTypes.any };
+EmergencyDescriptionScreen.propTypes = { route: propTypes.any };
 
 export default EmergencySupportDescriptionScreen;
