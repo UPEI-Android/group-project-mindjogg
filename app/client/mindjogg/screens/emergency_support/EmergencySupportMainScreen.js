@@ -70,7 +70,7 @@ const EmergencySupportMainScreen = ({ navigation }) => {
         <View style={styles.footerTitle}>
           <Text style={styles.footerTitleText}>Emergency Support Needed?</Text>
           <Text style={styles.footerTitleText}>
-            Available supports near you!
+            Available Supports Near You!
           </Text>
         </View>
 
