@@ -12,7 +12,7 @@ import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
 var count = 0;
-const IP_ADDRESS = "localhost:8080";
+const IP_ADDRESS = "https://mindjoggtest.herokuapp.com";
 
 const askHelp = () => {
   Alert.alert("Calling 911 ...");
@@ -27,16 +27,13 @@ const EmergencySupportMainScreen = ({ navigation }) => {
   const retrieveServices = async () => {
     try {
       //Change the IP address to your Local Address
-      var service = await axios.get(
-        "http://" + IP_ADDRESS + "/emergency/list",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token":
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
-          },
-        }
-      );
+      var service = await axios.get(IP_ADDRESS + "/emergency/list", {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
+        },
+      });
     } catch (err) {
       console.log(err);
     }
@@ -90,7 +87,7 @@ const EmergencySupportMainScreen = ({ navigation }) => {
                     elevation={20}
                     width={250}
                     height={215}
-                    buttonPress={() => {
+                    cardPress={() => {
                       navigation.navigate(
                         "EmergencySupportDescriptionScreen",
                         emergencyItem
