@@ -1,120 +1,111 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { Text, View, Alert } from "react-native";
+import { useState, useEffect } from "react";
 import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
   ScrollView,
-  Alert,
+  Dimensions,
+  TouchableOpacity,
+  StyleSheet,
 } from "react-native";
-import axios from "axios";
-import { globalStyles } from "../../styles/global";
 import StdCard from "../../components/StdCard/StdCard";
+import { globalStyles } from "../../styles/global";
+import axios from "axios";
 
 var count = 0;
+const IP_ADDRESS = "localhost:8080";
 
 const askHelp = () => {
   Alert.alert("Calling 911 ...");
 };
 
-const EmergencySupportMainScreen = () =>
-  // {
-  //   /*navigation*/
-  // }
-  {
-    const [emergList, setEmergList] = useState([]);
+const EmergencySupportMainScreen = ({ navigation }) => {
+  const [emergList, setEmergList] = useState([]);
 
-    /**
-     * Gets a List of Emergency Services
-     */
-    const retrieveServices = async () => {
-      try {
-        //Change the IP address to your Local Address
-        var service = await axios.get(
-          "http://192.168.2.35:8080/emergency/list",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "auth-token":
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
-            },
-          }
-        );
-      } catch (err) {
-        console.log(err);
-      }
+  /**
+   * Gets a List of Emergency Services
+   */
+  const retrieveServices = async () => {
+    try {
+      //Change the IP address to your Local Address
+      var service = await axios.get(
+        "http://" + IP_ADDRESS + "/emergency/list",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token":
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
 
-      const servicesList = service.data;
-      //console.log(servicesList);
-      return servicesList;
-    };
-
-    useEffect(() => {
-      retrieveServices().then((res) => {
-        setEmergList(res);
-      });
-    }, []);
-
-    return (
-      <View style={styles.container}>
-        <View style={styles.sosButton}>
-          <Text style={styles.headerTitleText}>Immediate Help Needed?</Text>
-          <TouchableOpacity
-            style={styles.circle}
-            onPress={() => {
-              askHelp();
-            }}
-          >
-            <Text style={styles.sosButtonText}> Call 911 </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View>
-          <View style={styles.footerTitle}>
-            <Text style={styles.footerTitleText}>
-              Emergency Support Needed?
-            </Text>
-            <Text style={styles.footerTitleText}>
-              Available Supports Near You!
-            </Text>
-            <Text style={styles.footerTitleText}>
-              Find More Support
-            </Text>
-            <Text style={styles.footerTitleText}>
-              Learn More
-            </Text>
-          </View>
-
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
-            {/*Display the parsed information on cards*/}
-            {emergList.map((emergencyItem) => {
-              count++;
-              return (
-                <View key={count} style={styles.supportContainer}>
-                  <View
-                    key={emergencyItem.id}
-                    style={{ alignItems: "center", justifyContent: "center" }}
-                  >
-                    <StdCard
-                      title={emergencyItem.name}
-                      description={emergencyItem.description}
-                      elevation={20}
-                      width={250}
-                      height={215}
-                      buttonPress={() => {
-                        console.log("I do nothing yet");
-                      }}
-                    ></StdCard>
-                  </View>
-                </View>
-              );
-            })}
-          </ScrollView>
-        </View>
-      </View>
-    );
+    const servicesList = service.data;
+    //console.log(servicesList);
+    return servicesList;
   };
+
+  useEffect(() => {
+    retrieveServices().then((res) => {
+      setEmergList(res);
+    });
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.sosButton}>
+        <Text style={styles.headerTitleText}>Immediate Help Needed?</Text>
+        <TouchableOpacity
+          style={styles.circle}
+          onPress={() => {
+            askHelp();
+          }}
+        >
+          <Text style={styles.sosButtonText}> Call 911 </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View>
+        <View style={styles.footerTitle}>
+          <Text style={styles.footerTitleText}>Emergency Support Needed?</Text>
+          <Text style={styles.footerTitleText}>
+            Available supports near you!
+          </Text>
+        </View>
+
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
+          {/*Display the parsed information on cards*/}
+          {emergList.map((emergencyItem) => {
+            count++;
+            return (
+              <View key={count} style={styles.supportContainer}>
+                <View
+                  key={emergencyItem.id}
+                  style={{ alignItems: "center", justifyContent: "center" }}
+                >
+                  <StdCard
+                    title={emergencyItem.name}
+                    description={emergencyItem.description}
+                    elevation={20}
+                    width={250}
+                    height={215}
+                    buttonPress={() => {
+                      navigation.navigate(
+                        "EmergencySupportDescriptionScreen",
+                        emergencyItem
+                      );
+                    }}
+                  ></StdCard>
+                </View>
+              </View>
+            );
+          })}
+        </ScrollView>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
