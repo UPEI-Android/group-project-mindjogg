@@ -1,5 +1,5 @@
 import React from "react";
-import {View} from "react-native";
+import { View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Icon from "react-native-vector-icons/Ionicons";
@@ -12,39 +12,52 @@ import { globalStyles } from "../../styles/global";
 
 const Stack = createNativeStackNavigator();
 
-const EmergencySupportStackNavigator = ({navigation}) => {
+const EmergencySupportStackNavigator = ({ navigation }) => {
   return (
-
     <View style={{ flex: 1 }} collapsable={false}>
-    <Stack.Navigator initialRouteName="EmergencySupportMainScreen"
-    screenOptions={{
-        headerTitleAlign: "center",
-        headerStyle:[ globalStyles.purpleBackground],
-        headerTintColor: "white",
-        headerBackTitle: "Back",
-      }}
-    >
-        <Stack.Screen name="EmergencySupportMainScreen" component={EmergencySupportMainScreen} options = {
-          {
+      <Stack.Navigator
+        initialRouteName="EmergencySupportMainScreen"
+        screenOptions={{
+          headerTitleAlign: "center",
+          headerStyle: [globalStyles.purpleBackground],
+          headerTintColor: "white",
+          headerBackTitle: "Back",
+        }}
+      >
+        <Stack.Screen
+          name="EmergencySupportMainScreen"
+          component={EmergencySupportMainScreen}
+          options={{
             title: "Emergency Support",
             headerLeft: () => (
-              <Icon.Button name="menu" size={25} style={globalStyles.purpleBackground} onPress={() => {navigation.openDrawer()}}></Icon.Button>
-            )
-          }
-        }/>
-        <Stack.Screen name="EmergencySupportListScreen" component={EmergencySupportListScreen} options = {
-          {
+              <Icon.Button
+                name="menu"
+                size={25}
+                style={globalStyles.purpleBackground}
+                onPress={() => {
+                  navigation.openDrawer();
+                }}
+              ></Icon.Button>
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="EmergencySupportListScreen"
+          component={EmergencySupportListScreen}
+          options={{
             title: "Emergency Support List",
-          }
-        }/>
-        <Stack.Screen name="EmergencySupportDescriptionScreen" component={EmergencySupportDescriptionScreen} options = {
-          {
-            title: "Emergency Support Description",
-          }
-        } />
-    </Stack.Navigator>
+          }}
+        />
+        <Stack.Screen
+          name="EmergencySupportDescriptionScreen"
+          component={EmergencySupportDescriptionScreen}
+          options={{
+            title: "Service Details",
+          }}
+        />
+      </Stack.Navigator>
     </View>
   );
-}
+};
 
 export default EmergencySupportStackNavigator;
