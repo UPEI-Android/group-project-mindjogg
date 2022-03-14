@@ -2,6 +2,7 @@
   "expo": {
     "name": "mindjogg",
     "slug": "mindjogg",
+    "scheme": "mindjogg",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "",
@@ -27,6 +28,7 @@
     },
     "web": {
       "favicon": ""
-    }
+    },
+    "description": ""
   }
 }

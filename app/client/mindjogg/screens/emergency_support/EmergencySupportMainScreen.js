@@ -12,7 +12,7 @@ import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
 var count = 0;
-const IP_ADDRESS = "192.168.2.35:8080";
+const IP_ADDRESS = "localhost:8080";
 
 const askHelp = () => {
   Alert.alert("Calling 911 ...");

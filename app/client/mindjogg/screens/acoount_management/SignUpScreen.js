@@ -255,9 +255,11 @@ const SignUpScreen = ({ navigation }) => {
                         </Text>
                       ) : null}
 
+
                       <Text
                         style={styles.text_header}
                       >{responseStatus == 201 ? "A verification email has been sent" : ""}</Text>
+
 
                       <Text
                         style={styles.text_header}

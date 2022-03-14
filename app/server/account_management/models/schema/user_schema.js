@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
   userEmail: String,
   userDOB: Date,
   admin: Boolean,
+  userVerified:Boolean,
   userPhone: String,
   userGoals: [String],
   userTasks: [String],
