@@ -1,0 +1,92 @@
+name: Main CI
+
+# Runs when code is pushed to dev, or when code is merged into dev or main
+on:
+  push:
+    branches: [ dev, stage, main ]
+  pull_request:
+    branches: [ dev, stage, main ]
+    
+  # This line allows manual running
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          
+      - name: Install dependencies for Client
+        run: 
+          cd app/client/mindjogg;
+          npm install;
+          
+      - name: Install dependencies for Server
+        run: 
+          cd app/server;
+          npm install;
+
+      - name: Lint Client
+        run: 
+          cd app/client/mindjogg;
+          npm run lint;
+        
+      - name: Lint Server
+        run: 
+          cd app/server;
+          npm run lint;
+
+      - name: Test Client
+        run:
+          cd app/client/mindjogg;
+          npm run test;
+
+      - name: Create env file with encrypted values
+        env:
+            ATLAS_URI: ${{secrets.ATLAS_URI}}
+            GMAIL_USER: ${{secrets.GMAIL_USER}}
+            GMAIL_PASSWORD: ${{secrets.GMAIL_PASSWORD}}
+            JWT_SECRET: ${{secrets.JWT_SECRET}}
+            JWT_ADMIN: ${{secrets.JWT_ADMIN}}
+            ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}
+            REFRESH_TOKEN_SECRET: ${{secrets.REFRESH_TOKEN_SECRET}}
+            PORT: ${{secrets.PORT}}
+            HOST: ${{secrets.HOST}}
+            HOST_URL: ${{secrets.HOST_URL}}
+        run: 
+          cd app/server;
+          touch .env;
+          echo ATLAS_URI=$ATLAS_URI >> .env;
+          echo GMAIL_USER= $GMAIL_USER >> .env;
+          echo GMAIL_PASSWORD= $GMAIL_PASSWORD >> .env;
+          echo JWT_SECRET= $JWT_SECRET >> .env;
+          echo JWT_ADMIN= $JWT_ADMIN >> .env;
+          echo ACCESS_TOKEN_SECRET= $ACCESS_TOKEN_SECRET >> .env;
+          echo PORT= $PORT >> .env;
+          echo HOST= $HOST >> .env;
+          echo REFRESH_TOKEN_SECRET= $REFRESH_TOKEN_SECRET >> .env;
+          echo HOST_URL= $HOST_URL >> .env;
+          
+      - name: Test Server
+        env:
+            ATLAS_URI: ${{secrets.ATLAS_URI}}
+            GMAIL_USER: ${{secrets.GMAIL_USER}}
+            GMAIL_PASSWORD: ${{secrets.GMAIL_PASSWORD}}
+            JWT_SECRET: ${{secrets.JWT_SECRET}}
+            JWT_ADMIN:  ${{secrets.JWT_ADMIN}}
+            ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}
+            REFRESH_TOKEN_SECRET: ${{secrets.REFRESH_TOKEN_SECRET}}
+            PORT: ${{secrets.PORT}}
+            HOST: ${{secrets.HOST}}
+            HOST_URL: ${{secrets.HOST_URL}}
+        run:
+             cd app/server;
+             npm test;
+              
+              
+
+
+
