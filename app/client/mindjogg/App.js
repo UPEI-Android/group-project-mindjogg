@@ -71,7 +71,7 @@ function App() {
 
   // URI for the backend
 
-  const backend = "https://mindjoggtest.herokuapp.com";
+  const backend = "https://mindjoggstage.herokuapp.com";
 
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
   const authContext = useMemo(() => ({
