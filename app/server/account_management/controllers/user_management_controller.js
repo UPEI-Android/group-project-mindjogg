@@ -182,7 +182,7 @@ const getUserList = async (req, res) => {
             //once verified redirect user to app login page
            // res.redirect("google.com");
             res.status(200);
-            res.redirect(`exp://${host}:19000`)
+            res.redirect("exp://exp.host/@mindjogg/mindjogg?release-channel=default")
         } else if (result.status == 401) {
             res.status(401);
             res.json(result.message);
