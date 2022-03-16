@@ -1,5 +1,4 @@
 
-const { host } = require("../../config/server_config");
 const model = require("../models/user_management_model");
 
 
