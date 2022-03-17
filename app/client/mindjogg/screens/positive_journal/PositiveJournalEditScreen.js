@@ -42,7 +42,7 @@ const PositiveJournalEditScreen = ({navigation}) => {
       />
 
       <Picker
-        type={type}
+        selectedValue={type}
         style={{ height: 50, width: 130  }}
         onValueChange={(itemValue) => setJournalType(itemValue)}
       >
@@ -67,7 +67,7 @@ const PositiveJournalEditScreen = ({navigation}) => {
         buttonWidth={125}
         buttonPress={() =>    navigation.push("PositiveJournalMainScreen")}
       />
-
+      
       <View style={{margin:10}}></View>
       <StdButton
         text={"Add Entry"}
