@@ -6,7 +6,7 @@ import  {Picker}  from "@react-native-picker/picker"
 import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
-const backend = "http://192.168.0.116:8080";
+const backend = "http://localhost:8080";
 
 
 
@@ -67,7 +67,7 @@ const PositiveJournalEditScreen = ({navigation}) => {
         buttonWidth={125}
         buttonPress={() =>    navigation.push("PositiveJournalMainScreen")}
       />
-      
+
       <View style={{margin:10}}></View>
       <StdButton
         text={"Add Entry"}
