@@ -12,7 +12,7 @@ import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
 var count = 0;
-const IP_ADDRESS = "https://mindjoggtest.herokuapp.com";
+const IP_ADDRESS = "http://192.168.0.116:8080";
 
 const askHelp = () => {
   Alert.alert("Calling 911 ...");
