@@ -6,10 +6,10 @@ import axios from "axios";
 import StdButton from "../../components/StdButton/StdButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+
+const backend = "http://192.168.0.116:8080";
+
 var count = 0;
-const IP_ADDRESS = "http://192.168.0.116:8080";
-
-
 const PositiveJournalMainScreen = ({ navigation }) => {
 
   const [journalEntries, setJournalEntries] = useState([]);
@@ -21,7 +21,7 @@ const PositiveJournalMainScreen = ({ navigation }) => {
       try {
         const userToken = await AsyncStorage.getItem("userToken");
 
-        const journalEntry = await axios.get(IP_ADDRESS + "/users/getJournalEntries", {
+        const journalEntry = await axios.get(backend + "/users/getJournalEntries", {
           headers: {
             "Content-Type": "application/json",
             "auth-token":
