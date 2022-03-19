@@ -6,6 +6,8 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 // import SignInScreen and SingUpScreen from the account_management folder
 import ProfileScreen from "../acoount_management/ProfileScreen";
+import AddNewScheduleItem from "../acoount_management/AddNewScheduleItem";
+
 import EditProfileScreen from "../acoount_management/EditProfileScreen";
 import { globalStyles } from "../../styles/global";
 
@@ -32,6 +34,12 @@ const AccountManagementStackNavigator = ({navigation}) => {
           }
         }/>
         <Stack.Screen name="EditProfile" component={EditProfileScreen} options = {
+          {
+            title: "Edit Profile",
+          }
+        }/>
+
+        <Stack.Screen name="AddNewScheduleItem" component={AddNewScheduleItem} options = {
           {
             title: "Edit Profile",
           }
