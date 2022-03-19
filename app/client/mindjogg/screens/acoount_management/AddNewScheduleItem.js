@@ -2,8 +2,11 @@ import React,{useState} from "react";
 import { Text,TextInput, View,StyleSheet } from "react-native";
 import { globalStyles } from "../../styles/global";
 import DateTimePicker from "@react-native-community/datetimepicker";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 import StdButton from "../../components/StdButton/StdButton";
+
+const backend = "http://192.168.0.116:8080";
 
 //to add date and time picker for start and end time on line 22
 const AddNewScheduleItem = ({ navigation }) => {
@@ -29,7 +32,7 @@ const AddNewScheduleItem = ({ navigation }) => {
       setMode(currentMode);
     };
     
-    const addNewEntry= ()=>{
+    const addNewEntry= async()=>{
  
     
        const data = JSON.stringify({
@@ -37,9 +40,14 @@ const AddNewScheduleItem = ({ navigation }) => {
           start: date,
           end: endDate,
         });
-        
+
         //will connect to backend and save new schedule data
         console.log(data);
+
+        const userToken = await AsyncStorage.getItem("userToken");
+         await axios.post(backend + "/users/addScheduleEntry", data, {
+          headers: { "Content-Type": "application/json",  "auth-token":userToken},
+        });
       }
 
   

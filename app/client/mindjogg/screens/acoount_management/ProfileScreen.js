@@ -1,9 +1,12 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { Text, View, StyleSheet } from "react-native";
 import StdButton from "../../components/StdButton/StdButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Calendar } from "react-native-big-calendar";
 import  {Picker}  from "@react-native-picker/picker"
+import axios from "axios";
+
+const backend = "http://192.168.0.116:8080";
 
 let userFirstName;
 let userName;
@@ -23,19 +26,34 @@ const ProfileScreen = ({ navigation }) => {
 
   const [type,setDateType]=useState("3days");
 
-  const events = [
-    {
-      title: "Meeting with prof",
-      start: new Date(2022, 2, 18, 10,0),
-      end: new Date(2022, 2, 18, 11,0),
-    },
-    {
-      title: "Workout",
-      start: new Date(2022, 2, 18, 18,0),
-      end: new Date(2022, 2, 18, 19,0),
-    },
-  
-  ];
+  const [events, setEvents] = useState([]);
+
+  /**
+ * Gets a List of Events
+ */
+   const retrieveEvents = async () => {
+    try {
+      const userToken = await AsyncStorage.getItem("userToken");
+
+      const tasks = await axios.get(backend + "/users/getSchedule", {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token":
+          userToken }});
+      return tasks.data.userTasks;
+    } catch (err) {
+      console.log(err);
+    }   }
+   
+
+  useEffect(() => {
+    retrieveEvents().then((event) => {
+      setEvents(event);
+    });
+  }, [events.toString()]);
+
+
+
   setUserValue();
 
   
