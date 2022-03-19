@@ -4,15 +4,14 @@ import { View, ActivityIndicator, Text } from "react-native";
 //import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import * as Linking from "expo-linking";
-
 import DrawerNavigator from "./screens/navigation/DrawerNavigator";
-
 import AuthenticationStackNavigator from "./screens/navigation/AuthenticationStackNavigator";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import { AuthContext } from "./components/conext/authenticationContext";
 import axios from "axios";
+
+ // URI for the backend
+ global.backend="http://192.168.0.116:8080";
 
 function App() {
   const [data, setData] = useState(null);
@@ -69,9 +68,8 @@ function App() {
     }
   };
 
-  // URI for the backend
-
-  const backend = "http://192.168.0.116:8080";
+ 
+   const backend = global.backend;
 
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
   const authContext = useMemo(() => ({

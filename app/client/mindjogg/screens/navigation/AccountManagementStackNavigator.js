@@ -41,7 +41,7 @@ const AccountManagementStackNavigator = ({navigation}) => {
 
         <Stack.Screen name="AddNewScheduleItem" component={AddNewScheduleItem} options = {
           {
-            title: "Edit Profile",
+            title: "Add Event",
           }
         }/>
     </Stack.Navigator>

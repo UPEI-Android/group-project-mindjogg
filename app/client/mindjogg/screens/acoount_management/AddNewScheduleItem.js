@@ -6,7 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import StdButton from "../../components/StdButton/StdButton";
 
-const backend = "http://192.168.0.116:8080";
+const backend = global.backend;
 
 //to add date and time picker for start and end time on line 22
 const AddNewScheduleItem = ({ navigation }) => {
@@ -86,9 +86,11 @@ const AddNewScheduleItem = ({ navigation }) => {
     
   return (
     <View style={[{ flex: 1, justifyContent: "flex-start", alignItems: "center" },globalStyles.pinkBackground]}>
-      <Text style={{fontSize:30}}> Add new a Event</Text>
-      <Text style={{fontSize:15}}>Date and Time selected:</Text>
-      <Text style={{fontSize:15}}>{date.toLocaleString()}</Text>
+    
+      <Text style={{fontSize:20, marginTop:40,textAlign:"center",fontWeight: "bold", color: globalStyles.purple.color}}>Start Date and Time selected:</Text>
+      <Text style={{fontSize:20}}>{date.toLocaleString()}</Text>
+      <Text style={{fontSize:20, marginTop:40,textAlign:"center",fontWeight: "bold", color: globalStyles.purple.color}}>End Date and Time selected:</Text>
+      <Text style={{fontSize:20}}>{endDate.toLocaleString()}</Text>
 
       <View  style={{flexDirection:"column",justifyContent: "space-between"}}>
       <TextInput 
@@ -103,12 +105,15 @@ const AddNewScheduleItem = ({ navigation }) => {
       <View>
         <View>
             <View style={{marginVertical:10,flexDirection:"row"}}>
-            <StdButton
-            text={"Select Date"}
-            buttonColour={"#9B7FBA"}
-            buttonWidth={130}
-            buttonPress={() =>    showDatepicker()}
-           />
+            <View style={{marginHorizontal:10}}>
+
+                <StdButton
+                text={"Start Date"}
+                buttonColour={"#9B7FBA"}
+                buttonWidth={130}
+                buttonPress={() =>    showDatepicker()}
+            />
+           </View>
            <StdButton
             text={"End Date"}
             buttonColour={"#9B7FBA"}
@@ -117,12 +122,14 @@ const AddNewScheduleItem = ({ navigation }) => {
         />
       </View>
       <View style={{marginVertical:10,flexDirection:"row"}}>
-      <StdButton
-        text={"Start time"}
-        buttonColour={"#9B7FBA"}
-        buttonWidth={130}
-        buttonPress={() =>    showTimepicker()}
-      />
+          <View style={{marginHorizontal:10}}>
+            <StdButton
+                text={"Start time"}
+                buttonColour={"#9B7FBA"}
+                buttonWidth={130}
+                buttonPress={() =>    showTimepicker()}
+            />
+            </View>
         <StdButton
         text={"End time"}
         buttonColour={"#9B7FBA"}
@@ -153,13 +160,22 @@ const AddNewScheduleItem = ({ navigation }) => {
           onChange={onChangeEnd}
         />
       )}
-
-        <StdButton
-            text={"Add"}
-            buttonColour={"#9B7FBA"}
-            buttonWidth={125}
-            buttonPress={() =>    {addNewEntry();navigation.push("YourProfile");}}
-        />
+            <View style={{marginLeft:100, marginVertical:20}}>
+                <StdButton
+                    text={"Add"}
+                    buttonColour={"#9B7FBA"}
+                    buttonWidth={100}
+                    buttonPress={() =>    {addNewEntry();navigation.push("YourProfile");}}
+                />
+            </View>
+            <View style={{marginLeft:100}}>
+                <StdButton
+                    text={"Cancel"}
+                    buttonColour={"#9B7FBA"}
+                    buttonWidth={100}
+                    buttonPress={() =>    navigation.push("YourProfile")}
+                />
+            </View>
     </View>
     </View>
 
@@ -186,9 +202,11 @@ const styles = StyleSheet.create({
       borderRadius:10,
       borderColor:"#777",
       backgroundColor: "#F8F8F8",
-      padding:8,
+      padding:15,
+      marginTop:30,
       marginVertical:10,
-      width:150,
+      marginHorizontal:20,
+      width:250,
     }
 });
 export default AddNewScheduleItem;

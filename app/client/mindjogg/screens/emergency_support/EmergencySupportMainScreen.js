@@ -11,7 +11,7 @@ import StdCard from "../../components/StdCard/StdCard";
 import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
-const backend = "http://192.168.0.116:8080";
+const backend =global.backend;
 
 var count = 0;
 const askHelp = () => {

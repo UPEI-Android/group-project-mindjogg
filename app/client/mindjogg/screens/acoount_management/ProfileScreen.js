@@ -1,12 +1,13 @@
 import React,{useState,useEffect} from "react";
 import { Text, View, StyleSheet } from "react-native";
+import { globalStyles } from "../../styles/global";
 import StdButton from "../../components/StdButton/StdButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Calendar } from "react-native-big-calendar";
 import  {Picker}  from "@react-native-picker/picker"
 import axios from "axios";
 
-const backend = "http://192.168.0.116:8080";
+const backend = global.backend;
 
 let userFirstName;
 let userName;
@@ -27,6 +28,23 @@ const ProfileScreen = ({ navigation }) => {
   const [type,setDateType]=useState("3days");
 
   const [events, setEvents] = useState([]);
+  
+  //custom theme for calender to match app
+  const purpleTheme = {
+    palette: {
+      primary: {
+        main: globalStyles.purple.color,
+        contrastText: "#FFFFFF",
+      },
+      gray: {
+        "100": globalStyles.purple.color,
+        "200": globalStyles.purple.color,
+        "300": globalStyles.purple.color,
+        "500": globalStyles.purple.color,
+        "800": globalStyles.purple.color,
+      },
+    },
+  }
 
   /**
  * Gets a List of Events
@@ -59,7 +77,7 @@ const ProfileScreen = ({ navigation }) => {
   
   return (
     <View style={styles.center}>
-      <Text style={{fontSize:30, alignItems:"center", justifyContent:"center", textAlign:"center"}}> Hello {userFirstName}!</Text>
+      <Text style={{fontSize:30, alignItems:"center", justifyContent:"center", textAlign:"center",fontWeight: "bold", color: globalStyles.purple.color}}> Hello {userFirstName}!</Text>
       <View  style={{flexDirection:"row",justifyContent: "space-between", margin:15}}>
       <StdButton
         text={"Add event"}
@@ -81,19 +99,15 @@ const ProfileScreen = ({ navigation }) => {
 
         </View>
      
-      <Calendar events={events}  mode={type.toString()} height={600} />
-      {/*       <StdButton
-        text="Edit Profile"
-        uppercaseOn={false}
-        buttonPress={() => navigation.push("EditProfile")}
-      /> */}
+      <Calendar events={events}   theme={purpleTheme} mode={type.toString()} height={600} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   center: {
-    flex: 1
+    flex: 1,
+    backgroundColor: globalStyles.pink.color
   },
 });
 
