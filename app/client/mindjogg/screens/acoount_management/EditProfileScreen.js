@@ -18,38 +18,52 @@ const ProfileScreen = ({ navigation }) => {
         />
         <View style={{ marginLeft: 15, flexDirection: "column" }}>
           <Title style={styles.title}>Steve Jobs</Title>
-              <Caption style={styles.caption}>@stevejobs</Caption>
+          <Caption style={styles.caption}>@stevejobs</Caption>
         </View>
       </View>
     </View>
 
-
-      <StdButton
-        text="Personal Information"
-        uppercaseOn={false}
-        buttonPress={() => {}}
-      />
-      <StdButton
-        text="Contact Information"
-        uppercaseOn={false}
-        buttonPress={() => {}}
-      />
-      <StdButton
-        text="Emergency Contacts"
-        uppercaseOn={false}
-        buttonPress={() => {}}
-      />
-      <StdButton
-        text="Update Password"
-        uppercaseOn={false}
-        buttonPress={() => {}}
-      />
-
+    <View style={styles.buttonSection}>
+    <View style={styles.button}>
+    <StdButton
+      style={styles.button}
+      text="Personal Information"
+      uppercaseOn={false}
+      buttonPress={() => {}}
+    />
+    </View>
+    <View style={styles.button}>
+    <StdButton
+      style={styles.button}
+      text="Contact Information"
+      uppercaseOn={false}
+      buttonPress={() => {}}
+    />
+    </View>
+    <View style={styles.button}>
+    <StdButton
+      style={styles.button}
+      text="Emergency Contacts"
+      uppercaseOn={false}
+      buttonPress={() => {}}
+    />
+    </View>
+    <View style={styles.button}>
+    <StdButton
+      style={styles.button}
+      text="Update Password"
+      uppercaseOn={false}
+      buttonPress={() => {}}
+    />
+    </View>
+    <View style={styles.button}>
       <StdButton
         text="Logout"
         uppercaseOn={false}
         buttonPress={() => {}}
-      />
+    />
+    </View>
+    </View>
     </View>
   );
 };
@@ -61,11 +75,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#009387",
   },
-  drawerContent: {
-    flex: 1,
-  },
   userInfoSection: {
     paddingLeft: 20,
+  },
+  buttonSection: {
+    margin: 5,
+    paddingLeft: 20,
+  },
+  button: {
+    margin: 5,
+    borderRadius: 30,
   },
   title: {
     fontSize: 16,
@@ -75,30 +94,6 @@ const styles = StyleSheet.create({
   caption: {
     fontSize: 14,
     lineHeight: 14,
-  },
-  row: {
-    marginTop: 20,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  section: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginRight: 15,
-  },
-  drawerSection: {
-    marginTop: 15,
-  },
-  bottomDrawerSection: {
-    marginBottom: 15,
-    borderTopColor: "#f4f4f4",
-    borderTopWidth: 1,
-  },
-  preference: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 12,
-    paddingHorizontal: 16,
   },
 });
 
