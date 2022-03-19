@@ -7,7 +7,6 @@ import { Calendar } from "react-native-big-calendar";
 import  {Picker}  from "@react-native-picker/picker"
 import axios from "axios";
 
-const backend = global.backend;
 
 let userFirstName;
 let userName;
@@ -27,7 +26,7 @@ const ProfileScreen = ({ navigation }) => {
 
   const [type,setDateType]=useState("3days");
 
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState([{title:"no event",start:new Date(),end:new Date()}]);
   
   //custom theme for calender to match app
   const purpleTheme = {
@@ -53,7 +52,7 @@ const ProfileScreen = ({ navigation }) => {
     try {
       const userToken = await AsyncStorage.getItem("userToken");
 
-      const tasks = await axios.get(backend + "/users/getSchedule", {
+      const tasks = await axios.get(global.backend + "/users/getSchedule", {
         headers: {
           "Content-Type": "application/json",
           "auth-token":

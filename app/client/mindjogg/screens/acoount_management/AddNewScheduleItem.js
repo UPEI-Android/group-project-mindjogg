@@ -6,7 +6,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import StdButton from "../../components/StdButton/StdButton";
 
-const backend = global.backend;
 
 //to add date and time picker for start and end time on line 22
 const AddNewScheduleItem = ({ navigation }) => {
@@ -45,7 +44,7 @@ const AddNewScheduleItem = ({ navigation }) => {
         console.log(data);
 
         const userToken = await AsyncStorage.getItem("userToken");
-         await axios.post(backend + "/users/addScheduleEntry", data, {
+         await axios.post(global.backend + "/users/addScheduleEntry", data, {
           headers: { "Content-Type": "application/json",  "auth-token":userToken},
         });
       }

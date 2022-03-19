@@ -11,7 +11,6 @@ import StdCard from "../../components/StdCard/StdCard";
 import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
-const backend =global.backend;
 
 var count = 0;
 const askHelp = () => {
@@ -27,7 +26,7 @@ const EmergencySupportMainScreen = ({ navigation }) => {
   const retrieveServices = async () => {
     try {
       //Change the IP address to your Local Address
-      var service = await axios.get(backend + "/emergency/list", {
+      var service = await axios.get(global.backend + "/emergency/list", {
         headers: {
           "Content-Type": "application/json",
           "auth-token":
