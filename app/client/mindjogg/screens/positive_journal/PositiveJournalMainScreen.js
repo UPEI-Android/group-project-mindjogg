@@ -12,7 +12,7 @@ const backend = "http://localhost:8080";
 var count = 0;
 const PositiveJournalMainScreen = ({ navigation }) => {
 
-  const [journalEntries, setJournalEntries] = useState([]);
+  const [journalEntries, setJournalEntries] = useState([{type:"no type",title:"no title",entry:"no entry"}]);
 
     /**
    * Gets a List of Journal Entries
