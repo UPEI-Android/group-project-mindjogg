@@ -7,12 +7,12 @@ import StdButton from "../../components/StdButton/StdButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
-const backend = "http://localhost:8080";
+const backend = "http://192.168.0.116:8080";
 
 var count = 0;
 const PositiveJournalMainScreen = ({ navigation }) => {
 
-  const [journalEntries, setJournalEntries] = useState([{type:"no type",title:"no title",entry:"no entry"}]);
+  const [journalEntries, setJournalEntries] = useState([]);
 
     /**
    * Gets a List of Journal Entries
