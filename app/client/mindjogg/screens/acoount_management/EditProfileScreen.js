@@ -87,13 +87,16 @@ const styles = StyleSheet.create({
   },
   userInfoSection: {
     paddingLeft: 20,
+    paddingBottom: 25,
   },
   userInfo: {
     flexDirection: "column",
     marginTop: height * 0.01,
-    paddingLeft: 10,
+    paddingLeft: 20,
   },
   avatarStyle: {
+    height: 50,
+    width: 50,
     flexDirection: "row", 
     marginTop: height * 0.01,
   },
@@ -105,13 +108,13 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   name: {
-    fontSize: 16,
+    fontSize: 20,
     marginTop: 3,
     fontWeight: "bold",
   },
   username: {
-    fontSize: 14,
-    lineHeight: 14,
+    fontSize: 16,
+    lineHeight: 16,
   },
 });
 
