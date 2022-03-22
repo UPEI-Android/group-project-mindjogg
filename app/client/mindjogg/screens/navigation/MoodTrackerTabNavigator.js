@@ -6,13 +6,14 @@ import AccountManagementStackNavigator from "./AccountManagementStackNavigator";
 import EmergencySupportStackNavigator from "./EmergencySupportStackNavigator";
 import PositviJournalStackNavigator from "./PositiveJournalStackNavigator";
 import SmartGoalStackNavigator from "./SmartGoalStackNavigator";
+import MoodTrackerStackNavigator from "./MoodTrackerStackNavigator";
 
 const Tab = createMaterialBottomTabNavigator();
 
-const SmartGoalTabNavigator = () => {
+const MoodTrackerTabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Goals"
+      initialRouteName="Journal"
       activeColor="#734f96"
       barStyle={{ backgroundColor: "white" }}
     >
@@ -62,11 +63,7 @@ const SmartGoalTabNavigator = () => {
         options={{
           tabBarLabel: "Mood Tracker",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="emoticon-outline"
-              color={color}
-              size={26}
-            />
+            <MaterialCommunityIcons name="emoticon" color={color} size={26} />
           ),
         }}
       />
@@ -74,4 +71,4 @@ const SmartGoalTabNavigator = () => {
   );
 };
 
-export default SmartGoalTabNavigator;
+export default MoodTrackerTabNavigator;
