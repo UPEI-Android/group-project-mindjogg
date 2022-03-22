@@ -8,7 +8,7 @@ import StdButton from "../../components/StdButton/StdButton";
 import { globalStyles } from "../../styles/global";
 import { AuthContext } from "../../components/conext/authenticationContext";
 
-const ProfileScreen = ({ navigation }) => {
+const ProfileScreen = () => {
   const { signOut } = useContext(AuthContext);
 
   const signOutHandler = () => { 
