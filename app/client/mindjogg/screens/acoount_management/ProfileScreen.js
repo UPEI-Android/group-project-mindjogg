@@ -90,7 +90,6 @@ const ProfileScreen = ({ navigation }) => {
         style={{ height: 50, width: 125, backgroundColor:"#9B7FBA" ,color:"white"}}
         onValueChange={(itemValue) => setDateType(itemValue)}
       >
-        <Picker.Item label="Monthly" value="month" />
         <Picker.Item label="Weekly" value="week" />
         <Picker.Item label="3days" value="3days" />
         <Picker.Item label="Daily" value="day" />
