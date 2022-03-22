@@ -14,12 +14,10 @@ const userSchema = new mongoose.Schema({
   admin: Boolean,
   userVerified:Boolean,
   userPhone: String,
-  userGoals: [String],
-  userTasks: [String],
-  userJournal: String,
-
-  userMood: []
-  ,
+  userGoals: [],
+  userTasks: [],
+  userJournal: [],
+  userMood: [],
 });
 
 const User = mongoose.model("User",userSchema)

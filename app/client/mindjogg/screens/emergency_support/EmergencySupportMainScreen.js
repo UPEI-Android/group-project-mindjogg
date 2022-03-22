@@ -11,9 +11,9 @@ import StdCard from "../../components/StdCard/StdCard";
 import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
-var count = 0;
-const IP_ADDRESS = "https://mindjoggtest.herokuapp.com";
+const backend = "http://192.168.0.116:8080";
 
+var count = 0;
 const askHelp = () => {
   Alert.alert("Calling 911 ...");
 };
@@ -27,7 +27,7 @@ const EmergencySupportMainScreen = ({ navigation }) => {
   const retrieveServices = async () => {
     try {
       //Change the IP address to your Local Address
-      var service = await axios.get(IP_ADDRESS + "/emergency/list", {
+      var service = await axios.get(backend + "/emergency/list", {
         headers: {
           "Content-Type": "application/json",
           "auth-token":

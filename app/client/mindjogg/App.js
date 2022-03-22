@@ -71,7 +71,7 @@ function App() {
 
   // URI for the backend
 
-  const backend = "https://mindjoggtest.herokuapp.com";
+  const backend = "http://192.168.0.116:8080";
 
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
   const authContext = useMemo(() => ({
@@ -97,12 +97,32 @@ function App() {
 
           if (response.status == 200) {
             userToken = response.data;
+            //getting user data
+            const user=await axios.get(backend + "/userInfo", {
+              headers: { "Content-Type": "application/json", "auth-token": userToken},
+            });
+            //setting user data and storing it in async storage
+            const userData=user.data;
+            await AsyncStorage.setItem("admin", JSON.stringify(userData.admin));
+            await AsyncStorage.setItem("userDOB", JSON.stringify(userData.userDOB));
+            await AsyncStorage.setItem("userEmail", JSON.stringify(userData.userEmail));
+            await AsyncStorage.setItem("userFirstName",  userData.userFirstName);
+            await AsyncStorage.setItem("userGoals", JSON.stringify(userData.userGoals));
+            await AsyncStorage.setItem("userJournal", JSON.stringify(userData.userJournal));
+            await AsyncStorage.setItem("userLastName", JSON.stringify(userData.userLastName));
+            await AsyncStorage.setItem("userMiddleName", JSON.stringify(userData.userMiddleName));
+            await AsyncStorage.setItem("userName", JSON.stringify(userData.userName));
+            await AsyncStorage.setItem("userPhone", JSON.stringify(userData.userPhone));
+            await AsyncStorage.setItem("userTasks", JSON.stringify(userData.userTasks));
+
           } else {
             userToken = null;
           }
 
           await AsyncStorage.setItem("userToken", userToken);
           dispatch({ type: "LOGIN", id: userName, token: userToken });
+          
+         
 
           return response.status;
         }
