@@ -10,27 +10,26 @@ import propTypes from "prop-types";
 import { globalStyles } from "../../styles/global";
 
 const StdCard = (props) => {
-
     // render the card
     return(
         <Card
-            style={[{width: props.width, height: props.height, display: "flex", alignItems: "flex-start"}, globalStyles.purpleBackground]} 
+            style={[{width: props.width, height: props.height, maxHeight: props.height, maxWidth: props.width, display: "flex", alignItems: "flex-start"}, globalStyles.purpleBackground]} 
             elevation={props.elevation}
             onPress={props.cardPress}
             onLongPress={props.cardLongPress}
         >
-            <Card.Title style={{flexShrink: 1, flex:0.10, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height}} titleStyle={{color:"white"}} title={props.title}/>
-            <Card.Content style={{flexShrink: 1, flex:0.90, alignSelf:"flex-start", maxWidth: props.width, maxHeight: props.height}}>
+            <Card.Title style={{flex:0.10, alignSelf:"flex-start"}} titleStyle={{color:"white"}} title={props.title}/>
+            <Card.Content style={{flex:0.90, alignSelf:"flex-start"}}>
                 <Text style={{overflow:"hidden", color: "white"}}>{props.description}</Text>
-                <Card.Actions>
-                    <Button
-                        style={{flex:1, alignItems:"flex-end"}}
-                        icon="arrow-right"
-                        onPress={props.buttonPress} 
-                        onLongPress={props.cardLongPress}
-                    ></Button>
-                </Card.Actions>
             </Card.Content>
+            <Card.Actions>
+                <Button
+                    style={{alignItems:"flex-end"}}
+                    icon="arrow-right"
+                    onPress={props.buttonPress} 
+                    onLongPress={props.cardLongPress}
+                ></Button>
+            </Card.Actions>
         </Card>
     );
 }
