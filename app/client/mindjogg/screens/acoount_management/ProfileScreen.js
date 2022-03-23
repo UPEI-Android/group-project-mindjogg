@@ -76,7 +76,10 @@ const ProfileScreen = ({ navigation }) => {
   
   return (
     <View style={styles.center}>
-      <Text style={{fontSize:30, alignItems:"center", justifyContent:"center", textAlign:"center",fontWeight: "bold", color: globalStyles.purple.color}}> Hello {userFirstName}!</Text>
+      <Text style={{fontSize:20, alignItems:"center", justifyContent:"center", textAlign:"center",fontWeight: "bold", color: globalStyles.purple.color}}> Hello {userFirstName}, check your schedule</Text>
+     
+     
+      <Calendar events={events}   theme={purpleTheme} mode={type.toString()} height={600} />
       <View  style={{flexDirection:"row",justifyContent: "space-between", margin:15}}>
       <StdButton
         text={"Add event"}
@@ -96,8 +99,6 @@ const ProfileScreen = ({ navigation }) => {
         </Picker></View>
 
         </View>
-     
-      <Calendar events={events}   theme={purpleTheme} mode={type.toString()} height={600} />
     </View>
   );
 };
