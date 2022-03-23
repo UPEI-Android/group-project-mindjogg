@@ -70,6 +70,8 @@ function App() {
 
  
    const backend = global.backend;
+  // URI for the backend
+
 
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
   const authContext = useMemo(() => ({
