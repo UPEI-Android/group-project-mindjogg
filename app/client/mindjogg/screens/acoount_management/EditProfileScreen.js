@@ -8,12 +8,21 @@ import StdButton from "../../components/StdButton/StdButton";
 import { globalStyles } from "../../styles/global";
 import { AuthContext } from "../../components/conext/authenticationContext";
 
+let userFirstName;
+let userName;
+//function to set value of user
+const setUserValue= async () => {
+  userFirstName= await AsyncStorage.getItem("userFirstName");
+  userFirstName=userFirstName.replace(/['"]+/g, "");
+  userName= await AsyncStorage.getItem("userName");
+  userName=userName.replace(/['"]+/g, "");
+
+  return;
+}
+
 const ProfileScreen = () => {
   const { signOut } = useContext(AuthContext);
-
-  const signOutHandler = () => { 
-    signOut();
-  }
+  setUserValue();
 
   return (
     <View style={[styles.container, globalStyles.pinkBackground]}>
@@ -27,8 +36,8 @@ const ProfileScreen = () => {
             size={70}
         />
         <View style={styles.userInfo}>
-          <Title style={styles.name}>Steve Jobs</Title>
-          <Caption style={styles.username}>@stevejobs</Caption>
+          <Title style={styles.title}> {userFirstName} </Title>
+          <Caption style={styles.username}> @{userName} </Caption>
         </View>
       </View>
     </View>
@@ -70,7 +79,7 @@ const ProfileScreen = () => {
       <StdButton
         text="Logout"
         uppercaseOn={false}
-        buttonPress={() => {signOutHandler()}}
+        buttonPress={() => {signOut()}}
     />
     </View>
     </View>
@@ -107,7 +116,7 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 30,
   },
-  name: {
+  title: {
     fontSize: 20,
     marginTop: 3,
     fontWeight: "bold",
