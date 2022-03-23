@@ -10,7 +10,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "./components/conext/authenticationContext";
 import axios from "axios";
 
- // URI for the backend
+ // URI for the backend, only need to update here now (globalized variable)
  global.backend="http://192.168.0.116:8080";
 
 function App() {
