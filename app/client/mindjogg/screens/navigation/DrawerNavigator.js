@@ -30,7 +30,10 @@ const DrawerNavigator = () => {
         component={PositiveJournalTabNavigator}
       />
       <Drawer.Screen name="SmartGoal" component={SmartGoalTabNavigator} />
-      <Drawer.Screen name="MoodTracker" component={MoodTrackerTabNavigator} />
+      <Drawer.Screen
+        name="MoodTrackerTab"
+        component={MoodTrackerTabNavigator}
+      />
     </Drawer.Navigator>
   );
 };

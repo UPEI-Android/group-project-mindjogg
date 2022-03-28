@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -17,104 +17,43 @@ import { Formik } from "formik";
 import { globalStyles } from "../../styles/global";
 import StdButton from "../../components/StdButton/StdButton";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-
-const DATA = [
-  {
-    id: "em1",
-    title: "Love",
-    icon: require("../../assets/emoji/love.png"),
-  },
-  {
-    id: "em2",
-    title: "Happy",
-    icon: require("../../assets/emoji/happy.png"),
-  },
-  {
-    id: "em3",
-    title: "Blessed",
-    icon: require("../../assets/emoji/blessed.png"),
-  },
-  {
-    id: "em4",
-    title: "Hungry",
-    icon: require("../../assets/emoji/hungry.png"),
-  },
-  {
-    id: "em5",
-    title: "Bored",
-    icon: require("../../assets/emoji/bored.png"),
-  },
-  {
-    id: "em6",
-    title: "Sad",
-    icon: require("../../assets/emoji/sad.png"),
-  },
-  {
-    id: "em7",
-    title: "Worried",
-    icon: require("../../assets/emoji/worried.png"),
-  },
-  {
-    id: "em8",
-    title: "Sleepy",
-    icon: require("../../assets/emoji/sleepy.png"),
-  },
-  {
-    id: "em9",
-    title: "Sick",
-    icon: require("../../assets/emoji/sick.png"),
-  },
-  {
-    id: "em10",
-    title: "Lonely",
-    icon: require("../../assets/emoji/lonely.png"),
-  },
-  {
-    id: "em11",
-    title: "Cry",
-    icon: require("../../assets/emoji/crying.png"),
-  },
-  {
-    id: "em12",
-    title: "Angry",
-    icon: require("../../assets/emoji/angry.png"),
-  },
-];
-
-const Item = ({ title, icon }) => (
-  <View style={styles.item}>
-    <Image
-      source={icon + ""}
-      style={{
-        width: 50,
-        height: 50,
-        resizeMode: "stretch",
-      }}
-    />
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+import EMOJI from "../../data/emoji";
 
 const MoodTrackerMainScreen = ({ navigation }) => {
-  const mood = {
-    title: "",
-  };
   const moodData = {
     dateTime: "",
     moodNote: "",
   };
 
+  const [selectedMood, setSelectedMood] = useState("");
+
   const handleMoodSubmit = (values) => {
-    values.dateTime = new Date().toLocaleString();
+    values.dateTime = new Date().toISOString();
     console.log(
-      `mood: ${mood.title} moodDate: ${values.dateTime} moodNote: ${values.moodNote}`
+      `mood: ${selectedMood} moodDate: ${values.dateTime} moodNote: ${values.moodNote}`
     );
+    setSelectedMood("");
   };
+
+  const Item = ({ title, icon }) => (
+    <View style={[selectedMood === title ? styles.itemSelected : styles.item]}>
+      <Image
+        source={icon}
+        style={{
+          width: 50,
+          height: 50,
+          resizeMode: "stretch",
+        }}
+      />
+      <Text style={styles.title}>{title}</Text>
+    </View>
+  );
+
   const renderItem = ({ item }) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          mood.title = item.title;
+          setSelectedMood(item.title);
         }}
       >
         <Item title={item.title} icon={item.icon} />
@@ -141,7 +80,7 @@ const MoodTrackerMainScreen = ({ navigation }) => {
                 </Text>
                 <SafeAreaView style={styles.container}>
                   <FlatList
-                    data={DATA}
+                    data={EMOJI}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}
                     numColumns={4}
@@ -163,7 +102,7 @@ const MoodTrackerMainScreen = ({ navigation }) => {
                   <TouchableOpacity
                     style={styles.footer}
                     onPress={() => {
-                      console.log("pressed");
+                      navigation.push("MoodHistoryScreen");
                     }}
                   >
                     <Text style={styles.text_footer}> See Mood History </Text>
@@ -185,7 +124,18 @@ const styles = StyleSheet.create({
     marginTop: Dimensions.get("window").height * 0.03,
   },
   item: {
-    backgroundColor: "#9B7FBA",
+    backgroundColor: "#9b7fba",
+    padding: 10,
+    marginVertical: 5,
+    marginHorizontal: 5,
+    height: 75,
+    width: 75,
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 10,
+  },
+  itemSelected: {
+    backgroundColor: "#3f2d52",
     padding: 10,
     marginVertical: 5,
     marginHorizontal: 5,

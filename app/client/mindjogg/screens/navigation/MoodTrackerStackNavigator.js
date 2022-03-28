@@ -5,6 +5,7 @@ import { globalStyles } from "../../styles/global";
 import Icon from "react-native-vector-icons/Ionicons";
 
 import MoodTrackerMainScreen from "../mood_tracker/MoodTrackerMainScreen";
+import MoodHistoryScreen from "../mood_tracker/MoodHistoryScreen";
 import MoodEditScreen from "../mood_tracker/MoodEditScreen";
 
 const Stack = createNativeStackNavigator();
@@ -39,10 +40,17 @@ const MoodTrackerStackNavigator = ({ navigation }) => {
           }}
         />
         <Stack.Screen
+          name="MoodHistoryScreen"
+          component={MoodHistoryScreen}
+          options={{
+            title: "Mood History Overview",
+          }}
+        />
+        <Stack.Screen
           name="MoodEditScreen"
           component={MoodEditScreen}
           options={{
-            title: "Mood Edit",
+            title: "Mood History",
           }}
         />
       </Stack.Navigator>
