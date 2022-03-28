@@ -14,6 +14,8 @@ router.post("/moodtracker/addmood",verify, moodtracker_controller.updateMoodInfo
 //get Mood info for logged in user
 router.get("/moodtracker/getMood",verify, moodtracker_controller.getMoodhistory);
 
+//get Mood info frequency for logged in user
+router.get("/moodtracker/frequencyMoods",verify, moodtracker_controller.frequencyMoods);
 
 module.exports = router;
 

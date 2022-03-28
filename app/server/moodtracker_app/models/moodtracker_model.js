@@ -57,7 +57,6 @@ const getUserMood = async (user) => {
         //returns list of users
         let result= [];
         result = await User.findOne({_id:user.id},projection);   
-        console.log(result);
         return result;
     } catch (err) {
         console.log(err);
@@ -66,9 +65,77 @@ const getUserMood = async (user) => {
 
 
 
+const frequencyMoods= async (user)=>{
+    let result= [];
+    let userMoodHistory= [];
+    result= await getUserMood(user);
+    userMoodHistory=result.userMood;
+    let HappyCount=0;
+    let sadCount=0;
+    let loveCount=0;
+    let angryCount=0,LonelyCount=0,CryCount=0,HungryCount=0;
+    let boredCount=0,WorriedCount=0,SleepyCount=0,BlessedCount=0,SickCount=0;
+
+
+
+    for (let i = 0; i < userMoodHistory.length; i++) {
+        console.log(userMoodHistory[i].moodName);
+        switch(userMoodHistory[i].moodName) {
+            case "happy":
+              HappyCount++;
+              break;
+            case "sad":
+              sadCount++;
+              break;
+            case "love":
+                loveCount++;
+                break;
+            case "angry":
+                angryCount++;
+                break;
+            case "bored":
+              boredCount++;
+              break;
+            case "Worried":
+                WorriedCount++;
+              break;
+            case "Blessed":
+                BlessedCount++;
+                break;
+            case "Sleepy":
+                SleepyCount++;
+                break;
+            case "Sick":
+                SickCount++;
+              break;
+            case "Lonely":
+                LonelyCount++;
+                break;
+            case "Cry":
+                CryCount++;
+                break;
+             case "Hungry":
+                HungryCount++;
+                    break;
+            default:
+              
+          }
+       
+    }
+
+    const frequencies =[{mood : "happy",moodFrequency: HappyCount},
+    {mood : "sad" , moodFrequency : sadCount} , {mood : "love",moodFrequency:loveCount},{mood : "love",moodFrequency:loveCount},
+    {mood : "angry",moodFrequency:angryCount},{mood : "bored",moodFrequency:boredCount},{mood : "Worried",moodFrequency:WorriedCount},
+    {mood : "Blessed",moodFrequency:BlessedCount},{mood : "Sleepy",moodFrequency:SleepyCount},{mood : "Sick",moodFrequency:SickCount},
+    {mood : "Lonely",moodFrequency:LonelyCount},{mood : "Cry",moodFrequency:CryCount},{mood : "Hungry",moodFrequency:HungryCount}];
+    return frequencies;
+
+};
+
 
 
 module.exports = {
     addNewMoodRecord,
-    getUserMood
+    getUserMood,
+    frequencyMoods
  };
