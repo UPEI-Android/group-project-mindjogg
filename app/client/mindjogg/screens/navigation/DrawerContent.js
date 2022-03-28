@@ -13,17 +13,32 @@ import {
 } from "react-native-paper";
 
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { AuthContext } from "../../components/conext/authenticationContext";
 
-const DrawerContent = (props) => {
+let userFirstName;
+let userName;
+//function to set value of user
+const setUserValue= async () => {
+  userFirstName= await AsyncStorage.getItem("userFirstName");
+  userFirstName=userFirstName.replace(/['"]+/g, "");
+  userName= await AsyncStorage.getItem("userName");
+  userName=userName.replace(/['"]+/g, "");
+
+  return;
+}
+
+const DrawerContent =  (props) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   const { signOut } = useContext(AuthContext);
-
+  setUserValue();
   const toggleTheme = () => {
     setIsDarkTheme(!isDarkTheme);
   };
+
+ 
 
   return (
     <View style={{ flex: 1 }}>
@@ -38,8 +53,8 @@ const DrawerContent = (props) => {
                 size={70}
               />
               <View style={{ marginLeft: 15, flexDirection: "column" }}>
-                <Title style={styles.title}>Steve Jobs</Title>
-                <Caption style={styles.caption}>@stevejobs</Caption>
+                <Title style={styles.title}> {userFirstName}</Title>
+                <Caption style={styles.caption}>@{userName}</Caption>
               </View>
             </View>
           </View>

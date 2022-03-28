@@ -56,9 +56,9 @@ const createUser = async (user) => {
             admin: user.admin,
             userVerified:false,
             userPhone: null,
-            userGoals: null,
-            userTasks: null,
-            userJournal: null,
+            userGoals: [],
+            userTasks: [],
+            userJournal: [],
             userMood:[]
         });
 
