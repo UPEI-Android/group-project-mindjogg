@@ -2,6 +2,7 @@
 import { React, useContext } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import { Avatar, Title, Caption } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /* LOCAL IMPORTS */
 import StdButton from "../../components/StdButton/StdButton";
@@ -20,7 +21,7 @@ const setUserValue= async () => {
   return;
 }
 
-const ProfileScreen = () => {
+const ProfileScreen = (props) => {
   const { signOut } = useContext(AuthContext);
   setUserValue();
 
@@ -35,11 +36,11 @@ const ProfileScreen = () => {
           }}
             size={70}
         />
-        <View style={styles.userInfo}>
+      </View>
+      <View style={styles.userInfo}>
           <Title style={styles.title}> {userFirstName} </Title>
           <Caption style={styles.username}> @{userName} </Caption>
         </View>
-      </View>
     </View>
 
     <View style={styles.buttonSection}>
