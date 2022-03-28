@@ -6,18 +6,13 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  Image,
   Dimensions,
-  TextInput,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
 } from "react-native";
-import { Formik } from "formik";
+
 import { globalStyles } from "../../styles/global";
-import StdButton from "../../components/StdButton/StdButton";
+
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { VictoryChart, VictoryBar, VictoryLabel } from "victory-native";
+import { VictoryBar, VictoryLabel } from "victory-native";
 const MoodTrackerMainScreen = ({ navigation }) => {
   const moodHistory = [
     {
@@ -122,43 +117,30 @@ const MoodTrackerMainScreen = ({ navigation }) => {
     switch (mood) {
       case "Happy":
         return "😀";
-        break;
       case "Sad":
         return "😢";
-        break;
       case "Angry":
         return "😡";
-        break;
       case "Love":
         return "😍";
-        break;
       case "Bored":
         return "😒";
-        break;
       case "Worried":
         return "🙁";
-        break;
       case "Blessed":
         return "😇";
-        break;
       case "Sleepy":
         return "😴";
-        break;
       case "Sick":
         return "🤒";
-        break;
       case "Lonely":
         return "☹️";
-        break;
       case "Cry":
         return "😭";
-        break;
       case "Hungry":
         return "😋";
-        break;
       default:
         return "😀";
-        break;
     }
   };
 
@@ -178,16 +160,16 @@ const MoodTrackerMainScreen = ({ navigation }) => {
       "Nov",
       "Dec",
     ];
-    let year = a.getFullYear();
-    let month = months[a.getMonth()];
-    let date = a.getDate();
-    let hour = a.getHours();
-    let min = a.getMinutes();
+    const year = a.getFullYear();
+    const month = months[a.getMonth()];
+    const date = a.getDate();
+    const hour = a.getHours();
+    const min = a.getMinutes();
     // covert hour to 12 hour format add AM or PM if formatedHour is 0 then formatedHour is 12
     let formatedHour = hour > 12 ? hour - 12 : hour;
     formatedHour = formatedHour == 0 ? 12 : formatedHour;
-    let timeSuffix = hour >= 12 ? "PM" : "AM";
-    let time =
+    const timeSuffix = hour >= 12 ? "PM" : "AM";
+    const time =
       date +
       " " +
       month +

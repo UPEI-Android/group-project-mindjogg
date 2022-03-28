@@ -1,6 +1,8 @@
 import React from "react";
-import { Text, View, Button, StyleSheet, Dimensions } from "react-native";
+import { Text, View, StyleSheet, Dimensions } from "react-native";
 import { globalStyles } from "../../styles/global";
+
+import propTypes from "prop-types";
 
 const MoodEditScreen = ({ route }) => {
   return (
@@ -43,4 +45,5 @@ const styles = StyleSheet.create({
   },
 });
 
+MoodEditScreen.propTypes = { route: propTypes.any };
 export default MoodEditScreen;
