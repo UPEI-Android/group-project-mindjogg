@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import {
   SafeAreaView,
   View,
@@ -13,7 +13,43 @@ import { globalStyles } from "../../styles/global";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { VictoryBar, VictoryLabel } from "victory-native";
+
+import axios from "axios";
+
+const backend = "http://192.168.2.14:8080";
+
 const MoodTrackerMainScreen = ({ navigation }) => {
+  const [moodFrequencyList, setMoodFrequencyList] = useState([
+    { mood: "happy", moodFrequency: 0 },
+  ]);
+  /**
+   * Gets a List of Emergency Services
+   */
+  const retrieveServices = async () => {
+    try {
+      //Change the IP address to your Local Address
+      var service = await axios.get(backend + "/moodtracker/frequencyMoods", {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
+    const servicesList = service.data;
+    console.log(servicesList);
+    return servicesList;
+  };
+
+  useEffect(() => {
+    retrieveServices().then((res) => {
+      setMoodFrequencyList(res);
+    });
+  }, []);
+
   const moodHistory = [
     {
       id: 1,
@@ -112,7 +148,15 @@ const MoodTrackerMainScreen = ({ navigation }) => {
       label: "Hungry",
     },
   ];
+
+  // state selectedMood is used to store clicked mood.
   const [selectedMood, setSelectedMood] = useState("");
+
+  /**
+   *
+   * @param {String} mood - mood name
+   * @returns {String} emotion icon in emoji format. This emoji is a string so it can be manipulated as string.
+   */
   const moodEmoji = (mood) => {
     switch (mood) {
       case "Happy":
@@ -144,9 +188,14 @@ const MoodTrackerMainScreen = ({ navigation }) => {
     }
   };
 
+  /**
+   * This function coverts ISO date to a readable date
+   * @param {String} timestamp in ISO time format
+   * @returns string of date
+   */
   const timeConverter = (timestamp) => {
-    let a = new Date(timestamp);
-    let months = [
+    const a = new Date(timestamp);
+    const months = [
       "Jan",
       "Feb",
       "Mar",
@@ -184,6 +233,12 @@ const MoodTrackerMainScreen = ({ navigation }) => {
     return time;
   };
 
+  /**
+   * This is the Item component for the FlatList
+   * @prop {Object} mood - mood
+   * @prop {String} moodDate - mood date
+   * @prop {String} moodIcon - mood icon (emoji)
+   */
   const Item = ({ mood, moodDate, moodIcon }) => (
     <View style={[selectedMood === mood ? styles.itemSelected : styles.item]}>
       <Text style={{ fontSize: 25 }}>{moodIcon}</Text>
@@ -197,10 +252,15 @@ const MoodTrackerMainScreen = ({ navigation }) => {
       />
     </View>
   );
-
+  /**
+   * This is the FlatList render component
+   * @prop {Object} item - the mood object
+   */
   const renderItem = ({ item }) => {
     const moodIcon = moodEmoji(item.mood);
     const moodDate = timeConverter(item.moodDate);
+
+    // navigationParams is the object that is passed to the next screen
     const navigationParams = {
       mood: item.mood,
       moodDate: moodDate,
@@ -230,17 +290,18 @@ const MoodTrackerMainScreen = ({ navigation }) => {
             duration: 2000,
             onLoad: { duration: 5000 },
           }}
-          data={moodHistory}
-          x="id"
+          data={moodFrequencyList}
+          x="mood"
           y="moodFrequency"
-          labelComponent={
-            <VictoryLabel
-              angle={90}
-              verticalAnchor="middle"
-              textAnchor="end"
-              style={{ fill: "black", fontSize: 10 }}
-            />
-          }
+          // labelComponent={
+          //   // this is the code for alligning  the label vertically
+          //   <VictoryLabel
+          //     angle={90}
+          //     verticalAnchor="middle"
+          //     textAnchor="end"
+          //     style={{ fill: "black", fontSize: 10 }}
+          //   />
+          // }
           width={Dimensions.get("window").width + 20}
           height={Dimensions.get("window").height / 2.5}
         />
