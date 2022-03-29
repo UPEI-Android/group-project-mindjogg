@@ -79,7 +79,7 @@ const frequencyMoods= async (user)=>{
 
 
     for (let i = 0; i < userMoodHistory.length; i++) {
-        console.log(userMoodHistory[i].moodName);
+        
         switch(userMoodHistory[i].moodName) {
             case "happy":
               HappyCount++;
