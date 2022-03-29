@@ -63,6 +63,30 @@ const getUserMood = async (user) => {
     }
 };
 
+/**
+ *  Retrieves a user's mood history in formatted way
+*/
+const getNewMood = async (user) => {
+    try {   
+        const projection = {  
+            "_id": 0,
+           "userMood": 1
+           }
+        //returns list of users
+        let result= [];
+        result = await User.findOne({_id:user.id},projection);  
+        const moods=result.userMood; 
+        var moodHistory=[];  
+        for (let i = 0; i < moods.length; i++) {      
+          moodHistory.push({id : i , mood : moods[i].moodName,moodDate : moods[i].timeofDay, moodNote: moods[i].moodNote});
+        }
+
+        return moodHistory;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 
 
 const frequencyMoods= async (user)=>{
@@ -79,7 +103,7 @@ const frequencyMoods= async (user)=>{
 
 
     for (let i = 0; i < userMoodHistory.length; i++) {
-        console.log(userMoodHistory[i].moodName);
+        
         switch(userMoodHistory[i].moodName) {
             case "happy":
               HappyCount++;
@@ -137,5 +161,6 @@ const frequencyMoods= async (user)=>{
 module.exports = {
     addNewMoodRecord,
     getUserMood,
-    frequencyMoods
+    frequencyMoods,
+    getNewMood
  };
