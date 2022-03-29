@@ -38,11 +38,11 @@ const model = require("../models/moodtracker_model");
  */
  const getMoodhistory = async (req, res) => {
     try {
-
         const user = {
             id: req.user,
+           
         }   
-        const result = await model.getUserMood(user);
+        const result = await model.getNewMood(user);
         res.status(200);
         res.json(result);
     } catch (err) {
