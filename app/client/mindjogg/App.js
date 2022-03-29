@@ -239,7 +239,7 @@ function App() {
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-        {loginState.userToken === null ? (
+        {loginState.userToken !== null ? (
           <DrawerNavigator />
         ) : (
           <AuthenticationStackNavigator />

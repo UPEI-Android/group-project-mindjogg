@@ -18,6 +18,10 @@ import { globalStyles } from "../../styles/global";
 import StdButton from "../../components/StdButton/StdButton";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import EMOJI from "../../data/emoji";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+
+const backend = "http://192.168.2.14:8080";
 
 const MoodTrackerMainScreen = ({ navigation }) => {
   const moodData = {
@@ -27,11 +31,32 @@ const MoodTrackerMainScreen = ({ navigation }) => {
 
   const [selectedMood, setSelectedMood] = useState("");
 
-  const handleMoodSubmit = (values) => {
+  const handleMoodSubmit = async (values) => {
     values.dateTime = new Date().toISOString();
-    console.log(
-      `mood: ${selectedMood} moodDate: ${values.dateTime} moodNote: ${values.moodNote}`
-    );
+    try {
+      const userToken = await AsyncStorage.getItem("userToken");
+      const submitData = JSON.stringify({
+        moodName: selectedMood,
+        moodNote: values.moodNote,
+        timeofDay: values.dateTime,
+      });
+
+      const response = await axios.post(
+        backend + "/moodTracker/addMood",
+        submitData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": userToken,
+          },
+        }
+      );
+      console.log(response);
+      if (response.status === 200) {
+      }
+    } catch (err) {
+      console.log(err);
+    }
     setSelectedMood("");
   };
 
