@@ -120,20 +120,20 @@ POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-"UserName": "moodtrackerTest",
-"Password": "moodtrackerTest"
+"UserName": "moodtesting",
+"Password": "moodtesting"
 }
 
 
 ###
 //get request to access user mood, must be logged in as user
 GET http://localhost:8080/moodtracker/frequencyMoods
-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI1OGExMWFkYWMwZTg0ZTJmOWMzNjkiLCJpYXQiOjE2NDY2MjczNDd9.QTmiOD47B0-0ZIMol4Yz5BYf7hTh0t0-cN0GunUdZEs
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOTRmNmI0NzY5ZGQ5MTQyYTE0NjYiLCJpYXQiOjE2NDg1OTgyMDd9.J7UDQUJOZhTScPEMIJjwCqJ5ILy89uD2ijDhb2fkvNY
 
 ###
 //get request to access user mood, must be logged in as user
 GET http://localhost:8080/moodtracker/getMood
-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI1OGExMWFkYWMwZTg0ZTJmOWMzNjkiLCJpYXQiOjE2NDY2MjczNDd9.QTmiOD47B0-0ZIMol4Yz5BYf7hTh0t0-cN0GunUdZEs
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOTRmNmI0NzY5ZGQ5MTQyYTE0NjYiLCJpYXQiOjE2NDg1OTgyMDd9.J7UDQUJOZhTScPEMIJjwCqJ5ILy89uD2ijDhb2fkvNY
 
 ###
 //post request to add new mood

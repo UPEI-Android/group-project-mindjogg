@@ -105,19 +105,19 @@ const frequencyMoods= async (user)=>{
     for (let i = 0; i < userMoodHistory.length; i++) {
         
         switch(userMoodHistory[i].moodName) {
-            case "happy":
+            case "Happy":
               HappyCount++;
               break;
-            case "sad":
+            case "Sad":
               sadCount++;
               break;
-            case "love":
+            case "Love":
                 loveCount++;
                 break;
-            case "angry":
+            case "Angry":
                 angryCount++;
                 break;
-            case "bored":
+            case "Bored":
               boredCount++;
               break;
             case "Worried":
@@ -148,7 +148,7 @@ const frequencyMoods= async (user)=>{
     }
 
     const frequencies =[{mood : "happy",moodFrequency: HappyCount},
-    {mood : "sad" , moodFrequency : sadCount} , {mood : "love",moodFrequency:loveCount},{mood : "love",moodFrequency:loveCount},
+    {mood : "sad" , moodFrequency : sadCount} , {mood : "love",moodFrequency:loveCount},
     {mood : "angry",moodFrequency:angryCount},{mood : "bored",moodFrequency:boredCount},{mood : "Worried",moodFrequency:WorriedCount},
     {mood : "Blessed",moodFrequency:BlessedCount},{mood : "Sleepy",moodFrequency:SleepyCount},{mood : "Sick",moodFrequency:SickCount},
     {mood : "Lonely",moodFrequency:LonelyCount},{mood : "Cry",moodFrequency:CryCount},{mood : "Hungry",moodFrequency:HungryCount}];
