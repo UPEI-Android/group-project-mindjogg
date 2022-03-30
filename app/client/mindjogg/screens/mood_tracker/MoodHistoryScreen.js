@@ -205,6 +205,12 @@ const MoodTrackerMainScreen = ({ navigation }) => {
     );
   };
 
+  Item.propTypes = {
+    mood: propTypes.any,
+    moodDate: propTypes.any,
+    moodIcon: propTypes.any,
+  };
+
   return (
     <SafeAreaView style={[styles.container, globalStyles.pinkBackground]}>
       <View style={styles.graphContainer}>
@@ -304,9 +310,5 @@ const styles = StyleSheet.create({
     color: "white",
   },
 });
-Item.propTypes = {
-  mood: propTypes.any,
-  moodDate: propTypes.any,
-  moodIcon: propTypes.any,
-};
+
 export default MoodTrackerMainScreen;

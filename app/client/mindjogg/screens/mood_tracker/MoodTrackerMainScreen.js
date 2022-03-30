@@ -88,6 +88,7 @@ const MoodTrackerMainScreen = ({ navigation }) => {
     );
   };
 
+  Item.propTypes = { title: propTypes.string, icon: propTypes.string };
   return (
     <Formik
       initialValues={moodData}
@@ -209,5 +210,4 @@ const styles = StyleSheet.create({
   },
 });
 
-Item.propTypes = { title: propTypes.string, icon: propTypes.string };
 export default MoodTrackerMainScreen;
