@@ -6,6 +6,7 @@ import AccountManagementStackNavigator from "./AccountManagementStackNavigator";
 import EmergencySupportStackNavigator from "./EmergencySupportStackNavigator";
 import PositviJournalStackNavigator from "./PositiveJournalStackNavigator";
 import SmartGoalStackNavigator from "./SmartGoalStackNavigator";
+import MoodTrackerStackNavigator from "./MoodTrackerStackNavigator";
 
 const Tab = createMaterialBottomTabNavigator();
 
