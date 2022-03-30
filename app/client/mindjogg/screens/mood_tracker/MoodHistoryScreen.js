@@ -24,6 +24,8 @@ const MoodTrackerMainScreen = ({ navigation }) => {
   const [moodFrequencyList, setMoodFrequencyList] = useState([
     { mood: "happy", moodFrequency: 0 },
   ]);
+
+  const [moodData, setMoodData] = useState([]);
   /**
    * Gets a List of Emergency Services
    */
@@ -31,125 +33,45 @@ const MoodTrackerMainScreen = ({ navigation }) => {
     try {
       const userToken = await AsyncStorage.getItem("userToken");
       //Change the IP address to your Local Address
-      var service = await axios.get(backend + "/moodtracker/frequencyMoods", {
+      const service = await axios.get(backend + "/moodtracker/frequencyMoods", {
         headers: {
           "Content-Type": "application/json",
           "auth-token": userToken,
         },
       });
+      const moodFrequencyList = service.data;
+      return moodFrequencyList;
     } catch (err) {
       console.log(err);
     }
+  };
 
-    const servicesList = service.data;
-    console.log(servicesList);
-    return servicesList;
+  const retrieveMoods = async () => {
+    try {
+      const userToken = await AsyncStorage.getItem("userToken");
+      //Change the IP address to your Local Address
+      let res = await axios.get(backend + "/moodtracker/getMood", {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": userToken,
+        },
+      });
+
+      const moodList = res.data;
+      return moodList;
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
     retrieveServices().then((res) => {
       setMoodFrequencyList(res);
     });
+    retrieveMoods().then((res) => {
+      setMoodData(res);
+    });
   }, []);
-
-  const moodHistory = [
-    {
-      id: 1,
-      mood: "Happy",
-      moodDate: "2022-03-28T02:41:05.621Z",
-      moodNote: " jhdksajh okskd ajsdkj ",
-      moodFrequency: 1,
-      label: "Happy",
-    },
-    {
-      id: 2,
-      mood: "Sad",
-      moodDate: "2020-01-02",
-      moodNote: "",
-      moodFrequency: 5,
-      label: "Sad",
-    },
-    {
-      id: 3,
-      mood: "Angry",
-      moodDate: "2020-01-02",
-      moodNote: "",
-      moodFrequency: 7,
-      label: "Angry",
-    },
-    {
-      id: 4,
-      mood: "Love",
-      moodDate: "2020-01-03",
-      moodNote: "",
-      moodFrequency: 2,
-      label: "Love",
-    },
-    {
-      id: 5,
-      mood: "Bored",
-      moodDate: "2020-01-02",
-      moodNote: "",
-      moodFrequency: 1,
-      label: "Bored",
-    },
-    {
-      id: 6,
-      mood: "Worried",
-      moodDate: "2020-01-02",
-      moodNote: "",
-      moodFrequency: 4,
-      label: "Worried",
-    },
-    {
-      id: 7,
-      mood: "Blessed",
-      moodDate: "2020-01-02",
-      moodNote: "",
-      moodFrequency: 2,
-      label: "Blessed",
-    },
-    {
-      id: 8,
-      mood: "Sleepy",
-      moodDate: "2020-01-05",
-      moodNote: "",
-      moodFrequency: 5,
-      label: "Sleepy",
-    },
-    {
-      id: 9,
-      mood: "Sick",
-      moodDate: "2020-01-02",
-      moodNote: "",
-      moodFrequency: 2,
-      label: "Sick",
-    },
-    {
-      id: 10,
-      mood: "Lonely",
-      moodDate: "2020-01-02",
-      moodNote: "",
-      moodFrequency: 3,
-      label: "Lonely",
-    },
-    {
-      id: 11,
-      mood: "Cry",
-      moodDate: "2020-01-02",
-      moodNote: "",
-      moodFrequency: 1,
-      label: "Cry",
-    },
-    {
-      id: 12,
-      mood: "Hungry",
-      moodDate: "2020-01-02",
-      moodNote: "",
-      moodFrequency: 1,
-      label: "Hungry",
-    },
-  ];
 
   // state selectedMood is used to store clicked mood.
   const [selectedMood, setSelectedMood] = useState("");
@@ -291,6 +213,10 @@ const MoodTrackerMainScreen = ({ navigation }) => {
           data={moodFrequencyList}
           x="mood"
           y="moodFrequency"
+          animate={{
+            duration: 2000,
+            onLoad: { duration: 0 },
+          }}
           labelComponent={
             // this is the code for alligning  the label vertically
             <VictoryLabel
@@ -308,7 +234,7 @@ const MoodTrackerMainScreen = ({ navigation }) => {
         <Text style={styles.moodHistoryTitle}>Mood History</Text>
         <View style={styles.moodHistoryList}>
           <FlatList
-            data={moodHistory}
+            data={moodData}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
           />
