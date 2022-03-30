@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  Platform,
 } from "react-native";
 import { Formik } from "formik";
 import { globalStyles } from "../../styles/global";
@@ -20,6 +21,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import EMOJI from "../../data/emoji";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import propTypes from "prop-types";
 
 const backend = "http://192.168.0.116:8080";
 
@@ -52,8 +54,8 @@ const MoodTrackerMainScreen = ({ navigation }) => {
         }
       );
       console.log(response);
-      if (response.status === 200) {
-      }
+      // if (response.status === 200) {
+      // }
     } catch (err) {
       console.log(err);
     }
@@ -207,4 +209,5 @@ const styles = StyleSheet.create({
   },
 });
 
+Item.propTypes = { title: propTypes.string, icon: propTypes.string };
 export default MoodTrackerMainScreen;

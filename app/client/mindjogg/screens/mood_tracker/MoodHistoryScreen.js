@@ -15,6 +15,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { VictoryBar, VictoryLabel } from "victory-native";
+import propTypes from "prop-types";
 
 import axios from "axios";
 
@@ -50,7 +51,7 @@ const MoodTrackerMainScreen = ({ navigation }) => {
     try {
       const userToken = await AsyncStorage.getItem("userToken");
       //Change the IP address to your Local Address
-      let res = await axios.get(backend + "/moodtracker/getMood", {
+      const res = await axios.get(backend + "/moodtracker/getMood", {
         headers: {
           "Content-Type": "application/json",
           "auth-token": userToken,
@@ -303,4 +304,9 @@ const styles = StyleSheet.create({
     color: "white",
   },
 });
+Item.propTypes = {
+  mood: propTypes.any,
+  moodDate: propTypes.any,
+  moodIcon: propTypes.any,
+};
 export default MoodTrackerMainScreen;
