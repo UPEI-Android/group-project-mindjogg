@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {
   SafeAreaView,
@@ -15,11 +14,11 @@ import { globalStyles } from "../../styles/global";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { VictoryBar } from "victory-native";
+import { VictoryBar, VictoryLabel } from "victory-native";
 
 import axios from "axios";
 
-const backend = "http://192.168.0.116:8080";
+const backend = "http://192.168.2.14:8080";
 
 const MoodTrackerMainScreen = ({ navigation }) => {
   const [moodFrequencyList, setMoodFrequencyList] = useState([
@@ -289,22 +288,18 @@ const MoodTrackerMainScreen = ({ navigation }) => {
         <Text style={styles.graphTitle}>Weekly Mood Frequency</Text>
         <VictoryBar
           style={{ data: { fill: "#9b7fba", width: 20 } }}
-          animate={{
-            duration: 2000,
-            onLoad: { duration: 5000 },
-          }}
           data={moodFrequencyList}
           x="mood"
           y="moodFrequency"
-          // labelComponent={
-          //   // this is the code for alligning  the label vertically
-          //   <VictoryLabel
-          //     angle={90}
-          //     verticalAnchor="middle"
-          //     textAnchor="end"
-          //     style={{ fill: "black", fontSize: 10 }}
-          //   />
-          // }
+          labelComponent={
+            // this is the code for alligning  the label vertically
+            <VictoryLabel
+              angle={90}
+              verticalAnchor="middle"
+              textAnchor="end"
+              style={{ fill: "black", fontSize: 10 }}
+            />
+          }
           width={Dimensions.get("window").width + 20}
           height={Dimensions.get("window").height / 2.5}
         />
