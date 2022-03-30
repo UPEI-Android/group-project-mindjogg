@@ -10,9 +10,10 @@ import {
 } from "react-native";
 
 import { globalStyles } from "../../styles/global";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { VictoryBar, VictoryLabel } from "victory-native";
+import { VictoryBar } from "victory-native";
 
 import axios from "axios";
 
@@ -27,12 +28,12 @@ const MoodTrackerMainScreen = ({ navigation }) => {
    */
   const retrieveServices = async () => {
     try {
+      const userToken = await AsyncStorage.getItem("userToken");
       //Change the IP address to your Local Address
       var service = await axios.get(backend + "/moodtracker/frequencyMoods", {
         headers: {
           "Content-Type": "application/json",
-          "auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
+          "auth-token": userToken,
         },
       });
     } catch (err) {
