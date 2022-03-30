@@ -147,11 +147,11 @@ const frequencyMoods= async (user)=>{
        
     }
 
-    const frequencies =[{mood : "happy",moodFrequency: HappyCount},
-    {mood : "sad" , moodFrequency : sadCount} , {mood : "love",moodFrequency:loveCount},
-    {mood : "angry",moodFrequency:angryCount},{mood : "bored",moodFrequency:boredCount},{mood : "Worried",moodFrequency:WorriedCount},
-    {mood : "Blessed",moodFrequency:BlessedCount},{mood : "Sleepy",moodFrequency:SleepyCount},{mood : "Sick",moodFrequency:SickCount},
-    {mood : "Lonely",moodFrequency:LonelyCount},{mood : "Cry",moodFrequency:CryCount},{mood : "Hungry",moodFrequency:HungryCount}];
+    const frequencies =[{label : "Happy",mood : "Happy",moodFrequency: HappyCount},
+    {label : "Sad", mood : "Sad" , moodFrequency : sadCount} , {label : "Love",mood : "Love",moodFrequency:loveCount},
+    {label : "Angry",mood : "Angry",moodFrequency:angryCount},{label : "Bored",mood : "Bored",moodFrequency:boredCount},{label : "Worried",mood : "Worried",moodFrequency:WorriedCount},
+    {label : "Blessed",mood : "Blessed",moodFrequency:BlessedCount},{label : "Sleepy",mood : "Sleepy",moodFrequency:SleepyCount},{label : "Sick",mood : "Sick",moodFrequency:SickCount},
+    {label : "Lonely",mood : "Lonely",moodFrequency:LonelyCount},{label : "Cry",mood : "Cry",moodFrequency:CryCount},{label : "Hungry",mood : "Hungry",moodFrequency:HungryCount}];
     return frequencies;
 
 };

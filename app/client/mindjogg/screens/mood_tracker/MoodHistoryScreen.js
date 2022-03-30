@@ -1,4 +1,6 @@
 import { React, useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import {
   SafeAreaView,
   View,
@@ -17,7 +19,7 @@ import { VictoryBar } from "victory-native";
 
 import axios from "axios";
 
-const backend = "http://192.168.2.14:8080";
+const backend = "http://192.168.0.116:8080";
 
 const MoodTrackerMainScreen = ({ navigation }) => {
   const [moodFrequencyList, setMoodFrequencyList] = useState([

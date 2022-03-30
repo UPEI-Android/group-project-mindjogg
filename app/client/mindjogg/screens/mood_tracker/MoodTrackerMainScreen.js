@@ -21,7 +21,7 @@ import EMOJI from "../../data/emoji";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
-const backend = "http://192.168.2.14:8080";
+const backend = "http://192.168.0.116:8080";
 
 const MoodTrackerMainScreen = ({ navigation }) => {
   const moodData = {

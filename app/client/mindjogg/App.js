@@ -71,7 +71,7 @@ function App() {
 
   // URI for the backend
 
-  const backend = "http://192.168.2.14:8080";
+  const backend = "http://192.168.0.116:8080";
 
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
   const authContext = useMemo(() => ({
