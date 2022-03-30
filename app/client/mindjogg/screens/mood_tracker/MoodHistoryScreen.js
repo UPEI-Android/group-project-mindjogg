@@ -1,4 +1,6 @@
 import { React, useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import {
   SafeAreaView,
   View,
@@ -16,7 +18,7 @@ import { VictoryBar, VictoryLabel } from "victory-native";
 
 import axios from "axios";
 
-const backend = "http://192.168.2.14:8080";
+const backend = "http://192.168.0.116:8080";
 
 const MoodTrackerMainScreen = ({ navigation }) => {
   const [moodFrequencyList, setMoodFrequencyList] = useState([
@@ -27,12 +29,13 @@ const MoodTrackerMainScreen = ({ navigation }) => {
    */
   const retrieveServices = async () => {
     try {
+      const userToken = await AsyncStorage.getItem("userToken");
+
       //Change the IP address to your Local Address
       var service = await axios.get(backend + "/moodtracker/frequencyMoods", {
         headers: {
           "Content-Type": "application/json",
-          "auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDY0MjU3NjB9.faIaGiTsl-GQt3TcIxSiX6VkUSWKPt3fn6yjVh9nn-E",
+          "auth-token": userToken,
         },
       });
     } catch (err) {
