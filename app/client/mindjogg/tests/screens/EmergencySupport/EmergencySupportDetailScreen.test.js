@@ -4,7 +4,7 @@
 // import EmergencySupportDescriptionScreen from "../../../screens/emergency_support/EmergencySupportDescriptionScreen";
 
 describe("Emergency Support Description Screen Tests", () => {
-  it("Should render ", async () => {
+  it("Should render ", /*async*/ () => {
     //This screen was giving me issues so I will come back to it later
     // var obj = {
     //   params: {
