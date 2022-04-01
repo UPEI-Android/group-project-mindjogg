@@ -11,7 +11,7 @@ import {
   View,
 } from "react-native-paper";
 
-const DialogBox = (/*props*/) => {
+const DialogBox = () => {
   const [visible, setVisible] = React.useState(true);
 
   //const showDialog = () => setVisible(true);
