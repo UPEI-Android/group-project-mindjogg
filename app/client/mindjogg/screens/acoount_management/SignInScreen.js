@@ -53,8 +53,15 @@ const SignInScreen = ({ navigation }) => {
     });
   };
 
+  // a state to track whether there is no account for the given username/password
+  const [accountFound, setAccountFound] = useState(true);
+
   const signInhandler = (userName, password) => {
-    signIn(userName, password);
+    signIn(userName, password).then((status) => {
+      if (status !== 200) {
+        setAccountFound(false);
+      }
+    });
   };
 
   return (
@@ -156,7 +163,7 @@ const SignInScreen = ({ navigation }) => {
                                 size={20}
                               />
                             )}
-                          </TouchableOpacity>
+                          </TouchableOpacity>                
                         </View>
                       </View>
                       {touched.password && errors.password ? (
@@ -164,6 +171,8 @@ const SignInScreen = ({ navigation }) => {
                           {errors.password}
                         </Text>
                       ) : null}
+
+                      <Text style={styles.text_header}>{accountFound || (touched.email || touched.password) ? "" : "Username or password is incorrect"}</Text>
 
                       <View style={styles.button}>
                         <StdButton text="Sign In" buttonPress={handleSubmit} />
@@ -182,7 +191,9 @@ const SignInScreen = ({ navigation }) => {
                         </TouchableOpacity>
                         <Text style={styles.text_footer}>Not a Member?</Text>
                         <TouchableOpacity
-                          onPress={() => navigation.push("SignUpScreen")}
+                          onPress={() => 
+                            navigation.push("SignUpScreen")
+                          }
                         >
                           <Text style={styles.text_hightlight}>Sign up</Text>
                         </TouchableOpacity>

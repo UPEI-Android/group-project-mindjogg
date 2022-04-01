@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   Text,
   View,
@@ -24,6 +25,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import { AuthContext } from "../../components/conext/authenticationContext";
+import SignInScreen from "./SignInScreen";
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required("First name is required!"),
@@ -62,8 +64,17 @@ const SignUpScreen = ({ navigation }) => {
     });
   };
 
+  const [responseStatus, setResponseStatus] = useState();
   const signUpHandler = (firstName, lastName, userName, email, password) => {
-    signUp(firstName, lastName, userName, email, password);
+    signUp(firstName, lastName, userName, email, password).then((status) => {
+      console.log("STATUS" + status)
+      if (status == 201) {
+        setResponseStatus(status);
+        navigation.navigate(SignInScreen);
+      } else {
+        setResponseStatus(status);
+      }
+    });
   };
 
   return (
@@ -243,6 +254,21 @@ const SignUpScreen = ({ navigation }) => {
                           {errors.password}
                         </Text>
                       ) : null}
+
+
+                      <Text
+                        style={styles.text_header}
+                      >{responseStatus == 201 ? "A verification email has been sent" : ""}</Text>
+
+
+                      <Text
+                        style={styles.text_header}
+                      >{responseStatus == 400 ? "That username or email is already in use!" : ""}</Text>
+
+                      <Text
+                        style={styles.text_header}
+                      >{responseStatus == 500 ? "Your account could not be created! Please make sure you've entered your information accurately" : ""}</Text>
+
                       <View style={styles.button}>
                         <StdButton text="Sign Up" buttonPress={handleSubmit} />
                       </View>

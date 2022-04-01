@@ -13,12 +13,12 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-"UserName": "roshan",
-"Password": "admin",
-"FirstName":"admin",
-"LastName":"admin",
+"UserName": "song",
+"Password": "cehoxi2181",
+"FirstName":"magiva",
+"LastName":"sign",
 "admin":false,
-"Email":"admin@admin.com"
+"Email":"cehoxi2181@songsign.com"
 }
 
 ###
@@ -50,8 +50,8 @@ POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-"UserName": "admin",
-"Password": "admin"
+"UserName": "song",
+"Password": "cehoxi2181"
 }
 
 
@@ -131,7 +131,7 @@ GET http://localhost:8080/moodtracker/getMood
 auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI1OGExMWFkYWMwZTg0ZTJmOWMzNjkiLCJpYXQiOjE2NDY2MjczNDd9.QTmiOD47B0-0ZIMol4Yz5BYf7hTh0t0-cN0GunUdZEs
 
 ###
-//post request to login with username and password in json
+//post request to add new mood
 POST http://localhost:8080/moodtracker/addmood
 Content-Type: application/json
 auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI1OGExMWFkYWMwZTg0ZTJmOWMzNjkiLCJpYXQiOjE2NDY2MjczNDd9.QTmiOD47B0-0ZIMol4Yz5BYf7hTh0t0-cN0GunUdZEs
@@ -141,3 +141,23 @@ auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI1OGExMWFkYWMwZTg0
     "moodName": "happy",
     "moodNote": "just graduated!"
 }
+
+###
+GET http://localhost:8080/users/verify/song/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InNvbmciLCJwYXNzd29yZCI6ImNlaG94aTIxODEiLCJ1c2VyRmlyc3ROYW1lIjoibWFnaXZhIiwidXNlckxhc3ROYW1lIjoic2lnbiIsImFkbWluIjpmYWxzZSwidXNlckVtYWlsIjoiY2Vob3hpMjE4MUBzb25nc2lnbi5jb20iLCJpYXQiOjE2NDcxMzk5MTgsImV4cCI6MTY0NzE0MDgxOH0.0Tu3rX0G7j7r3V_ZoG_0Ux9VgrOhLh3Y943PHiyhquI
+
+###
+//post request to add new entry to journal
+POST http://localhost:8080/users/addJournalEntry
+Content-Type: application/json
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMyYWM0MjY3Yjg0OWQzOGQwNmU5ZWMiLCJpYXQiOjE2NDc0ODgwNzB9.8sIOxRXO80qDkZEYFnwlbgvdfqAfPgETDU9uoq_dBSI
+
+{
+    "type": "travel",
+    "title": "happy",
+    "entry": "just graduated!"    
+}
+
+###
+//get request to access user info, must be logged in as user
+GET http://localhost:8080/users/getJournalEntries
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMzOTFmYjBkMjhhODAwNDA0Mzc0OGMiLCJpYXQiOjE2NDc1NDc1OTN9.rk3gSJMPAUscTblMmODl_z2o1fka0ng96QyMsBZ88LQ

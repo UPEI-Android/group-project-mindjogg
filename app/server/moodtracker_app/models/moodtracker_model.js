@@ -57,6 +57,7 @@ const getUserMood = async (user) => {
         //returns list of users
         let result= [];
         result = await User.findOne({_id:user.id},projection);   
+        console.log(result);
         return result;
     } catch (err) {
         console.log(err);

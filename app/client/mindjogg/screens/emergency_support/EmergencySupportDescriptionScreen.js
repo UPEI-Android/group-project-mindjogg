@@ -16,6 +16,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, Dimensions, Text, View } from "react-native";
 import { globalStyles } from "../../styles/global";
+import propTypes from "prop-types";
 
 const EmergencySupportDescriptionScreen = ({ route }) => {
   return (
@@ -25,7 +26,7 @@ const EmergencySupportDescriptionScreen = ({ route }) => {
         globalStyles.pinkBackground,
       ]}
     >
-      <ScrollView style={styles.supportContainer}>
+      <ScrollView testId= {"scroll_container"} style={styles.supportContainer}>
         {/* Support Name */}
         <View style={styles.detailContainer}>
           <Text style={styles.supportName}>{route.params.name}</Text>
@@ -107,5 +108,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
 });
+
+EmergencySupportDescriptionScreen.propTypes = { route: propTypes.any };
 
 export default EmergencySupportDescriptionScreen;

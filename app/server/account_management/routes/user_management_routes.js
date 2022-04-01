@@ -13,6 +13,8 @@ router.post("/users/register", userManagementController.userRegistration);
 router.post("/users/login", userManagementController.userLogin);
 router.post("/users/forgetPassword",userManagementController.userForgetPassword);
 router.post("/users/resetPassword/:id/:token",userManagementController.userResetPassword);
+router.get("/users/verify/:userName/:token",userManagementController.verifyUser);
+
 
 //update profile routes
 router.patch("/users/edit/personalinfo", verify,userManagementController.updatePersonalInfo);
@@ -27,6 +29,9 @@ router.get("/users",verifyAdmin, userManagementController.getUserList);
 router.get("/userInfo",verify, userManagementController.getUserInfo);
 
 
-
+router.get("/hello", function(req, res){
+    res.redirect("http://google.com");
+});
+  
 
 module.exports = router;

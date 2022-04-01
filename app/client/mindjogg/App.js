@@ -1,8 +1,9 @@
 import "react-native-gesture-handler";
-import { React, useEffect, useMemo, useReducer } from "react";
-import { View, ActivityIndicator } from "react-native";
+import { React, useEffect, useState, useMemo, useReducer } from "react";
+import { View, ActivityIndicator, Text } from "react-native";
 //import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
+import * as Linking from "expo-linking";
 
 import DrawerNavigator from "./screens/navigation/DrawerNavigator";
 
@@ -11,8 +12,23 @@ import AuthenticationStackNavigator from "./screens/navigation/AuthenticationSta
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { AuthContext } from "./components/conext/authenticationContext";
+import axios from "axios";
 
 function App() {
+  const [data, setData] = useState(null);
+
+  function handleDeepLink(event) {
+    const data = Linking.parse(event.url);
+    setData(data);
+  }
+
+  useEffect(() => {
+    Linking.addEventListener("url", handleDeepLink);
+    return () => {
+      Linking.removeEventListener("url");
+    };
+  }, []);
+
   // The initial state
   const initialLoginState = {
     isLoading: true,
@@ -53,57 +69,114 @@ function App() {
     }
   };
 
+  // URI for the backend
+
+  const backend = "http://192.168.0.116:8080";
+
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
   const authContext = useMemo(() => ({
     signIn: async (userName, password) => {
       // In a production app, we need to send some data (usually username, password) to server and get a token
-      let userToken;
-      userToken = null;
-
       // Authentication will be performed by server and token will be returned
-      //TODO: set userToken to null if authentication fails
-      // TODO: set the userToken to the token returned by the server
-      if (userName === "admin" && password === "password") {
-        try {
-          userToken = "abc";
+      let userToken = null;
+      try {
+        // check if there's already a token - if there is, no need to send a request to the backend
+        userToken = await AsyncStorage.getItem("userToken");
+        if (userToken !== null) {
+          dispatch({ type: "LOGIN", id: userName, token: userToken });
+        } else {
+          // set up the object to be sent
+          const data = JSON.stringify({
+            UserName: userName,
+            Password: password,
+          });
+
+          const response = await axios.post(backend + "/users/login", data, {
+            headers: { "Content-Type": "application/json" },
+          });
+
+          if (response.status == 200) {
+            userToken = response.data;
+            //getting user data
+            const user=await axios.get(backend + "/userInfo", {
+              headers: { "Content-Type": "application/json", "auth-token": userToken},
+            });
+            //setting user data and storing it in async storage
+            const userData=user.data;
+            await AsyncStorage.setItem("admin", JSON.stringify(userData.admin));
+            await AsyncStorage.setItem("userDOB", JSON.stringify(userData.userDOB));
+            await AsyncStorage.setItem("userEmail", JSON.stringify(userData.userEmail));
+            await AsyncStorage.setItem("userFirstName",  userData.userFirstName);
+            await AsyncStorage.setItem("userGoals", JSON.stringify(userData.userGoals));
+            await AsyncStorage.setItem("userJournal", JSON.stringify(userData.userJournal));
+            await AsyncStorage.setItem("userLastName", JSON.stringify(userData.userLastName));
+            await AsyncStorage.setItem("userMiddleName", JSON.stringify(userData.userMiddleName));
+            await AsyncStorage.setItem("userName", JSON.stringify(userData.userName));
+            await AsyncStorage.setItem("userPhone", JSON.stringify(userData.userPhone));
+            await AsyncStorage.setItem("userTasks", JSON.stringify(userData.userTasks));
+
+          } else {
+            userToken = null;
+          }
+
           await AsyncStorage.setItem("userToken", userToken);
-        } catch (e) {
-          console.log(e);
+          dispatch({ type: "LOGIN", id: userName, token: userToken });
+          
+         
+
+          return response.status;
         }
-        dispatch({ type: "LOGIN", id: userName, token: userToken });
+      } catch (e) {
+        console.error(e);
       }
     },
+
     signOut: async () => {
       // remove the token from storage
       try {
         await AsyncStorage.removeItem("userToken");
         dispatch({ type: "LOGOUT" });
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     },
+
     signUp: async (firstName, lastName, userName, email, password) => {
       // In a production app, we need to send user data to server and get a token
       // after successful registration, also need to update our state
-      let userToken;
-      userToken = null;
+      let userToken = null;
+      let status = 500;
+
       try {
-        const userInfo = {
-          firstName: firstName,
-          lastName: lastName,
-          userName: userName,
-          email: email,
-          password: password,
-        };
-        // setting the user token in async storage is not required for sign up
-        userToken = "abc";
-        await AsyncStorage.setItem("userToken", userToken);
-        // TODO: make an API call to create user account with the userInfo
-        console.log(userInfo);
+        // check if there's already a token - if there is, no need to register as the user is already signed in
+        userToken = await AsyncStorage.getItem("userToken");
+        if (userToken !== null) {
+          dispatch({ type: "REGISTER", id: userName, token: userToken });
+        } else {
+          const data = JSON.stringify({
+            UserName: userName,
+            Password: password,
+            FirstName: firstName,
+            LastName: lastName,
+            admin: false,
+            Email: email,
+          });
+
+          // make an API call to create user account with the userInfo
+          // if something goes wrong, we still want to return the response's status so we can handle the error in another component
+          await axios
+            .post(backend + "/users/register", data, {
+              headers: { "Content-Type": "application/json" },
+            })
+            .then((res) => (status = res.status))
+            .catch((error) => (status = error.response.status));
+
+          dispatch({ type: "REGISTER", id: userName, token: userToken });
+          return status;
+        }
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
-      dispatch({ type: "REGISTER", id: userName, token: userToken });
     },
   }));
 
@@ -129,6 +202,9 @@ function App() {
   if (loginState.isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>
+          {data ? JSON.stringify(data) : "App not opened from Deep link"}
+        </Text>
         <ActivityIndicator size="large" color="#683795" />
       </View>
     );
@@ -143,7 +219,6 @@ function App() {
         )}
       </NavigationContainer>
     </AuthContext.Provider>
-
   );
 }
 
