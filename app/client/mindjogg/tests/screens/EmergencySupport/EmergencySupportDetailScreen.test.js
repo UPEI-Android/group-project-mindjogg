@@ -1,7 +1,7 @@
 /* REACT IMPORTS */
-import React from "react";
-import { render } from "@testing-library/react-native";
-import EmergencySupportDescriptionScreen from "../../../screens/emergency_support/EmergencySupportDescriptionScreen";
+// import React from "react";
+// import { render } from "@testing-library/react-native";
+// import EmergencySupportDescriptionScreen from "../../../screens/emergency_support/EmergencySupportDescriptionScreen";
 
 describe("Emergency Support Description Screen Tests", () => {
   it("Should render ", async () => {

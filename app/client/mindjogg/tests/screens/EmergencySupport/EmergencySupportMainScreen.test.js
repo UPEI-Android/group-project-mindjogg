@@ -1,5 +1,5 @@
 /* REACT IMPORTS */
-import { React, Alert } from "react";
+import { React } from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import EmergencySupportMainScreen from "../../../screens/emergency_support/EmergencySupportMainScreen";
 
@@ -18,7 +18,7 @@ describe("Emergency Support Main Screen Tests", () => {
     const screen = <EmergencySupportMainScreen />;
     //const onClick = jest.fn();
 
-    const { findByTestId, getByText, getByPlaceholderText } = render(screen);
+    const { findByTestId } = render(screen);
     const button = await findByTestId("911Btn");
     fireEvent.press(button);
 

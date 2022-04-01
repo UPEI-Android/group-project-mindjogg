@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import StdButton from "../../components/StdButton/StdButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import DialogBox from "../../components/DialogBox/DialogBox";
+// import DialogBox from "../../components/DialogBox/DialogBox";
 
 let userFirstName;
 let userName;

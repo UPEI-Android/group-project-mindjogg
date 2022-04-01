@@ -1,5 +1,5 @@
 import { React } from "react";
-import { Text } from "react-native-paper";
+// import { Text } from "react-native-paper";
 //import PropTypes from "prop-types";
 //import { globalStyles } from "../../styles/global";
 import {
@@ -8,6 +8,7 @@ import {
   Dialog,
   Portal,
   Provider,
+  View,
 } from "react-native-paper";
 
 const DialogBox = (props) => {
@@ -17,7 +18,7 @@ const DialogBox = (props) => {
 
   const hideDialog = () => setVisible(false);
 
-  var alertName = props.alertTitle;
+  // var alertName = props.alertTitle;
 
   return (
     <Provider>
