@@ -11,7 +11,7 @@ import StdCard from "../../components/StdCard/StdCard";
 import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
-const backend = "http://192.168.0.116:8080";
+const backend = "http://192.168.2.35:8080";
 
 var count = 0;
 const askHelp = () => {
@@ -54,6 +54,7 @@ const EmergencySupportMainScreen = ({ navigation }) => {
       <View style={styles.sosButton}>
         <Text style={styles.headerTitleText}>Immediate Help Needed?</Text>
         <TouchableOpacity
+          testID={"911Btn"}
           style={styles.circle}
           onPress={() => {
             askHelp();
