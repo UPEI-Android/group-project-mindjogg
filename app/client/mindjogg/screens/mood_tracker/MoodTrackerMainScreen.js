@@ -23,7 +23,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import propTypes from "prop-types";
 
-const backend = "http://192.168.0.116:8080";
+const backend = "http:/192.168.2.14:8080";
 
 const MoodTrackerMainScreen = ({ navigation }) => {
   const moodData = {
@@ -88,7 +88,7 @@ const MoodTrackerMainScreen = ({ navigation }) => {
     );
   };
 
-  Item.propTypes = { title: propTypes.string, icon: propTypes.string };
+  Item.propTypes = { title: propTypes.any, icon: propTypes.any };
   return (
     <Formik
       initialValues={moodData}
