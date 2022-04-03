@@ -21,7 +21,7 @@ const setUserValue= async () => {
   return;
 }
 
-const ProfileScreen = (props) => {
+const ProfileScreen = ({navigation}) => {
   const { signOut } = useContext(AuthContext);
   setUserValue();
 
@@ -49,7 +49,7 @@ const ProfileScreen = (props) => {
       style={styles.button}
       text="Personal Information"
       uppercaseOn={false}
-      buttonPress={() => {}}
+      buttonPress={() => {navigation.push("ProfileScreen")}}
     />
     </View>
     <View style={styles.button}>
@@ -73,7 +73,7 @@ const ProfileScreen = (props) => {
       style={styles.button}
       text="Update Password"
       uppercaseOn={false}
-      buttonPress={() => {}}
+      buttonPress={() => {navigation.push("ForgotPasswordScreen")}}
     />
     </View>
     <View style={styles.button}>
