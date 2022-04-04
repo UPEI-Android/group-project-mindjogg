@@ -7,6 +7,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 // import SmartGoalMainScreen, SmartGoalEditScreen from the smart_goals folder
 import SmartGoalMainScreen from "../smart_goals/SmartGoalMainScreen";
 import SmartGoalEditScreen from "../smart_goals/SmartGoalEditScreen";
+import SmartGoalDetailScreen from "../smart_goals/SmartGoalDetailScreen";
 import { globalStyles } from "../../styles/global";
 
 const Stack = createNativeStackNavigator();
@@ -32,6 +33,11 @@ const SmartGoalStackNavigator = ({navigation}) => {
           }
         }/>
         <Stack.Screen name="SmartGoalEditScreen" component={SmartGoalEditScreen} options = {
+          {
+            title: "Smart Goal Edit",
+          }
+        }/>
+          <Stack.Screen name="SmartGoalDetailScreen" component={SmartGoalDetailScreen} options = {
           {
             title: "Smart Goal Edit",
           }
