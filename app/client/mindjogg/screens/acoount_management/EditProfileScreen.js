@@ -49,7 +49,7 @@ const ProfileScreen = ({navigation}) => {
       style={styles.button}
       text="Personal Information"
       uppercaseOn={false}
-      buttonPress={() => {navigation.push("ProfileScreen")}}
+      buttonPress={() => {navigation.goBack()}}
     />
     </View>
     <View style={styles.button}>
