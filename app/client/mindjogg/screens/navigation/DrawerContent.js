@@ -87,6 +87,15 @@ const DrawerContent =  (props) => {
             />
             <DrawerItem
               icon={({ color, size }) => (
+                <Icon name="emoticon-outline" color={color} size={size} />
+              )}
+              label="Mood Tracker"
+              onPress={() => {
+                props.navigation.navigate("MoodTracker");
+              }}
+            />
+            <DrawerItem
+              icon={({ color, size }) => (
                 <Icon name="notebook" color={color} size={size} />
               )}
               label="Positive Journal"

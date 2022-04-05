@@ -10,10 +10,10 @@ import MoodTrackerStackNavigator from "./MoodTrackerStackNavigator";
 
 const Tab = createMaterialBottomTabNavigator();
 
-const EmergencySupportTabNavigator = () => {
+const MoodTrackerTabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Support"
+      initialRouteName="Journal"
       activeColor="#734f96"
       barStyle={{ backgroundColor: "white" }}
     >
@@ -63,11 +63,7 @@ const EmergencySupportTabNavigator = () => {
         options={{
           tabBarLabel: "Mood Tracker",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="emoticon-outline"
-              color={color}
-              size={26}
-            />
+            <MaterialCommunityIcons name="emoticon" color={color} size={26} />
           ),
         }}
       />
@@ -75,4 +71,4 @@ const EmergencySupportTabNavigator = () => {
   );
 };
 
-export default EmergencySupportTabNavigator;
+export default MoodTrackerTabNavigator;
