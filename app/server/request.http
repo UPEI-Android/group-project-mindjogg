@@ -157,7 +157,40 @@ auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMyYWM0MjY3Yjg0OWQz
     "entry": "just graduated!"    
 }
 
+
+###
+//post request to delete  entry to journal
+POST http://localhost:8080/users/deleteJournalEntry
+Content-Type: application/json
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzYjc3NmM4NmRkN2FiNjNmNDRkM2EiLCJpYXQiOjE2NDkwNzU1OTJ9._nymBfgupV4dWsOpJwuV5h8qRhLCdphqwKNPKoUngec
+
+{
+    "title": "Hello"
+}
+
 ###
 //get request to access user info, must be logged in as user
 GET http://localhost:8080/users/getJournalEntries
-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMzOTFmYjBkMjhhODAwNDA0Mzc0OGMiLCJpYXQiOjE2NDc1NDc1OTN9.rk3gSJMPAUscTblMmODl_z2o1fka0ng96QyMsBZ88LQ
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzYjc3NmM4NmRkN2FiNjNmNDRkM2EiLCJpYXQiOjE2NDkwNzU1OTJ9._nymBfgupV4dWsOpJwuV5h8qRhLCdphqwKNPKoUngec
+
+###
+//get request to access user goals, must be logged in as user
+GET http://localhost:8080/users/getGoal
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzYjc3NmM4NmRkN2FiNjNmNDRkM2EiLCJpYXQiOjE2NDkwNzU1OTJ9._nymBfgupV4dWsOpJwuV5h8qRhLCdphqwKNPKoUngec
+
+
+###
+//post request to add new entry to goals
+POST http://localhost:8080/users/addGoal
+Content-Type: application/json
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzYjc3NmM4NmRkN2FiNjNmNDRkM2EiLCJpYXQiOjE2NDkwNzU1OTJ9._nymBfgupV4dWsOpJwuV5h8qRhLCdphqwKNPKoUngec
+
+{
+    "title": "Lose weight",
+    "specific": "decrease body fat %",
+    "measurable":"Will track weight on scale",
+    "attainable":"Go to gym daily",
+    "relevant":"Yes, this will compound to better health",
+    "time":"4 months"
+}
+

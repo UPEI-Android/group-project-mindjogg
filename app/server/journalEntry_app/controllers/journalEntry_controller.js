@@ -34,6 +34,34 @@ const model = require("../models/journalEntry_model");
 };
 
 /**
+ * This is the controller function to update a journal entry
+ * @param {HTTP object} req this is the request object
+ * @param {*} res this is the response object
+ */
+ const deleteJournalEntry= async (req, res) => {
+    try {
+
+        const user = {
+            id: req.user,
+            title: req.body.title,
+        }  
+        console.log(req.body.title);
+        const result = await model.deleteJournalEntry(user);     
+
+        if (result.status == 200) {
+            res.status(200);
+            res.json(result.message);
+        } else if (result.status == 401) {
+            res.status(401);
+            res.json(result.message);
+        }
+} catch (err) {
+    res.status(500);
+    res.json(err.message);
+}
+};
+
+/**
  * Retrieves journal entries for specific user
  */
  const getUserJournal = async (req, res) => {
@@ -55,5 +83,6 @@ const model = require("../models/journalEntry_model");
 
 module.exports = {
     updateJournal,
-    getUserJournal
+    getUserJournal,
+    deleteJournalEntry
 };

@@ -10,6 +10,9 @@ const journalEntry_controller = require("../controllers/journalEntry_controller"
 router.post("/users/addJournalEntry",verify, journalEntry_controller.updateJournal);
 
 
+//mood tracker routes
+router.post("/users/deleteJournalEntry",verify, journalEntry_controller.deleteJournalEntry);
+
 //get Mood info for logged in user
 router.get("/users/getJournalEntries",verify,journalEntry_controller.getUserJournal);
 

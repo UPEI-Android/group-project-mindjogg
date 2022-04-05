@@ -71,7 +71,7 @@ function App() {
 
   // URI for the backend
 
-  const backend = "http://192.168.2.14:8080";
+  const backend = "http://192.168.0.116:8080";
 
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
   const authContext = useMemo(() => ({
@@ -229,9 +229,6 @@ function App() {
   if (loginState.isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>
-          {data ? JSON.stringify(data) : "App not opened from Deep link"}
-        </Text>
         <ActivityIndicator size="large" color="#683795" />
       </View>
     );

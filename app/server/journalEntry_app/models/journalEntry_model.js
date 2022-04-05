@@ -83,10 +83,57 @@ const getUserJournal = async (user) => {
 };
 
 
+const deleteJournalEntry = async (user) => {
+    // returnMessage will be used to return the status of the creation of the user
+    const returnMessage = {
+        status: null,
+        message: null
+    };
+
+    try { 
+         //finding user that matches username entered by passing query for id
+        const result= await User.findById(user.id)
+        if(result){
+                //retrieving current user history and storing it to local array
+                let userJournalEntries= [];
+                userJournalEntries= await getResults(user);
+                console.log(user.title);
+                if(userJournalEntries==null){
+                    //adding new mood to the array of journal entry
+                    userJournalEntries.userJournal.push(user.journalEntry);
+                }
+                else {
+                    //Removing entry to the array of journal entry
+                    var filtered = userJournalEntries.userJournal.filter(function(value){ 
+
+                        return value.title !== user.title;
+                    });
+                    //updating user Journal in database
+                    await User.findByIdAndUpdate(user.id, { 
+                        //user Journal updated
+                        userJournal: filtered
+                    });
+                    console.log("user Journal updated");
+                    returnMessage.message = "user Journal updated";
+                    returnMessage.status = 200;
+                }
+         
+        }
+        else{
+        returnMessage.message = "User not found";
+        returnMessage.status = 400;        }
+   return returnMessage;
+} catch (err) {
+    console.log(err);
+}
+};
+
+
 
 
 
 module.exports = {
     addNewJournalRecord,
-    getUserJournal
+    getUserJournal,
+    deleteJournalEntry
  };
