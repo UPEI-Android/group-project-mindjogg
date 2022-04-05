@@ -9,14 +9,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const backend = "http://192.168.0.116:8080";
 
-const PositiveJournalDetailScreen = ({ route, navigation }) => {
-  //deleting entry function
-  const deleteEntry = async () => {
-    const userToken = await AsyncStorage.getItem("userToken");
-    const data = JSON.stringify({
-      title: route.params.title,
-    });
-
 const PositiveJournalDetailScreen = ({route,navigation}) => {
   const journalEntry= {title:route.params.title, type: route.params.type, entry: route.params.entry }
 //deleting entry function
