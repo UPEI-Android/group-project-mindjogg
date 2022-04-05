@@ -188,3 +188,21 @@ auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzYjc3NmM4NmRkN2Fi
     "time":"4 months"
 }
 
+
+###
+//get request to access user info, must be logged in as user
+GET http://localhost:8080/users/getSchedule
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMzOTFmYjBkMjhhODAwNDA0Mzc0OGMiLCJpYXQiOjE2NDc1NDc1OTN9.rk3gSJMPAUscTblMmODl_z2o1fka0ng96QyMsBZ88LQ
+
+
+###
+//post request to add new entry to tasks
+POST http://localhost:8080/users/addScheduleEntry
+Content-Type: application/json
+auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMzOTFmYjBkMjhhODAwNDA0Mzc0OGMiLCJpYXQiOjE2NDc1NDc1OTN9.rk3gSJMPAUscTblMmODl_z2o1fka0ng96QyMsBZ88LQ
+
+{
+    "title": "travel",
+    "start": "",
+    "end": ""    
+}
