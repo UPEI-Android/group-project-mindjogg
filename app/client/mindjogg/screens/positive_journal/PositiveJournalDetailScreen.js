@@ -1,5 +1,5 @@
 import React from "react";
-import { globalStyles} from "../../styles/global";
+import { globalStyles } from "../../styles/global";
 import { ScrollView, StyleSheet, Dimensions, Text, View } from "react-native";
 import axios from "axios";
 
@@ -9,6 +9,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const backend = "http://192.168.0.116:8080";
 
+const PositiveJournalDetailScreen = ({ route, navigation }) => {
+  //deleting entry function
+  const deleteEntry = async () => {
+    const userToken = await AsyncStorage.getItem("userToken");
+    const data = JSON.stringify({
+      title: route.params.title,
+    });
 
 const PositiveJournalDetailScreen = ({route,navigation}) => {
   const journalEntry= {title:route.params.title, type: route.params.type, entry: route.params.entry }
@@ -25,21 +32,22 @@ const deleteEntry = async () => {
 
 };
   return (
-    <View style={[{ flex: 1, justifyContent: "center" },globalStyles.pinkBackground]}>
-    <ScrollView style={[styles.supportContainer,{marginLeft:15}]}>
-
-    <View style={{marginTop:50, marginLeft:30}}>
-          <Text style={{fontSize:20,color:"white"}}>
-              Type : {route.params.type}
-            </Text> 
-          <Text style={{fontSize:35,color:"white"}}>
-              Title : {route.params.title}
-            </Text>   
-      <Text style={{fontSize:25}}>
-        Entry: {route.params.entry}
-      </Text>
-      </View>
-
+    <View
+      style={[
+        { flex: 1, justifyContent: "center" },
+        globalStyles.pinkBackground,
+      ]}
+    >
+      <ScrollView style={[styles.supportContainer, { marginLeft: 15 }]}>
+        <View style={{ marginTop: 50, marginLeft: 30 }}>
+          <Text style={{ fontSize: 20, color: "white" }}>
+            Type : {route.params.type}
+          </Text>
+          <Text style={{ fontSize: 35, color: "white" }}>
+            Title : {route.params.title}
+          </Text>
+          <Text style={{ fontSize: 25 }}>Entry: {route.params.entry}</Text>
+        </View>
       </ScrollView>
       <View style={{ flexDirection: "row",
             marginTop: 15, marginBottom:10,
@@ -66,22 +74,27 @@ const deleteEntry = async () => {
           </View>
           </View>
     </View>
-    
   );
-}
-
-
+};
 
 const styles = StyleSheet.create({
-  supportContainer: {
+  journalContainer: {
     flex: 1,
-    marginTop: Dimensions.get("window").height * 0.015,
-    marginRight: 100,
+    marginTop: Dimensions.get("window").height * 0.01,
     backgroundColor: globalStyles.purple.color,
-    height: Dimensions.get("window").height * 0.7,
-    width: Dimensions.get("window").width * 0.9,
-    margin: 5,
-    borderRadius: 30,
+    height: Dimensions.get("window").height * 0.5,
+    width: Dimensions.get("window").width * 0.93,
+    borderRadius: 15,
+    marginBottom: Dimensions.get("window").height * 0.011,
+  },
+  journalSubTextContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: Dimensions.get("window").height * 0.02,
+  },
+  journalTitle: {},
+  journalBody: {
+    marginTop: Dimensions.get("window").height * 0.01,
   },
 });
 PositiveJournalDetailScreen.propTypes = { route: propTypes.any };
