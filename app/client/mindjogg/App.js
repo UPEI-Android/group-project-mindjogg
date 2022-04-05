@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import { React, useEffect, useState, useMemo, useReducer } from "react";
-import { View, ActivityIndicator, Text } from "react-native";
+import { View, ActivityIndicator } from "react-native";
 //import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import * as Linking from "expo-linking";
