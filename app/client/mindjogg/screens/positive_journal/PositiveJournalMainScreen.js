@@ -5,11 +5,13 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import propTypes from "prop-types";
 
-const backend = "http://192.168.2.14:8080";
+
+const backend = "http://192.168.0.116:8080";
 
 var count = 0;
-const PositiveJournalMainScreen = ({ navigation }) => {
+const PositiveJournalMainScreen = ({ navigation,route }) => {
   const [journalEntries, setJournalEntries] = useState([]);
 
   /**
@@ -38,7 +40,7 @@ const PositiveJournalMainScreen = ({ navigation }) => {
     retrieveJournalEntries().then((journalEntry) => {
       setJournalEntries(journalEntry);
     });
-  }, [journalEntries.toString()]);
+  }, [journalEntries.toString(),route.params]);
 
   return (
     <View
@@ -82,9 +84,13 @@ const PositiveJournalMainScreen = ({ navigation }) => {
                     <Text style={styles.journalEntriesTitle}>
                       {journalEntry.title}
                     </Text>
+                    
                   </View>
+                               
                 </TouchableOpacity>
+  
               </View>
+        
             </View>
           );
         })}
@@ -163,5 +169,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
   },
 });
+PositiveJournalMainScreen.propTypes = { route: propTypes.any };
+
 
 export default PositiveJournalMainScreen;
