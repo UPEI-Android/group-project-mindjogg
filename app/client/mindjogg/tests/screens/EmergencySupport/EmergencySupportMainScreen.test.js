@@ -1,6 +1,6 @@
 /* REACT IMPORTS */
 import { React } from "react";
-import { fireEvent, render } from "@testing-library/react-native";
+import { render } from "@testing-library/react-native";
 import EmergencySupportMainScreen from "../../../screens/emergency_support/EmergencySupportMainScreen";
 
 describe("Emergency Support Main Screen Tests", () => {
