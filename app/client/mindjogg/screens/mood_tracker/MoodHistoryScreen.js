@@ -19,7 +19,7 @@ import propTypes from "prop-types";
 
 import axios from "axios";
 
-const backend = "http://192.168.2.14:8080";
+const backend = global.backend;
 
 const MoodTrackerMainScreen = ({ navigation }) => {
   const [moodFrequencyList, setMoodFrequencyList] = useState([

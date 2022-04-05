@@ -23,7 +23,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import propTypes from "prop-types";
 
-const backend = "http:/192.168.2.14:8080";
+const backend = global.backend;
 
 const MoodTrackerMainScreen = ({ navigation }) => {
   const moodData = {
