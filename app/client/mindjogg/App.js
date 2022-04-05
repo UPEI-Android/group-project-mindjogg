@@ -11,7 +11,7 @@ import { AuthContext } from "./components/conext/authenticationContext";
 import axios from "axios";
 
  // URI for the backend, only need to update here now (globalized variable)
- global.backend="http://192.168.0.116:8080";
+ global.backend="https://mindjoggstage.herokuapp.com";
 
 function App() {
   const [data, setData] = useState(null);
