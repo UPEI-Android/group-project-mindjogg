@@ -15,6 +15,7 @@ import { AuthContext } from "./components/conext/authenticationContext";
 import axios from "axios";
 
 function App() {
+  // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(null);
 
   function handleDeepLink(event) {
