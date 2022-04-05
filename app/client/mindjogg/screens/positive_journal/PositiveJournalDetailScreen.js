@@ -11,7 +11,7 @@ const backend = "http://192.168.0.116:8080";
 
 
 const PositiveJournalDetailScreen = ({route,navigation}) => {
-  
+  const journalEntry= {title:route.params.title, type: route.params.type, entry: route.params.entry }
 //deleting entry function
 const deleteEntry = async () => {
   const userToken = await AsyncStorage.getItem("userToken");
@@ -41,7 +41,10 @@ const deleteEntry = async () => {
       </View>
 
       </ScrollView>
-      <View style={{marginLeft:15,marginBottom:20, marginTop:10}}>
+      <View style={{ flexDirection: "row",
+            marginTop: 15, marginBottom:10,
+            justifyContent: "center",}}>
+
       <StdButton
             text={"Delete"}
             buttonColour={"#663591"}
@@ -51,6 +54,16 @@ const deleteEntry = async () => {
               navigation.push("PositiveJournalMainScreen",route.params.title);
             }}
           />
+          <View style={{marginLeft:20}}>
+          <StdButton
+            text={"Edit"}
+            buttonColour={"#663591"}
+            buttonWidth={125}
+            buttonPress={() => {
+              navigation.push("PositiveJournalEditModifyScreen",journalEntry);
+            }}
+          />
+          </View>
           </View>
     </View>
     

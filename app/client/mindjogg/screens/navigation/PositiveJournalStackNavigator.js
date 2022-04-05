@@ -8,6 +8,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import PositiveJournalMainScreen from "../positive_journal/PositiveJournalMainScreen";
 import PositiveJournalEditScreen from "../positive_journal/PositiveJournalEditScreen";
 import PositiveJournalDetailScreen from "../positive_journal/PositiveJournalDetailScreen";
+import PositiveJournalEditModifyScreen from "../positive_journal/PositiveJournalEditModifyScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -47,12 +48,19 @@ const PositiveJournalStackNavigator = ({ navigation }) => {
             title: "Positive Journal details",
           }}
         />
+                <Stack.Screen
+          name="PositiveJournalEditModifyScreen"
+          component={PositiveJournalEditModifyScreen}
+          options={{
+            title: "Positive Journal Modify",
+          }}
+        />
 
         <Stack.Screen
           name="PositiveJournalEditScreen"
           component={PositiveJournalEditScreen}
           options={{
-            title: "Positive Journal Edit",
+            title: "Positive Journal add entry",
           }}
         />
       </Stack.Navigator>
