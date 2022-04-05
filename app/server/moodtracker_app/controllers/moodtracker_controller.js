@@ -38,11 +38,11 @@ const model = require("../models/moodtracker_model");
  */
  const getMoodhistory = async (req, res) => {
     try {
-
         const user = {
             id: req.user,
+           
         }   
-        const result = await model.getUserMood(user);
+        const result = await model.getNewMood(user);
         res.status(200);
         res.json(result);
     } catch (err) {
@@ -51,9 +51,32 @@ const model = require("../models/moodtracker_model");
     }
 };
 
+/**
+ * This is the controller function for the frequencyMoods
+ * @param {HTTP object} req this is the request object
+ * @param {*} res this is the response object
+ */
+ const frequencyMoods = async (req, res) => {
+    try {
+        //mapping new info into new mood object
+
+        const user = {
+            id: req.user }   
+        const result = await model.frequencyMoods(user);     
+
+            res.status(200);
+            res.json(result);
+
+} catch (err) {
+    res.status(500);
+    res.json(err.message);
+}
+};
+
 
 
 module.exports = {
     updateMoodInfo,
-    getMoodhistory
+    getMoodhistory,
+    frequencyMoods
 };
