@@ -10,7 +10,6 @@ const model = require("../models/journalEntry_model");
     try {
         const d = new Date();
         const dateText = d.toDateString();
-        
         //mapping new info into new mood object
         const newEntry = { 
             type: req.body.type,

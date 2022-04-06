@@ -43,7 +43,7 @@ const PositiveJournalDetailScreen = ({ route, navigation }) => {
               Category: {route.params.type}
             </Text>
             <Text style={{ fontSize: 15, color: "white" }}>
-              Date: 2020-05-01
+              Date: {route.params.date}
             </Text>
           </View>
           <View style={styles.journalBody}>
