@@ -10,6 +10,7 @@ import AddNewScheduleItem from "../acoount_management/AddNewScheduleItem";
 
 import EditProfileScreen from "../acoount_management/EditProfileScreen";
 import { globalStyles } from "../../styles/global";
+import ForgotPasswordScreen from "../acoount_management/ForgotPasswordScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,10 @@ const AccountManagementStackNavigator = ({navigation}) => {
             title: "Edit Profile",
           }
         }/>
+        <Stack.Screen
+          name="ForgotPasswordScreen"
+          component={ForgotPasswordScreen}
+        />
 
         <Stack.Screen name="AddNewScheduleItem" component={AddNewScheduleItem} options = {
           {
