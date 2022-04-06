@@ -20,20 +20,20 @@ const SmartGoalMainScreen = ({ navigation }) => {
       try {
         const userToken = await AsyncStorage.getItem("userToken");
 
-        const journalEntry = await axios.get(global.backend + "/users/getGoal", {
+        const goalEntry = await axios.get(global.backend + "/users/getGoal", {
           headers: {
             "Content-Type": "application/json",
             "auth-token":
             userToken }});
-        return journalEntry.data.userGoals;
+        return goalEntry.data.userGoals;
       } catch (err) {
         console.log(err);
       }   }
      
 
     useEffect(() => {
-      retrieveJournalEntries().then((journalEntry) => {
-        setJournalEntries(journalEntry);
+      retrieveJournalEntries().then((goalEntry) => {
+        setJournalEntries(goalEntry);
       });
     }, [journalEntries.toString()]);
 
@@ -42,24 +42,24 @@ const SmartGoalMainScreen = ({ navigation }) => {
         <View style={styles.spaceContainer}></View>
       <ScrollView showsVerticalScrollIndicator={false}>
                 {/*Display the parsed information on cards*/}
-                {journalEntries.map((journalEntry) => {
+                {journalEntries.map((goalEntry) => {
                   count++;
                   return (
                     <View key={count} style={styles.supportContainer}>
                       <View
-                        key={journalEntry.id}
+                        key={goalEntry.id}
                         style={{ alignItems: "center", justifyContent: "flex-start" }}
                       >
                         <StdCard
-                            title={journalEntry.title}
-                            description={journalEntry.specific}
+                            title={goalEntry.title}
+                            description={goalEntry.specific}
                             elevation={10}
                             width={250}
                             height={100}
                             cardPress={() => {
                               navigation.navigate(
                                 "SmartGoalDetailScreen",
-                                journalEntry
+                                goalEntry
                             );
                           }}
                         ></StdCard>

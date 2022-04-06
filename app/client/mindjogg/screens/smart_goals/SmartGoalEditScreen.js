@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
     },
     title:{
       borderWidth:1,
+      fontSize:20,
       borderRadius:10,
       borderColor:"#777",
       backgroundColor: "#F8F8F8",

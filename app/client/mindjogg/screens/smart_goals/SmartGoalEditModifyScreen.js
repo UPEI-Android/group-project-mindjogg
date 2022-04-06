@@ -10,8 +10,9 @@ import propTypes from "prop-types";
 
 
 const SmartGoalEditModifyScreen = ({navigation,route}) => {
+
   const [title,setGoalTitle]=useState(route.params.title);
-   const [measurable,setMeasurable]=useState(route.params.measurable);
+  const [measurable,setMeasurable]=useState(route.params.measurable);
   const [specific,setSpecific]=useState(route.params.specific);
   const [attainable,setAttainable]=useState(route.params.attainable);
   const [relevant,setRelevant]=useState(route.params.relevant);
@@ -58,6 +59,8 @@ const SmartGoalEditModifyScreen = ({navigation,route}) => {
       <View  style={{flexDirection:"row",justifyContent: "space-between"}}>
       <Text style={styles.s}  >GOAL</Text> 
         <TextInput 
+         value={title}
+         editable={true}
           style={styles.title} 
           textAlignVertical="top"
           placeholder="Enter Goal title"
@@ -68,6 +71,8 @@ const SmartGoalEditModifyScreen = ({navigation,route}) => {
       <View  style={{flexDirection:"row",justifyContent: "space-between"}}>
       <Text style={styles.s} >S </Text> 
          <TextInput 
+          value={specific}
+          editable={true}
         style={styles.input} 
         textAlignVertical="top"
         placeholder="What specifically am I trying to achieve?"
@@ -77,6 +82,8 @@ const SmartGoalEditModifyScreen = ({navigation,route}) => {
             <View  style={{flexDirection:"row",justifyContent: "space-between"}}>
             <Text style={styles.s}  >M</Text> 
                   <TextInput
+                   value={measurable}
+                   editable={true}
               style={styles.input} 
               textAlignVertical="top"
               placeholder="How will I measure success?"
@@ -86,6 +93,8 @@ const SmartGoalEditModifyScreen = ({navigation,route}) => {
                <View  style={{flexDirection:"row",justifyContent: "space-between"}}>
             <Text style={styles.s}  >A</Text> 
             <TextInput 
+             value={attainable}
+             editable={true}
         style={styles.input} 
         textAlignVertical="top"
         placeholder="What steps do I need
@@ -96,6 +105,8 @@ const SmartGoalEditModifyScreen = ({navigation,route}) => {
                      <View  style={{flexDirection:"row",justifyContent: "space-between"}}>
             <Text style={styles.s}  >R</Text> 
                   <TextInput 
+                   value={relevant}
+                   editable={true}
         style={styles.input} 
         textAlignVertical="top"
         placeholder="Is this relevant for my
@@ -107,6 +118,8 @@ const SmartGoalEditModifyScreen = ({navigation,route}) => {
        <View  style={{flexDirection:"row",justifyContent: "space-between"}}>
             <Text style={styles.s}  >T</Text> 
             <TextInput 
+             value={time}
+             editable={true}
             style={styles.input} 
             textAlignVertical="top"
             placeholder="What is the time frame for the goal?"
@@ -155,6 +168,7 @@ const styles = StyleSheet.create({
     },
     title:{
       borderWidth:1,
+      fontSize:20,
       borderRadius:10,
       borderColor:"#777",
       backgroundColor: "#F8F8F8",
@@ -166,4 +180,5 @@ const styles = StyleSheet.create({
 
 
 SmartGoalEditModifyScreen.propTypes = { route: propTypes.any };
+
 export default SmartGoalEditModifyScreen;

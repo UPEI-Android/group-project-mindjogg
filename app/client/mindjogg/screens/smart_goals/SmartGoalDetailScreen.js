@@ -10,6 +10,15 @@ import StdButton from "../../components/StdButton/StdButton";
 
 const SmartGoalDetailScreen = ({navigation,route}) => {
 
+  const goalEntry={
+    title: route.params.title,
+    specific: route.params.specific,
+    measurable: route.params.measurable,
+    attainable: route.params.attainable,
+    relevant: route.params.relevant,
+    time: route.params.time
+  };
+
     //deleting entry function
     const deleteEntry = async () => {
       const userToken = await AsyncStorage.getItem("userToken");
@@ -64,8 +73,19 @@ const SmartGoalDetailScreen = ({navigation,route}) => {
             navigation.push("SmartGoalMainScreen", route.params.title);
           }}
         />
-        </View>
 
+      <View style={{ marginLeft: 20 }}>
+          <StdButton
+            text={"Edit"}
+            buttonColour={"#663591"}
+            buttonWidth={125}
+            buttonPress={() => {
+              navigation.push("SmartGoalEditModifyScreen", goalEntry);
+            }}
+          />
+        </View>
+        </View>
+        
     </View>
   );
 }
