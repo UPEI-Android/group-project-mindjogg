@@ -127,7 +127,9 @@ function App() {
           return response.status;
         }
       } catch (e) {
-        console.error(e);
+        if(!response) {
+          console.error(e);
+        }
       }
     },
 
