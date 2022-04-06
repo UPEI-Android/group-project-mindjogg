@@ -7,7 +7,6 @@ import StdButton from "../../components/StdButton/StdButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
-const backend = global.backend;
 
 var count = 0;
 const SmartGoalMainScreen = ({ navigation }) => {
@@ -21,7 +20,7 @@ const SmartGoalMainScreen = ({ navigation }) => {
       try {
         const userToken = await AsyncStorage.getItem("userToken");
 
-        const journalEntry = await axios.get(backend + "/users/getGoal", {
+        const journalEntry = await axios.get(global.backend + "/users/getGoal", {
           headers: {
             "Content-Type": "application/json",
             "auth-token":

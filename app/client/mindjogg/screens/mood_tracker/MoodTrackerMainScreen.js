@@ -23,7 +23,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import propTypes from "prop-types";
 
-const backend = global.backend;
 
 const MoodTrackerMainScreen = ({ navigation }) => {
   const moodData = {
@@ -44,7 +43,7 @@ const MoodTrackerMainScreen = ({ navigation }) => {
       });
 
       const response = await axios.post(
-        backend + "/moodTracker/addMood",
+        global.backend + "/moodTracker/addMood",
         submitData,
         {
           headers: {

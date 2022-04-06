@@ -5,7 +5,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
-const backend = global.backend;
 
 
 
@@ -31,7 +30,7 @@ const SmartGoalEditScreen = ({navigation}) => {
       time: time
     });
   
-     await axios.post(backend + "/users/addGoal", data, {
+     await axios.post(global.backend + "/users/addGoal", data, {
       headers: { "Content-Type": "application/json",  "auth-token":userToken},
     });
   }
