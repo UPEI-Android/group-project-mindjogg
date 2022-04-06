@@ -29,7 +29,7 @@ const PositiveJournalEditModifyScreen = ({ navigation, route }) => {
       title: oldTitle,
     });
     // eslint-disable-line no-use-before-define
-    await axios.post(backend + "/users/deleteJournalEntry", data, {
+    await axios.post(global.backend + "/users/deleteJournalEntry", data, {
       headers: { "Content-Type": "application/json", "auth-token": userToken },
     });
   };
@@ -43,7 +43,7 @@ const PositiveJournalEditModifyScreen = ({ navigation, route }) => {
       entry: journalEntry,
     });
     // eslint-disable-line no-use-before-define
-    await axios.post(backend + "/users/addJournalEntry", data, {
+    await axios.post(global.backend + "/users/addJournalEntry", data, {
       headers: { "Content-Type": "application/json", "auth-token": userToken },
     });
   };

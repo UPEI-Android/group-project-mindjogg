@@ -17,9 +17,9 @@ const PositiveJournalMainScreen = ({ navigation, route }) => {
   const retrieveJournalEntries = async () => {
     try {
       const userToken = await AsyncStorage.getItem("userToken");
-      // eslint-disable-line no-use-before-define
+
       const journalEntry = await axios.get(
-        backend + "/users/getJournalEntries",
+        global.backend + "/users/getJournalEntries",
         {
           headers: {
             "Content-Type": "application/json",
