@@ -1,13 +1,27 @@
 import React from "react";
 import { globalStyles} from "../../styles/global";
 import { ScrollView, StyleSheet, Dimensions, Text, View } from "react-native";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 import propTypes from "prop-types";
 import StdButton from "../../components/StdButton/StdButton";
 
 
 
 const SmartGoalDetailScreen = ({navigation,route}) => {
+
+    //deleting entry function
+    const deleteEntry = async () => {
+      const userToken = await AsyncStorage.getItem("userToken");
+      const data = JSON.stringify({
+        title: route.params.title,
+      });
+  
+      await axios.post(global.backend + "/users/deleteGoalEntry", data, {
+        headers: { "Content-Type": "application/json", "auth-token": userToken },
+      });
+    };
+
   return (
     <View style={[{ flex: 1, justifyContent: "center" },globalStyles.pinkBackground]}>
     <ScrollView style={[styles.supportContainer,{marginLeft:15}]}>
