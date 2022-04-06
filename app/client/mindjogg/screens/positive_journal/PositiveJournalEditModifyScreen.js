@@ -15,7 +15,7 @@ import { globalStyles } from "../../styles/global";
 import axios from "axios";
 import propTypes from "prop-types";
 
-const backend = "http://192.168.2.14:8080";
+const backend = "http://192.168.0.135:8080";
 
 const PositiveJournalEditModifyScreen = ({ navigation, route }) => {
   const [journalEntry, setJournalEntry] = useState(route.params.entry);

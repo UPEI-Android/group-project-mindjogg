@@ -8,11 +8,15 @@ const model = require("../models/journalEntry_model");
  */
  const updateJournal= async (req, res) => {
     try {
+        const d = new Date();
+        const dateText = d.toDateString();
+        
         //mapping new info into new mood object
         const newEntry = { 
             type: req.body.type,
             title: req.body.title,
-            entry: req.body.entry
+            entry: req.body.entry,
+            date: dateText
           }
         const user = {
             id: req.user,
