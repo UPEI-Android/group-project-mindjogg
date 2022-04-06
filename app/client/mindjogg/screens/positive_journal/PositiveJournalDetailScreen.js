@@ -7,7 +7,7 @@ import propTypes from "prop-types";
 import StdButton from "../../components/StdButton/StdButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const backend = "http://192.168.0.116:8080";
+const backend = "http://192.168.2.14:8080";
 
 const PositiveJournalDetailScreen = ({ route, navigation }) => {
   //deleting entry function

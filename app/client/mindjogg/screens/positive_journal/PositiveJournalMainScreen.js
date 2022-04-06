@@ -7,11 +7,10 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import propTypes from "prop-types";
 
-
-const backend = "http://192.168.0.116:8080";
+const backend = "http://192.168.2.14:8080";
 
 var count = 0;
-const PositiveJournalMainScreen = ({ navigation,route }) => {
+const PositiveJournalMainScreen = ({ navigation, route }) => {
   const [journalEntries, setJournalEntries] = useState([]);
 
   /**
@@ -40,7 +39,7 @@ const PositiveJournalMainScreen = ({ navigation,route }) => {
     retrieveJournalEntries().then((journalEntry) => {
       setJournalEntries(journalEntry);
     });
-  }, [journalEntries.toString(),route.params]);
+  }, [journalEntries.toString(), route.params]);
 
   return (
     <View
@@ -84,13 +83,9 @@ const PositiveJournalMainScreen = ({ navigation,route }) => {
                     <Text style={styles.journalEntriesTitle}>
                       {journalEntry.title}
                     </Text>
-                    
                   </View>
-                               
                 </TouchableOpacity>
-  
               </View>
-        
             </View>
           );
         })}
@@ -170,6 +165,5 @@ const styles = StyleSheet.create({
   },
 });
 PositiveJournalMainScreen.propTypes = { route: propTypes.any };
-
 
 export default PositiveJournalMainScreen;
