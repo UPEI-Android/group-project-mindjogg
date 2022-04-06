@@ -1,0 +1,21 @@
+// Import required dependencies and modules
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const database= require("../database/database_connection")
+const goalSetter_app_router = require("./routes/goalSetter_app_routes");
+
+//connecting to database
+database.connect();
+
+// solves the CORS issue with the front end
+app.use(cors());
+// allows application accept json
+app.use(bodyParser.json()); 
+// allows application accept urlencoded post data
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(goalSetter_app_router);
+
+module.exports = app;

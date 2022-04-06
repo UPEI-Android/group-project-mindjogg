@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import { React, useEffect, useState, useMemo, useReducer } from "react";
-import { View, ActivityIndicator, Text } from "react-native";
+import { View, ActivityIndicator } from "react-native";
 //import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import * as Linking from "expo-linking";
@@ -11,10 +11,12 @@ import { AuthContext } from "./components/conext/authenticationContext";
 import axios from "axios";
 
  // URI for the backend, only need to update here now (globalized variable)
+
  global.backend="http://192.168.0.135:8080";
 
 
 function App() {
+  // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(null);
 
   function handleDeepLink(event) {
@@ -203,9 +205,6 @@ function App() {
   if (loginState.isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>
-          {data ? JSON.stringify(data) : "App not opened from Deep link"}
-        </Text>
         <ActivityIndicator size="large" color="#683795" />
       </View>
     );

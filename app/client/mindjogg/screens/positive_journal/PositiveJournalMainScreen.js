@@ -8,7 +8,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
-
 var count = 0;
 const PositiveJournalMainScreen = ({ navigation }) => {
 
