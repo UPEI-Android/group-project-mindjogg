@@ -85,9 +85,54 @@ const getUserGoal = async (user) => {
 
 
 
+const deleteGoalEntry = async (user) => {
+    // returnMessage will be used to return the status of the creation of the user
+    const returnMessage = {
+        status: null,
+        message: null
+    };
+
+    try { 
+         //finding user that matches username entered by passing query for id
+        const result= await User.findById(user.id)
+        if(result){
+                //retrieving current user history and storing it to local array
+                let userGoalEntries= [];
+                userGoalEntries= await getResults(user);
+                console.log(user.title);
+                if(userGoalEntries==null){
+                    //adding new mood to the array of goals entry
+                    userGoalEntries.userGoals.push(user.goalEntry);
+                }
+                else {
+                    //Removing entry to the array of goals entry
+                    var filtered = userGoalEntries.userGoals.filter(function(value){ 
+
+                        return value.title !== user.title;
+                    });
+                    //updating user goals in database
+                    await User.findByIdAndUpdate(user.id, { 
+                        //user goals updated
+                        userGoals: filtered
+                    });
+                    console.log("user Goal updated");
+                    returnMessage.message = "user Goal updated";
+                    returnMessage.status = 200;
+                }
+         
+        }
+        else{
+        returnMessage.message = "User not found";
+        returnMessage.status = 400;        }
+   return returnMessage;
+} catch (err) {
+    console.log(err);
+}
+};
 
 
 module.exports = {
     addNewGoal,
-    getUserGoal
+    getUserGoal,
+    deleteGoalEntry
  };
