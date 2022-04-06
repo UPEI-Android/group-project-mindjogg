@@ -7,8 +7,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import propTypes from "prop-types";
 
-const backend = "http://192.168.0.135:8080";
-
 var count = 0;
 const PositiveJournalMainScreen = ({ navigation, route }) => {
   const [journalEntries, setJournalEntries] = useState([]);
@@ -79,7 +77,10 @@ const PositiveJournalMainScreen = ({ navigation, route }) => {
                     style={{ marginLeft: 5, marginTop: 5.5 }}
                   />
                   <View style={styles.journalEntryTextContainer}>
-                    <Text style={styles.journalEntriesDate}>  {journalEntry.date}</Text>
+                    <Text style={styles.journalEntriesDate}>
+                      {" "}
+                      {journalEntry.date}
+                    </Text>
                     <Text style={styles.journalEntriesTitle}>
                       {journalEntry.title}
                     </Text>

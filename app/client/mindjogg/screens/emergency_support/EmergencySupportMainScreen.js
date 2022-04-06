@@ -11,8 +11,6 @@ import StdCard from "../../components/StdCard/StdCard";
 import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
-const backend = "http://192.168.0.135:8080";
-
 var count = 0;
 const askHelp = () => {
   Alert.alert("Calling 911 ...");

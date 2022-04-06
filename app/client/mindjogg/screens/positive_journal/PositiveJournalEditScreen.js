@@ -14,8 +14,6 @@ import { Picker } from "@react-native-picker/picker";
 import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
-const backend = "http://192.168.0.135:8080";
-
 const PositiveJournalEditScreen = ({ navigation }) => {
   const [journalEntry, setJournalEntry] = useState("");
   const [title, setJournalTitle] = useState("");
