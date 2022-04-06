@@ -3,10 +3,11 @@ import { globalStyles} from "../../styles/global";
 import { ScrollView, StyleSheet, Dimensions, Text, View } from "react-native";
 
 import propTypes from "prop-types";
+import StdButton from "../../components/StdButton/StdButton";
 
 
 
-const SmartGoalDetailScreen = ({route}) => {
+const SmartGoalDetailScreen = ({navigation,route}) => {
   return (
     <View style={[{ flex: 1, justifyContent: "center" },globalStyles.pinkBackground]}>
     <ScrollView style={[styles.supportContainer,{marginLeft:15}]}>
@@ -32,6 +33,24 @@ const SmartGoalDetailScreen = ({route}) => {
           </Text>
       </View>
       </ScrollView>
+      <View
+        style={{
+          flexDirection: "row",
+          marginTop: 15,
+          marginBottom: 10,
+          justifyContent: "center",
+        }}
+      >
+        <StdButton
+          text={"Delete"}
+          buttonColour={"#663591"}
+          buttonWidth={125}
+          buttonPress={() => {
+            deleteEntry();
+            navigation.push("SmartGoalMainScreen", route.params.title);
+          }}
+        />
+        </View>
 
     </View>
   );
