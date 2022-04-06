@@ -38,8 +38,6 @@ const DrawerContent =  (props) => {
     setIsDarkTheme(!isDarkTheme);
   };
 
- 
-
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -83,6 +81,15 @@ const DrawerContent =  (props) => {
               label="Emergency Support"
               onPress={() => {
                 props.navigation.navigate("Support");
+              }}
+            />
+            <DrawerItem
+              icon={({ color, size }) => (
+                <Icon name="emoticon-outline" color={color} size={size} />
+              )}
+              label="Mood Tracker"
+              onPress={() => {
+                props.navigation.navigate("MoodTracker");
               }}
             />
             <DrawerItem

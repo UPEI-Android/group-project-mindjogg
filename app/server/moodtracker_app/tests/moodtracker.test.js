@@ -16,7 +16,7 @@ describe("Get /moodtracker/getMood", () => {
     test("should respond with a 200 status code", async () => {
         const response = await request(app).post("/moodtracker/addmood").set("auth-token", token).send({
             //generating dummy emergency data
-                "timeofDay": "July 23, 2022 01:15:00",
+                "timeofDay": "2021-10-05T14:48:00.000Z",
                 "moodName": "happy",
                 "moodNote": "just graduated!"    
         });

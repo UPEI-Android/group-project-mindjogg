@@ -25,7 +25,7 @@ const EmergencySupportMainScreen = ({ navigation }) => {
   const retrieveServices = async () => {
     try {
       //Change the IP address to your Local Address
-      var service = await axios.get(backend + "/emergency/list", {
+      var service = await axios.get(global.backend + "/emergency/list", {
         headers: {
           "Content-Type": "application/json",
           "auth-token":
@@ -52,7 +52,6 @@ const EmergencySupportMainScreen = ({ navigation }) => {
       <View style={styles.sosButton}>
         <Text style={styles.headerTitleText}>Immediate Help Needed?</Text>
         <TouchableOpacity
-          testID={"911Btn"}
           style={styles.circle}
           onPress={() => {
             askHelp();

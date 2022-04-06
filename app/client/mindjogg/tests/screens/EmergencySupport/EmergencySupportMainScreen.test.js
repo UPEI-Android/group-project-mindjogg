@@ -1,6 +1,6 @@
 /* REACT IMPORTS */
 import { React } from "react";
-import { fireEvent, render } from "@testing-library/react-native";
+import { render } from "@testing-library/react-native";
 import EmergencySupportMainScreen from "../../../screens/emergency_support/EmergencySupportMainScreen";
 
 describe("Emergency Support Main Screen Tests", () => {
@@ -14,7 +14,7 @@ describe("Emergency Support Main Screen Tests", () => {
     expect(title2).toBeTruthy();
   });
 
-  it("Should execute Call 911 button callback", async () => {
+  /* it("Should execute Call 911 button callback", async () => {
     const screen = <EmergencySupportMainScreen />;
     //const onClick = jest.fn();
 
@@ -27,5 +27,5 @@ describe("Emergency Support Main Screen Tests", () => {
 
     // const alert = getByPlaceholderText("Calling 911 ...");
     // expect(alert).toBeTruthy();
-  });
+  }); */
 });
