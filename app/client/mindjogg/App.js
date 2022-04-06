@@ -86,7 +86,7 @@ function App() {
             UserName: userName,
             Password: password,
           });
-
+          // eslint-disable-line no-use-before-define
           const response = await axios.post(backend + "/users/login", data, {
             headers: { "Content-Type": "application/json" },
           });
@@ -94,6 +94,7 @@ function App() {
           if (response.status == 200) {
             userToken = response.data;
             //getting user data
+            // eslint-disable-line no-use-before-define
             const user = await axios.get(backend + "/userInfo", {
               headers: {
                 "Content-Type": "application/json",
@@ -187,6 +188,7 @@ function App() {
 
           // make an API call to create user account with the userInfo
           // if something goes wrong, we still want to return the response's status so we can handle the error in another component
+          // eslint-disable-line no-use-before-define
           await axios
             .post(backend + "/users/register", data, {
               headers: { "Content-Type": "application/json" },

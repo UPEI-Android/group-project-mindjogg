@@ -28,7 +28,7 @@ const PositiveJournalEditModifyScreen = ({ navigation, route }) => {
     const data = JSON.stringify({
       title: oldTitle,
     });
-
+    // eslint-disable-line no-use-before-define
     await axios.post(backend + "/users/deleteJournalEntry", data, {
       headers: { "Content-Type": "application/json", "auth-token": userToken },
     });
@@ -42,7 +42,7 @@ const PositiveJournalEditModifyScreen = ({ navigation, route }) => {
       title: title,
       entry: journalEntry,
     });
-
+    // eslint-disable-line no-use-before-define
     await axios.post(backend + "/users/addJournalEntry", data, {
       headers: { "Content-Type": "application/json", "auth-token": userToken },
     });

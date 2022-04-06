@@ -23,7 +23,7 @@ const PositiveJournalDetailScreen = ({ route, navigation }) => {
     const data = JSON.stringify({
       title: route.params.title,
     });
-
+    // eslint-disable-line no-use-before-define
     await axios.post(backend + "/users/deleteJournalEntry", data, {
       headers: { "Content-Type": "application/json", "auth-token": userToken },
     });
