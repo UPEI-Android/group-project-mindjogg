@@ -6,6 +6,8 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 // import SignInScreen and SingUpScreen from the account_management folder
 import ProfileScreen from "../acoount_management/ProfileScreen";
+import AddNewScheduleItem from "../acoount_management/AddNewScheduleItem";
+
 import EditProfileScreen from "../acoount_management/EditProfileScreen";
 import { globalStyles } from "../../styles/global";
 import ForgotPasswordScreen from "../acoount_management/ForgotPasswordScreen";
@@ -41,6 +43,12 @@ const AccountManagementStackNavigator = ({navigation}) => {
           name="ForgotPasswordScreen"
           component={ForgotPasswordScreen}
         />
+
+        <Stack.Screen name="AddNewScheduleItem" component={AddNewScheduleItem} options = {
+          {
+            title: "Add Event",
+          }
+        }/>
     </Stack.Navigator>
     </View>
   );

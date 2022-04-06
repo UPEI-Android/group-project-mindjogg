@@ -6,7 +6,6 @@ import  {Picker}  from "@react-native-picker/picker"
 import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
-const backend = "http://192.168.0.116:8080";
 
 
 
@@ -25,7 +24,7 @@ const PositiveJournalEditScreen = ({navigation}) => {
       entry: journalEntry,
     });
   
-     await axios.post(backend + "/users/addJournalEntry", data, {
+     await axios.post(global.backend + "/users/addJournalEntry", data, {
       headers: { "Content-Type": "application/json",  "auth-token":userToken},
     });
   }
