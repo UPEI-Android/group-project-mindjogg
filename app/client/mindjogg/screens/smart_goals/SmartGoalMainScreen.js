@@ -71,7 +71,7 @@ const SmartGoalMainScreen = ({ navigation }) => {
               <View style={styles.button}>
 
               <StdButton
-                  text={"Add Entry"}
+                  text={"Set new Goal"}
                   buttonColour={"#9B7FBA"}
                   buttonPress={() => navigation.push("SmartGoalEditScreen")}
                 />
