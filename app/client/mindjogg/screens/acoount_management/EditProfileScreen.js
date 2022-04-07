@@ -49,7 +49,7 @@ const ProfileScreen = ({navigation}) => {
       style={styles.button}
       text="Personal Information"
       uppercaseOn={false}
-      buttonPress={() => {navigation.goBack()}}
+      buttonPress={() => {navigation.push("PersonalInfomation")}}
     />
     </View>
     <View style={styles.button}>
@@ -57,7 +57,7 @@ const ProfileScreen = ({navigation}) => {
       style={styles.button}
       text="Contact Information"
       uppercaseOn={false}
-      buttonPress={() => {}}
+      buttonPress={() => {navigation.push("ContactInformation")}}
     />
     </View>
     <View style={styles.button}>
@@ -65,7 +65,7 @@ const ProfileScreen = ({navigation}) => {
       style={styles.button}
       text="Emergency Contacts"
       uppercaseOn={false}
-      buttonPress={() => {}}
+      buttonPress={() => {alert("No emergency contacts") }}
     />
     </View>
     <View style={styles.button}>
@@ -93,6 +93,7 @@ const { height } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems:"center",
     backgroundColor: "#009387",
   },
   userInfoSection: {
@@ -105,10 +106,11 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   avatarStyle: {
+    alignItems:"center",
     height: 50,
     width: 50,
     flexDirection: "row", 
-    marginTop: height * 0.01,
+    marginTop: height * 0.05,
   },
   buttonSection: {
     paddingLeft: 20,

@@ -11,6 +11,8 @@ import AddNewScheduleItem from "../acoount_management/AddNewScheduleItem";
 import EditProfileScreen from "../acoount_management/EditProfileScreen";
 import { globalStyles } from "../../styles/global";
 import ForgotPasswordScreen from "../acoount_management/ForgotPasswordScreen";
+import PersonalInfomation from "../acoount_management/PersonalInfomation";
+import ContactInformation from "../acoount_management/ContactInformation";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,10 +30,14 @@ const AccountManagementStackNavigator = ({navigation}) => {
     >
         <Stack.Screen name="YourProfile" component={ProfileScreen}  options = {
           {
-            title: "Your Profile",
+            title: "Your schedule",
             headerLeft: () => (
               <Icon.Button name="menu" size={25} style={globalStyles.purpleBackground} onPress={() => {navigation.openDrawer()}}></Icon.Button>
+            ),
+            headerRight: () => (
+              <Icon.Button name="person-circle-outline" size={25} style={globalStyles.purpleBackground} onPress={() => { navigation.navigate("EditProfile")}}></Icon.Button>
             )
+            
           }
         }/>
         <Stack.Screen name="EditProfile" component={EditProfileScreen} options = {
@@ -39,6 +45,19 @@ const AccountManagementStackNavigator = ({navigation}) => {
             title: "Edit Profile",
           }
         }/>
+        <Stack.Screen name="PersonalInfomation" component={PersonalInfomation} options = {
+          {
+            title: "Edit Personal info",
+          }
+        }/>
+
+<Stack.Screen name="ContactInformation" component={ContactInformation} options = {
+          {
+            title: "Edit Contact info",
+          }
+        }/>
+
+
         <Stack.Screen
           name="ForgotPasswordScreen"
           component={ForgotPasswordScreen}

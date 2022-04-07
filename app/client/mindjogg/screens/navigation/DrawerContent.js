@@ -59,17 +59,17 @@ const DrawerContent =  (props) => {
           <Drawer.Section style={styles.drawerSection}>
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="home" color={color} size={size} />
+                <Icon name="account" color={color} size={size} />
               )}
-              label="Home"
-              onPress={() => {}}
+              label="Edit Profile"
+              onPress={() => {props.navigation.navigate("EditProfile")}}
             />
 
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="account" color={color} size={size} />
+                <Icon name="calendar" color={color} size={size} />
               )}
-              label="Profile"
+              label="Calendar"
               onPress={() => {
                 props.navigation.navigate("Profile");
               }}

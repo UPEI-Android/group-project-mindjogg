@@ -21,9 +21,9 @@ const EmergencySupportTabNavigator = () => {
         name="Profile"
         component={AccountManagementStackNavigator}
         options={{
-          tabBarLabel: "Profile",
+          tabBarLabel: "Calendar",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
+            <MaterialCommunityIcons name="calendar" color={color} size={26} />
           ),
         }}
       />
