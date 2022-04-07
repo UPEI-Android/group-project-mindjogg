@@ -4,42 +4,63 @@ import StdButton from "../../components/StdButton/StdButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { globalStyles } from "../../styles/global";
 import axios from "axios";
+import propTypes from "prop-types";
 
 
 
 
-const SmartGoalEditScreen = ({navigation}) => {
-  const [title,setGoalTitle]=useState("");
-   const [measurable,setMeasurable]=useState("");
-  const [specific,setSpecific]=useState("");
-  const [attainable,setAttainable]=useState("");
-  const [relevant,setRelevant]=useState("");
-  const [time,setTime]=useState(""); 
+const SmartGoalEditModifyScreen = ({navigation,route}) => {
+
+  const [title,setGoalTitle]=useState(route.params.title);
+  const [measurable,setMeasurable]=useState(route.params.measurable);
+  const [specific,setSpecific]=useState(route.params.specific);
+  const [attainable,setAttainable]=useState(route.params.attainable);
+  const [relevant,setRelevant]=useState(route.params.relevant);
+  const [time,setTime]=useState(route.params.time); 
 
 
 
-  const addNewEntry= async()=>{
+   //old title will be used for deletion
+   const oldTitle = route.params.title;
+
+   //deleting entry function
+   const deleteEntry = async () => {
+     const userToken = await AsyncStorage.getItem("userToken");
+     const data = JSON.stringify({
+       title: oldTitle,
+     });
  
-    const userToken = await AsyncStorage.getItem("userToken");
-    const data = JSON.stringify({
-      title: title,
-      specific:specific,
-      measurable: measurable,
-      attainable: attainable,
-      relevant: relevant,
-      time: time
-    });
-  
-     await axios.post(global.backend + "/users/addGoal", data, {
-      headers: { "Content-Type": "application/json",  "auth-token":userToken},
-    });
-  }
+     await axios.post(global.backend + "/users/deleteGoalEntry", data, {
+       headers: { "Content-Type": "application/json", "auth-token": userToken },
+     });
+   };
+
+   //function to add new entry
+   const addNewEntry = async () => {
+     await deleteEntry();
+     const userToken = await AsyncStorage.getItem("userToken");
+     const data = JSON.stringify({
+       title: title,
+       specific: specific,
+       measurable: measurable,
+       attainable: attainable,
+       relevant: relevant,
+       time: time
+     });
+ 
+     await axios.post(global.backend  + "/users/addJournalEntry", data, {
+       headers: { "Content-Type": "application/json", "auth-token": userToken },
+     });
+   };
+ 
 
   return (
     <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" },globalStyles.pinkBackground]}>
       <View  style={{flexDirection:"row",justifyContent: "space-between"}}>
       <Text style={styles.s}  >GOAL</Text> 
         <TextInput 
+         value={title}
+         editable={true}
           style={styles.title} 
           textAlignVertical="top"
           placeholder="Enter Goal title"
@@ -50,6 +71,8 @@ const SmartGoalEditScreen = ({navigation}) => {
       <View  style={{flexDirection:"row",justifyContent: "space-between"}}>
       <Text style={styles.s} >S </Text> 
          <TextInput 
+          value={specific}
+          editable={true}
         style={styles.input} 
         textAlignVertical="top"
         placeholder="What specifically am I trying to achieve?"
@@ -59,6 +82,8 @@ const SmartGoalEditScreen = ({navigation}) => {
             <View  style={{flexDirection:"row",justifyContent: "space-between"}}>
             <Text style={styles.s}  >M</Text> 
                   <TextInput
+                   value={measurable}
+                   editable={true}
               style={styles.input} 
               textAlignVertical="top"
               placeholder="How will I measure success?"
@@ -68,6 +93,8 @@ const SmartGoalEditScreen = ({navigation}) => {
                <View  style={{flexDirection:"row",justifyContent: "space-between"}}>
             <Text style={styles.s}  >A</Text> 
             <TextInput 
+             value={attainable}
+             editable={true}
         style={styles.input} 
         textAlignVertical="top"
         placeholder="What steps do I need
@@ -78,6 +105,8 @@ const SmartGoalEditScreen = ({navigation}) => {
                      <View  style={{flexDirection:"row",justifyContent: "space-between"}}>
             <Text style={styles.s}  >R</Text> 
                   <TextInput 
+                   value={relevant}
+                   editable={true}
         style={styles.input} 
         textAlignVertical="top"
         placeholder="Is this relevant for my
@@ -89,6 +118,8 @@ const SmartGoalEditScreen = ({navigation}) => {
        <View  style={{flexDirection:"row",justifyContent: "space-between"}}>
             <Text style={styles.s}  >T</Text> 
             <TextInput 
+             value={time}
+             editable={true}
             style={styles.input} 
             textAlignVertical="top"
             placeholder="What is the time frame for the goal?"
@@ -146,4 +177,8 @@ const styles = StyleSheet.create({
       width:170,
     }
 });
-export default SmartGoalEditScreen;
+
+
+SmartGoalEditModifyScreen.propTypes = { route: propTypes.any };
+
+export default SmartGoalEditModifyScreen;
