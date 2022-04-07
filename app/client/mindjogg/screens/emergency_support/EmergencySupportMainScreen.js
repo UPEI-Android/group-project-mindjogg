@@ -12,6 +12,7 @@ import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
 var count = 0;
+
 const askHelp = () => {
   Alert.alert("Calling 911 ...");
 };

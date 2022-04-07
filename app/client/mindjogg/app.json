@@ -2,21 +2,20 @@
   "expo": {
     "name": "mindjogg",
     "slug": "mindjogg",
+    "privacy": "public",
     "scheme": "mindjogg",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "",
+    "icon": "./assets/Getting_started_logo.png",
     "splash": {
-      "image": "",
+      "image": "./assets/Getting_started_logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -29,6 +28,6 @@
     "web": {
       "favicon": ""
     },
-    "description": ""
+    "description": "An app to help you to maintain your mental health"
   }
 }
