@@ -38,8 +38,6 @@ const DrawerContent =  (props) => {
     setIsDarkTheme(!isDarkTheme);
   };
 
- 
-
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>

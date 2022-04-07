@@ -2,7 +2,7 @@
 const User = require("../../account_management/models/schema/user_schema")
 
 
-const addNewJournalRecord = async (user) => {
+const addNewGoal = async (user) => {
     // returnMessage will be used to return the status of the creation of the user
     const returnMessage = {
         status: null,
@@ -14,23 +14,23 @@ const addNewJournalRecord = async (user) => {
         const result= await User.findById(user.id)
         if(result){
                 //retrieving current user history and storing it to local array
-                let userJournalEntries= [];
-                userJournalEntries= await getResults(user);
-                if(userJournalEntries==null){
+                let userGoalEntries= [];
+                userGoalEntries= await getResults(user);
+                if(userGoalEntries==null){
                     //adding new mood to the array of journal entry
-                    userJournalEntries.userJournal.push(user.journalEntry);
+                    userGoalEntries.userGoals.push(user.goalEntry);
                 }
                 else {
                     //adding new entry to the array of journal entry
-                    userJournalEntries.userJournal.push(user.journalEntry);
+                    userGoalEntries.userGoals.push(user.goalEntry);
                 }
                //updating user Journal in database
                await User.findByIdAndUpdate(user.id, { 
                    //user Journal updated
-                   userJournal: userJournalEntries.userJournal
+                   userGoals: userGoalEntries.userGoals
                 });
-               console.log("user Journal updated");
-               returnMessage.message = "user Journal updated";
+               console.log("user Goal updated");
+               returnMessage.message = "user Goal updated";
                returnMessage.status = 200;
         }
         else{
@@ -51,7 +51,7 @@ const getResults = async (user) => {
     try {   
         const projection = {  
             "_id": 0,
-           "userJournal": 1
+           "userGoals": 1
            }
         //returns list of user's Journal entries
         let result= [];
@@ -63,17 +63,18 @@ const getResults = async (user) => {
     }
 };
 
-const getUserJournal = async (user) => {
+const getUserGoal = async (user) => {
     try {   
         const projection = {  
             "_id": 0,
-           "userJournal": 1
+           "userGoals": 1
            }
         //returns list of user's Journal entries
         let result= [];
         result = await User.findOne({_id:user.id},projection);   
-        if(result.userJournal.length==0){
-            result.userJournal.push( {type:"Type",title:"Your entries",entry:"will appear here"});
+        if(result.userGoals.length==0){
+            result.userGoals.push( {title:"No goals",specific: "no entries",measurable:"no entries", 
+            attainable:"no entries",relevant:"no entries",time:"no entries"});
             return result;
         }
         return result;
@@ -83,7 +84,8 @@ const getUserJournal = async (user) => {
 };
 
 
-const deleteJournalEntry = async (user) => {
+
+const deleteGoalEntry = async (user) => {
     // returnMessage will be used to return the status of the creation of the user
     const returnMessage = {
         status: null,
@@ -95,26 +97,26 @@ const deleteJournalEntry = async (user) => {
         const result= await User.findById(user.id)
         if(result){
                 //retrieving current user history and storing it to local array
-                let userJournalEntries= [];
-                userJournalEntries= await getResults(user);
+                let userGoalEntries= [];
+                userGoalEntries= await getResults(user);
                 console.log(user.title);
-                if(userJournalEntries==null){
-                    //adding new mood to the array of journal entry
-                    userJournalEntries.userJournal.push(user.journalEntry);
+                if(userGoalEntries==null){
+                    //adding new mood to the array of goals entry
+                    userGoalEntries.userGoals.push(user.goalEntry);
                 }
                 else {
-                    //Removing entry to the array of journal entry
-                    var filtered = userJournalEntries.userJournal.filter(function(value){ 
+                    //Removing entry to the array of goals entry
+                    var filtered = userGoalEntries.userGoals.filter(function(value){ 
 
                         return value.title !== user.title;
                     });
-                    //updating user Journal in database
+                    //updating user goals in database
                     await User.findByIdAndUpdate(user.id, { 
-                        //user Journal updated
-                        userJournal: filtered
+                        //user goals updated
+                        userGoals: filtered
                     });
-                    console.log("user Journal updated");
-                    returnMessage.message = "user Journal updated";
+                    console.log("user Goal updated");
+                    returnMessage.message = "user Goal updated";
                     returnMessage.status = 200;
                 }
          
@@ -129,11 +131,8 @@ const deleteJournalEntry = async (user) => {
 };
 
 
-
-
-
 module.exports = {
-    addNewJournalRecord,
-    getUserJournal,
-    deleteJournalEntry
+    addNewGoal,
+    getUserGoal,
+    deleteGoalEntry
  };

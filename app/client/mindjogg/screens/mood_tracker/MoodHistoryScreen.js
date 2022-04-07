@@ -19,7 +19,6 @@ import propTypes from "prop-types";
 
 import axios from "axios";
 
-const backend = "http://192.168.2.14:8080";
 
 const MoodTrackerMainScreen = ({ navigation }) => {
   const [moodFrequencyList, setMoodFrequencyList] = useState([
@@ -34,7 +33,7 @@ const MoodTrackerMainScreen = ({ navigation }) => {
     try {
       const userToken = await AsyncStorage.getItem("userToken");
       //Change the IP address to your Local Address
-      const service = await axios.get(backend + "/moodtracker/frequencyMoods", {
+      const service = await axios.get(global.backend + "/moodtracker/frequencyMoods", {
         headers: {
           "Content-Type": "application/json",
           "auth-token": userToken,
@@ -51,7 +50,7 @@ const MoodTrackerMainScreen = ({ navigation }) => {
     try {
       const userToken = await AsyncStorage.getItem("userToken");
       //Change the IP address to your Local Address
-      const res = await axios.get(backend + "/moodtracker/getMood", {
+      const res = await axios.get(global.backend + "/moodtracker/getMood", {
         headers: {
           "Content-Type": "application/json",
           "auth-token": userToken,
