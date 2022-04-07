@@ -13,20 +13,36 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Picker } from "@react-native-picker/picker";
 import { globalStyles } from "../../styles/global";
 import axios from "axios";
+import propTypes from "prop-types";
 
-const PositiveJournalEditScreen = ({ navigation }) => {
-  const [journalEntry, setJournalEntry] = useState("");
-  const [title, setJournalTitle] = useState("");
-  const [type, setJournalType] = useState("Travel");
+const PositiveJournalEditModifyScreen = ({ navigation, route }) => {
+  const [journalEntry, setJournalEntry] = useState(route.params.entry);
+  const [title, setJournalTitle] = useState(route.params.title);
+  const [type, setJournalType] = useState(route.params.type);
+  //old title will be used for deletion
+  const oldTitle = route.params.title;
 
+  //deleting entry function
+  const deleteEntry = async () => {
+    const userToken = await AsyncStorage.getItem("userToken");
+    const data = JSON.stringify({
+      title: oldTitle,
+    });
+    // eslint-disable-line no-use-before-define
+    await axios.post(global.backend + "/users/deleteJournalEntry", data, {
+      headers: { "Content-Type": "application/json", "auth-token": userToken },
+    });
+  };
+  //function to add new entry
   const addNewEntry = async () => {
+    await deleteEntry();
     const userToken = await AsyncStorage.getItem("userToken");
     const data = JSON.stringify({
       type: type,
       title: title,
       entry: journalEntry,
     });
-
+    // eslint-disable-line no-use-before-define
     await axios.post(global.backend + "/users/addJournalEntry", data, {
       headers: { "Content-Type": "application/json", "auth-token": userToken },
     });
@@ -37,6 +53,8 @@ const PositiveJournalEditScreen = ({ navigation }) => {
       <View style={[{ flex: 1 }, globalStyles.pinkBackground]}>
         <View style={{ justifyContent: "space-between" }}>
           <TextInput
+            value={title}
+            editable={true}
             style={styles.journalTitle}
             textAlignVertical="top"
             placeholder="Enter Title"
@@ -81,6 +99,8 @@ const PositiveJournalEditScreen = ({ navigation }) => {
           </View>
         </View>
         <TextInput
+          value={journalEntry}
+          editable={true}
           style={styles.journalBody}
           textAlignVertical="top"
           placeholder="Enter your thoughts..."
@@ -145,4 +165,6 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width * 0.97,
   },
 });
-export default PositiveJournalEditScreen;
+
+PositiveJournalEditModifyScreen.propTypes = { route: propTypes.any };
+export default PositiveJournalEditModifyScreen;

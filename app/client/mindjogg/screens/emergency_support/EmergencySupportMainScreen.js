@@ -11,8 +11,6 @@ import StdCard from "../../components/StdCard/StdCard";
 import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
-
-
 var count = 0;
 const askHelp = () => {
   Alert.alert("Calling 911 ...");
@@ -152,6 +150,5 @@ const styles = StyleSheet.create({
     margin: 5,
   },
 });
-
 
 export default EmergencySupportMainScreen;

@@ -10,10 +10,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "./components/conext/authenticationContext";
 import axios from "axios";
 
- // URI for the backend, only need to update here now (globalized variable)
+// URI for the backend, only need to update here now (globalized variable)
 
- global.backend="http://192.168.0.135:8080";
-
+global.backend = "http://192.168.0.135:8080";
 
 function App() {
   // eslint-disable-next-line no-unused-vars
@@ -71,11 +70,6 @@ function App() {
     }
   };
 
- 
-   const backend = global.backend;
-  // URI for the backend
-
-
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
   const authContext = useMemo(() => ({
     signIn: async (userName, password) => {
@@ -94,38 +88,70 @@ function App() {
             Password: password,
           });
 
-          const response = await axios.post(backend + "/users/login", data, {
-            headers: { "Content-Type": "application/json" },
-          });
+          const response = await axios.post(
+            global.backend + "/users/login",
+            data,
+            {
+              headers: { "Content-Type": "application/json" },
+            }
+          );
 
           if (response.status == 200) {
             userToken = response.data;
             //getting user data
-            const user=await axios.get(backend + "/userInfo", {
-              headers: { "Content-Type": "application/json", "auth-token": userToken},
+
+            const user = await axios.get(global.backend + "/userInfo", {
+              headers: {
+                "Content-Type": "application/json",
+                "auth-token": userToken,
+              },
             });
             //setting user data and storing it in async storage
-            const userData=user.data;
+            const userData = user.data;
             await AsyncStorage.setItem("admin", JSON.stringify(userData.admin));
-            await AsyncStorage.setItem("userDOB", JSON.stringify(userData.userDOB));
-            await AsyncStorage.setItem("userEmail", JSON.stringify(userData.userEmail));
-            await AsyncStorage.setItem("userFirstName",  userData.userFirstName);
-            await AsyncStorage.setItem("userGoals", JSON.stringify(userData.userGoals));
-            await AsyncStorage.setItem("userJournal", JSON.stringify(userData.userJournal));
-            await AsyncStorage.setItem("userLastName", JSON.stringify(userData.userLastName));
-            await AsyncStorage.setItem("userMiddleName", JSON.stringify(userData.userMiddleName));
-            await AsyncStorage.setItem("userName", JSON.stringify(userData.userName));
-            await AsyncStorage.setItem("userPhone", JSON.stringify(userData.userPhone));
-            await AsyncStorage.setItem("userTasks", JSON.stringify(userData.userTasks));
-
+            await AsyncStorage.setItem(
+              "userDOB",
+              JSON.stringify(userData.userDOB)
+            );
+            await AsyncStorage.setItem(
+              "userEmail",
+              JSON.stringify(userData.userEmail)
+            );
+            await AsyncStorage.setItem("userFirstName", userData.userFirstName);
+            await AsyncStorage.setItem(
+              "userGoals",
+              JSON.stringify(userData.userGoals)
+            );
+            await AsyncStorage.setItem(
+              "userJournal",
+              JSON.stringify(userData.userJournal)
+            );
+            await AsyncStorage.setItem(
+              "userLastName",
+              JSON.stringify(userData.userLastName)
+            );
+            await AsyncStorage.setItem(
+              "userMiddleName",
+              JSON.stringify(userData.userMiddleName)
+            );
+            await AsyncStorage.setItem(
+              "userName",
+              JSON.stringify(userData.userName)
+            );
+            await AsyncStorage.setItem(
+              "userPhone",
+              JSON.stringify(userData.userPhone)
+            );
+            await AsyncStorage.setItem(
+              "userTasks",
+              JSON.stringify(userData.userTasks)
+            );
           } else {
             userToken = null;
           }
 
           await AsyncStorage.setItem("userToken", userToken);
           dispatch({ type: "LOGIN", id: userName, token: userToken });
-          
-         
 
           return response.status;
         }
@@ -167,8 +193,9 @@ function App() {
 
           // make an API call to create user account with the userInfo
           // if something goes wrong, we still want to return the response's status so we can handle the error in another component
+
           await axios
-            .post(backend + "/users/register", data, {
+            .post(global.backend + "/users/register", data, {
               headers: { "Content-Type": "application/json" },
             })
             .then((res) => (status = res.status))
