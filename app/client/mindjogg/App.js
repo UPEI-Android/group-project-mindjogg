@@ -76,6 +76,7 @@ function App() {
       // In a production app, we need to send some data (usually username, password) to server and get a token
       // Authentication will be performed by server and token will be returned
       let userToken = null;
+      let response;
       try {
         // check if there's already a token - if there is, no need to send a request to the backend
         userToken = await AsyncStorage.getItem("userToken");
@@ -88,13 +89,9 @@ function App() {
             Password: password,
           });
 
-          const response = await axios.post(
-            global.backend + "/users/login",
-            data,
-            {
-              headers: { "Content-Type": "application/json" },
-            }
-          );
+          response = await axios.post(global.backend + "/users/login", data, {
+            headers: { "Content-Type": "application/json" },
+          });
 
           if (response.status == 200) {
             userToken = response.data;
@@ -156,7 +153,9 @@ function App() {
           return response.status;
         }
       } catch (e) {
-        console.error(e);
+        if(!response) {
+          console.error(e);
+        }
       }
     },
 
