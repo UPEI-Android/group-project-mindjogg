@@ -10,15 +10,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "./components/conext/authenticationContext";
 import axios from "axios";
 
-<<<<<<< HEAD
 // URI for the backend, only need to update here now (globalized variable)
+
 global.backend = "http://192.168.0.135:8080";
-=======
- // URI for the backend, only need to update here now (globalized variable)
-
- global.backend="http://192.168.0.135:8080";
-
->>>>>>> dev
 
 function App() {
   // eslint-disable-next-line no-unused-vars
