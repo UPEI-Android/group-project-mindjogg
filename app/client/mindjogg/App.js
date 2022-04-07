@@ -1,20 +1,21 @@
 import "react-native-gesture-handler";
 import { React, useEffect, useState, useMemo, useReducer } from "react";
-import { View, ActivityIndicator, Text } from "react-native";
+import { View, ActivityIndicator } from "react-native";
 //import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import * as Linking from "expo-linking";
-
 import DrawerNavigator from "./screens/navigation/DrawerNavigator";
-
 import AuthenticationStackNavigator from "./screens/navigation/AuthenticationStackNavigator";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import { AuthContext } from "./components/conext/authenticationContext";
 import axios from "axios";
 
+// URI for the backend, only need to update here now (globalized variable)
+
+global.backend = "http://192.168.0.135:8080";
+
 function App() {
+  // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(null);
 
   function handleDeepLink(event) {
@@ -68,17 +69,14 @@ function App() {
         };
     }
   };
-
-  // URI for the backend
-
-  const backend = "https://mindjoggstage.herokuapp.com";
-
+  
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
   const authContext = useMemo(() => ({
     signIn: async (userName, password) => {
       // In a production app, we need to send some data (usually username, password) to server and get a token
       // Authentication will be performed by server and token will be returned
       let userToken = null;
+      let response;
       try {
         // check if there's already a token - if there is, no need to send a request to the backend
         userToken = await AsyncStorage.getItem("userToken");
@@ -91,12 +89,60 @@ function App() {
             Password: password,
           });
 
-          const response = await axios.post(backend + "/users/login", data, {
+          response = await axios.post(global.backend + "/users/login", data, {
             headers: { "Content-Type": "application/json" },
           });
 
           if (response.status == 200) {
             userToken = response.data;
+            //getting user data
+
+            const user = await axios.get(global.backend + "/userInfo", {
+              headers: {
+                "Content-Type": "application/json",
+                "auth-token": userToken,
+              },
+            });
+            //setting user data and storing it in async storage
+            const userData = user.data;
+            await AsyncStorage.setItem("admin", JSON.stringify(userData.admin));
+            await AsyncStorage.setItem(
+              "userDOB",
+              JSON.stringify(userData.userDOB)
+            );
+            await AsyncStorage.setItem(
+              "userEmail",
+              JSON.stringify(userData.userEmail)
+            );
+            await AsyncStorage.setItem("userFirstName", userData.userFirstName);
+            await AsyncStorage.setItem(
+              "userGoals",
+              JSON.stringify(userData.userGoals)
+            );
+            await AsyncStorage.setItem(
+              "userJournal",
+              JSON.stringify(userData.userJournal)
+            );
+            await AsyncStorage.setItem(
+              "userLastName",
+              JSON.stringify(userData.userLastName)
+            );
+            await AsyncStorage.setItem(
+              "userMiddleName",
+              JSON.stringify(userData.userMiddleName)
+            );
+            await AsyncStorage.setItem(
+              "userName",
+              JSON.stringify(userData.userName)
+            );
+            await AsyncStorage.setItem(
+              "userPhone",
+              JSON.stringify(userData.userPhone)
+            );
+            await AsyncStorage.setItem(
+              "userTasks",
+              JSON.stringify(userData.userTasks)
+            );
           } else {
             userToken = null;
           }
@@ -107,7 +153,9 @@ function App() {
           return response.status;
         }
       } catch (e) {
-        console.error(e);
+        if(!response) {
+          console.error(e);
+        }
       }
     },
 
@@ -144,8 +192,9 @@ function App() {
 
           // make an API call to create user account with the userInfo
           // if something goes wrong, we still want to return the response's status so we can handle the error in another component
+
           await axios
-            .post(backend + "/users/register", data, {
+            .post(global.backend + "/users/register", data, {
               headers: { "Content-Type": "application/json" },
             })
             .then((res) => (status = res.status))
@@ -182,9 +231,6 @@ function App() {
   if (loginState.isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>
-          {data ? JSON.stringify(data) : "App not opened from Deep link"}
-        </Text>
         <ActivityIndicator size="large" color="#683795" />
       </View>
     );

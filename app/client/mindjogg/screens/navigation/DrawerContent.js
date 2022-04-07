@@ -13,14 +13,27 @@ import {
 } from "react-native-paper";
 
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { AuthContext } from "../../components/conext/authenticationContext";
 
-const DrawerContent = (props) => {
+let userFirstName;
+let userName;
+//function to set value of user
+const setUserValue= async () => {
+  userFirstName= await AsyncStorage.getItem("userFirstName");
+  userFirstName=userFirstName.replace(/['"]+/g, "");
+  userName= await AsyncStorage.getItem("userName");
+  userName=userName.replace(/['"]+/g, "");
+
+  return;
+}
+
+const DrawerContent =  (props) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   const { signOut } = useContext(AuthContext);
-
+  setUserValue();
   const toggleTheme = () => {
     setIsDarkTheme(!isDarkTheme);
   };
@@ -38,25 +51,25 @@ const DrawerContent = (props) => {
                 size={70}
               />
               <View style={{ marginLeft: 15, flexDirection: "column" }}>
-                <Title style={styles.title}>Steve Jobs</Title>
-                <Caption style={styles.caption}>@stevejobs</Caption>
+                <Title style={styles.title}> {userFirstName}</Title>
+                <Caption style={styles.caption}>@{userName}</Caption>
               </View>
             </View>
           </View>
           <Drawer.Section style={styles.drawerSection}>
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="home" color={color} size={size} />
+                <Icon name="account" color={color} size={size} />
               )}
-              label="Home"
-              onPress={() => {}}
+              label="Edit Profile"
+              onPress={() => {props.navigation.navigate("EditProfile")}}
             />
 
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="account" color={color} size={size} />
+                <Icon name="calendar" color={color} size={size} />
               )}
-              label="Profile"
+              label="Calendar"
               onPress={() => {
                 props.navigation.navigate("Profile");
               }}
@@ -68,6 +81,15 @@ const DrawerContent = (props) => {
               label="Emergency Support"
               onPress={() => {
                 props.navigation.navigate("Support");
+              }}
+            />
+            <DrawerItem
+              icon={({ color, size }) => (
+                <Icon name="emoticon-outline" color={color} size={size} />
+              )}
+              label="Mood Tracker"
+              onPress={() => {
+                props.navigation.navigate("MoodTracker");
               }}
             />
             <DrawerItem

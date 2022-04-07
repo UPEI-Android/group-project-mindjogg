@@ -39,6 +39,9 @@ const EmergencySupportStackNavigator = ({ navigation }) => {
                 }}
               ></Icon.Button>
             ),
+            headerRight: () => (
+              <Icon.Button name="person-circle-outline" size={25} style={globalStyles.purpleBackground} onPress={() => { navigation.navigate("EditProfile")}}></Icon.Button>
+            )
           }}
         />
         <Stack.Screen

@@ -56,9 +56,9 @@ const createUser = async (user) => {
             admin: user.admin,
             userVerified:false,
             userPhone: null,
-            userGoals: null,
-            userTasks: null,
-            userJournal: null,
+            userGoals: [],
+            userTasks: [],
+            userJournal: [],
             userMood:[]
         });
 
@@ -75,8 +75,6 @@ const createUser = async (user) => {
         if(result){
             returnMessage.status = 400;
             returnMessage.message = "User already exists";
-    
-
         }
         //if no existing user exists
         else {

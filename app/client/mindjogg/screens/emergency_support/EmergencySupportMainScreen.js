@@ -12,7 +12,6 @@ import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
 var count = 0;
-const IP_ADDRESS = "https://mindjoggstage.herokuapp.com";
 
 const askHelp = () => {
   Alert.alert("Calling 911 ...");
@@ -27,7 +26,7 @@ const EmergencySupportMainScreen = ({ navigation }) => {
   const retrieveServices = async () => {
     try {
       //Change the IP address to your Local Address
-      var service = await axios.get(IP_ADDRESS + "/emergency/list", {
+      var service = await axios.get(global.backend + "/emergency/list", {
         headers: {
           "Content-Type": "application/json",
           "auth-token":
