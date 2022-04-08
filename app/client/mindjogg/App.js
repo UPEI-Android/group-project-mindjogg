@@ -12,7 +12,7 @@ import axios from "axios";
 
 // URI for the backend, only need to update here now (globalized variable)
 
-global.backend = "http://192.168.0.135:8080";
+global.backend = "https://arcane-peak-04260.herokuapp.com";
 
 function App() {
   // eslint-disable-next-line no-unused-vars
