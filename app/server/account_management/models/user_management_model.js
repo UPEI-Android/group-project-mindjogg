@@ -85,7 +85,7 @@ const createUser = async (user) => {
             const secret= jwtSecret+user.userName;
             const token = jwt.sign(user.userName,secret);
             const user_id=user.userName ;
-            const link = `http://${host}/users/verify/${user_id}/${token}`
+            const link = `${host}/users/verify/${user_id}/${token}`
 
              
             //Creates an Option that stores receiver email +content of verification email
@@ -140,8 +140,7 @@ const loginUser = async (user) => {
            // "userVerified": 1
            }
           //finding user that matches username entered by passing query for username + projection defined above
-
-         const result= await User.findOne({userName:user.userName},projection)
+            const result= await User.findOne({ $or: [ { userName:user.userName}, { userEmail:user.userName } ] },projection)
          if(result){
              //if user is verified 
            // if(result.userVerified){
