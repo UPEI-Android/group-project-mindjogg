@@ -4,7 +4,7 @@
     "slug": "mindjogg",
     "privacy": "public",
     "scheme": "mindjogg",
-    "version": "1.0.0",
+    "version": "1.1.2",
     "orientation": "portrait",
     "icon": "./assets/Getting_started_logo.png",
     "splash": {
