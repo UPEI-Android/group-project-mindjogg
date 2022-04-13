@@ -47,6 +47,7 @@ const AddNewScheduleItem = ({ navigation }) => {
          await axios.post(global.backend + "/users/addScheduleEntry", data, {
           headers: { "Content-Type": "application/json",  "auth-token":userToken},
         });
+        navigation.push("YourProfile");
       }
 
   
@@ -164,7 +165,7 @@ const AddNewScheduleItem = ({ navigation }) => {
                     text={"Add"}
                     buttonColour={"#9B7FBA"}
                     buttonWidth={100}
-                    buttonPress={() =>    {addNewEntry();navigation.push("YourProfile");}}
+                    buttonPress={() =>    {addNewEntry();}}
                 />
             </View>
             <View style={{marginLeft:100}}>

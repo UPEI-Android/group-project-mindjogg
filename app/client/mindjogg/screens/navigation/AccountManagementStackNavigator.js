@@ -43,17 +43,50 @@ const AccountManagementStackNavigator = ({navigation}) => {
         <Stack.Screen name="EditProfile" component={EditProfileScreen} options = {
           {
             title: "Edit Profile",
+            headerLeft: () => (
+              <Icon.Button
+                name="arrow-back-outline"
+                size={25}
+                style={globalStyles.purpleBackground}
+                onPress={() => {
+                  const title= Math.random().toString(36).substring(2,7);
+                  navigation.navigate("YourProfile",title);
+                }}
+              ></Icon.Button>
+            ),
           }
         }/>
         <Stack.Screen name="PersonalInfomation" component={PersonalInfomation} options = {
           {
             title: "Edit Personal info",
+            headerLeft: () => (
+              <Icon.Button
+                name="arrow-back-outline"
+                size={25}
+                style={globalStyles.purpleBackground}
+                onPress={() => {
+                  const title= Math.random().toString(36).substring(2,7);
+                  navigation.navigate("EditProfile",title);
+                }}
+              ></Icon.Button>
+            ),
           }
         }/>
 
 <Stack.Screen name="ContactInformation" component={ContactInformation} options = {
           {
             title: "Edit Contact info",
+            headerLeft: () => (
+              <Icon.Button
+                name="arrow-back-outline"
+                size={25}
+                style={globalStyles.purpleBackground}
+                onPress={() => {
+                  const title= Math.random().toString(36).substring(2,7);
+                  navigation.navigate("EditProfile",title);
+                }}
+              ></Icon.Button>
+            ),
           }
         }/>
 

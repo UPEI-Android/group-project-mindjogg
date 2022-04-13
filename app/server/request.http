@@ -79,7 +79,7 @@ Content-Type: application/json
 ###
 
 //post request to save a new emergency support option to database 
-POST http://localhost:8080/emergency/create
+POST https://arcane-peak-04260.herokuapp.com/emergency/create
 auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY1NTA0MWY4M2VlMTJiNzM3ZDZhYWEiLCJpYXQiOjE2NDU5ODE3Njh9.SVkathHw-8qyit6SR739JqwTZst1HqpabYRM9SB2cqA
 Content-Type: application/json
 
@@ -204,7 +204,7 @@ auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzYjc3NmM4NmRkN2Fi
 
 ###
 //get request to access user goals, must be logged in as user
-GET http://localhost:8080/users/getGoal
+GET https://thawing-tundra-31955.herokuapp.com/users/getGoal
 auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzYjc3NmM4NmRkN2FiNjNmNDRkM2EiLCJpYXQiOjE2NDkwNzU1OTJ9._nymBfgupV4dWsOpJwuV5h8qRhLCdphqwKNPKoUngec
 
 
