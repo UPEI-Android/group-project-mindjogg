@@ -6,29 +6,10 @@ import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
 
-let userEmail;
-let userPhone="";
-
-//function to set value of user
-const setUserValue= async () => {
-  userEmail= await AsyncStorage.getItem("userEmail");
-  if(userEmail==null){userEmail="no email";}
-  userEmail=userEmail.replace(/['"]+/g, "");
-
-  userPhone=await AsyncStorage.getItem("userPhone");
-  if(userPhone==null){userPhone="no phone number";}
-  userPhone= userPhone.replace(/['"]+/g, "");
-  
-  return;
-}
-
 const ContactInformation = ({navigation}) => {
 
-
-setUserValue();
-
-  const [email,setEmail]=useState(userEmail);
-  const [phone,setPhone]=useState(userPhone);
+  const [email,setEmail]=useState(global.userEmail);
+  const [phone,setPhone]=useState(global.userPhone);
 
 
   const addNewEntry= async()=>{
@@ -38,20 +19,16 @@ setUserValue();
       userEmail:email,
       userPhone: phone,
     });
+     global.userEmail=email;
+     global.userPhone=phone;
 
-    await AsyncStorage.setItem(
-      "userEmail",
-      email
-    );
-    await AsyncStorage.setItem(
-      "userPhone",
-      phone
-    );
   
      await axios.patch(global.backend + "/users/edit/contactinfo", data, {
       headers: { "Content-Type": "application/json",  "auth-token":userToken},
     });
+    await navigation.push("EditProfile");
   }
+
 
   return (
     <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" },globalStyles.pinkBackground]}>
@@ -96,7 +73,7 @@ setUserValue();
         buttonColour={"#663591"}
         buttonWidth={125}
         buttonPress={() => 
-          {addNewEntry(); navigation.push("YourProfile");}
+          {addNewEntry(); }
       }
       />
       </View>

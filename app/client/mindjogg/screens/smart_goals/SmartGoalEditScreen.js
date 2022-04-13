@@ -33,6 +33,7 @@ const SmartGoalEditScreen = ({navigation}) => {
      await axios.post(global.backend + "/users/addGoal", data, {
       headers: { "Content-Type": "application/json",  "auth-token":userToken},
     });
+    navigation.push("SmartGoalMainScreen",title);
   }
 
   return (
@@ -111,7 +112,7 @@ const SmartGoalEditScreen = ({navigation}) => {
         buttonColour={"#663591"}
         buttonWidth={125}
         buttonPress={() => 
-          {addNewEntry(); navigation.push("SmartGoalMainScreen",title);}
+          {addNewEntry(); }
       }
       />
       </View>

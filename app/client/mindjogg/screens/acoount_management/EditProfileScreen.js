@@ -2,28 +2,16 @@
 import { React, useContext } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import { Avatar, Title, Caption } from "react-native-paper";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /* LOCAL IMPORTS */
 import StdButton from "../../components/StdButton/StdButton";
 import { globalStyles } from "../../styles/global";
 import { AuthContext } from "../../components/conext/authenticationContext";
 
-let userFirstName;
-let userName;
-//function to set value of user
-const setUserValue= async () => {
-  userFirstName= await AsyncStorage.getItem("userFirstName");
-  userFirstName=userFirstName.replace(/['"]+/g, "");
-  userName= await AsyncStorage.getItem("userName");
-  userName=userName.replace(/['"]+/g, "");
 
-  return;
-}
 
 const ProfileScreen = ({navigation}) => {
   const { signOut } = useContext(AuthContext);
-  setUserValue();
 
   return (
     <View style={[styles.container, globalStyles.pinkBackground]}>
@@ -38,8 +26,8 @@ const ProfileScreen = ({navigation}) => {
         />
       </View>
       <View style={styles.userInfo}>
-          <Title style={styles.title}> {userFirstName} </Title>
-          <Caption style={styles.username}> @{userName} </Caption>
+          <Title style={styles.title}> {global.userFirstName} </Title>
+          <Caption style={styles.username}> @{global.userName} </Caption>
         </View>
     </View>
 

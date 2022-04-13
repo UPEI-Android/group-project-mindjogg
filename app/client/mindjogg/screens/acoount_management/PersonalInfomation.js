@@ -6,38 +6,13 @@ import { globalStyles } from "../../styles/global";
 import axios from "axios";
 
 
-let userFirstName;
-let userLastName="";
-let userMiddleName="";
-let userDate="";
-
-//function to set value of user
-const setUserValue= async () => {
-  userFirstName= await AsyncStorage.getItem("userFirstName");
-  if(userFirstName==null){userFirstName="no middle name";}
-  userFirstName=userFirstName.replace(/['"]+/g, "");
-
-  userMiddleName=await AsyncStorage.getItem("userMiddleName");
-  if(userMiddleName==null){userMiddleName="no middle name";}
-  userMiddleName=userMiddleName.replace(/['"]+/g, "");
-
-  userLastName=await AsyncStorage.getItem("userLastName");
-  if(userLastName==null){userLastName="no userLastName name";}
-  userLastName=userLastName.replace(/['"]+/g, "");
-
-  userDate=await AsyncStorage.getItem("userDOB");
-  
-  return;
-}
 
 const PersonalInfomation = ({navigation}) => {
 
-
-setUserValue();
-  const [firstName,setFirstname]=useState(userFirstName);
-   const [middleName,setMiddleName]=useState(userMiddleName);
-  const [lastName,setLastName]=useState(userLastName);
-  const [userDOB,setUserDOB]=useState(userDate);
+  const [firstName,setFirstname]=useState(global.userFirstName);
+  const [middleName,setMiddleName]=useState(global.userMiddleName);
+  const [lastName,setLastName]=useState(global.userLastName);
+  const [userDOB,setUserDOB]=useState(global.userDOB);
 
 
   const addNewEntry= async()=>{
@@ -51,29 +26,20 @@ setUserValue();
       userLastName: lastName,
       userDOB: userdateofbirth
     });
-
-    await AsyncStorage.setItem(
-      "userFirstName",
-      firstName
-    );
-    await AsyncStorage.setItem(
-      "userMiddleName",
-      middleName
-    );
-    await AsyncStorage.setItem(
-      "userLastName",
-      lastName
-    );
-    await AsyncStorage.setItem(
-      "userDOB",
-      userDOB
-    );
+   
+    global.userFirstName=firstName;
+    global.userMiddleName=middleName;
+    global.userLastName=lastName;
+    global.userDOB=userDOB;
     
   
      await axios.patch(global.backend + "/users/edit/personalinfo", data, {
       headers: { "Content-Type": "application/json",  "auth-token":userToken},
     });
+    await navigation.push("EditProfile");
   }
+
+
 
   return (
     <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" },globalStyles.pinkBackground]}>
@@ -141,7 +107,7 @@ setUserValue();
         buttonColour={"#663591"}
         buttonWidth={125}
         buttonPress={() => 
-          {addNewEntry(); navigation.push("YourProfile");}
+          {addNewEntry(); }
       }
       />
       </View>

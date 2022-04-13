@@ -27,6 +27,7 @@ const PositiveJournalDetailScreen = ({ route, navigation }) => {
     await axios.post(global.backend + "/users/deleteJournalEntry", data, {
       headers: { "Content-Type": "application/json", "auth-token": userToken },
     });
+    navigation.push("PositiveJournalMainScreen", route.params.title);
   };
   return (
     <View
@@ -67,7 +68,7 @@ const PositiveJournalDetailScreen = ({ route, navigation }) => {
           buttonWidth={125}
           buttonPress={() => {
             deleteEntry();
-            navigation.push("PositiveJournalMainScreen", route.params.title);
+            
           }}
         />
         <View style={{ marginLeft: 20 }}>

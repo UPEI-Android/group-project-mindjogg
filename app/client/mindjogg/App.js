@@ -106,14 +106,18 @@ function App() {
             //setting user data and storing it in async storage
             const userData = user.data;
             await AsyncStorage.setItem("admin", JSON.stringify(userData.admin));
+            global.userDOB=userData.userDOB;
             await AsyncStorage.setItem(
               "userDOB",
               JSON.stringify(userData.userDOB)
             );
+            global.userEmail=userData.userEmail;
+
             await AsyncStorage.setItem(
               "userEmail",
               JSON.stringify(userData.userEmail)
             );
+            global.userFirstName=userData.userFirstName;
             await AsyncStorage.setItem("userFirstName", userData.userFirstName);
             await AsyncStorage.setItem(
               "userGoals",
@@ -123,18 +127,26 @@ function App() {
               "userJournal",
               JSON.stringify(userData.userJournal)
             );
+            global.userLastName=userData.userLastName;
+
             await AsyncStorage.setItem(
               "userLastName",
               JSON.stringify(userData.userLastName)
             );
+            global.userMiddleName=userData.userMiddleName;
+
             await AsyncStorage.setItem(
               "userMiddleName",
               JSON.stringify(userData.userMiddleName)
             );
+            global.userName=userData.userName;
+
             await AsyncStorage.setItem(
               "userName",
               JSON.stringify(userData.userName)
             );
+            global.userPhone=userData.userPhone;
+
             await AsyncStorage.setItem(
               "userPhone",
               JSON.stringify(userData.userPhone)

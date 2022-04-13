@@ -46,6 +46,7 @@ const PositiveJournalEditModifyScreen = ({ navigation, route }) => {
     await axios.post(global.backend + "/users/addJournalEntry", data, {
       headers: { "Content-Type": "application/json", "auth-token": userToken },
     });
+    navigation.push("PositiveJournalMainScreen", journalEntry);
   };
 
   return (
@@ -130,7 +131,7 @@ const PositiveJournalEditModifyScreen = ({ navigation, route }) => {
             buttonWidth={125}
             buttonPress={() => {
               addNewEntry();
-              navigation.push("PositiveJournalMainScreen", journalEntry);
+              
             }}
           />
         </View>

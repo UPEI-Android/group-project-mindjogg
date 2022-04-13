@@ -5,11 +5,12 @@ import StdCard from "../../components/StdCard/StdCard";
 import axios from "axios";
 import StdButton from "../../components/StdButton/StdButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import propTypes from "prop-types";
 
 
 
 var count = 0;
-const SmartGoalMainScreen = ({ navigation }) => {
+const SmartGoalMainScreen = ({ navigation,route }) => {
 
   const [journalEntries, setJournalEntries] = useState([]);
 
@@ -35,7 +36,7 @@ const SmartGoalMainScreen = ({ navigation }) => {
       retrieveJournalEntries().then((goalEntry) => {
         setJournalEntries(goalEntry);
       });
-    }, [journalEntries.toString()]);
+    }, [journalEntries.toString(), route.params]);
 
   return (
       <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" },globalStyles.pinkBackground]}>
@@ -108,6 +109,8 @@ const SmartGoalMainScreen = ({ navigation }) => {
               marginTop:20
             },
           });
+
+          SmartGoalMainScreen.propTypes = { route: propTypes.any };
 
 
 export default SmartGoalMainScreen;

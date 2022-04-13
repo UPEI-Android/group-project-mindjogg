@@ -50,6 +50,17 @@ const PositiveJournalStackNavigator = ({ navigation }) => {
           component={PositiveJournalDetailScreen}
           options={{
             title: "Positive Journal details",
+            headerLeft: () => (
+              <Icon.Button
+                name="arrow-back-outline"
+                size={25}
+                style={globalStyles.purpleBackground}
+                onPress={() => {
+                  const title= Math.random().toString(36).substring(2,7);
+                  navigation.navigate("PositiveJournalMainScreen",title);
+                }}
+              ></Icon.Button>
+            ),
           }}
         />
                 <Stack.Screen
@@ -57,6 +68,17 @@ const PositiveJournalStackNavigator = ({ navigation }) => {
           component={PositiveJournalEditModifyScreen}
           options={{
             title: "Positive Journal Modify",
+            headerLeft: () => (
+              <Icon.Button
+                name="arrow-back-outline"
+                size={25}
+                style={globalStyles.purpleBackground}
+                onPress={() => {
+                  const title= Math.random().toString(36).substring(2,7);
+                  navigation.navigate("PositiveJournalMainScreen",title);
+                }}
+              ></Icon.Button>
+            ),
           }}
         />
 
@@ -65,6 +87,17 @@ const PositiveJournalStackNavigator = ({ navigation }) => {
           component={PositiveJournalEditScreen}
           options={{
             title: "Positive Journal add entry",
+            headerLeft: () => (
+              <Icon.Button
+                name="arrow-back-outline"
+                size={25}
+                style={globalStyles.purpleBackground}
+                onPress={() => {
+                  const title= Math.random().toString(36).substring(2,7);
+                  navigation.navigate("PositiveJournalMainScreen",title);
+                }}
+              ></Icon.Button>
+            ),
           }}
         />
       </Stack.Navigator>

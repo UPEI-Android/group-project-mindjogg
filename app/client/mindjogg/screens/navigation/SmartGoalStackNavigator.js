@@ -39,16 +39,49 @@ const SmartGoalStackNavigator = ({navigation}) => {
         <Stack.Screen name="SmartGoalEditScreen" component={SmartGoalEditScreen} options = {
           {
             title: "Smart Goal add",
+            headerLeft: () => (
+              <Icon.Button
+                name="arrow-back-outline"
+                size={25}
+                style={globalStyles.purpleBackground}
+                onPress={() => {
+                  const title= Math.random().toString(36).substring(2,7);
+                  navigation.navigate("SmartGoalMainScreen",title);
+                }}
+              ></Icon.Button>
+            ),
           }
         }/>
           <Stack.Screen name="SmartGoalDetailScreen" component={SmartGoalDetailScreen} options = {
           {
             title: "Smart Goal Detail",
+            headerLeft: () => (
+              <Icon.Button
+                name="arrow-back-outline"
+                size={25}
+                style={globalStyles.purpleBackground}
+                onPress={() => {
+                  const title= Math.random().toString(36).substring(2,7);
+                  navigation.navigate("SmartGoalMainScreen",title);
+                }}
+              ></Icon.Button>
+            ),
           }
         }/>
                   <Stack.Screen name="SmartGoalEditModifyScreen" component={SmartGoalEditModifyScreen} options = {
           {
             title: "Smart Goal Modify",
+            headerLeft: () => (
+              <Icon.Button
+                name="arrow-back-outline"
+                size={25}
+                style={globalStyles.purpleBackground}
+                onPress={() => {
+                  const title= Math.random().toString(36).substring(2,7);
+                  navigation.navigate("SmartGoalMainScreen",title);
+                }}
+              ></Icon.Button>
+            ),
           }
         }/>
 
